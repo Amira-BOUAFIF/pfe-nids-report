@@ -1,0 +1,144 @@
+@startuml NIDS_ClassDiagram
+
+hide circle
+
+' ─── Enums ────────────────────────────────────────────
+/'
+enum Role {
+  ADMIN
+  IT_MANAGER
+}
+
+enum AlertStatus {
+  NEW
+  REVIEWED
+  DISMISSED
+}
+
+enum AttackCategory {
+  BENIGN
+  DOS
+  PROBE
+  BRUTE_FORCE
+  WEB_ATTACK
+  BOTNET
+  INFILTRATION
+}
+'/
+
+' ─── Core Classes ─────────────────────────────────────
+
+class User {
+  - id : Long
+  - username : String
+  - email : String
+  - passwordHash : String
+  - role : Role
+  - createdAt : DateTime
+  --
+  '+ login() : void
+  '+ logout() : void
+  
+}
+
+class Alert {
+  - id : Long
+  - timestamp : DateTime
+  - sourceIP : String
+  - destinationIP : String
+  - sourcePort : int
+  - destinationPort : int
+  - protocol : String
+  - confidence : float
+  - status : AlertStatus
+  --
+
+  '+ updateStatus(status : AlertStatus) : void
+}
+
+class AttackType {
+  - id : Long
+  - name : String
+  - category : AttackCategory
+  - description : String
+  --
+
+}
+
+class NetworkFlowLog {
+  - id : Long
+  - timestamp : DateTime
+  - sourceIP : String
+  - destinationIP : String
+  - sourcePort : int
+  - destinationPort : int
+  - protocol : String
+  - duration : float
+  - packetCount : int
+  - byteCount : int
+  - predictionLabel : String
+  - confidence : float
+  - alertGenerated : boolean
+  --
+
+}
+
+class AuditLog {
+  - id : Long
+  - timestamp : DateTime
+  - action : String
+  - details : String
+  --
+
+}
+
+class Report {
+  - id : Long
+  - generatedAt : DateTime
+  - periodStart : DateTime
+  - periodEnd : DateTime
+  - totalAlerts : int
+  - totalFlows : int
+  - topAttackType : String
+  --
+  
+  '+ generate() : void
+  '+ export() : void
+}
+
+class Configuration {
+  - id : Long
+  - key : String
+  - value : String
+  - updatedAt : DateTime
+  --
+
+}
+
+' ─── Enum Relationships ───────────────────────────────
+/'
+User       -->  Role          : has >
+Alert      -->  AlertStatus   : has >
+AttackType -->  AttackCategory : has >
+'/
+' ─── Class Relationships ──────────────────────────────
+
+' A flow triggers at most one alert
+NetworkFlowLog "1"  -->  "0..1"  Alert      : triggers 
+
+' An alert is classified as one attack type
+Alert       "*"  -->  "1"     AttackType : classified as 
+
+' A flow is predicted as one attack type
+NetworkFlowLog "*"  -->  "1"  AttackType : predicted as 
+
+' Admin manages alert status
+User        "1"  -->  "0..*"  Alert      : manages 
+
+' User actions are recorded in audit log
+User        "1"  -->  "0..*"  AuditLog   : recorded in 
+
+' Report aggregates alerts over a period
+Report      "1"  -->  "0..*"  Alert      : aggregates 
+
+@enduml

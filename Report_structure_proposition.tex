@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+
+\title{Report Structuring Model -- Proposed Version}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+Following the preparation of our report plan, and using the template provided by Ms Asma NAJAR as a reference for the structure, we have organized a proposed outline below. While aligning with this recommended framework, some sections remain unclear to us in terms of expected content and level of detail. We would greatly appreciate your guidance to ensure that our approach meets academic expectations.
+
+\section*{Proposed Report Structure}
+
+\subsection*{Chapter 1: Project Context}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item Presentation of the Company
+    \item Study of the Existing System
+    \item Criticism of the Existing System
+    \item Proposed Solution
+    \item Project Pipeline
+    \item Development Methodology
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item For the \textit{Project Pipeline} section, we would like clarification on the expected content. Should it describe the global workflow of the project (e.g., data, modeling, deployment stages), or focus more on technical implementation steps?
+    \item Regarding the \textit{Langage UML / Cycle de vie} section, we are following the CRISP-DM methodology in practice. We would like guidance on how to present this section—should it focus on UML concepts and their mapping to the CRISP-DM lifecycle, or on a theoretical description of UML itself?
+\end{itemize}
+
+\subsection*{Chapter 2: Requirements Specification}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item Functional Requirements
+    \item Non-Functional Requirements
+    \item Actors Identification
+    \item Use Case Diagram
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item This chapter appears to be the most straightforward to start with. We are considering beginning the writing process here.
+\end{itemize}
+
+\subsection*{Chapter 3: Conceptual Design}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item Sequence Diagrams / Activity Diagrams
+    \item Class Diagram
+    \item Additional Diagrams (if applicable)
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item We are currently unable to design sequence diagrams as development has not yet started. Should we postpone these diagrams or provide preliminary versions?
+    \item Apart from class diagrams, we would appreciate clarification on which diagrams are essential versus optional.
+\end{itemize}
+
+\subsection*{Chapter 4: Data Collection and Preparation}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item Data Collection
+    \item Data Understanding
+    \item Data Cleaning and Preprocessing
+    \item Data Augmentation
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item We are following the CRISP-DM methodology, including both data understanding and preparation phases.
+    \item We are considering adding a dataset comparison and justification section. We are unsure where this would best fit within the chapter.
+    \item During preprocessing, we encountered a strong class imbalance (approximately 80\% benign data, 14 attack classes, with some classes having fewer than 50 samples).
+    \item Our current approach is experimental: starting with raw data as a baseline, then testing different techniques (sample weighting, resampling, hybrid methods), and evaluating performance.
+    \item There is also a possibility of removing extremely underrepresented classes if they cannot be learned effectively. We would appreciate your recommendation on this matter.
+\end{itemize}
+
+\subsection*{Chapter 5: Modeling}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item State of the Art
+    \item Adopted Approach
+    \item Training and Hyperparameter Optimization
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item This chapter is still under development as we are approaching the modeling phase.
+\end{itemize}
+
+\subsection*{Chapter 6: Realization}
+\begin{enumerate}[label=\arabic*.]
+    \item Introduction
+    \item Development Tools and Technologies
+    \item Performance Analysis and Evaluation Metrics
+    \item User Interfaces
+    \item Integration
+    \item Conclusion
+\end{enumerate}
+
+\textbf{Remarks:}
+\begin{itemize}
+    \item This chapter is also not yet fully defined, as it depends on the progress of implementation and experimentation.
+\end{itemize}
+
+\section*{Conclusion}
+This structure represents our current understanding and interpretation of the report requirements. We would greatly value your feedback and validation, particularly regarding unclear sections and methodological choices, to ensure that we proceed in the right direction.
+
+\end{document}

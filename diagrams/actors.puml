@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+
+' Human actors
+actor "Network/Security\n  Administrator" as Admin
+actor "IT Manager" as ITM
+
+' System actor (boxed style)
+rectangle "        <<actor>>\n\nDetection Engine\n" as DE
+
+' Force same horizontal alignment
+Admin -[hidden]-> ITM
+ITM -[hidden]-> DE
+
+@enduml

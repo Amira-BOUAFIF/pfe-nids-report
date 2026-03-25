@@ -1,0 +1,30 @@
+{
+    "latex-workshop.latex.outDir": "./out",
+    "latex-workshop.latex.recipes": [
+        {
+        "name": "latexmk (outdir)",
+        "tools": ["latexmk"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+        "name": "latexmk",
+        "command": "latexmk",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=./out",
+            "-auxdir=./out",
+            "%DOC%"
+        ]
+        }
+    ],
+    "latex-workshop.formatting.latex": "latexindent",
+    // Auto-format on save
+    "editor.formatOnSave": true,
+    "[latex]": {
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    }
+}

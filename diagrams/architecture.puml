@@ -1,0 +1,75 @@
+@startuml NIDS_Architecture
+
+skinparam rectangle {
+  BackgroundColor #FAFAFA
+  BorderColor #333333
+  FontSize 12
+}
+skinparam arrow {
+  Color #333333
+  FontSize 10
+}
+skinparam database {
+  BackgroundColor #FFF9C4
+  BorderColor #F9A825
+}
+skinparam component {
+  BackgroundColor #E3F2FD
+  BorderColor #1565C0
+}
+
+' ─── Client Layer ─────────────────────────────────────────────
+package "Client Layer" #E8F5E9 {
+  rectangle "React Application" as React {
+    component "Dashboard" as Dashboard
+    component "Alerts List" as Alerts
+    component "Reports" as Reports
+    component "Statistics" as Stats
+    component "Login Page" as Login
+  }
+}
+
+' ─── Backend Layer ────────────────────────────────────────────
+package "Backend Layer" #E3F2FD {
+  rectangle "Spring Boot Application" as SpringBoot {
+    component "Auth Service\n(Spring Security + JWT)" as Auth
+    component "Alert Service\n(CRUD + SSE)" as AlertService
+    component "Flow Processing\nService" as FlowService
+    component "Report Service\n(Weekly Scheduler)" as ReportService
+    component "Audit Log\nService" as AuditService
+  }
+}
+
+' ─── AI Layer ─────────────────────────────────────────────────
+package "AI Layer" #FCE4EC {
+  rectangle "FastAPI Microservice" as FastAPI {
+    component "POST /predict" as PredictEndpoint
+  }
+  rectangle "ML Model" as MLModel {
+    component "XGBoost\nmodel.pkl (Joblib)" as XGBoost
+    component "Decision Tree\nbaseline.pkl (Joblib)" as DT
+  }
+}
+
+' ─── Data Layer ───────────────────────────────────────────────
+package "Data Layer" #FFF9C4 {
+  database "MySQL Database" as MySQL {
+    component "user" as TUser
+    component "alert" as TAlert
+    component "network_flow" as TFlow
+    component "attack_type" as TAttack
+    component "audit_log" as TAudit
+    component "report" as TReport
+    component "configuration" as TConfig
+  }
+}
+
+' ─── Arrows ───────────────────────────────────────────────────
+
+React        -down->  SpringBoot     : REST API (HTTP)
+SpringBoot   -up->    React          : SSE (Real-time alerts)
+FlowService  -down->  FastAPI        : POST /predict (HTTP)
+PredictEndpoint -right-> XGBoost     : Model inference
+SpringBoot   -down->  MySQL          : JPA / Hibernate
+
+@enduml

@@ -1,0 +1,138 @@
+@startuml NIDS_ClassDiagram
+
+hide circle
+
+' ─── Enums ────────────────────────────────────────────
+/'
+enum Role {
+  ADMIN
+  IT_MANAGER
+}
+
+enum AlertStatus {
+  NEW
+  REVIEWED
+  DISMISSED
+}
+
+enum AttackCategory {
+  BENIGN
+  DOS
+  PROBE
+  BRUTE_FORCE
+  WEB_ATTACK
+  BOTNET
+  INFILTRATION
+}
+'/
+' ─── Core Classes ─────────────────────────────────────
+
+class User {
+  - id: Long
+  - username: String
+  - email: String
+  - passwordHash: String
+  - role: Enum
+  - createdAt: DateTime
+  --
+
+  '+ login() : void
+  '+ logout() : void
+}
+
+class Alert {
+  - id: Long
+  - timestamp: DateTime
+  - sourceIP: String
+  - destinationIP: String
+  - sourcePort: int
+  - destinationPort: int
+  - protocol: String
+  - confidence: float
+  - status: Enum
+  --
+
+  '+ updateStatus(status : AlertStatus) : void
+}
+
+class Attack {
+  - id: Long
+  - name: String
+  - category: Enum
+  - description: String
+  --
+
+}
+
+class NetworkFlow {
+  - id: Long
+  - timestamp: DateTime
+  - sourceIP: String
+  - destinationIP: String
+  - sourcePort: int
+  - destinationPort: int
+  - protocol: String
+  - duration: float
+  - packetCount: int
+  - byteCount: int
+  - predictionLabel: String
+  - confidence: float
+  - alertGenerated: boolean
+  --
+
+}
+
+class AuditLog {
+  - id: Long
+  - timestamp: DateTime
+  - action: String
+  - details: String
+  --
+
+}
+
+class Report {
+  - id: Long
+  - generatedAt: DateTime
+  - periodStart: DateTime
+  - periodEnd: DateTime 
+  '- totalAlerts: int
+  '- totalFlows: int
+  '- topAttackType: String
+  --
+
+}
+
+class Configuration {
+  - id: Long
+  - key: String
+  - value: String
+  - updatedAt: DateTime
+  --
+
+}
+
+' ─── Enum Relationships ───────────────────────────────
+/'
+User       -->  Role           : has >
+Alert      -->  AlertStatus    : has >
+AttackType -->  AttackCategory : has >
+'/
+' ─── Class Relationships ──────────────────────────────
+
+' A flow triggers at most one alert
+NetworkFlow "1"   --  "0..1"  Alert      : triggers 
+
+' An alert is classified as one attack type
+Alert          "1..*"   --  "1"     Attack : classified as 
+
+' Admin manages alert status
+User           "1"   --  "0..*"  Alert      : manages 
+
+' User actions recorded in audit log
+User           "1"   --  "0..*"  AuditLog   : generates
+
+' Report aggregates alerts over a period
+Report         "1"   --  "0..*"  Alert      : contains 
+
+@enduml

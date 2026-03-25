@@ -1,0 +1,45 @@
+
+@startuml NIDS_UseCaseDiagram
+
+left to right direction
+skinparam packageStyle rectangle
+
+
+' ─── Left Actors ──────────────────────────────────────
+actor "User" as user
+actor "Network/Security\nAdministrator" as Admin
+actor "IT Manager"                       as ITMgr
+
+' ─── System Boundary ──────────────────────────────────
+rectangle "NIDS Web Application" {
+    
+    usecase "Authenticate" as UC03
+    usecase "view Dashboard" as UC04
+    usecase "view Statistics Summary" as UC05
+    usecase "Analyze network flow"  as UC01
+    usecase "Trigger Network Analysis" as UC02
+    usecase "view Alerts List" as UC06
+    usecase "view Reports" as UC07
+    
+}
+
+' ─── Right Actor ──────────────────────────────────────
+rectangle "        <<actor>>\n\nDetection Engine\n" as DE
+
+user -[hidden]- UC03
+user -[hidden]- UC04
+user -[hidden]- UC05
+
+' ─── Admin associations ───────────────────────────────
+Admin -[hidden]- UC02
+Admin -[hidden]- UC06
+
+
+' ─── IT Manager associations ──────────────────────────
+ITMgr -[hidden]- UC07
+
+' ─── Detection Engine associations ───────────────────
+UC01 -[hidden]- DE
+UC02 ..> UC01 : <<include>>
+
+@enduml

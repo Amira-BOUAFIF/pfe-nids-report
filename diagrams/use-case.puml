@@ -1,0 +1,68 @@
+@startuml NIDS_UseCaseDiagram
+
+left to right direction
+skinparam packageStyle rectangle
+
+
+' ─── Left Actors ──────────────────────────────────────
+actor "User" as User
+actor "Network/Security\nAdministrator" as Admin
+actor "IT Manager"                       as ITMgr
+
+
+' ─── System Boundary ──────────────────────────────────
+rectangle "NIDS Web Application" {
+
+    package "Detection" {
+        usecase "Trigger Network Analysis" as UC02
+        usecase "Analyze Network Flow" as UC10
+        usecase "Generate Alert"       as UC11
+    }
+    usecase "Authenticate" as UC01
+
+    package "Monitoring" {
+        usecase "View Dashboard"          as UC03
+        usecase "View Statistics Summary" as UC07
+    }
+
+    package "Alert Management" {
+        usecase "View Alerts List"  as UC04
+        usecase "View Alert Detail" as UC05
+        usecase "Search Alerts" as UC06
+        usecase  "Manage Alert Status" as UC12 
+    }
+
+    package "Reporting" {
+        usecase "View Reports"  as UC08
+        usecase "Export Report" as UC09
+    }
+}
+
+' ─── Right Actor ──────────────────────────────────────
+rectangle "        <<actor>>\n\nDetection Engine\n" as DE
+
+' ─── Admin + IT Manager associations ───────────────────────────────
+User -[hidden]- UC01
+User -[hidden]- UC03
+User -[hidden]- UC07
+
+' ─── Admin associations ───────────────────────────────
+
+Admin -[hidden]- UC02
+Admin -[hidden]- UC04
+
+' ─── IT Manager associations ──────────────────────────
+ITMgr -[hidden]- UC08
+
+' ─── Detection Engine associations ───────────────────
+UC10 -[hidden]- DE
+
+' ─── Relationships ────────────────────────────────────
+UC11 .right.> UC10 : <<extend>>
+UC02 .down.> UC10 : <<include>>
+UC05 .up.> UC04 : <<extend>>
+UC09 .up.> UC08 : <<extend>>
+UC06 .up.> UC04 : <<extend>>
+UC12 .right.> UC05 : <<extend>>
+
+@enduml

@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% Diff?rentes options pour la classe :
+% - taille de la fonte    : 10pt, 11pt, 12pt
+% - recto ou recto-verso    : oneside, twoside
+% - stade de d?veloppement    : draft, final
+
+
+\usepackage[francais]{babel}
+%\usepackage[latin1]{inputenc}    % Pour utiliser les lettres accentu?es
+
+%\usepackage[utf8]{inputenc}%           gestion des accents (source)
+%\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+%\usepackage[francais,english]{babel}%          gestion du fran?ais
+\usepackage{textcomp}%                 caract?res additionnels
+
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[french]{varioref}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{ifpdf} % part of the hyperref bundle
+\usepackage{array}
+
+
+%\usepackage{abstract}
+
+
+ % set fonts for nicer pdf view
+ \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+
+\pagestyle{fancy}
+\fancyhead[L]{\nouppercase\leftmark} %pour afficher le nom du chapitre ? gauche
+\fancyhead[C]{}
+\fancyhead[R]{\nouppercase\rightmark} %pour afficher le nom de la section ? droite
+
+
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\textbf{\thepage}}
+
+% D?but du document
+\begin{document}
+%%%%%%%%%%%%% pages de garde en Anglais
+\include{garde/garde_fin_English}
+\include{garde/garde_sign_fin_English}
+
+
+\newpage
+\pagenumbering{roman}
+\include{chapters/dedication_amira}
+\include{chapters/dedication_hajer}
+\include{chapters/Remerciements}
+\tableofcontents    % Table des matières
+\listoffigures        % Liste des figures
+\listoftables        % Liste des tableaux
+\newpage
+\pagenumbering{arabic}
+\include{chapters/Introduction}
+\include{chapters/Chapitre1}
+\include{chapters/Chapitre11}
+\include{chapters/Chapitre2}
+\include{chapters/Chapitre3}
+\include{chapters/Conclusion}
+%
+\bibliographystyle{alpha}
+\bibliography{Biblio}
+\addcontentsline{toc}{chapter}{Bibliography}% ajouter son entr?e dans la table
+\pagestyle{empty}
+\include{Annexe1}
+
+
+
+
+% Fin du document
+\end{document}

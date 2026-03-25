@@ -135,4 +135,5 @@ User           "1"   --  "0..*"  AuditLog   : generates
 ' Report aggregates alerts over a period
 Report         "1"   --  "0..*"  Alert      : contains 
 
+Report -[hidden]- Configuration
 @enduml

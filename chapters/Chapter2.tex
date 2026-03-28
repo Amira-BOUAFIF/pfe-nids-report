@@ -5,9 +5,46 @@
 \section{Functional Requirements}
 
 \section{Non-Functional Requirements}
-
+\newpage
 \section{Actors Identification}
+Actors are external entities, users, organizations, or external systems that interact with the system to achieve one or more functional requirements, with each actor representing a specific role.
+\vskip0.2cm
+In the context of our project, we identify three primary actors illustrated in Figure~\ref{fig:actors}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\columnwidth]{../diagrams/actors.png}
+    \caption{Actors}
+    \label{fig:actors}
+\end{figure}
 
+Table~\ref{tab3} presents the roles of each actor in our system.
+\begin{table}[H]
+    \begin{center}
+        \caption{Roles of Actors}
+        \label{tab3}
+        \vskip0.15cm
+        \begin{tabular}{|l|>{\raggedright\arraybackslash}p{6cm}|}
+            \hline
+            \rowcolor[gray]{0.8}\bfseries Actor & \bfseries Role\\
+            \hline
+            Network/Security                    &- Authenticate\\
+            Administrator                       &- View Dashboard\\
+                                                &- View Statistics Summary\\
+                                                &- Trigger Network Analysis\\
+                                                &- View Alerts List\\
+            \hline
+            It Manager                          &- Authenticate\\
+                                                &- View Dashboard\\
+                                                &- View Statistics Summary\\
+                                                &- View Reports\\
+            \hline
+            Detection Engine                    &- Analyze Network Flow\\
+            \hline
+        \end{tabular}
+    \end{center}
+
+\end{table}
+\newpage
 \section{Use Case Diagram}
 
 \section{Conclusion}

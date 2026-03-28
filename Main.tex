@@ -7,7 +7,7 @@
 % - stade de d?veloppement    : draft, final
 
 
-\usepackage[francais]{babel}
+\usepackage[english]{babel}
 %\usepackage[latin1]{inputenc}    % Pour utiliser les lettres accentu?es
 
 %\usepackage[utf8]{inputenc}%           gestion des accents (source)
@@ -18,14 +18,21 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{setspace}
 \usepackage{hyperref}
-\usepackage[french]{varioref}
+\usepackage[english]{varioref}
 \usepackage{fancyhdr}
 \usepackage{color}
 \usepackage{colortbl}
 \usepackage{amsmath}
 \usepackage{ifpdf} % part of the hyperref bundle
 \usepackage{array}
+\usepackage{float}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{emdash}{\;–\;}
 
+\captionsetup{
+    labelfont={sc},      % Small caps (for FIGURE)
+    labelsep=emdash      % Long dash "—" between number and caption
+}
 
 %\usepackage{abstract}
 

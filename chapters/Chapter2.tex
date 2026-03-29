@@ -1,11 +1,52 @@
 \chapter{Requirements Specification}
 
 \section{Introduction}
+Throughout this chapter, we specify both the functional and non-functional requirements, identify the system actors, and present the global use case diagram.
+By defining these elements, we aim to establish a clear and shared understanding of the system’s expected behavior and constraints, providing a solid foundation for the subsequent design and implementation phases.
 
 \section{Functional Requirements}
+Functional requirements define \emph{what} the system should perform. The main functionalities of our system are as follows:
+
+\vskip1cm
+— Authenticate;
+\vskip0.2cm
+— View Dashboard;
+\vskip0.2cm
+— View Statistics summary;
+\vskip0.2cm
+— Trigger Network Analysis;
+\vskip0.2cm
+— View Alerts Lists;
+\vskip0.2cm
+— View Reports;
+\vskip0.2cm
+— Analyze Network Flow;
 
 \section{Non-Functional Requirements}
-\newpage
+
+Non-functional requirements define \emph{how} the system should perform its functions. They describe the quality attributes and constraints of the system:
+
+\vskip0.5cm
+\textbf{Performance:} The system must process network traffic and generate analysis results with minimal latency, ensuring fast detection of potential intrusions.
+
+\vskip0.3cm
+\textbf{Security:} The system must ensure secure authentication and enforce role-based access control, preventing unauthorized actions and protecting system integrity, while supporting non-repudiation to guarantee accountability and traceability of all operations.
+
+\vskip0.3cm
+\textbf{Reliability:} The system must perform its functions consistently, handle errors gracefully, and ensure that failures are detected and managed without disrupting overall operation.
+
+\vskip0.3cm
+\textbf{Maintainability:} The system should be easy to maintain, allowing for efficient debugging, updates, and modifications to existing components.
+
+\vskip0.3cm
+\textbf{Extensibility:} The system should support the addition of new features, such as new detection models or data sources, without requiring major redesign.
+
+\vskip0.3cm
+\textbf{Availability:} The system must be accessible and operational whenever needed, minimizing downtime and ensuring continuous monitoring of network activity.
+
+\vskip0.3cm
+\textbf{Usability:} The system should provide an intuitive interface, enabling users to efficiently navigate and interact with its functionalities.
+
 \section{Actors Identification}
 Actors are external entities, users, organizations, or external systems that interact with the system to achieve one or more functional requirements, with each actor representing a specific role.
 \vskip0.2cm

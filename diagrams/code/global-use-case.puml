@@ -24,7 +24,6 @@ rectangle "NIDS Web Application" {
 }
 
 ' ─── Right Actor ──────────────────────────────────────
-rectangle "        <<actor>>\n\nDetection Engine\n" as DE
 
 user -[hidden]- UC03
 user -[hidden]- UC04
@@ -39,7 +38,5 @@ Admin -[hidden]- UC06
 ITMgr -[hidden]- UC07
 
 ' ─── Detection Engine associations ───────────────────
-UC01 -[hidden]- DE
-UC02 ..> UC01 : <<include>>
 
 @enduml

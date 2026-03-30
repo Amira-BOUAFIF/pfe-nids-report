@@ -16,7 +16,7 @@ rectangle "NIDS Web Application" {
     package "Detection" {
         usecase "Trigger Network Analysis" as UC02
         usecase "Analyze Network Flow" as UC10
-        usecase "Generate Alert"       as UC11
+        usecase "send Alert"       as UC11
     }
     usecase "Authenticate" as UC01
 
@@ -39,7 +39,7 @@ rectangle "NIDS Web Application" {
 }
 
 ' ─── Right Actor ──────────────────────────────────────
-rectangle "        <<actor>>\n\nDetection Engine\n" as DE
+rectangle "     <<actor>>\n\nEmail Service\n" as DE
 
 ' ─── Admin + IT Manager associations ───────────────────────────────
 User -[hidden]- UC01
@@ -54,8 +54,8 @@ Admin -[hidden]- UC04
 ' ─── IT Manager associations ──────────────────────────
 ITMgr -[hidden]- UC08
 
-' ─── Detection Engine associations ───────────────────
-UC10 -[hidden]- DE
+' ─── Email Service associations ───────────────────
+UC11 -[hidden]- DE
 
 ' ─── Relationships ────────────────────────────────────
 UC11 .right.> UC10 : <<extend>>

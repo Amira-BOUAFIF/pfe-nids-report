@@ -1,4 +1,4 @@
-@startuml
+@startuml Actors
 left to right direction
 
 ' Human actors

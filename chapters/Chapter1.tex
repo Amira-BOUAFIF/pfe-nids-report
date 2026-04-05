@@ -36,9 +36,21 @@ Figure~\ref{fig:pipeline} illustrates the project pipeline for our network intru
 
 \section{Methodologies}
 In this section, we present the methodologies that we use in this project, including the machine learning methodology CRISP-DM and the software development methodology UML.
-\newpage
 \subsection{CRISP-DM}
-The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a widely used framework for structuring machine learning projects. Figure~\ref{fig:crisp-dm} illustrates the six phases of this methodology and their relationships.
+The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a widely used framework for structuring machine learning projects. It consists of six phases:
+
+\begin{itemize}
+    \item \textbf{Business Understanding:} defining project objectives and requirements and gaining a clear understanding of the business problem.
+    \item \textbf{Data Understanding:} collecting and exploring the data to gain insights and assess its quality by identifying data quality issues.
+    \item \textbf{Data Preparation:} cleaning and preparing the data for modeling by selecting relevant features, handling missing values and splitting the dataset.
+    \item \textbf{Modeling:} Selecting and applying appropriate modeling techniques. Building, testing and tuning models to optimize their performance.
+    \item \textbf{Evaluation:} Evaluating the model's performance and determining if it meets the business objectives.
+    \item \textbf{Deployment:} deploying the model into production, monitoring and maintaining the model's performance.
+\end{itemize}
+
+
+
+Figure~\ref{fig:crisp-dm} illustrates these phases and their relationships.
 
 \begin{figure}[h!]
     \centering
@@ -48,8 +60,15 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a 
 \end{figure}
 
 \subsection{UML}
-For the modeling of the software system, we use UML (Unified Modeling Language), a standardized modeling language used to specify, visualize, construct, and document the artifacts of software systems through diagrams such as use case, class, and sequence diagrams.
+For the modeling of the software system, we use UML (Unified Modeling Language), a standardized modeling language used to specify, visualize, construct, and document the artifacts of software systems through diagrams such as use case, class, and sequence diagrams. There are two types of UML diagrams:
+
+\begin{itemize}
+    \item \textbf{Behavioral Diagrams:} State machine, activity, use case, sequence, communication and interaction overview diagrams.
+    \item \textbf{Structural Diagrams:} Class, object, component, deployment and package diagrams.
+\end{itemize}
+
+UML makes complex systems easier to design and communicate, it provides a common language for developers, architects, and stakeholders\cite{UML}.
 
 \section{Conclusion}
-In this chapter we introduce the host company ITXTREE, study existing network intrusion detection systems, discuss their shortcomings and finally present a solution. In the next chapter we specify the system requirements.
+In this chapter, we introduce the host company ITXTREE, study existing network intrusion detection systems, discuss their shortcomings and finally present a solution. In the next chapter we specify the system requirements.
 

@@ -1,5 +1,5 @@
 @startuml NIDS_ClassDiagram
-
+skinparam dpi 300
 hide circle
 
 ' ─── Enums ────────────────────────────────────────────
@@ -42,13 +42,6 @@ class User {
 
 class Alert {
   - id: Long
-  - timestamp: DateTime
-  - sourceIP: String
-  - destinationIP: String
-  - sourcePort: int
-  - destinationPort: int
-  - protocol: String
-  - confidence: float
   - status: Enum
   --
 

@@ -1,5 +1,5 @@
 
-@startuml NIDS_UseCaseDiagram
+@startuml global-usecase
 
 left to right direction
 skinparam packageStyle rectangle
@@ -16,7 +16,6 @@ rectangle "NIDS Web Application" {
     usecase "Authenticate" as UC03
     usecase "view Dashboard" as UC04
     usecase "view Statistics Summary" as UC05
-    usecase "Analyze network flow"  as UC01
     usecase "Trigger Network Analysis" as UC02
     usecase "view Alerts List" as UC06
     usecase "view Reports" as UC07
@@ -25,17 +24,17 @@ rectangle "NIDS Web Application" {
 
 ' ─── Right Actor ──────────────────────────────────────
 
-user -[hidden]- UC03
-user -[hidden]- UC04
-user -[hidden]- UC05
+user -- UC03
+user -- UC04
+user -- UC05
 
 ' ─── Admin associations ───────────────────────────────
-Admin -[hidden]- UC02
-Admin -[hidden]- UC06
+Admin -- UC02
+Admin -- UC06
 
 
 ' ─── IT Manager associations ──────────────────────────
-ITMgr -[hidden]- UC07
+ITMgr -- UC07
 
 ' ─── Detection Engine associations ───────────────────
 

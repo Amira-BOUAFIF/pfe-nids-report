@@ -1,4 +1,4 @@
-@startuml NIDS_ClassDiagram
+@startuml class
 skinparam dpi 300
 hide circle
 

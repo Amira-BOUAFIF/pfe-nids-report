@@ -1,4 +1,4 @@
-@startuml NIDS_UseCaseDiagram
+@startuml use-case
 
 left to right direction
 skinparam packageStyle rectangle

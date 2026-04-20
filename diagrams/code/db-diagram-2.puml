@@ -1,12 +1,14 @@
-@startuml class2
+@startuml db-schema-vers2
 skinparam dpi 300
 hide circle
 
+!define primary_key(x)<b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x)<b><color:#aaaaaa><&key></color> x</b>
 
-' Core Classes 
+' ─── Core Classes ─────────────────────────────────────
 
 class User {
-    -id : Long
+    primary_key(id) : Long
     - username: String
     - email: String
     - passwordHash: String
@@ -17,7 +19,9 @@ class User {
 }
 
 class Alert {
-    -id : Long
+    primary_key(id) : Long
+    foreign_key(networkFlowId): Long
+    foreign_key(attackId): Long
     - severity: Enum
     - raisedAt: DateTime
     - acknowledgedAt: DateTime
@@ -29,7 +33,7 @@ class Alert {
 }
 
 class Attack {
-    -id : Long
+    primary_key(id) : Long
     - name: String
     - category: Enum
     - defaultSeverity: Enum
@@ -39,7 +43,7 @@ class Attack {
 }
 
 class NetworkFlow {
-    -id : Long
+    primary_key(id) : Long
     - timestamp: DateTime
     - sourceIP: String
     - destinationIP: String
@@ -60,7 +64,8 @@ class NetworkFlow {
 }
 
 class NetworkFlowDiagnostics{
-    - id : Long
+    primary_key(id) : Long
+    foreign_key(networkFlowId): Long
     - avgPacketSize: float
     - fwdPacketLengthMean: float
     - bwdPacketLengthMean: float
@@ -78,7 +83,7 @@ class NetworkFlowDiagnostics{
 }
 
 class AuditLog {
-    - id : Long
+    primary_key(id) : Long
     - userId: Long
     - timestamp: DateTime
     - action: String
@@ -88,7 +93,7 @@ class AuditLog {
 }
 
 class Report {
-    - id : Long
+    primary_key(id) : Long
     - title: String
     - generatedAt: DateTime
     - periodStart: DateTime
@@ -100,7 +105,7 @@ class Report {
 }
 
 class Configuration {
-    - id : Long
+    primary_key(id) : Long
     - key: String
     - value: String
     - updatedAt: DateTime
@@ -128,4 +133,5 @@ User           "1"   --  "0..*"  AuditLog   : generates
 ' Report aggregates alerts over a period
 Report         "1"   --  "0..*"  Alert      : contains 
 
+NetworkFlowDiagnostics -[hidden]- Configuration
 @enduml

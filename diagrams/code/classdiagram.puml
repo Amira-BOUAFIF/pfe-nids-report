@@ -1,123 +1,112 @@
-@startuml class
+@startuml class1
 skinparam dpi 300
 hide circle
 
-' ─── Enums ────────────────────────────────────────────
-/'
-enum Role {
-  ADMIN
-  IT_MANAGER
-}
-
-enum AlertStatus {
-  NEW
-  REVIEWED
-  DISMISSED
-}
-
-enum AttackCategory {
-  BENIGN
-  DOS
-  PROBE
-  BRUTE_FORCE
-  WEB_ATTACK
-  BOTNET
-  INFILTRATION
-}
-'/
-' ─── Core Classes ─────────────────────────────────────
+' Core Classes 
 
 class User {
-  - id: Long
-  - username: String
-  - email: String
-  - passwordHash: String
-  - role: Enum
-  - createdAt: DateTime
-  --
+    - id: Long
+    - username: String
+    - email: String
+    - passwordHash: String
+    - role: Enum
+    - createdAt: DateTime
+    --
 
-  '+ login() : void
-  '+ logout() : void
 }
 
 class Alert {
-  - id: Long
-  - status: Enum
-  --
+    - id: Long
+    - severity: Enum
+    - raisedAt: DateTime
+    - acknowledgedAt: DateTime
+    - resolvedAt: DateTime
+    - analystNotes: String
+    - status: Enum
+    --
 
-  '+ updateStatus(status : AlertStatus) : void
 }
 
 class Attack {
-  - id: Long
-  - name: String
-  - category: Enum
-  - description: String
-  --
+    - id: Long
+    - name: String
+    - category: Enum
+    - defaultSeverity: Enum
+    - description: String
+    --
 
 }
 
 class NetworkFlow {
-  - id: Long
-  - timestamp: DateTime
-  - sourceIP: String
-  - destinationIP: String
-  - sourcePort: int
-  - destinationPort: int
-  - protocol: String
-  - duration: float
-  - packetCount: int
-  - byteCount: int
-  - predictionLabel: String
-  - confidence: float
-  - alertGenerated: boolean
-  --
+    - id : Long
+    - timestamp: DateTime
+    - sourceIP: String
+    - destinationIP: String
+    - sourcePort: int
+    - destinationPort: int
+    - protocol: String
+    - fwdPackets: int
+    - bwdPackets: int
+    - fwdBytes: Long
+    - bwdBytes: Long
+    - flowDuration: float
+    - flowBytesPerSec: float
+    - flowPacketsPerSec: float
+    - avgPacketSize: float
+    - fwdPacketLengthMean: float
+    - bwdPacketLengthMean: float
+    - minPacketLength: int
+    - synCount: int
+    - ackCount: int
+    - finCount: int
+    - pshCount: int
+    - urgCount: int
+    - downUpRatio: float
+    - initWinBytesForward: int
+    - initWinBytesBackward: int
+    - predictionLabel: String
+    - confidence: float  
+    --
 
 }
 
 class AuditLog {
-  - id: Long
-  - timestamp: DateTime
-  - action: String
-  - details: String
-  --
+    - id: Long
+    - timestamp: DateTime
+    - action: String
+    - details: String
+    --
 
 }
 
 class Report {
-  - id: Long
-  - generatedAt: DateTime
-  - periodStart: DateTime
-  - periodEnd: DateTime 
-  '- totalAlerts: int
-  '- totalFlows: int
-  '- topAttackType: String
-  --
+    - id: Long
+    - title: String
+    - generatedAt: DateTime
+    - periodStart: DateTime
+    - periodEnd: DateTime 
+    - format: Enum
+    - filePath: String
+    --
 
 }
 
 class Configuration {
-  - id: Long
-  - key: String
-  - value: String
-  - updatedAt: DateTime
-  --
+    - id: Long
+    - key: String
+    - value: String
+    - updatedAt: DateTime
+    --
 
 }
 
-' ─── Enum Relationships ───────────────────────────────
-/'
-User       -->  Role           : has >
-Alert      -->  AlertStatus    : has >
-AttackType -->  AttackCategory : has >
-'/
 ' ─── Class Relationships ──────────────────────────────
 
 ' A flow triggers at most one alert
 NetworkFlow "1"   --  "0..1"  Alert      : triggers 
 
 ' An alert is classified as one attack type
-Alert          "1..*"   --  "1"     Attack : classified as 
+Alert          "0..*"   --  "1"     Attack : classified as 
 
 ' Admin manages alert status
 User           "1"   --  "0..*"  Alert      : manages 

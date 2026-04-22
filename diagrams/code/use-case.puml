@@ -13,56 +13,77 @@ actor "IT Manager"                       as ITMgr
 ' ─── System Boundary ──────────────────────────────────
 rectangle "NIDS Web Application" {
 
-    package "Detection" {
-        usecase "Trigger Network Analysis" as UC02
-        usecase "Analyze Network Flow" as UC10
-        usecase "send Alert"       as UC11
-    }
-    usecase "Authenticate" as UC01
+    usecase "Trigger Network Analysis" as UC_NET
+    usecase "Analyze Network Flow" as UC_NET_FLOW
+    usecase "send Alert" as UC_ALERT
 
-    package "Monitoring" {
-        usecase "View Dashboard"          as UC03
-        usecase "View Statistics Summary" as UC07
-    }
+    usecase "Authenticate" as UC_AUTH
 
-    package "Alert Management" {
-        usecase "View Alerts List"  as UC04
-        usecase "View Alert Detail" as UC05
-        usecase "Search Alerts" as UC06
-        usecase  "Manage Alert Status" as UC12 
-    }
 
-    package "Reporting" {
-        usecase "View Reports"  as UC08
-        usecase "Export Report" as UC09
-    }
+    usecase "View Dashboard"          as UC_VIEW_DASH
+    usecase "View Statistics Summary" as UC_VIEW_STATS
+
+
+    usecase "View Alerts List"  as UC_ALERT_LIST
+    usecase "View Alert Detail" as UC_ALERT_DETAIL
+    usecase "Search Alerts" as UC_ALERT_SEARCH
+    usecase  "Manage Alert Status" as UC_ALERT_STATUS
+
+    usecase "View Reports"  as UC_VIEW_REPORTS
+    usecase "Export Report" as UC_EXPORT_REPORT
+
 }
 
 ' ─── Right Actor ──────────────────────────────────────
 rectangle "     <<actor>>\n\nEmail Service\n" as DE
 
+UC_AUTH       -[hidden]left- UC_VIEW_DASH
+UC_VIEW_DASH  -[hidden]left- UC_VIEW_STATS
+UC_VIEW_STATS -[hidden]left- UC_NET
+
+
+UC_ALERT_LIST -[hidden]left- UC_VIEW_REPORTS
+
 ' ─── Admin + IT Manager associations ───────────────────────────────
-User -[hidden]- UC01
-User -[hidden]- UC03
-User -[hidden]- UC07
+User -[hidden]- UC_AUTH
+User -[hidden]- UC_VIEW_DASH
+User -[hidden]- UC_VIEW_STATS
 
 ' ─── Admin associations ───────────────────────────────
+Admin -[hidden]- UC_NET
+Admin -[hidden]- UC_ALERT_LIST
 
-Admin -[hidden]- UC02
-Admin -[hidden]- UC04
+
 
 ' ─── IT Manager associations ──────────────────────────
-ITMgr -[hidden]- UC08
+ITMgr -[hidden]- UC_VIEW_REPORTS
+
+
+
 
 ' ─── Email Service associations ───────────────────
-UC11 -[hidden]- DE
+'UC_EXPORT_REPORT -[hidden]- DE
+
+
+UC_NET .down.> UC_NET_FLOW : <<include>>
+UC_ALERT .left.> UC_NET_FLOW : <<extend>>
+
+UC_ALERT -down- DE 
+
+UC_ALERT_SEARCH .up.> UC_ALERT_LIST : <<extend>>
+UC_ALERT_DETAIL .up.> UC_ALERT_LIST : <<extend>>
+
+UC_NET -[hidden]down- UC_ALERT
+UC_ALERT_STATUS .down.> UC_ALERT_DETAIL : <<extend>>
+
+UC_EXPORT_REPORT .up.> UC_VIEW_REPORTS : <<extend>>
 
 ' ─── Relationships ────────────────────────────────────
-UC11 .right.> UC10 : <<extend>>
-UC02 .down.> UC10 : <<include>>
-UC05 .up.> UC04 : <<extend>>
-UC09 .up.> UC08 : <<extend>>
-UC06 .up.> UC04 : <<extend>>
-UC12 .right.> UC05 : <<extend>>
+'UC_EXPORT_REPORT .right.> UC_VIEW_DASH : <<extend>>
+'UC_AUTH .down.> UC_VIEW_DASH : <<include>>
 
+'UC_EXPORT_REPORT .up.> UC_VIEW_DASH : <<extend>>
+'UC_EXPORT_REPORT .right.> UC_VIEW_DASH : <<extend>>
+
+'UC_ALERT_STATUS .up.> UC_ALERT_LIST : <<extend>>
 @enduml

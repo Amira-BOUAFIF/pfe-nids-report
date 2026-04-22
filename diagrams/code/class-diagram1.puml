@@ -1,6 +1,55 @@
 @startuml class1
 skinparam dpi 300
-hide circle
+
+Enum Role {
+    ADMIN
+    IT_MANAGER
+    --
+
+}
+
+Enum Severity {
+    LOW
+    MEDIUM
+    HIGH
+    CRITICAL
+    --
+
+}
+
+Enum AlertStatus {
+    NEW
+    ACKNOWLEDGED
+    RESOLVED
+    DISMISSED
+    --
+
+}
+
+Enum Format {
+    PDF
+    --
+
+}
+
+Enum AttackCategory {
+    BENIGN
+    Bot
+    DDoS
+    DoS_GoldenEye
+    DoS_Hulk
+    DoS_Slowhttptest
+    DoS_slowloris
+    FTP-Patator
+    Heartbleed
+    Infiltration
+    PortScan
+    SSH-Patator
+    Web_Attack
+    --
+
+}
+
 
 ' Core Classes 
 
@@ -9,7 +58,7 @@ class User {
     - username: String
     - email: String
     - passwordHash: String
-    - role: Enum
+    - role: Role
     - createdAt: DateTime
     --
 
@@ -17,12 +66,12 @@ class User {
 
 class Alert {
     - id: Long
-    - severity: Enum
+    - severity: Severity
     - raisedAt: DateTime
     - acknowledgedAt: DateTime
     - resolvedAt: DateTime
     - analystNotes: String
-    - status: Enum
+    - status: AlertStatus
     --
 
 }
@@ -30,8 +79,8 @@ class Alert {
 class Attack {
     - id: Long
     - name: String
-    - category: Enum
-    - defaultSeverity: Enum
+    - category: AttackCategory
+    - defaultSeverity: Severity
     - description: String
     --
 
@@ -85,7 +134,7 @@ class Report {
     - generatedAt: DateTime
     - periodStart: DateTime
     - periodEnd: DateTime 
-    - format: Enum
+    - format: Format
     - filePath: String
     --
 
@@ -103,19 +152,29 @@ class Configuration {
 ' ─── Class Relationships ──────────────────────────────
 
 ' A flow triggers at most one alert
-NetworkFlow "1"   --  "0..1"  Alert      : triggers 
+NetworkFlow "1"   -right-  "0..1"  Alert      : triggers 
 
 ' An alert is classified as one attack type
-Alert          "0..*"   --  "1"     Attack : classified as 
+Alert          "0..*"   -right-  "1"     Attack : classified as 
 
 ' Admin manages alert status
 User           "1"   --  "0..*"  Alert      : manages 
 
 ' User actions recorded in audit log
-User           "1"   --  "0..*"  AuditLog   : generates
+User           "1"   -right-  "0..*"  AuditLog   : generates
 
 ' Report aggregates alerts over a period
 Report         "1"   --  "0..*"  Alert      : contains 
 
-Report -[hidden]- Configuration
+
+Report -[hidden]right- User
+Attack -up- AttackCategory
+Report -up- Format
+Alert -down- AlertStatus
+Alert -- Severity
+User -up- Role
+Attack -- Severity
+
+AuditLog -[hidden]up- Configuration
+
 @enduml

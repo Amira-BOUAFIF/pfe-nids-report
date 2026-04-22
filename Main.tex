@@ -14,7 +14,6 @@
 %\usepackage[T1]{fontenc}%              gestion des accents (PDF)
 %\usepackage[francais,english]{babel}%          gestion du fran?ais
 \usepackage{textcomp}%                 caract?res additionnels
-
 \usepackage[pdftex]{graphicx}
 \usepackage{setspace}
 \usepackage{hyperref}
@@ -28,6 +27,9 @@
 \usepackage[export]{adjustbox}
 \usepackage{float}
 \usepackage{caption}
+\usepackage[backend=biber, defernumbers=true]{biblatex}
+\addbibresource{Webo.bib}
+\addbibresource{Biblio.bib}
 \DeclareCaptionLabelSeparator{emdash}{\;–\;}
 
 \captionsetup{
@@ -77,6 +79,11 @@
 \include{chapters/Chapter5}
 \include{chapters/Chapter6}
 \include{chapters/Conclusion}
+
+
+\printbibliography[title={Webography}, keyword=web, resetnumbers=true]
+\printbibliography[title={Bibliography}, notkeyword=web, resetnumbers=true]
+
 %
 
 \bibliographystyle{unsrt}

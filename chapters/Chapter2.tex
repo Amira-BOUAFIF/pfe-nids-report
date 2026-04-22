@@ -1,7 +1,7 @@
 \chapter{Requirements Specification}
 
 \section{Introduction}
-Throughout this chapter, we specify both the functional and non-functional requirements, identify the system actors, and present the global use case diagram.
+Throughout this chapter, we specify both the functional and non-functional requirements, identify the system actors, and present the use case diagram.
 By defining these elements, we aim to establish a clear and shared understanding of the system’s expected behavior and constraints, providing a solid foundation for the subsequent design and implementation phases.
 
 \section{Functional Requirements}
@@ -9,57 +9,40 @@ Functional requirements define \emph{what} the system should perform. The main f
 
 \vskip0.5cm
 — Authenticate;
-\vskip0.2cm
+\vskip0.3cm
 — View Dashboard;
-\vskip0.2cm
+\vskip0.3cm
 — View Statistics summary;
-\vskip0.2cm
+\vskip0.3cm
 — Trigger Network Analysis;
-\vskip0.2cm
+\vskip0.3cm
 — View Alerts List;
-\vskip0.2cm
+\vskip0.3cm
 — View Reports;
 
 \section{Non-Functional Requirements}
 
 Non-functional requirements define \emph{how} the system should perform its functions. They describe the quality attributes and constraints of the system:
-
-\vskip0.4cm
-\textbf{Performance:} The system must process network traffic and generate analysis results with minimal latency, ensuring fast detection of potential intrusions.
-
-\vskip0.3cm
-\textbf{Security:} The system must ensure secure authentication and enforce role-based access control, preventing unauthorized actions and protecting system integrity, while supporting non-repudiation to guarantee accountability and traceability of all operations.
-
-\vskip0.3cm
-\textbf{Reliability:} The system must perform its functions consistently, handle errors gracefully, and ensure that failures are detected and managed without disrupting overall operation.
-
-\vskip0.3cm
-\textbf{Maintainability:} The system should be easy to maintain, allowing for efficient debugging, updates, and modifications to existing components.
-
-\vskip0.3cm
-\textbf{Extensibility:} The system should support the addition of new features, such as new detection models or data sources, without requiring major redesign.
-
-\vskip0.3cm
-\textbf{Availability:} The system must be accessible and operational whenever needed, minimizing downtime and ensuring continuous monitoring of network activity.
-
-\vskip0.3cm
-\textbf{Usability:} The system should provide an intuitive interface, enabling users to efficiently navigate and interact with its functionalities.
-
+\begin{itemize}
+    \item \textbf{Performance:} The system must process network traffic and generate analysis results with minimal latency, ensuring fast detection of potential intrusions.
+    \item \textbf{Security:} The system must ensure secure authentication and enforce role-based access control, preventing unauthorized actions and protecting system integrity, while supporting non-repudiation to guarantee accountability and traceability of all operations.
+    \item \textbf{Maintainability:} The system should be easy to maintain, allowing for efficient debugging, updates, and modifications to existing components.
+    \item \textbf{Usability:} The system should provide an intuitive interface, enabling users to efficiently navigate and interact with its functionalities.
+\end{itemize}
 \section{Actors Identification}
 Actors are external entities, users, organizations, or external systems that interact with the system to achieve one or more functional requirements, with each actor representing a specific role.
 \vskip0.3cm
-In the context of our project, we identify two primary actors illustrated in Figure~\ref{fig:actors}
+In the context of our project, we identify two primary actors, as illustrated in Figure~\ref{fig:actors}
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\columnwidth, fbox]{../diagrams/actors.png}
+    \includegraphics[width=0.7\columnwidth, fbox]{../diagrams/actors.png}
     \caption{Actors}
-    \vspace{-0.2cm}
     \label{fig:actors}
 \end{figure}
 
+
 \vskip0.1cm
 Table~\ref{tab3} presents the roles of each actor in our system.
-\vspace{-0.1cm}
 \begin{table}[H]
     \begin{center}
         \caption{Roles of Actors}
@@ -83,7 +66,7 @@ Table~\ref{tab3} presents the roles of each actor in our system.
     \end{center}
 
 \end{table}
-\newpage
+
 \section{Use Case Diagram}
 A use case diagram is a visual representation of \emph{how} users interact with the system and \emph{what} a system does through different use cases.
 Figure~\ref{fig:use_case} illustrates that diagram.

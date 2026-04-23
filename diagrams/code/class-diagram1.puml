@@ -33,7 +33,6 @@ Enum Format {
 }
 
 Enum AttackCategory {
-    BENIGN
     Bot
     DDoS
     DoS_GoldenEye
@@ -78,7 +77,6 @@ class Alert {
 
 class Attack {
     - id: Long
-    - name: String
     - category: AttackCategory
     - defaultSeverity: Severity
     - description: String
@@ -161,10 +159,10 @@ Alert          "0..*"   -right-  "1"     Attack : classified as
 User           "1"   --  "0..*"  Alert      : manages 
 
 ' User actions recorded in audit log
-User           "1"   -right-  "0..*"  AuditLog   : generates
+User           "1"   -left-  "0..*"  AuditLog   : generates
 
 ' Report aggregates alerts over a period
-Report         "1"   --  "0..*"  Alert      : contains 
+   
 
 
 Report -[hidden]right- User

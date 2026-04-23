@@ -32,7 +32,6 @@ Enum Format {
 }
 
 Enum AttackCategory {
-    BENIGN
     Bot
     DDoS
     DoS_GoldenEye

@@ -80,7 +80,7 @@ These fixes are purely cosmetic and do not alter the underlying data values.
             \\
             \hline
             TCP Flag Count &
-            \texttt{FIN Flag Count}, \texttt{SYN Flag Count}, \texttt{RST Flag Count}, \texttt{PSH Flag Count}, \texttt{ACK Flag Count}, \texttt{URG Flag Count}, \texttt{CWE Flag Count}, \texttt{ECE Flag Count}, \texttt{Fwd PSH Flags}, \texttt{Bwd PSH Flags}, \texttt{Fwd URG Flags}, \texttt{Bwd URG Flags} & TCP flags counts entire flow, forward and backward directions. \\
+            \texttt{FIN Flag Count}, \texttt{SYN Flag Count}, \texttt{RST Flag Count}, \texttt{PSH Flag Count}, \texttt{ACK Flag Count}, \texttt{URG Flag Count}, \texttt{CWE Flag Count}, \texttt{ECE Flag Count}, \texttt{Fwd PSH Flags}, \texttt{Bwd PSH Flags}, \texttt{Fwd URG Flags}, \texttt{Bwd URG Flags} & TCP flags counts for the entire flow, forward and backward directions. \\
             \hline
             Header Length &
             \texttt{Fwd Header Length}, \texttt{Bwd Header Length}, \texttt{Fwd Header Length.1} & Backward and forward header lengths. \\
@@ -104,76 +104,120 @@ These fixes are purely cosmetic and do not alter the underlying data values.
         \end{longtable}
         \begin{itemize}
             \item \textbf{Duplicate Column:} The column \texttt{Fwd Header Length.1} is identified as a duplicate of \texttt{Fwd Header Length}, confirmed by the fact that both contain the same values.
-            \item \texttt{Packet Length Mean} and \texttt{Average Packet Size} measures the average packet size they don't hold the same values, and they are calculated using different formulas, the former is calculated using the uses the statistical mean and the latter is calculated using the total length of packets divided by the total number of packets.
+            \item \texttt{Packet Length Mean} and \texttt{Average Packet Size} both measure 
+            the average packet size but are calculated differently: the former uses the 
+            statistical mean, while the latter divides the total length of packets by the 
+            total number of packets\cite{CICFlowMeter}. The two do not hold the same values.
         \end{itemize}
 \end{itemize}
+
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
+
 \begin{itemize}
     \item \textbf{Class Distribution:} The dataset contains 15 classes, BENIGN and 14 attacks, Table \ref{tab:classes} shows the distribution of these classes across the dataset files.
-        \begin{table}[H]
-            \centering
-            \caption{Class Distribution}
-            \label{tab:classes}
-            \begin{tabular}{|l|l|r|}
-                \hline
-                \rowcolor[gray]{0.8} \textbf{File} & \textbf{Classes} & \textbf{Class Count} \\
-                \hline
-                Monday & BENIGN & 529.918 \\
-                \hline
-                    \multirow{3}{*}{Tuesday} 
-                        & BENIGN & 432,074 \\
-                    \cline{2-3}
-                        & FTP-Patator & 7,938\\
-                    \cline{2-3}
-                        & SSH-Patator & 5,897 \\
-                \hline
-                    \multirow{6}{*}{Wednesday} 
-                        & BENIGN & 440,031 \\
-                    \cline{2-3}
-                        & DoS Hulk & 232,443 \\
-                    \cline{2-3}
-                        & DoS GoldenEye & 10,293 \\
-                    \cline{2-3}
-                        & DoS Slowloris & 5,796 \\
-                    \cline{2-3}
-                        & DoS Slowhttptest & 5,499 \\
-                    \cline{2-3}
-                        & Heartbleed & 11 \\
-                \hline
-                    \multirow{4}{*}{Thursday AM}
-                        & BENIGN & 168,186 \\
-                    \cline{2-3}
-                        & Web Attack - Brute Force & 1,507 \\
-                    \cline{2-3}
-                        & Web Attack - XSS & 652 \\
-                    \cline{2-3}
-                        & Web Attack - Sql Injection & 21 \\
-                \hline
-                    \multirow{2}{*}{Thursday PM}
-                        & BENIGN & 288,566 \\
-                    \cline{2-3}
-                        & Infiltration & 36 \\
-                \hline
-                    \multirow{2}{*}{Friday AM}
-                        & BENIGN & 189,067 \\
-                    \cline{2-3}
-                        & Bot & 1,966 \\
-                \hline
-                    \multirow{2}{*}{Friday PM (DDoS)}
-                        & DDoS & 128,027 \\
-                    \cline{2-3}
-                        & BENIGN & 97,718 \\
-                \hline
-                    \multirow{2}{*}{Friday PM (PortScan)}
-                        & PortScan & 158,930 \\
-                    \cline{2-3}
-                        & BENIGN & 127,537 \\
-                \hline
-            \end{tabular}
-        \end{table}
+        \begin{longtable}{|l|l|r|}
+            \caption{Class Distribution}\label{tab:classes}\\
+            \hline
+            \rowcolor[gray]{0.8} \textbf{File} & \textbf{Classes} & \textbf{Class Count} \\
+            \hline
+            Monday & BENIGN & 529,918 \\
+            \hline
+                \multirow{3}{*}{Tuesday} 
+                    & BENIGN & 432,074 \\
+                \cline{2-3}
+                    & FTP-Patator & 7,938\\
+                \cline{2-3}
+                    & SSH-Patator & 5,897 \\
+            \hline
+                \multirow{6}{*}{Wednesday} 
+                    & BENIGN & 440,031 \\
+                \cline{2-3}
+                    & DoS Hulk & 232,443 \\
+                \cline{2-3}
+                    & DoS GoldenEye & 10,293 \\
+                \cline{2-3}
+                    & DoS Slowloris & 5,796 \\
+                \cline{2-3}
+                    & DoS Slowhttptest & 5,499 \\
+                \cline{2-3}
+                    & Heartbleed & 11 \\
+            \hline
+                \multirow{4}{*}{Thursday AM}
+                    & BENIGN & 168,186 \\
+                \cline{2-3}
+                    & Web Attack - Brute Force & 1,507 \\
+                \cline{2-3}
+                    & Web Attack - XSS & 652 \\
+                \cline{2-3}
+                    & Web Attack - Sql Injection & 21 \\
+            \hline
+                \multirow{2}{*}{Thursday PM}
+                    & BENIGN & 288,566 \\
+                \cline{2-3}
+                    & Infiltration & 36 \\
+            \hline
+                \multirow{2}{*}{Friday AM}
+                    & BENIGN & 189,067 \\
+                \cline{2-3}
+                    & Bot & 1,966 \\
+            \hline
+                \multirow{2}{*}{Friday PM (DDoS)}
+                    & DDoS & 128,027 \\
+                \cline{2-3}
+                    & BENIGN & 97,718 \\
+            \hline
+                \multirow{2}{*}{Friday PM (PortScan)}
+                    & PortScan & 158,930 \\
+                \cline{2-3}
+                    & BENIGN & 127,537 \\
+            \hline
+        \end{longtable}
 \end{itemize}
 
-All files contain BENIGN and at least one attack class, with Monday being the only exception having only BENIGN samples as the sole class. Each attack class is present in only one file.
+With the exception of Monday, which contains only BENIGN traffic, all files contain at least one attack class alongside BENIGN samples. Each attack class is present in only one file.
+
+\begin{table}[H]
+    \centering
+    \caption{CIC-IDS2017 dataset classes}
+    \label{tab:dataset}
+    \begin{tabular}{|l|l|p{10cm}|}
+        \hline
+        \rowcolor[gray]{0.8} \textbf{No} & \textbf{Class} & \textbf{Description} \\
+        \hline
+        1                     & BENIGN                      & Normal traffic. \\
+        \hline
+        2                     & Dos Hulk                    & A denial-of-service attack using Http Unbearable Load King (Hulk) tool used to overwhelm web servers by generating a large number of unique randomized requests.\\
+        \hline
+        3                     & PortScan                    & \\
+        \hline
+        4                     & DDoS                        & \\
+        \hline
+        5                     & Dos GoldenEye               & \\
+        \hline
+        6                     & FTP-Patator                 & \\
+        \hline
+        7                     & SSH-Patator                 & \\
+        \hline
+        8                     & DoS slowloris               & \\
+        \hline
+        9                     & DoS Slowhttptest            & \\
+        \hline
+        10                    & Bot                         & \\
+        \hline
+        11                    & Web Attack - Brute Force    & \\
+        \hline
+        12                    & Web Attack - XSS            & \\
+        \hline
+        13                    & Infiltration                & \\
+        \hline
+        14                    & Web Attack - Sql Injection  & \\
+        \hline
+        15                    & Heartbleed                  & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
 \subsection{Data Exploration}
 
 \section{Data Preparation}

@@ -17,7 +17,7 @@ As mentioned in the previous subsection, the dataset is split into 8 files as sh
 
 \begin{table}[H]
     \centering
-    \caption{CIC-IDS2017 dataset files}
+    \caption{Dataset Files}
     \label{tab:dataset}
     \begin{tabular}{|l|r|r|}
         \hline
@@ -56,166 +56,279 @@ These fixes are purely cosmetic and do not alter the underlying data values.
 
 \begin{itemize}
     \item \textbf{Feature Description:} The dataset contains 79 columns, of them 78 are numeric level-flow features and the last one is the target Label. These features can be grouped into 12 categories as shown in Table \ref{tab:features}.
-        \begin{longtable}{|p{4cm}|p{6cm}|p{6cm}|}
-            \caption{Feature Groups} \label{tab:features} \\
-            \hline
-            \rowcolor[gray]{0.8} \textbf{Group}  & \textbf{Features} & \textbf{Description} \\
-            \hline
-            \endfirsthead
-            Flow Metadata &
-            \texttt{Destination Port}, \texttt{Flow Duration}  & Total duration of the flow and the destination port \\
-            \hline
-            Packet/Byte Count   &
-            \texttt{Total Fwd Packets}, \texttt{Total Backward Packets}, \texttt{Total Length of Fwd Packets}, \texttt{Total Length of Bwd Packets}, \texttt{act\_data\_pkt\_fwd} & Number of packets and packet bytes in both forward (from source to destination) and backward directions (from destination to source), and packets having actual data in the forward direction. \\
-            \hline
-            Packet/Segment Length Statistics   &
-            \texttt{Fwd Packet Length Max/Min/Mean/Std}, \texttt{Bwd Packet Length Max/Min/Mean/Std}, \texttt{Max/Min Packet Length}, \texttt{Packet Length Mean/Std/Variance}, \texttt{Average Packet Size}, \texttt{Avg Fwd Segment Size}, \texttt{Avg Bwd Segment Size} & Packets and segments length statistics (e.g. max, min, mean, std etc...).
-            \\
-            \hline
-            Flow Rate            &
-            \texttt{Flow Bytes/s}, \texttt{Flow Packets/s}, \texttt{Fwd Packets/s}, \texttt{Bwd Packets/s}, \texttt{Down/Up Ratio}  & Flow throughput, forward and backward packet rates, flow asymmetry ratio (backward packets (download) to forward packets (upload)).
-            \\
-            \hline
-            Inter-Arrival Time & \texttt{Flow IAT Max/Min/Mean/Std}, \texttt{Fwd IAT Max/Min/Mean/Std/Total}, \texttt{Bwd IAT Max/Min/Mean/Std/Total} & Time between consecutive packets in the flow, forward, and backward directions.
-            \\
-            \hline
-            TCP Flag Count &
-            \texttt{FIN Flag Count}, \texttt{SYN Flag Count}, \texttt{RST Flag Count}, \texttt{PSH Flag Count}, \texttt{ACK Flag Count}, \texttt{URG Flag Count}, \texttt{CWE Flag Count}, \texttt{ECE Flag Count}, \texttt{Fwd PSH Flags}, \texttt{Bwd PSH Flags}, \texttt{Fwd URG Flags}, \texttt{Bwd URG Flags} & TCP flags counts for the entire flow, forward and backward directions. \\
-            \hline
-            Header Length &
-            \texttt{Fwd Header Length}, \texttt{Bwd Header Length}, \texttt{Fwd Header Length.1} & Backward and forward header lengths. \\
-            \hline
-            Bulk Transfer Statistics &
-            \texttt{Fwd Avg Bytes/Bulk}, \texttt{Fwd Avg Packets/Bulk}, \texttt{Fwd Avg Bulk Rate}, \texttt{Bwd Avg Bytes/Bulk}, \texttt{Bwd Avg Packets/Bulk}, \texttt{Bwd Avg Bulk Rate} & Average forward and backward bulk (a sequence of consecutive packets in the same direction) transfer statistics. \\
-            \hline
-            Subflow Packet/Byte Count &
-            \texttt{Subflow Fwd Packets}, \texttt{Subflow Fwd Bytes}, \texttt{Subflow Bwd Packets}, \texttt{Subflow Bwd Bytes} & Number of packets and packet bytes in both directions in a subflow.\\
-            \hline
-            Window/Segment Size &
-            \texttt{Init\_Win\_bytes\_forward}, \texttt{Init\_Win\_bytes\_backward}, \texttt{min\_seg\_size\_forward} & Window sizes in both the forward and backward directions and the minimal segment size in the forward direction. \\
-            \hline
-            Active/Idle Time &
-            \texttt{Active Max/Min/Mean/Std}, \texttt{Idle Max/Min/Mean/Std} & Duration of active and idle periods within a flow.\\
-            \hline
-            Target &
-            \texttt{Label} & The target label indicating the class the flow belongs to.
-            \\
-            \hline
-        \end{longtable}
-        \begin{itemize}
-            \item \textbf{Duplicate Column:} The column \texttt{Fwd Header Length.1} is identified as a duplicate of \texttt{Fwd Header Length}, confirmed by the fact that both contain the same values.
-            \item \texttt{Packet Length Mean} and \texttt{Average Packet Size} both measure 
-            the average packet size but are calculated differently: the former uses the 
-            statistical mean, while the latter divides the total length of packets by the 
-            total number of packets\cite{CICFlowMeter}. The two do not hold the same values.
-        \end{itemize}
+          \begin{longtable}{|p{4cm}|p{6cm}|p{6cm}|}
+              \caption{Feature Groups} \label{tab:features}\\
+              \hline
+              \rowcolor[gray]{0.8} \textbf{Group}                                                                                                                                                                                                                                                                    & \textbf{Features}                                                                                                                                                                              & \textbf{Description}                                                            \\
+              \hline
+              \endfirsthead
+              Flow Metadata                                                                                                                                                                                                                                                                                          &
+              \texttt{Destination Port}, \texttt{Flow Duration}                                                                                                                                                                                                                                                      & Total duration of the flow and the destination port                                                                                                                                                                                                                              \\
+              \hline
+              Packet/Byte Count                                                                                                                                                                                                                                                                                      &
+              \texttt{Total Fwd Packets}, \texttt{Total Backward Packets}, \texttt{Total Length of Fwd Packets}, \texttt{Total Length of Bwd Packets}, \texttt{act\_data\_pkt\_fwd}                                                                                                                                  & Number of packets and packet bytes in both forward (from source to destination) and backward directions (from destination to source), and packets having actual data in the forward direction.                                                                                   \\
+              \hline
+              Packet/Segment Length Statistics                                                                                                                                                                                                                                                                       &
+              \texttt{Fwd Packet Length Max/Min/Mean/Std}, \texttt{Bwd Packet Length Max/Min/Mean/Std}, \texttt{Max/Min Packet Length}, \texttt{Packet Length Mean/Std/Variance}, \texttt{Average Packet Size}, \texttt{Avg Fwd Segment Size}, \texttt{Avg Bwd Segment Size}                                         & Packets and segments length statistics (e.g. max, min, mean, std etc...).
+              \\
+              \hline
+              Flow Rate                                                                                                                                                                                                                                                                                              &
+              \texttt{Flow Bytes/s}, \texttt{Flow Packets/s}, \texttt{Fwd Packets/s}, \texttt{Bwd Packets/s}, \texttt{Down/Up Ratio}                                                                                                                                                                                 & Flow throughput, forward and backward packet rates, flow asymmetry ratio (backward packets (download) to forward packets (upload)).
+              \\
+              \hline
+              Inter-Arrival Time                                                                                                                                                                                                                                                                                     & \texttt{Flow IAT Max/Min/Mean/Std}, \texttt{Fwd IAT Max/Min/Mean/Std/Total}, \texttt{Bwd IAT Max/Min/Mean/Std/Total}                                                                           & Time between consecutive packets in the flow, forward, and backward directions.
+              \\
+              \hline
+              TCP Flag Count                                                                                                                                                                                                                                                                                         &
+              \texttt{FIN Flag Count}, \texttt{SYN Flag Count}, \texttt{RST Flag Count}, \texttt{PSH Flag Count}, \texttt{ACK Flag Count}, \texttt{URG Flag Count}, \texttt{CWE Flag Count}, \texttt{ECE Flag Count}, \texttt{Fwd PSH Flags}, \texttt{Bwd PSH Flags}, \texttt{Fwd URG Flags}, \texttt{Bwd URG Flags} & TCP flags counts for the entire flow, forward and backward directions.                                                                                                                                                                                                           \\
+              \hline
+              Header Length                                                                                                                                                                                                                                                                                          &
+              \texttt{Fwd Header Length}, \texttt{Bwd Header Length}, \texttt{Fwd Header Length.1}                                                                                                                                                                                                                   & Backward and forward header lengths.                                                                                                                                                                                                                                             \\
+              \hline
+              Bulk Transfer Statistics                                                                                                                                                                                                                                                                               &
+              \texttt{Fwd Avg Bytes/Bulk}, \texttt{Fwd Avg Packets/Bulk}, \texttt{Fwd Avg Bulk Rate}, \texttt{Bwd Avg Bytes/Bulk}, \texttt{Bwd Avg Packets/Bulk}, \texttt{Bwd Avg Bulk Rate}                                                                                                                         & Average forward and backward bulk (a sequence of consecutive packets in the same direction) transfer statistics.                                                                                                                                                                 \\
+              \hline
+              Subflow Packet/Byte Count                                                                                                                                                                                                                                                                              &
+              \texttt{Subflow Fwd Packets}, \texttt{Subflow Fwd Bytes}, \texttt{Subflow Bwd Packets}, \texttt{Subflow Bwd Bytes}                                                                                                                                                                                     & Number of packets and packet bytes in both directions in a subflow.                                                                                                                                                                                                              \\
+              \hline
+              Window/Segment Size                                                                                                                                                                                                                                                                                    &
+              \texttt{Init\_Win\_bytes\_forward}, \texttt{Init\_Win\_bytes\_backward}, \texttt{min\_seg\_size\_forward}                                                                                                                                                                                              & Window sizes in both the forward and backward directions and the minimal segment size in the forward direction.                                                                                                                                                                  \\
+              \hline
+              Active/Idle Time                                                                                                                                                                                                                                                                                       &
+              \texttt{Active Max/Min/Mean/Std}, \texttt{Idle Max/Min/Mean/Std}                                                                                                                                                                                                                                       & Duration of active and idle periods within a flow.                                                                                                                                                                                                                               \\
+              \hline
+              Target                                                                                                                                                                                                                                                                                                 &
+              \texttt{Label}                                                                                                                                                                                                                                                                                         & The target label indicating the class the flow belongs to.
+              \\
+              \hline
+          \end{longtable}
+          \begin{itemize}
+              \item \textbf{Duplicate Column:} The column \texttt{Fwd Header Length.1} is identified as a duplicate of \texttt{Fwd Header Length}, confirmed by the fact that both contain the same values.
+              \item \texttt{Packet Length Mean} and \texttt{Average Packet Size} both measure the average packet size, but the two do not hold the same values as they are calculated differently: the former uses the statistical mean, while the latter divides the total length of packets by the total number of packets\cite{CICFlowMeter}.
+          \end{itemize}
 \end{itemize}
 
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
 
-\begin{itemize}
-    \item \textbf{Class Distribution:} The dataset contains 15 classes, BENIGN and 14 attacks, Table \ref{tab:classes} shows the distribution of these classes across the dataset files.
-        \begin{longtable}{|l|l|r|}
-            \caption{Class Distribution}\label{tab:classes}\\
-            \hline
-            \rowcolor[gray]{0.8} \textbf{File} & \textbf{Classes} & \textbf{Class Count} \\
-            \hline
-            Monday & BENIGN & 529,918 \\
-            \hline
-                \multirow{3}{*}{Tuesday} 
-                    & BENIGN & 432,074 \\
-                \cline{2-3}
-                    & FTP-Patator & 7,938\\
-                \cline{2-3}
-                    & SSH-Patator & 5,897 \\
-            \hline
-                \multirow{6}{*}{Wednesday} 
-                    & BENIGN & 440,031 \\
-                \cline{2-3}
-                    & DoS Hulk & 232,443 \\
-                \cline{2-3}
-                    & DoS GoldenEye & 10,293 \\
-                \cline{2-3}
-                    & DoS Slowloris & 5,796 \\
-                \cline{2-3}
-                    & DoS Slowhttptest & 5,499 \\
-                \cline{2-3}
-                    & Heartbleed & 11 \\
-            \hline
-                \multirow{4}{*}{Thursday AM}
-                    & BENIGN & 168,186 \\
-                \cline{2-3}
-                    & Web Attack - Brute Force & 1,507 \\
-                \cline{2-3}
-                    & Web Attack - XSS & 652 \\
-                \cline{2-3}
-                    & Web Attack - Sql Injection & 21 \\
-            \hline
-                \multirow{2}{*}{Thursday PM}
-                    & BENIGN & 288,566 \\
-                \cline{2-3}
-                    & Infiltration & 36 \\
-            \hline
-                \multirow{2}{*}{Friday AM}
-                    & BENIGN & 189,067 \\
-                \cline{2-3}
-                    & Bot & 1,966 \\
-            \hline
-                \multirow{2}{*}{Friday PM (DDoS)}
-                    & DDoS & 128,027 \\
-                \cline{2-3}
-                    & BENIGN & 97,718 \\
-            \hline
-                \multirow{2}{*}{Friday PM (PortScan)}
-                    & PortScan & 158,930 \\
-                \cline{2-3}
-                    & BENIGN & 127,537 \\
-            \hline
-        \end{longtable}
-\end{itemize}
-
-With the exception of Monday, which contains only BENIGN traffic, all files contain at least one attack class alongside BENIGN samples. Each attack class is present in only one file.
-
+\vspace{0.5cm}
+Table \ref{tab:feature_stat} presents the statistics of some of the features.
 \begin{table}[H]
     \centering
-    \caption{CIC-IDS2017 dataset classes}
-    \label{tab:dataset}
-    \begin{tabular}{|l|l|p{10cm}|}
+    \caption{Feature Statistics}
+    \label{tab:feature_stat}
+    \begin{tabular}{|l|r|r|r|r|}
         \hline
-        \rowcolor[gray]{0.8} \textbf{No} & \textbf{Class} & \textbf{Description} \\
+        \rowcolor[gray]{0.8} \textbf{Feature} & \textbf{Min} & \textbf{Max} & \textbf{Mean} & \textbf{Std} \\
         \hline
-        1                     & BENIGN                      & Normal traffic. \\
+        Flow Duration        &  -13   &   119,999,998    &  14,785,663.92   & 33,653,744.09 \\
         \hline
-        2                     & Dos Hulk                    & A denial-of-service attack using Http Unbearable Load King (Hulk) tool used to overwhelm web servers by generating a large number of unique randomized requests.\\
+        Total Backward 
+        Packets    &  0    &  121,922   & 10.39   &  997.39      \\
         \hline
-        3                     & PortScan                    & \\
+        act\_data\_pkt fwd   &  0     &  213,557    &  5.42  &     636.43   \\
         \hline
-        4                     & DDoS                        & \\
+        Min Packet Length  & 0  & 1,448  & 16.43 & 25.24 \\
         \hline
-        5                     & Dos GoldenEye               & \\
+        Flow Bytes/s  & -241,000,000  & inf  & inf  & inf \\
         \hline
-        6                     & FTP-Patator                 & \\
+        Flow IAT Max & -13 & 120,000,000  &  9,182,475.32  & 24,459,539.25 \\
         \hline
-        7                     & SSH-Patator                 & \\
+        Bwd PSH Flags  &  0 & 0 & 0 & 0 \\
         \hline
-        8                     & DoS slowloris               & \\
+        Fwd Header Length  & -322,212,234,632  &  4,644,908  &  -25,997.39  & 21,052,857.87 \\
         \hline
-        9                     & DoS Slowhttptest            & \\
-        \hline
-        10                    & Bot                         & \\
-        \hline
-        11                    & Web Attack - Brute Force    & \\
-        \hline
-        12                    & Web Attack - XSS            & \\
-        \hline
-        13                    & Infiltration                & \\
-        \hline
-        14                    & Web Attack - Sql Injection  & \\
-        \hline
-        15                    & Heartbleed                  & \\
+        Bwd Avg Bulk Rate & 0 &  0 & 0 & 
+        0 \\
         \hline
     \end{tabular}
 \end{table}
+
+Some of the feature has negative, inf and constant statistic of zero. Those features are further investigated in the data quality section.
+\begin{itemize}
+    \item \textbf{Class Distribution:} The dataset contains 15 classes, BENIGN and 14 attacks, Table \ref{tab:classes} shows the distribution of these classes across the dataset files.
+    \newpage
+          \begin{longtable}{|l|l|r|}
+              \caption{Class Distribution}\label{tab:classes}                                        \\
+              \hline
+              \rowcolor[gray]{0.8} \textbf{File} & \textbf{Class}             & \textbf{Class Count} \\
+              \hline
+              Monday                             & BENIGN                     & 529,918              \\
+              \hline
+              \multirow{3}{*}{Tuesday}
+                                                 & BENIGN                     & 432,074              \\
+              \cline{2-3}
+                                                 & FTP-Patator                & 7,938                \\
+              \cline{2-3}
+                                                 & SSH-Patator                & 5,897                \\
+              \hline
+              \multirow{6}{*}{Wednesday}
+                                                 & BENIGN                     & 440,031              \\
+              \cline{2-3}
+                                                 & DoS Hulk                   & 232,443              \\
+              \cline{2-3}
+                                                 & DoS GoldenEye              & 10,293               \\
+              \cline{2-3}
+                                                 & DoS Slowloris              & 5,796                \\
+              \cline{2-3}
+                                                 & DoS Slowhttptest           & 5,499                \\
+              \cline{2-3}
+                                                 & Heartbleed                 & 11                   \\
+              \hline
+              \multirow{4}{*}{Thursday AM}
+                                                 & BENIGN                     & 168,186              \\
+              \cline{2-3}
+                                                 & Web Attack - Brute Force   & 1,507                \\
+              \cline{2-3}
+                                                 & Web Attack - XSS           & 652                  \\
+              \cline{2-3}
+                                                 & Web Attack - Sql Injection & 21                   \\
+              \hline
+              \multirow{2}{*}{Thursday PM}
+                                                 & BENIGN                     & 288,566              \\
+              \cline{2-3}
+                                                 & Infiltration               & 36                   \\
+              \hline
+              \multirow{2}{*}{Friday AM}
+                                                 & BENIGN                     & 189,067              \\
+              \cline{2-3}
+                                                 & Bot                        & 1,966                \\
+              \hline
+              \multirow{2}{*}{Friday PM (DDoS)}
+                                                 & DDoS                       & 128,027              \\
+              \cline{2-3}
+                                                 & BENIGN                     & 97,718               \\
+              \hline
+              \multirow{2}{*}{Friday PM (PortScan)}
+                                                 & PortScan                   & 158,930              \\
+              \cline{2-3}
+                                                 & BENIGN                     & 127,537              \\
+              \hline
+          \end{longtable}
+\end{itemize}
+
+With the exception of Monday, which contains only BENIGN traffic, all files contain at least one attack class alongside BENIGN samples. Each attack class is present in only one file. 
+
+Table \ref{tab:attack_classes} provides a description of the 14 attack classes of the dataset.
+
+\begin{longtable}{|p{3.5cm}|p{11.5cm}|}
+    \caption{Attack Classes}\label{tab:attack_classes} \\
+    \hline
+    \rowcolor[gray]{0.8}\textbf{Class}                    & \textbf{Description} \\
+    \hline
+    \endfirsthead
+
+    \vfill
+    \textbf{FTP-Patator} (File Transfer Protocol Patator) &
+    \vspace{0.05cm}
+    A brute force attack using the Patator tool targeting FTP servers, an old unencrypted protocol that transmits data and credentials in plain text, using trial and error to guess credentials in order to gain unauthorized access.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{SSH-Patator} (Secure Shell Patator)           &
+    \vspace{0.05cm}
+    A brute force attack using the Patator tool targeting SSH servers, a secure encrypted protocol that encrypts the entire session including the login, using trial and error to gain unauthorized access to individual accounts.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{DoS Hulk}                                     &
+    \vspace{0.05cm}
+    A Denial-of-Service attack using the HULK tool, which is used to overwhelm web servers by generating a large number of unique randomized requests at irregular intervals.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{DoS GoldenEye}                                &
+    \vspace{0.05cm}
+    A Denial-of-Service attack using the GoldenEye tool, which dynamically generates multiple parallel connections (multi-threaded) to a target URL while keeping them alive to exhaust the available connection slots, simultaneously forcing the server to bypass caching mechanisms and fully process every request.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{DoS slowloris}                                &
+    \vspace{0.05cm}
+    A Denial-of-Service attack using the Slowloris tool, which enables a single machine to overwhelm a web server by opening multiple connections and keeping them open by sending partial requests (only headers) periodically, while requiring very low bandwidth, hence its name, as it operates in a low and slow manner.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{DoS Slowhttptest}                             &
+    \vspace{0.05cm}
+    A Denial-of-Service attack using the SlowHTTPTest tool, which creates very slow connections by sending seemingly legitimate requests using low bandwidth and intentionally delaying their completion, thereby consuming the limited number of concurrent connections the server can handle.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Heartbleed}                                   &
+    \vspace{0.05cm}
+    An attack in which the attacker exploits the Heartbleed bug in the OpenSSL cryptographic library to read sensitive memory contents by sending malformed heartbeat requests demanding more memory than the actual payload from the server running the vulnerable version of OpenSSL, after which the server allocates the requested memory without any verification and returns it, exposing whatever sensitive data happened to be stored in that memory chunk at that moment. It is used to steal private encryption keys, usernames and passwords, and to intercept session tokens, permitting session hijacking by providing the stolen token to the server so that the attacker is treated as a legitimate logged-in user, as well as to decrypt previously captured encrypted traffic that the attacker had intercepted beforehand.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Web Attack - Brute Force}                     &
+    \vspace{0.05cm}
+    An attack that uses a forceful approach to steal credentials to gain unauthorized access to systems. It can be carried out in many ways, from trying common credential combinations manually, to using dictionary attacks, or a combination of both.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Web Attack - XSS}                             &
+    \vspace{0.05cm}
+    An attack in which malicious scripts are injected into trusted websites, by exploiting their input validation vulnerability, and executed by other end users' browsers, which have no way to distinguish it from legitimate content.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Web Attack - Sql Injection}                   &
+    \vspace{0.05cm}
+    An attack in which the attacker interferes with the queries that an application makes to its database enabling him to view data that he is not supposed to have access to, including data belonging to other users and any other data that the platform has access to, as well as modify or delete it. It is carried out by injecting malicious SQL queries into an input field, which the vulnerable application passes directly to the database as a query instead of treating it as plain data. The database then executes it, allowing the attacker to manipulate the database in unintended ways.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Infiltration}                                 &
+    \vspace{0.05cm}
+    A multi-stage attack to gain unauthorized access to systems, in which the attacker first deploys a malicious file disguised as a legitimate one, such as a document or a downloadable link, containing a backdoor. The victim executes the file unknowingly, after which the backdoor establishes a reverse connection back to the attacker's machine, granting the attacker remote control over the compromised system. Once inside, the attacker scans the victim's internal network using tools (e.g. Nmap) to discover live hosts (any active and reachable device on the network), as well as open ports and running services. This allows the attacker to map the internal network and identify potential targets for further infiltration. The attacker then moves laterally by infiltrating another machine, spreading the attack further across the network. Finally, an attempt is made to exfiltrate sensitive data (transferring confidential information out of the network), and to escalate privileges on the compromised systems in order to gain access to even more restricted and sensitive resources.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{Bot}                                          &
+    \vspace{0.05cm}
+    An attack carried out using the ARES botnet, a malware-based network of compromised computers built on a RAT (Remote Access Trojan) and botnet framework, which allows the attacker to take control of infected machines and coordinate them for malicious purposes. It first infects victim machines using phishing emails or malicious downloads, after which the infected machines connect back to the attacker's Command and Control (C\&C) server. Finally, the attacker issues commands to all bots, that is, all infected machines, simultaneously.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{DDoS}                                         &
+    \vspace{0.05cm}
+    An attack used to overwhelm the target system with a flood of traffic from multiple sources, making it unable to respond to legitimate requests, potentially leading to a complete shutdown of the system.
+    \vspace{0.5cm}
+    \\
+    \hline
+
+    \vfill
+    \textbf{PortScan}                                     &
+    \vspace{0.05cm}
+    An attack used to discover open ports and whether they are receiving or sending data, in addition to potential vulnerabilities that could be exploited.
+    \vspace{0.5cm}
+    \\
+    \hline
+\end{longtable}
 
 
 \subsection{Data Exploration}

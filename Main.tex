@@ -29,10 +29,20 @@
 \usepackage{caption}
 \usepackage{tabularx}
 \usepackage{tabulary}
+\usepackage{enumitem}
+\usepackage{courier}
 \usepackage[backend=biber, defernumbers=true]{biblatex}
 \addbibresource{Webo.bib}
 \addbibresource{Biblio.bib}
 \DeclareCaptionLabelSeparator{emdash}{\;–\;}
+
+\newcommand{\feature}[1]{\texttt{#1}}
+
+% Increase vertical space between paragraphs for readability
+\setlength{\parskip}{0.5\baselineskip}
+
+% Improve spacing inside list environments to avoid dense blocks within items
+\setlist[itemize]{itemsep=0.5\baselineskip, parsep=0.5\baselineskip, topsep=0.5\baselineskip}
 
 \captionsetup{
     labelfont={sc},      % Small caps (for FIGURE)

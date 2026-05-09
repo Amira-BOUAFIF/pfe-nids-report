@@ -26,7 +26,7 @@ caption{Comparison of network intrusion detection datasets}
         \textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
         \hline
 
-        NSL-KDD                                                                                           &
+        NSL-KDD \cite{NSL-KDD}                                                                                        &
         Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
         Small ($\approx$148k records)                                                                     &
         Derived from the KDD '99 dataset, its traffic was generated in a military-style network environment with predefined automated attack scripts. &
@@ -34,7 +34,7 @@ caption{Comparison of network intrusion detection datasets}
         High; legacy benchmark widely used in academic studies, mainly for baseline comparison and educational purposes.                                                                                                                                                                                                              \\
         \hline
 
-        UNSW-NB15                                                                                         &
+        UNSW-NB15 \cite{UNSW-NB15}                                                                                        &
         Australian Centre for Cyber Security (ACCS), UNSW Canberra                                        &
         Medium ($\approx$2.5M records)                                                                    &
         Synthetic traffic generated with IXIA PerfectStorm tool.                                                    &
@@ -43,7 +43,7 @@ caption{Comparison of network intrusion detection datasets}
         High; widely used modern benchmark for machine learning-based intrusion detection research.                                                                                                                                                                                              \\
         \hline
 
-        CIC-IDS2017                                                                                       &
+        CIC-IDS2017 \cite{CIC-IDS2017}                                                                                   &
         Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                                            &
         Medium ($\approx$2.8M records)                                                                    &
         Traffic generated in an enterprise‑like network environment composed of attacker and victim machines, using real attack tools.                          &
@@ -91,8 +91,8 @@ Every affected row contains exactly two packets total, either two forward or one
 This collapse propagates to every other feature that depends on the timestamp value, like \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, and all rate-based features reduce to zero as well.
 
 These rows impact is as follows. Globally, 353 unique row carry at least one NaN value making it 0.01\% of the dataset, and 1,564 unique row carry at least one Inf value making it 0.05\% of the dataset.
-At class level, Inf impact Benign with 1,427 unique row making it 0.06\% of the class samples and only four attack classes are affected.
-NaN infects only Benign with 350 making it less then 0.01\% of the class samples along with Dos Hulk.
+At class level, Inf impact BENIGN with 1,427 unique row making it 0.06\% of the class samples and only four attack classes are affected.
+NaN infects only BENIGN with 350 making it less then 0.01\% of the class samples along with Dos Hulk.
 Rare classes such as Heartbleed, Infiltration, and Web Attack – SQL Injection are not affected.
 The attack class-level distribution is shown in the \ref{fig:/inf_and_nan_class_distribution} Figure.
 
@@ -160,10 +160,10 @@ Globally, duplicate rows represent 308,381 out of 2,830,743 rows (10.89\%). Thei
 \paragraph{Contradictory duplicates:}
 These rows share the exact same feature values except for the target column, their labels differ.
 CICFlowMeter aggregates raw packet-level captures into flow statistics.
-Two flows from different sessions, one benign and one malicious, can produce statistically identical feature vectors if their traffic patterns are indistinguishable at the flow-aggregation level.
+Two flows from different sessions, one BENIGN and one malicious, can produce statistically identical feature vectors if their traffic patterns are indistinguishable at the flow-aggregation level.
 This is a fundamental limitation of statistical flow-based features rather than a labelling error.
 
-Globally, 7,020 rows are affected. Benign traffic is the dominant participant in contradictory groups, as expected, benign flows vastly outnumber attack flows, so the probability of a benign flow sharing a feature vector with an attack flow is higher than inter-attack collisions.
+Globally, 7,020 rows are affected. BENIGN traffic is the dominant participant in contradictory groups, as expected, BENIGN flows vastly outnumber attack flows, so the probability of a BENIGN flow sharing a feature vector with an attack flow is higher than inter-attack collisions.
 Contradictions involve only well-represented classes: DoS Hulk, DDoS, DoS slowloris, and PortScan. The \ref{fig:/contradictory_duplicates_class_distribution} figure illustrates their distribution.
 \begin{figure}[H]
     \centering
@@ -253,6 +253,7 @@ These rows present a serious risk to model training.
 An identical feature vector mapped to more than one target is unresolvable, retaining such rows forces the model to fit contradictory labels from the same input. All rows belonging to contradictory groups are therefore dropped entirely, regardless of their label. Since rare classes are unaffected, this carries no risk of losing minority attack samples.
 
 
+\subsection{Feature engineering}
 \subsection{Label encoding}
 The selected model, XGBoost, requires numerical input for both features and the target variable. While all features are already numerical, the target column \feature{Label} is categorical and stored as an object type. Hence, Label Encoding was performed using Label encoder from sklearn.preprocessing. The encoder was fitted and applied to the target column in a single step using \feature{fit\_transform()}. To preserve interpretability of the model's predicted outputs, the resulting integer-to-class mapping was exported as a \feature{label\_mapping.json} file derived from \feature{le.classes\_}, allowing any predicted label to be traced back to its original class name.
 
@@ -261,7 +262,7 @@ Several factors make us approach this step with caution, when assessing the trai
 
 A per-file split is not an option, as the files are divided per attack type, each attack class appears in exactly one file, so splitting by file would result in classes entirely absent from either the training or test set.
 
-A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the benign to attack ratio is 80/20 Additionally, rare classes present less than 0.001% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is  particularly concerning given their scarcity.
+A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is 80/20 Additionally, rare classes present less than 0.001% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is  particularly concerning given their scarcity.
 
 For these reasons, a stratified train/test split is selected. It ensures all classes are present in both the training and test sets, each maintaining their original proportions, so the class distribution in each split mirrors that of the full dataset.
 

@@ -3,11 +3,269 @@
 \section{Introduction}
 
 \section{Data Collection}
+This section introduces the process of acquiring the data used in this project. In general, this phase may involve either constructing a dataset from scratch or relying on existing sources. In our case, the decision to use a public dataset is mainly dictated by the nature of the cybersecurity domain.
+\vspace{0.2cm}
+
+Unlike other fields, network intrusion data cannot be collected on demand, as it depends on the occurrence of unpredictable and potentially harmful attacks. In addition, data collection in real operational environments is often constrained due to privacy concerns, security risks, and limited access to organizational traffic. Furthermore, even when such data is available, obtaining reliable ground truth labels is difficult and typically requires extensive manual analysis.
+\vspace{0.2cm}
+
+For these reasons, constructing a proprietary dataset is impractical, particularly in the absence of real network traffic provided by the host organization. Consequently, the use of a public dataset becomes a necessary and coherent choice, as such datasets are generated in controlled environments and include labeled instances based on expert-defined attack scenarios.
+
+\subsection{Dataset comparative}
+We narrowed it down to these three datasets. Below is a comparative table ~\ref{tab:dataset_comparison} using our primary selection criteria.
+
+
+caption{Comparison of network intrusion detection datasets}
+\label{tab:dataset_comparison}
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabulary}{\textwidth}{|p{1.5cm}|p{2.5cm}|p{1.4cm}|L|L|L|}
+        \hline
+        \textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
+        \hline
+
+        NSL-KDD \cite{NSL-KDD}                                                                                        &
+        Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
+        Small ($\approx$148k records)                                                                     &
+        Derived from the KDD '99 dataset, its traffic was generated in a military-style network environment with predefined automated attack scripts. &
+        Low; 4 attack families: DoS, Probe, R2L, U2R with several specific attacks in each family.                                          &
+        High; legacy benchmark widely used in academic studies, mainly for baseline comparison and educational purposes.                                                                                                                                                                                                              \\
+        \hline
+
+        UNSW-NB15 \cite{UNSW-NB15}                                                                                        &
+        Australian Centre for Cyber Security (ACCS), UNSW Canberra                                        &
+        Medium ($\approx$2.5M records)                                                                    &
+        Synthetic traffic generated with IXIA PerfectStorm tool.                                                    &
+        Medium; 9 attack types: Fuzzers, Analysis, Backdoor, DoS, Exploits, Generic, Reconnaissance, Shellcode, Worms.
+        &
+        High; widely used modern benchmark for machine learning-based intrusion detection research.                                                                                                                                                                                              \\
+        \hline
+
+        CIC-IDS2017 \cite{CIC-IDS2017}                                                                                   &
+        Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                                            &
+        Medium ($\approx$2.8M records)                                                                    &
+        Traffic generated in an enterprise‑like network environment composed of attacker and victim machines, using real attack tools.                          &
+        High; 14 attack types: Includes the most common attacks based on the 2016 McAfee report, such as Web based, Brute force, DoS, DDoS, Infiltration, Heart-bleed, Bot and Scan.                     &
+        Very High; one of the most widely adopted and current standard datasets in intrusion detection research.                                                                                                                                                                                                         \\
+        \hline
+    \end{tabulary}
+\end{table}
+
+The comparative analysis of the three datasets reveal that each has its own limitations. NSL-KDD, although still relevant, exhibits limitations in size and temporal relevance, as it is relatively old and does not reflect recent network behavior and modern attacks types. UNSW-NB15 is larger and offers a more recent alternative, but it remains limited in terms of attack type coverage, and its traffic  is fully synthetically generated. This makes CIC-IDS2017 the most suitable dataset, as it provides a more realistic experimental setting, a wider range of the most common attack types, and it is also widely adopted in recent research studies.
+
+\subsection{Dataset overview}
+CIC-IDS2017 was created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB), within a controlled environment, where the network traffic was captured in packet capture (PCAP) format.
+
+The transformation of raw PCAP files was done using a feature extraction tool, CICFlowMeter. Therefore a row in this dataset doesn't represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
+
 
 \section{Data Understanding}
+\subsection{Data quality}
+The quality of a model’s output is directly tied to its input. In this section we evaluate the dataset for any quality issues that could disrupt model training such as missing values (NaN - Not a number), infinite values (inf), negative values, duplicates rows, constant and near-constant features. For each issue, the analysis investigates the root cause, assesses its global impact on the dataset, across classes and whether it endangers any minority classes.
 
-\section{Data Preparation}
+\paragraph{NaN and Infinite Values:}
+Scanning the dataset for undefined values revealed that NaN values appear exclusively in \feature{Flow Bytes/s}, while infinite values appear in both \feature{Flow Bytes/s} and \feature{Flow Packets/s}. To understand the origin, the CICFlowMeter source code was inspected directly.
+The relevant formulas are:
+\begin{align*}
+    \text{Flow Bytes/s}   & = \frac{\text{forwardBytes} + \text{backwardBytes}}{\text{flowDuration} / 1{,}000{,}000} \\
+    \text{Flow Packets/s} & = \frac{\text{packetCount (fwd + bwd)}}{\text{flowDuration} / 1{,}000{,}000}
+\end{align*}
 
-\section{Data Augmentation}
+Both features divide by \feature{Flow Duration}. When \feature{Flow~Duration~=~0}, any nonzero numerator yields Inf, and a zero numerator yields NaN 0/0. This distinction maps directly onto two observable row types in the dataset:
+
+\begin{itemize}
+    \item Rows with 2 forward packets, 0 backward, and nonzero byte count:\\
+          \feature{Flow Duration} = 0 with bytes $>$ 0, producing \feature{Flow Bytes/s} = Inf.
+    \item Rows with 1 forward packet, 1 backward packet, and zero byte count:\\
+          \feature{Flow Duration} = 0 with zero bytes, producing \feature{Flow Packets/s} = NaN.
+\end{itemize}
+
+The zero byte count in the second case, despite existing packets, is because CICFlowMeter computes \feature{Total Length of Fwd/Bwd Packets} from the packet payload only. Packets carrying no data content only TCP headers (ACK, SYN) produce zero payload length.
+The true anomaly in both cases is \feature{Flow~Duration~=~0}.
+
+
+\feature{Flow Duration} is computed as the timestamp difference between the last and first packet in a flow. It evaluates to zero when two packets arrive within the same timestamp resolution window as the tool lacks the granularity to distinguish arrivals that are nanoseconds apart.
+Every affected row contains exactly two packets total, either two forward or one forward and one backward, which is consistent with this explanation: with only two packets, a single resolution failure collapses the entire duration to zero.
+This collapse propagates to every other feature that depends on the timestamp value, like \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, and all rate-based features reduce to zero as well.
+
+These rows impact is as follows. Globally, 353 unique row carry at least one NaN value making it 0.01\% of the dataset, and 1,564 unique row carry at least one Inf value making it 0.05\% of the dataset.
+At class level, Inf impact BENIGN with 1,427 unique row making it 0.06\% of the class samples and only four attack classes are affected.
+NaN infects only BENIGN with 350 making it less then 0.01\% of the class samples along with Dos Hulk.
+Rare classes such as Heartbleed, Infiltration, and Web Attack – SQL Injection are not affected.
+The attack class-level distribution is shown in the \ref{fig:/inf_and_nan_class_distribution} Figure.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth, fbox]{../figures/inf_and_nan_class_distribution.png}
+    \caption{Inf and NaN attack class distribution}
+    \label{fig:/inf_and_nan_class_distribution}
+\end{figure}
+
+\paragraph{Negative Values:}
+
+Given the nature of the dataset feature, their logical value should never be negative yet Negative values were found across several feature groups, each with a distinct cause.
+\begin{itemize}
+    \item \textbf{Sentinel encoding:} \feature{Init\_Win\_bytes\_forward} and \feature{Init\_Win\_bytes\_backward}.
+
+          These two features carry negative values at scale: 1,001,189 rows (35.4\%) and 1,441,552 rows (50.9\%) respectively hold the value -1. This is not a measurement error. CICFlowMeter uses -1 as a sentinel to signal that the TCP initial window size could not be captured, either because the SYN packet was absent from the capture, or because the flow is UDP-based and has no TCP handshake. It is a deliberate encoding choice by the tool, not a data corruption.
+
+    \item \textbf{Packet ordering artifacts:} \feature{Flow Duration}, \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, \feature{Fwd IAT Min}, \feature{Flow Bytes/s}, and \feature{Flow Packets/s}.
+
+
+          A total of 115 rows carry negative values in \feature{Flow Duration} ranging from -13 to -1, with the same negative values propagating identically into \feature{Flow IAT Mean}, \feature{Flow IAT Max}, and \feature{Flow IAT Min}.
+
+          This is a cascade, since each of these rows has exactly one packet forward and one backward, there is only one inter-arrival interval in the flow, so mean, max, and min all equal \feature{Flow Duration} exactly.
+
+          Division by a small negative duration scaled by 1,000,000 then causes \feature{Flow Bytes/s} and \feature{Flow Packets/s} to carry large negative values.\\
+          For example, with \feature{Flow Duration} = $-1$ and 12 bytes of payload:
+          \[
+              \feature{Flow Bytes/s} = \frac{12}{-1 / 1{,}000{,}000} = -12{,}000{,}000
+          \]
+          This is likely to be a packet ordering artifact when processing the packets; additionally, CICFlowMeter performs no guard against negative duration, so the error propagates unchecked. The affected rows are exclusively BENIGN traffic and represent less than 0.0001\% of the dataset.
+
+          After excluding these 115 rows, an additional 2,776 rows exhibit negative \feature{Flow IAT Min} values and 17 rows exhibit a negative \feature{Fwd IAT Min}.
+          Here the ordering artifact affects only a single packet pair within a longer multi-packet flow, dragging the minimum IAT negative while all other temporal features remain valid.
+          The attack class-level distribution is shown in the \ref{fig:/ordering_artifact_class_distribution} Figure.
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.9\columnwidth, fbox]{figures/ordering_artifact_class_distribution.png}
+              \caption{Ordering Artifact Class Distribution}
+              \label{fig:/ordering_artifact_class_distribution}
+          \end{figure}
+
+    \item \textbf{UDP parsing bug:} \feature{Fwd Header Length}, \feature{Fwd Header Length.1}, \feature{Bwd Header Length}, \feature{min\_seg\_size\_forward}.
+
+          These features exhibit values in the range of -32,212,234,632 to -1,073,741,320, far outside any legitimate segment size and a TCP header size, which is bounded between 20 and 60 bytes.
+
+          The root cause is a bug in CICFlowMeter: when processing UDP packets, the tool reads the header size from a TCP-specific field that simply does not apply to UDP, producing meaningless values that corrupt these features.
+
+          The bug is confirmed by the data: all 35 affected rows are UDP flows, as indicated by \feature{Init\_Win\_bytes\_forward} = \feature{Init\_Win\_bytes\_backward} = -1.
+
+          The impact is narrow, 35 rows in \feature{Fwd Header Length}, \feature{Fwd Header Length.1}, and \feature{min\_seg\_size\_forward}, and 22 rows in \feature{Bwd Header Length}, all exclusively BENIGN traffic, collectively under 0.0001\% of the dataset.
+\end{itemize}
+
+\paragraph{Exact duplicates:}
+Duplicate rows are common in network datasets since a row in the dataset does not represent a packet but a session behaviour summarised through statistical aggregation. Many flows share identical statistical profiles, thus the presence of duplicates does not necessarily indicate a data error.
+
+Globally, duplicate rows represent 308,381 out of 2,830,743 rows (10.89\%). Their distribution by attack class is as show in the \ref{fig:/exact_duplicates_class_distribution} figure and no minority class is affected.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth, fbox]{figures/exact_duplicates_class_distribution.png}
+    \caption{Exact duplicates attack class distribution}
+    \label{fig:/exact_duplicates_class_distribution}
+\end{figure}
+
+\paragraph{Contradictory duplicates:}
+These rows share the exact same feature values except for the target column, their labels differ.
+CICFlowMeter aggregates raw packet-level captures into flow statistics.
+Two flows from different sessions, one BENIGN and one malicious, can produce statistically identical feature vectors if their traffic patterns are indistinguishable at the flow-aggregation level.
+This is a fundamental limitation of statistical flow-based features rather than a labelling error.
+
+Globally, 7,020 rows are affected. BENIGN traffic is the dominant participant in contradictory groups, as expected, BENIGN flows vastly outnumber attack flows, so the probability of a BENIGN flow sharing a feature vector with an attack flow is higher than inter-attack collisions.
+Contradictions involve only well-represented classes: DoS Hulk, DDoS, DoS slowloris, and PortScan. The \ref{fig:/contradictory_duplicates_class_distribution} figure illustrates their distribution.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth, fbox]{figures/contradictory_duplicates_class_distribution.png}
+    \caption{Contradictory duplicates attack class distribution}
+    \label{fig:/contradictory_duplicates_class_distribution}
+\end{figure}
+
+\paragraph{Constant features:}
+Constant features are those with a single unique value across the entire dataset, in this case, always zero. To understand this behaviour, each feature was traced back to its computation logic in the CICFlowMeter source code. The root cause divides them into two groups.
+
+\begin{itemize}
+    \item \textbf{Bulk transfer features:} \feature{Fwd Avg Bytes/Bulk}, \feature{Fwd Avg Packets/Bulk}, \feature{Fwd Avg Bulk Rate}, \feature{Bwd Avg Bytes/Bulk}, \feature{Bwd Avg Packets/Bulk}, \feature{Bwd Avg Bulk Rate}.
+
+          Bulk transfer refers to sending a large number of packets consecutively in one direction, with very little time between them.
+
+          These features are derived from CICFlowMeter's bulk detection logic, which only activates when at least four consecutive packets carrying actual data are observed in close succession.
+
+          If that condition is never met, either because flows in this dataset rarely involve this kind of continuous data sending, or because many packets carry no payload, the counters stay at zero and all six features are exported as zeros.
+
+          This is exactly what is observed. These features are constant not by error, but because the bulk detection logic simply never triggers on this dataset.
+
+    \item \textbf{Backward flag counters:} \feature{Bwd PSH Flags} and \feature{Bwd URG Flags}
+
+          These are constant zero due to a bug in CICFlowMeter's implementation. The features \feature{Bwd PSH Flags} and \feature{Bwd URG Flags} are meant to count how many times the PSH and URG flags appear in packets traveling in the backward direction.
+
+          However, these counters are only incremented inside the method that processes the first packet. Since the first packet by definition can only be forward, CICFlowMeter assigns the source IP from that first packet and compares subsequent packets against it to determine direction.
+          The method that handles the following packets never updates these counters, so both features remain zero for every flow, regardless of the actual traffic.
+\end{itemize}
+
+\paragraph{Near-constant features:}
+
+\feature{Fwd URG Flags}, \feature{CWE Flag Count}, \feature{RST Flag Count}, and \feature{ECE Flag Count}.
+
+Each feature hold exactly two unique values across the entire dataset. These are rare-event TCP control flags that are virtually absent in normal traffic. Combined, their non-zero occurrences account for only 315 rows (0.0139\%), all within BENIGN traffic. Therfore, they carry no discriminative signal for any attack class.
+
+\section{Data preparatation}
+
+\subsection{Data cleaning}
+The integrity of data is a prerequisite for any reliable model. Throughout this section, data correctness is prioritized over sample retention, as long as data volume and class balance are not meaningfully affected.
+
+\paragraph{NaN and Inf Values:}
+Rows carrying NaN or Inf values in \feature{Flow Bytes/s} and \feature{Flow Packets/s} are removed. As established, these arise from division by a zero \feature{Flow Duration}, due to the lack of time granularity. Beyond the invalid rate features, these rows are also dominated by zeros which do not reflect the true nature of the flow, but are simply an artifact of insufficient measurement precision. Such a row cannot serve as a valid representation of a network session, as its defining characteristics were lost in the granularity gap.
+
+The scale reinforces the decision. Globally, fewer than 0.11\% of rows are affected. Additionally, the unique affected rows per attack class amount to 5 for Bot, 125 for PortScan, 2 for DDoS, and 3 for DoS Hulk, representing less than 0.00\% of any single class, all of which carry sufficient clean samples to generalise from. No minority class is affected.
+
+\paragraph{Negative Values:}
+Negative values across the dataset fall into four distinct categories, each handled differently.
+\begin{itemize}
+    \item \textbf{Sentinel encoding:} \feature{Init\_Win\_bytes\_forward} and \feature{Init\_Win\_bytes\_backward}.
+
+          These are retained without modification. As noted, -1 is a deliberate sentinel used by CICFlowMeter to encode the absence of a TCP handshake, it is semantically valid and carries information about the flow type. Replacing it would discard a meaningful signal.
+
+    \item \textbf{Packet ordering artifacts:} This anomaly originates during packet processing, since these sessions consist of a single packet exchange, the flow has no other packets to establish a valid duration or inter-arrival times. \feature{Flow Duration} was rendered negative, and all rate-based features, \feature{Flow IAT Mean}, \feature{Flow IAT Max}, and \feature{Flow IAT Min} collapsed to that same negative value, leaving no part of the flow intact.
+
+          Beyond the specific features where the corruption is visible, there is a deeper concern.
+          This is a bug introduced during dataset construction, and its effects are not fully observable from the CSV alone.
+
+          Negative values in \feature{Flow Duration} make the anomaly detectable, but there is no guarantee that the ordering artifact confined its damage only to features that produce obviously invalid numbers.
+
+          The same error may have silently distorted other features into values that appear plausible but are incorrect, damage that is invisible precisely because it does not manifest as negatives or zeros, but as ordinary-looking numbers that simply do not reflect the true flow.
+
+          In order to preserve data integrity and given the rows effect is negligible, only 115 rows belonging to BENIGN traffic, we decide to drop these rows.
+
+          \feature{Flow IAT Min} and \feature{Fwd IAT Min} share the same root cause, a packet ordering artifact, but the outcome is fundamentally different.
+          Here the affected flows span multiple packets, so the ordering error disturbed only a single packet pair within an otherwise well-measured session.
+
+          The negative value appears only in the minimum IAT statistic, while \feature{Flow Duration} remains positive and all other features are valid.
+
+          Inter-arrival time cannot be negative by definition, so clipping both features to zero restores the value to the physical boundary it should never have crossed, without fabricating anything.
+
+          This targeted correction is justified precisely because the flow itself was captured correctly, unlike the single-packet cases above, where the corruption was total and removal was the only option.
+
+          This treatment also preserves the 4 Heartbleed rows that would otherwise be discarded, a meaningful consideration given the class contains only 11 samples in total.
+
+    \item \textbf{UDP parsing bug:} \feature{Fwd Header Length}, \feature{Bwd Header Length}, \feature{Fwd Header Length.1}, and \feature{min\_seg\_size\_forward}.
+
+          These rows are removed. As established, they are caused by a parsing bug rendering these feature values meaningless and irrecoverable. The fact that all affected rows belong exclusively to BENIGN traffic and represent under 0.002\% of the dataset confirms that removal incurs no meaningful cost to class balance or dataset integrity.
+\end{itemize}
+
+\paragraph{Exact duplicates:}
+Exact duplicate rows are dropped. Retaining them risks data leakage, a row could appear in both the training and test sets simultaneously, moreover it risks overfitting by biasing the model toward a single flow pattern. Since no minority classes are affected, the removal carries no risk to rare attack samples.
+
+\paragraph{Contradictory duplicates:}
+
+These rows present a serious risk to model training.
+An identical feature vector mapped to more than one target is unresolvable, retaining such rows forces the model to fit contradictory labels from the same input. All rows belonging to contradictory groups are therefore dropped entirely, regardless of their label. Since rare classes are unaffected, this carries no risk of losing minority attack samples.
+
+
+\subsection{Feature engineering}
+\subsection{Label encoding}
+The selected model, XGBoost, requires numerical input for both features and the target variable. While all features are already numerical, the target column \feature{Label} is categorical and stored as an object type. Hence, Label Encoding was performed using Label encoder from sklearn.preprocessing. The encoder was fitted and applied to the target column in a single step using \feature{fit\_transform()}. To preserve interpretability of the model's predicted outputs, the resulting integer-to-class mapping was exported as a \feature{label\_mapping.json} file derived from \feature{le.classes\_}, allowing any predicted label to be traced back to its original class name.
+
+\subsection{Train/ Test split }
+Several factors make us approach this step with caution, when assessing the train/test split strategies.
+
+A per-file split is not an option, as the files are divided per attack type, each attack class appears in exactly one file, so splitting by file would result in classes entirely absent from either the training or test set.
+
+A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is 80/20 Additionally, rare classes present less than 0.001% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is  particularly concerning given their scarcity.
+
+For these reasons, a stratified train/test split is selected. It ensures all classes are present in both the training and test sets, each maintaining their original proportions, so the class distribution in each split mirrors that of the full dataset.
+
+However, this strategy doesn’t solve the class imbalance. This issue will be addressed and treated more during the model training.
 
 \section{Conclusion}

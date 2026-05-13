@@ -17,11 +17,10 @@ For these reasons, constructing a proprietary dataset is impractical, particular
 \subsection{Dataset comparative}
 We narrowed it down to these three datasets. Below is a comparative table ~\ref{tab:dataset_comparison} using our primary selection criteria.
 
-
-caption{Comparison of network intrusion detection datasets}
-\label{tab:dataset_comparison}
 \begin{table}[H]
     \centering
+    \caption{Comparison of network intrusion detection datasets}
+    \label{tab:dataset_comparison}
     \small
     \renewcommand{\arraystretch}{1.2}
     \begin{tabulary}{\textwidth}{|p{1.5cm}|p{2.5cm}|p{1.4cm}|L|L|L|}
@@ -29,7 +28,7 @@ caption{Comparison of network intrusion detection datasets}
         \textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
         \hline
 
-        NSL-KDD \cite{NSL-KDD}                                                                                        &
+        NSL-KDD \cite{tavallaee2009kdd}                                                                                     &
         Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
         Small ($\approx$148k records)                                                                     &
         Derived from the KDD '99 dataset, its traffic was generated in a military-style network environment with predefined automated attack scripts. &
@@ -37,7 +36,7 @@ caption{Comparison of network intrusion detection datasets}
         High; legacy benchmark widely used in academic studies, mainly for baseline comparison and educational purposes.                                                                                                                                                                                                              \\
         \hline
 
-        UNSW-NB15 \cite{UNSW-NB15}                                                                                        &
+        UNSW-NB15 \cite{moustafa2015unsw}                                                                                        &
         Australian Centre for Cyber Security (ACCS), UNSW Canberra                                        &
         Medium ($\approx$2.5M records)                                                                    &
         Synthetic traffic generated with IXIA PerfectStorm tool.                                                    &
@@ -46,7 +45,7 @@ caption{Comparison of network intrusion detection datasets}
         High; widely used modern benchmark for machine learning-based intrusion detection research.                                                                                                                                                                                              \\
         \hline
 
-        CIC-IDS2017 \cite{CIC-IDS2017}                                                                                   &
+        CIC-IDS-2017 \cite{sharafaldin2018toward}                                                                                  &
         Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                                            &
         Medium ($\approx$2.8M records)                                                                    &
         Traffic generated in an enterprise‑like network environment composed of attacker and victim machines, using real attack tools.                          &
@@ -205,8 +204,11 @@ Each feature hold exactly two unique values across the entire dataset. These are
 
 \section{Data preparatation}
 
+This section translates the findings from the data understanding phase into concrete preprocessing actions. 
+
+
 \subsection{Data cleaning}
-The integrity of data is a prerequisite for any reliable model. Throughout this section, data correctness is prioritized over sample retention, as long as data volume and class balance are not meaningfully affected.
+The integrity of data is a prerequisite for any reliable model. Thus, we leverage data correctness over sample retention, as long as data volume and class balance are not meaningfully affected.
 
 \paragraph{NaN and Inf Values:}
 Rows carrying NaN or Inf values in \feature{Flow Bytes/s} and \feature{Flow Packets/s} are removed. As established, these arise from division by a zero \feature{Flow Duration}, due to the lack of time granularity. Beyond the invalid rate features, these rows are also dominated by zeros which do not reflect the true nature of the flow, but are simply an artifact of insufficient measurement precision. Such a row cannot serve as a valid representation of a network session, as its defining characteristics were lost in the granularity gap.
@@ -260,7 +262,7 @@ An identical feature vector mapped to more than one target is unresolvable, reta
 \subsection{Label encoding}
 The selected model, XGBoost, requires numerical input for both features and the target variable. While all features are already numerical, the target column \feature{Label} is categorical and stored as an object type. Hence, Label Encoding was performed using Label encoder from sklearn.preprocessing. The encoder was fitted and applied to the target column in a single step using \feature{fit\_transform()}. To preserve interpretability of the model's predicted outputs, the resulting integer-to-class mapping was exported as a \feature{label\_mapping.json} file derived from \feature{le.classes\_}, allowing any predicted label to be traced back to its original class name.
 
-\subsection{Train/ Test split }
+\subsubsection{Train/ Test split }
 Several factors make us approach this step with caution, when assessing the train/test split strategies.
 
 A per-file split is not an option, as the files are divided per attack type, each attack class appears in exactly one file, so splitting by file would result in classes entirely absent from either the training or test set.
@@ -272,3 +274,4 @@ For these reasons, a stratified train/test split is selected. It ensures all cla
 However, this strategy doesn’t solve the class imbalance. This issue will be addressed and treated more during the model training.
 
 \section{Conclusion}
+This chapter presented the full data workflow adopted for this project, from selecting an appropriate public intrusion detection dataset to preparing it for model training. We compared candidate datasets and justified the choice of CIC-IDS2017, then analyzed data quality issues such as NaN/Inf values, negative artifacts, duplicates, and constant features, linking each issue to its root cause in traffic generation or feature extraction. Finally, we applied cleaning and preparation steps that preserve class coverage and prevent leakage, and we defined an encoding and stratified splitting strategy to support reliable evaluation in the subsequent modeling chapter.

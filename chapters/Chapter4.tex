@@ -11,6 +11,61 @@ Unlike other fields, network intrusion data cannot be collected on demand, as it
 
 For these reasons, constructing a proprietary dataset is impractical, particularly in the absence of real network traffic provided by the host organization. Consequently, the use of a public dataset becomes a necessary and coherent choice, as such datasets are generated in controlled environments and include labeled instances based on expert-defined attack scenarios.
 
+\subsection{Dataset comparative}
+We narrowed it down to these three datasets. Below is a comparative table ~\ref{tab:dataset_comparison} using our primary selection criteria.
+
+
+caption{Comparison of network intrusion detection datasets}
+\label{tab:dataset_comparison}
+\begin{table}[H]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabulary}{\textwidth}{|p{1.5cm}|p{2.5cm}|p{1.4cm}|L|L|L|}
+        \hline
+        \textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
+        \hline
+
+        NSL-KDD \cite{NSL-KDD}                                                                                        &
+        Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
+        Small ($\approx$148k records)                                                                     &
+        Derived from the KDD '99 dataset, its traffic was generated in a military-style network environment with predefined automated attack scripts. &
+        Low; 4 attack families: DoS, Probe, R2L, U2R with several specific attacks in each family.                                          &
+        High; legacy benchmark widely used in academic studies, mainly for baseline comparison and educational purposes.                                                                                                                                                                                                              \\
+        \hline
+
+        UNSW-NB15 \cite{UNSW-NB15}                                                                                        &
+        Australian Centre for Cyber Security (ACCS), UNSW Canberra                                        &
+        Medium ($\approx$2.5M records)                                                                    &
+        Synthetic traffic generated with IXIA PerfectStorm tool.                                                    &
+        Medium; 9 attack types: Fuzzers, Analysis, Backdoor, DoS, Exploits, Generic, Reconnaissance, Shellcode, Worms.
+        &
+        High; widely used modern benchmark for machine learning-based intrusion detection research.                                                                                                                                                                                              \\
+        \hline
+
+        CIC-IDS2017 \cite{CIC-IDS2017}                                                                                   &
+        Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                                            &
+        Medium ($\approx$2.8M records)                                                                    &
+        Traffic generated in an enterprise‑like network environment composed of attacker and victim machines, using real attack tools.                          &
+        High; 14 attack types: Includes the most common attacks based on the 2016 McAfee report, such as Web based, Brute force, DoS, DDoS, Infiltration, Heart-bleed, Bot and Scan.                     &
+        Very High; one of the most widely adopted and current standard datasets in intrusion detection research.                                                                                                                                                                                                         \\
+        \hline
+    \end{tabulary}
+\end{table}
+
+The comparative analysis of the three datasets reveal that each has its own limitations. NSL-KDD, although still relevant, exhibits limitations in size and temporal relevance, as it is relatively old and does not reflect recent network behavior and modern attacks types. UNSW-NB15 is larger and offers a more recent alternative, but it remains limited in terms of attack type coverage, and its traffic  is fully synthetically generated. This makes CIC-IDS2017 the most suitable dataset, as it provides a more realistic experimental setting, a wider range of the most common attack types, and it is also widely adopted in recent research studies.
+
+\subsection{Dataset overview}
+CIC-IDS2017 was created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB), within a controlled environment, where the network traffic was captured in packet capture (PCAP) format.
+
+The transformation of raw PCAP files was done using a feature extraction tool, CICFlowMeter. Therefore a row in this dataset doesn't represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
+
+
+Unlike other fields, network intrusion data cannot be collected on demand, as it depends on the occurrence of unpredictable and potentially harmful attacks. In addition, data collection in real operational environments is often constrained due to privacy concerns, security risks, and limited access to organizational traffic. Furthermore, even when such data is available, obtaining reliable ground truth labels is difficult and typically requires extensive manual analysis.
+\vspace{0.2cm}
+
+For these reasons, constructing a proprietary dataset is impractical, particularly in the absence of real network traffic provided by the host organization. Consequently, the use of a public dataset becomes a necessary and coherent choice, as such datasets are generated in controlled environments and include labeled instances based on expert-defined attack scenarios.
+
 \newpage
 \subsection{Dataset comparative}
 We narrowed it down to these three datasets. Below is a comparative table ~\ref{tab:dataset_comparison} using our primary selection criteria.

@@ -7,7 +7,7 @@
 This chapter serves as an introduction to the project. We begin with a presentation of the company hosting the internship, a study of existing network intrusion detection systems. Then, we present the problem and the proposed solution. Finally, we end the chapter with a conclusion.
 \section{Presentation of the company}
 ITXTREE is an early-stage technology startup based in Sidi Rzig, Tunisia, focused on building a solid foundation for future digital solutions it is built on the core values of integrity, quality, curiosity and adaptability.
-\vskip1cm
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.2\columnwidth]{logos/ITXTREE-logo.png}
@@ -21,7 +21,9 @@ For this reason, Network Intrusion Detection Systems (NIDS) play a central role 
     \item \textbf{Signature-based:} These systems analyze network traffic, often through deep packet inspection and compares it against a signature database. When a match is found an alert is triggered. Well-known tools such as Snort \cite{Snort} and Suricata \cite{Suricata} are representative of this approach.
     \item \textbf{Anomaly-based:} Anomaly detection is learning normal behavior of the network through statistical analysis of traffic parameters. If there is a sudden increase of traffic on a port outside of normal thresholds, it might be an indication of a brand-new threat \cite{Jackson2010}.
 \end{itemize}
+\vspace{-0.5cm}
 \section{Criticism of the existing}
+\vspace{-0.2cm}
 Despite their widespread use, signature-based NIDS present several limitations:
 \begin{itemize}
     \item \textbf{High Maintenance and Reactivity:} Their effectiveness is essentially tied to the completeness and accuracy of their signature rule sets. As attack techniques continuously evolve, these systems require frequent updates to remain effective. This maintenance process is both time-consuming and reactive since new signatures can only be created after an attack has already been identified and analyzed.
@@ -29,11 +31,16 @@ Despite their widespread use, signature-based NIDS present several limitations:
     \item \textbf{Rigidity and Evasion Vulnerability:} Attackers can exploit the rigidity of signature-based detection systems by introducing slight variations in attack patterns, allowing them to evade existing signatures while preserving the same malicious intent. Since many signature rules are publicly available or widely shared with the security community, attackers may analyze them to identify gaps and design variants that bypass detection mechanisms.
 \end{itemize}
 Overall, these systems rely on exact matching and predefined logics which limits their adaptability in the face of evolving and increasingly sophisticated threats.
+
+\vspace{-0.5cm}
 \section{Proposed solution}
+\vspace{-0.2cm}
 With the growing integration of Artificial Intelligence (AI) in security systems, new approaches aim to overcome the limits of traditional methods. To address these challenges, we propose an AI-driven NIDS capable of learning patterns from network traffic and classifying different types of network activity instead of relying solely on predefined rules.
+\vspace{-0.9cm}
 \section{Project Pipeline}
+\vspace{-0.2cm}
 A project pipeline is a structured sequence of stages that outlines the workflow and processes involved in the development and deployment of a project. It serves as a roadmap, guiding the team through various phases, from initial planning to final delivery.
-\vskip0.4cm
+
 Figure~\ref{fig:pipeline} illustrates the project pipeline for our network intrusion detection system.
 
 \begin{figure}[h!]
@@ -56,26 +63,27 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a 
     \item \textbf{Evaluation:} Evaluating the model's performance and determining if it meets the business objectives.
     \item \textbf{Deployment:} Deploying the model into production, monitoring and maintaining the model's performance.
 \end{itemize}
-
+\vspace{-0.5cm}
 Figure~\ref{fig:crisp-dm} illustrates these phases and their relationships.
-
+\vspace{-0.3cm}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\columnwidth]{logos/CRISP-DM.png}
     \caption{CRISP-DM Methodology}
     \label{fig:crisp-dm}
 \end{figure}
-
+\vspace{-0.5cm}
 \subsection{UML}
 For the modeling of the software system, we use UML (Unified Modeling Language), a standardized modeling language used to specify, visualize, construct, and document the artifacts of software systems through diagrams such as use case, class, and sequence diagrams. There are two types of UML diagrams:
-
+\vspace{-0.2cm}
 \begin{itemize}
     \item \textbf{Behavioral Diagrams:} State machine, activity, use case, sequence, communication and interaction overview diagrams.
     \item \textbf{Structural Diagrams:} Class, object, component, deployment and package diagrams.
 \end{itemize}
-
+\vspace{-0.2cm}
 UML makes complex systems easier to design and communicate, it provides a common language for developers, architects, and stakeholders \cite{UML}.
-
+\vspace{-0.9cm}
 \section{Conclusion}
+\vspace{-0.3cm}
 In this chapter, we introduce the host company ITXTREE, study existing network intrusion detection systems, discuss their shortcomings and finally present a solution. In the next chapter we specify the system requirements.
 

@@ -29,23 +29,10 @@
 \usepackage{float}
 \usepackage{longtable}
 \usepackage{caption}
-\usepackage{tabularx}
-\usepackage{tabulary}
-\usepackage{enumitem}
-\usepackage{courier}
-\usepackage{multicol}
 \usepackage[backend=biber, defernumbers=true]{biblatex}
 \addbibresource{Webo.bib}
 \addbibresource{Biblio.bib}
 \DeclareCaptionLabelSeparator{emdash}{\;–\;}
-
-\newcommand{\feature}[1]{\texttt{#1}}
-
-% Increase vertical space between paragraphs for readability
-\setlength{\parskip}{0.5\baselineskip}
-
-% Improve spacing inside list environments to avoid dense blocks within items
-\setlist[itemize]{itemsep=0.5\baselineskip, parsep=0.5\baselineskip, topsep=0.5\baselineskip}
 
 \captionsetup{
     labelfont={sc},      % Small caps (for FIGURE)
@@ -71,41 +58,8 @@
 
 % D?but du document
 \begin{document}
-%%%%%%%%%%%%% pages de garde en Anglais
-\include{garde/garde_fin_English}
+
 \include{garde/garde_sign_fin_English}
-
-
-\newpage
-\pagenumbering{roman}
-\include{chapters/dedication_amira}
-\include{chapters/dedication_hajer}
-\include{chapters/Remerciements}
-\tableofcontents    % Table des matières
-\listoffigures        % Liste des figures
-\listoftables        % Liste des tableaux
-\newpage
-\pagenumbering{arabic}
-\include{chapters/Introduction}
-\include{chapters/Chapter1}
-\include{chapters/Chapter2}
-\include{chapters/Chapter3}
-\include{chapters/Chapter4}
-\include{chapters/Chapter5}
-\include{chapters/Chapter6}
-\include{chapters/Conclusion}
-
-
-\printbibliography[title={Webography}, keyword=web, resetnumbers=true]
-\printbibliography[title={Bibliography}, notkeyword=web, resetnumbers=true]
-
-%
-
-%\bibliographystyle{alpha}
-%\bibliography{Biblio}
-%\addcontentsline{toc}{chapter}{Bibliography}% ajouter son entr?e dans la table
-%\pagestyle{empty}
-\include{Annexe1}
 
 
 

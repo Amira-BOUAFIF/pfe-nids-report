@@ -1,0 +1,126 @@
+@startuml db-schema-vers1
+skinparam dpi 300
+hide circle
+
+!define primary_key(x)<b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x)<b><color:#aaaaaa><&key></color> x</b>
+
+' ─── Core Classes ─────────────────────────────────────
+
+class User {
+    primary_key(id) : Long
+    - username: String
+    - email: String
+    - passwordHash: String
+    - role: Enum
+    - createdAt: DateTime
+    --
+
+}
+
+class Alert {
+    primary_key(id) : Long
+    foreign_key(networkFlowId): Long
+    foreign_key(attackId): Long
+    - severity: Enum
+    - raisedAt: DateTime
+    - acknowledgedAt: DateTime
+    - resolvedAt: DateTime
+    - analystNotes: String
+    - status: Enum
+    --
+
+}
+
+class Attack {
+    primary_key(id) : Long
+    - category: Enum
+    - defaultSeverity: Enum
+    - description: String
+    --
+
+}
+
+class NetworkFlow {
+    primary_key(id) : Long
+    - timestamp: DateTime
+    - sourceIP: String
+    - destinationIP: String
+    - sourcePort: int
+    - destinationPort: int
+    - protocol: String
+    - fwdPackets: int
+    - bwdPackets: int
+    - fwdBytes: Long
+    - bwdBytes: Long
+    - flowDuration: float
+    - flowBytesPerSec: float
+    - flowPacketsPerSec: float
+    - avgPacketSize: float
+    - fwdPacketLengthMean: float
+    - bwdPacketLengthMean: float
+    - minPacketLength: int
+    - synCount: int
+    - ackCount: int
+    - finCount: int
+    - pshCount: int
+    - urgCount: int
+    - downUpRatio: float
+    - initWinBytesForward: int
+    - initWinBytesBackward: int
+    - predictionLabel: String
+    - confidence: float  
+    --
+
+}
+
+class AuditLog {
+    primary_key(id) : Long
+    - userId: Long
+    - timestamp: DateTime
+    - action: String
+    - details: String
+    --
+
+}
+
+class Report {
+    primary_key(id) : Long
+    - title: String
+    - generatedAt: DateTime
+    - periodStart: DateTime
+    - periodEnd: DateTime 
+    - format: Enum
+    - filePath: String
+    --
+
+}
+
+class Configuration {
+    primary_key(id) : Long
+    - key: String
+    - value: String
+    - updatedAt: DateTime
+    --
+
+}
+
+' ─── Class Relationships ──────────────────────────────
+
+' A flow triggers at most one alert
+NetworkFlow "1"   --  "0..1"  Alert      : triggers 
+
+' An alert is classified as one attack type
+Alert          "0..*"   --  "1"     Attack : classified as 
+
+' Admin manages alert status
+User           "1"   --  "0..*"  Alert      : manages 
+
+' User actions recorded in audit log
+User           "1"   --  "0..*"  AuditLog   : generates
+
+' Report aggregates alerts over a period
+Report         "1"   -[hidden]-  "0..*"  Alert      : contains 
+
+Report -[hidden]- Configuration
+@enduml

@@ -23,9 +23,8 @@ We narrowed it down to these three datasets. Below is a comparative table ~\ref{
     \renewcommand{\arraystretch}{1.2}
     \begin{tabulary}{\textwidth}{|p{2.75cm}|p{2.5cm}|p{1.4cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
         \hline
-        \textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
+        \rowcolor[gray]{0.8}\textbf{Dataset}                                                                                  & \textbf{Source} & \textbf{Size} & \textbf{Data Generation Approach} & \textbf{Attack Diversity and Temporal Relevance} & \textbf{Usability} \\
         \hline
-
         NSL-KDD \cite{NSL-KDD}                                                                                        &
         Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
         Small ($\approx$148k records)                                                                     &
@@ -833,15 +832,15 @@ In conclusion, of the 33 features involved in the highly correlated pairs, 19 ar
 \subsection{Label encoding}
 The selected model, XGBoost, requires numerical input for both features and the target variable. While all features are already numerical, the target column \feature{Label} is categorical and stored as an object type. Hence, Label Encoding was performed using Label encoder from sklearn.preprocessing. The encoder was fitted and applied to the target column in a single step using \feature{fit\_transform()}. To preserve interpretability of the model's predicted outputs, the resulting integer-to-class mapping was exported as a \feature{label\_mapping.json} file derived from \feature{le.classes\_}, allowing any predicted label to be traced back to its original class name.
 
-\subsection{Train/ Test split }
+\subsection{Train/ Test split}
 Several factors make us approach this step with caution, when assessing the train/test split strategies.
 
 A per-file split is not an option, as the files are divided per attack type, each attack class appears in exactly one file, so splitting by file would result in classes entirely absent from either the training or test set.
 
-A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is 80/20 Additionally, rare classes present less than 0.001% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is  particularly concerning given their scarcity.
+A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is 80/20 Additionally, rare classes present less than 0.001\% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is  particularly concerning given their scarcity.
 
 For these reasons, a stratified train/test split is selected. It ensures all classes are present in both the training and test sets, each maintaining their original proportions, so the class distribution in each split mirrors that of the full dataset.
 
-However, this strategy doesn’t solve the class imbalance. This issue will be addressed and treated more during the model training.
+However, this strategy doesn't solve the class imbalance. This issue will be addressed and treated more during the model training.
 
 \section{Conclusion}

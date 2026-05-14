@@ -1,0 +1,155 @@
+@startuml
+autonumber
+hide circle
+
+skinparam sequenceParticipant underline
+
+
+
+actor ":Network_Admin" as Admin
+participant ":UI-Alert" as UI
+participant ":C-AlertC" as AlertC
+participant ":Alert" as AlertE
+participant ":NetworkFlow" as NF
+participant ":Attack" as AttackE
+
+
+autonumber stop
+AlertC -[#white]> 
+autonumber resume
+activate AlertC
+AlertC -> AlertC :: load_Alert_page(1)
+autonumber stop
+AlertC -[#white]> 
+autonumber resume
+deactivate AlertC
+
+AlertC -> AlertE :: select()
+                activate AlertC
+                activate AlertE
+                deactivate AlertC
+                deactivate AlertE
+
+
+AlertC -> UI :: display()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
+
+group OPT [Load Another Page]
+
+Admin -> UI :: click_page(n)
+                activate Admin
+                activate UI
+                deactivate Admin
+                deactivate UI
+
+
+AlertC -> AlertE :: select()
+                activate AlertC
+                activate AlertE
+                deactivate AlertC
+                deactivate AlertE
+
+
+AlertC -> UI :: display()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
+
+autonumber stop
+Admin -[#white]> AttackE
+autonumber resume
+
+end group
+
+
+group OPT [Search Alerts]
+
+Admin -> UI :: apply_filter()
+                activate Admin
+                activate UI
+                deactivate Admin
+                deactivate UI
+
+
+AlertC -> AlertE :: select()
+                activate AlertC
+                activate AlertE
+                deactivate AlertC
+                deactivate AlertE
+
+
+AlertC -> UI :: display()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
+autonumber stop
+Admin -[#white]> AttackE
+autonumber resume
+end group
+
+group OPT [View Aler Details]
+Admin -> UI :: click_view_details()
+                activate Admin
+                activate UI
+                deactivate Admin
+                deactivate UI
+
+
+AlertC -> AlertE :: select()
+                activate AlertC
+                activate AlertE
+                deactivate AlertC
+                deactivate AlertE
+AlertC -> NF :: select()
+                activate AlertC
+                activate NF
+                deactivate AlertC
+                deactivate NF
+AlertC -> AttackE :: select()
+                activate AlertC
+                activate AttackE 
+                deactivate AlertC
+                deactivate AttackE 
+
+
+AlertC -> UI :: display()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
+
+group OPT [Mange Alert Status]
+Admin -> UI :: change_status()
+                activate Admin
+                activate UI
+                deactivate Admin
+                deactivate UI
+
+Admin -> UI :: input_analysis_notes()
+                activate Admin
+                activate UI
+                deactivate Admin
+                deactivate UI
+
+AlertC -> AlertE :: update()
+                activate AlertC
+                activate AlertE
+                deactivate AlertC
+                deactivate AlertE
+
+AlertC -> UI :: display()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
+autonumber stop
+Admin -[#white]> AttackE
+autonumber resume
+
+end group
+end group

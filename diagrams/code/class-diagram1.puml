@@ -149,7 +149,7 @@ class Configuration {
 ' ─── Class Relationships ──────────────────────────────
 
 ' A flow triggers at most one alert
-NetworkFlow "1"   -right-  "0..1"  Alert      : triggers 
+NetworkFlow "1"   -right-  "0..1"  Alert   
 
 ' An alert is classified as one attack type
 Alert          "0..*"   -right-  "1"     Attack 

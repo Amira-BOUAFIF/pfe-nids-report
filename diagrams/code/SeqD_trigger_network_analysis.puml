@@ -1,0 +1,188 @@
+@startuml
+autonumber
+hide circle
+
+skinparam sequenceParticipant underline
+
+
+
+actor ":Network_Admin" as Admin
+participant ":UI-Dashboard" as UI
+participant ":C-Simulation" as Sim
+participant ":Prediction_API" as API
+participant ":Configuration" as Config
+participant ":NetworkFlow" as NF
+participant ":Attack" as AttackE
+participant ":Alert" as AlertE
+participant ":Email_Service" as Email
+
+Admin -> UI :: click_btn_Trigger_Network_Analysis()
+activate Admin
+activate UI
+deactivate Admin
+deactivate UI
+
+UI -> Sim :: start_simulation()
+activate UI
+activate Sim
+deactivate UI
+deactivate Sim
+
+Sim -> Config :: select(csv_path)
+        activate Sim
+        activate Config
+        deactivate Sim
+        deactivate Config
+
+Sim -> Config :: select(delay)
+        activate Sim
+        activate Config
+        deactivate Sim
+        deactivate Config
+
+
+
+autonumber stop
+Sim -[#white]> 
+autonumber resume
+activate Sim
+Sim -> Sim :: load_csv()
+autonumber stop
+Sim -[#white]> 
+autonumber resume
+deactivate Sim
+
+alt CSV not found
+    Sim -> UI :: error(CSV_NOT_FOUND)
+    activate Sim
+    activate UI
+    deactivate Sim
+    deactivate UI
+
+else else
+
+    loop 
+
+        Sim -> API :: predict(feature_vector)
+        activate Sim
+        activate API
+        deactivate Sim
+        deactivate API
+
+        alt FastAPI unavailable
+
+            Sim -> UI :: error(FASTAPI_ERROR)
+            activate Sim
+            activate UI
+            deactivate Sim
+            deactivate UI
+
+        else else
+
+            API --> Sim :: return_prediction()
+            activate API
+            activate Sim
+            deactivate API
+            deactivate Sim
+
+            alt predictedLabel = BENIGN
+
+                Sim -> NF :: insert(networkFlow fields)
+                activate Sim
+                activate NF
+                deactivate Sim
+                deactivate NF
+
+            else predictedLabel = UNKNOWN
+
+                Sim -> NF :: insert(networkFlow fields, diagnostics fields)
+                activate Sim
+                activate NF
+                deactivate Sim
+                deactivate NF
+
+            else predictedLabel != BENIGN
+
+                Sim -> NF :: insert(networkFlow fields)
+                activate Sim
+                activate NF
+                deactivate Sim
+                deactivate NF
+
+                Sim -> AttackE :: select(severity)
+                activate Sim
+                activate AttackE
+                deactivate Sim
+                deactivate AttackE
+
+                Sim -> AlertE :: insert()
+                activate Sim
+                activate AlertE
+                deactivate Sim
+                deactivate AlertE
+
+                Sim -> UI :: display(alert)
+                activate Sim
+                activate UI
+                deactivate Sim
+                deactivate UI
+
+                alt Severity = CRITICAL
+
+                    Sim -> Email :: send_immediate_alert()
+                    activate Sim
+                    activate Email
+                    deactivate Sim
+                    deactivate Email
+
+                else Severity = HIGH
+
+                    Sim -> Email :: send_unacknowledged_alert(5minute)
+                    activate Sim
+                    activate Email
+                    deactivate Sim
+                    deactivate Email
+
+                    autonumber stop
+                    UI -[#white]> NF
+
+                end
+
+                autonumber resume
+                autonumber stop
+                Admin -[#white]> AttackE
+
+            end
+
+            autonumber stop
+            Admin -[#white]> AttackE
+
+        end
+
+        autonumber stop
+        Sim -[#white]> AlertE
+        autonumber resume
+        activate Sim
+        Sim -> Sim :: delay(configurable_ms)
+        autonumber stop
+        Sim -[#white]> AlertE
+        autonumber resume
+        deactivate Sim       
+        autonumber stop
+        Admin -[#white]> AlertE
+
+
+    end
+
+    autonumber resume
+
+    Sim -> UI :: simulation_complete()
+    activate Sim
+    activate UI
+    deactivate Sim
+    deactivate UI
+
+autonumber stop
+Admin -[#white]> UI
+end
+@enduml

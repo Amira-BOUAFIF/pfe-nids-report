@@ -208,70 +208,7 @@ Table \ref{tab:feature_stat} presents the statistics of some of the features.
 \end{table}
 
 Some of the feature has negative, inf and constant statistic of zero. Those features are further investigated in the data quality section.
-\begin{itemize}
-    \item \textbf{Class Distribution:} The dataset contains 15 classes, BENIGN and 14 attacks, Table \ref{tab:classes} shows the distribution of these classes across the dataset files.
-          \begin{longtable}{|l|l|r|}
-              \caption{Class Distribution Per File}\label{tab:classes}                                        \\
-              \hline
-              \rowcolor[gray]{0.8} \textbf{File} & \textbf{Class}     & \textbf{Class Count}\\
-              \hline
-              Monday                             & BENIGN                     & 529,918          \\
-              \hline
-              \multirow{3}{*}{Tuesday}
-                                                 & BENIGN                     & 432,074           \\
-              \cline{2-3}
-                                                 & FTP-Patator                & 7,938          \\
-              \cline{2-3}
-                                                 & SSH-Patator                & 5,897           \\
-              \hline
-              \multirow{6}{*}{Wednesday}
-                                                 & BENIGN                     & 440,031      \\
-              \cline{2-3}
-                                                 & DoS Hulk                   & 232,443         \\
-              \cline{2-3}
-                                                 & DoS GoldenEye              & 10,293            \\
-              \cline{2-3}
-                                                 & DoS Slowloris              & 5,796          \\
-              \cline{2-3}
-                                                 & DoS Slowhttptest           & 5,499           \\
-              \cline{2-3}
-                                                 & Heartbleed                 & 11                 \\
-              \hline
-              \multirow{4}{*}{Thursday AM}
-                                                 & BENIGN                     & 168,186         \\
-              \cline{2-3}
-                                                 & Web Attack - Brute Force   & 1,507           \\
-              \cline{2-3}
-                                                 & Web Attack - XSS           & 652          \\
-              \cline{2-3}
-                                                 & Web Attack - Sql Injection & 21          \\
-              \hline
-              \multirow{2}{*}{Thursday PM}
-                                                 & BENIGN                     & 288,566            \\
-              \cline{2-3}
-                                                 & Infiltration               & 36             \\
-              \hline
-              \multirow{2}{*}{Friday AM}
-                                                 & BENIGN                     & 189,067        \\
-              \cline{2-3}
-                                                 & Bot                        & 1,966            \\
-              \hline
-              \multirow{2}{*}{Friday PM (DDoS)}
-                                                 & DDoS                       & 128,027           \\
-              \cline{2-3}
-                                                 & BENIGN                     & 97,718             \\
-              \hline
-              \multirow{2}{*}{Friday PM (PortScan)}
-                                                 & PortScan                   & 158,930          \\
-              \cline{2-3}
-                                                 & BENIGN                     & 127,537            \\
-              \hline
-          \end{longtable}
-\end{itemize}
-\vspace{-0.4cm}
-With the exception of Monday, which contains only BENIGN traffic, all files contain at least one attack class alongside BENIGN samples. Each attack class is present in only one file. 
 
-\vspace{-0.2cm}
 Table \ref{tab:attack_classes} provides a description of the 14 attack classes of the dataset.
 
 \begin{longtable}{|p{3.5cm}|p{11.5cm}|}

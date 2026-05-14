@@ -65,7 +65,6 @@ class User {
 
 class Alert {
     - id: Long
-    - severity: Severity
     - raisedAt: DateTime
     - acknowledgedAt: DateTime
     - resolvedAt: DateTime
@@ -78,7 +77,7 @@ class Alert {
 class Attack {
     - id: Long
     - category: AttackCategory
-    - defaultSeverity: Severity
+    - Severity: Severity
     - description: String
     --
 
@@ -150,29 +149,32 @@ class Configuration {
 ' ─── Class Relationships ──────────────────────────────
 
 ' A flow triggers at most one alert
-NetworkFlow "1"   -right-  "0..1"  Alert      : triggers 
+NetworkFlow "1"   -right-  "0..1"  Alert   
 
 ' An alert is classified as one attack type
-Alert          "0..*"   -right-  "1"     Attack : classified as 
+Alert          "0..*"   -right-  "1"     Attack 
+
 
 ' Admin manages alert status
-User           "1"   --  "0..*"  Alert      : manages 
+User           "1"   --  "0..*"  Alert      
 
 ' User actions recorded in audit log
-User           "1"   -left-  "0..*"  AuditLog   : generates
+User           "1"   -up-  "0..*"  AuditLog 
 
 ' Report aggregates alerts over a period
    
+Report  "0..*"   --  "0..*"  Alert  
 
+Report  "0..*"   --  "0..*"  NetworkFlow  
 
 Report -[hidden]right- User
 Attack -up- AttackCategory
-Report -up- Format
+Report -left- Format
 Alert -down- AlertStatus
-Alert -- Severity
-User -up- Role
+User -right- Role
 Attack -- Severity
 
-AuditLog -[hidden]up- Configuration
+AuditLog -[hidden]left- Configuration
+
 
 @enduml

@@ -1,4 +1,4 @@
-@startuml Use-Case
+@startuml use-Case
 skinparam dpi 300
 left to right direction
 skinparam packageStyle rectangle
@@ -31,6 +31,10 @@ rectangle "NIDS Web Application" {
 
     usecase "View Reports"  as UC_VIEW_REPORTS
     usecase "Export Report" as UC_EXPORT_REPORT
+    usecase "Generate Report" as UC_GEN_REPORT
+    usecase "View Report" as UC_VIEW_REPORT
+
+    hide UC_VIEW_REPORT
 
 }
 
@@ -45,18 +49,18 @@ UC_VIEW_STATS -[hidden]left- UC_NET
 UC_ALERT_LIST -[hidden]left- UC_VIEW_REPORTS
 
 ' ─── Admin + IT Manager associations ───────────────────────────────
-User -[hidden]- UC_AUTH
-User -[hidden]- UC_VIEW_DASH
-User -[hidden]- UC_VIEW_STATS
+User -- UC_AUTH
+User -- UC_VIEW_DASH
+User -- UC_VIEW_STATS
 
 ' ─── Admin associations ───────────────────────────────
-Admin -[hidden]- UC_NET
-Admin -[hidden]- UC_ALERT_LIST
+Admin -- UC_NET
+Admin -- UC_ALERT_LIST
 
 
 
 ' ─── IT Manager associations ──────────────────────────
-ITMgr -[hidden]- UC_VIEW_REPORTS
+ITMgr -- UC_VIEW_REPORTS
 
 
 
@@ -74,9 +78,14 @@ UC_ALERT_SEARCH .up.> UC_ALERT_LIST : <<extend>>
 UC_ALERT_DETAIL .up.> UC_ALERT_LIST : <<extend>>
 
 UC_NET -[hidden]down- UC_ALERT
+
 UC_ALERT_STATUS .down.> UC_ALERT_DETAIL : <<extend>>
 
 UC_EXPORT_REPORT .up.> UC_VIEW_REPORTS : <<extend>>
+UC_GEN_REPORT .up.> UC_VIEW_REPORTS : <<extend>>
+
+UC_EXPORT_REPORT .[hidden]left.> UC_GEN_REPORT 
+
 
 ' ─── Relationships ────────────────────────────────────
 'UC_EXPORT_REPORT .right.> UC_VIEW_DASH : <<extend>>

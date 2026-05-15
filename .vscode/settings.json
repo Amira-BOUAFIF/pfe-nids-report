@@ -27,6 +27,7 @@
     "[latex]": {
         "editor.defaultFormatter": "James-Yu.latex-workshop"
     },
+    
     "cSpell.words": [
         "multicollinearity"
     ]

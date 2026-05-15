@@ -2,11 +2,343 @@
 
 \section{Introduction}
 
+<<<<<<< Updated upstream
+
+=======
+\section{Integration}
+
+\section{Deployment Diagram}
+A deployment diagram models the physical architecture of a system and illustrates how software components are deployed on hardware nodes\cite{Dep}.
+Figure \ref{fig:dep-diagram} presents the deployment diagram of our system.
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.75\columnwidth]{diagrams/}
+    \caption{Deployment Diagram}
+    \label{fig:dep-diagram}
+\end{figure}
+>>>>>>> Stashed changes
+
 \section{Development Tools and Technologies}
+
+\begin{center}
+	\captionof{table}{Development tools and technologies}
+	\label{tab:dev_tools_tech}
+\end{center}
+
+\begingroup
+\footnotesize
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Language}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/pyhton-logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Python}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Machine Learning}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/Scikit_learn_logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Scikit-learn}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Backend}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/Spring Boot_logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Spring Boot}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Frontend}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/React-logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{React}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Database}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/mySQL logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{MySQL}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Local Server}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\IfFileExists{logos/xampp-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/xampp-logo.png}}{\textbf{XAMPP}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{XAMPP}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API Testing}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/postman_logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Postman}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/fastapi_logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{FastAPI}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Containerization}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Docker}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Orchestration}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-compose-logo.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Docker Compose}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Version Control}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\IfFileExists{logos/git-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/git-logo.png}}{\textbf{Git}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{Git}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Code hosting and collaboration}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\IfFileExists{logos/github-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/github-logo.png}}{\textbf{GitHub}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{GitHub}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\IfFileExists{logos/vscode-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/vscode-logo.png}}{\textbf{VS Code}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{VS Code}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.85\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
+	\begin{minipage}{0.18\textwidth}
+		\centering
+		\IfFileExists{logos/intellijIDE.jpg}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/intellijIDE.jpg}}{\textbf{IntelliJ IDEA}}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.78\textwidth}
+		\textbf{IntelliJ IDEA}\\[2mm]
+	\end{minipage}
+\end{tcolorbox}
+
+
+
+\endgroup
 
 \section{Performance Analysis and Evaluation Metrics}
 
 \section{User Interfaces}
+
+This section presents the main user interfaces of the NIDS Web Application. 
+
+\subsection{Use case «Authenticate» realization}
+The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Authenticate} use case.}}
+	\caption{Authentication interface (placeholder)}
+	\label{fig:ui-authenticate}
+\end{figure}
+
+\subsection{Use case «View Dashboard» realization}
+The dashboard interface provides a global overview of the system state and recent activity, as shown in Figure~\ref{fig:ui-dashboard}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{View Dashboard} use case.}}
+	\caption{Dashboard interface (placeholder)}
+	\label{fig:ui-dashboard}
+\end{figure}
+
+\subsection{Use case «View Statistics Summary» realization}
+The statistics summary interface provides aggregated metrics and trends for monitoring purposes, as shown in Figure~\ref{fig:ui-stats-summary}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{View Statistics Summary} use case.}}
+	\caption{Statistics summary interface (placeholder)}
+	\label{fig:ui-stats-summary}
+\end{figure}
+
+\subsection{Use case «View Alerts List» realization}
+The alerts list interface displays all detected alerts with key information for quick review, as shown in Figure~\ref{fig:ui-alerts-list}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{View Alerts List} use case.}}
+	\caption{Alerts list interface (placeholder)}
+	\label{fig:ui-alerts-list}
+\end{figure}
+
+\subsection{Use case «View Alert Detail» realization}
+The alert detail interface presents the full information of a selected alert, enabling deeper investigation, as shown in Figure~\ref{fig:ui-alert-detail}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{View Alert Detail} use case.}}
+	\caption{Alert detail interface (placeholder)}
+	\label{fig:ui-alert-detail}
+\end{figure}
+
+\subsection{Use case «Search Alerts» realization}
+The search interface enables filtering and searching through alerts by different criteria, as shown in Figure~\ref{fig:ui-search-alerts}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Search Alerts} use case.}}
+	\caption{Search alerts interface (placeholder)}
+	\label{fig:ui-search-alerts}
+\end{figure}
+
+\subsection{Use case «Manage Alert Status» realization}
+The alert status management interface allows updating the handling state of an alert (e.g., new, in progress, resolved), as shown in Figure~\ref{fig:ui-manage-alert-status}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Manage Alert Status} use case.}}
+	\caption{Manage alert status interface (placeholder)}
+	\label{fig:ui-manage-alert-status}
+\end{figure}
+
+\subsection{Use case «Trigger Network Analysis» realization}
+The analysis trigger interface allows an administrator to start a network analysis process, as shown in Figure~\ref{fig:ui-trigger-analysis}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Trigger Network Analysis} use case.}}
+	\caption{Trigger network analysis interface (placeholder)}
+	\label{fig:ui-trigger-analysis}
+\end{figure}
+
+\subsection{Use case «Analyze Network Flow» realization}
+The network flow analysis interface displays analysis outputs and indicators extracted from network traffic, as shown in Figure~\ref{fig:ui-analyze-flow}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Analyze Network Flow} use case.}}
+	\caption{Analyze network flow interface (placeholder)}
+	\label{fig:ui-analyze-flow}
+\end{figure}
+
+\subsection{Use case «send Alert» realization}
+The alert sending interface triggers an alert notification to external services (e.g., email), as shown in Figure~\ref{fig:ui-send-alert}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{send Alert} use case.}}
+	\caption{Send alert interface (placeholder)}
+	\label{fig:ui-send-alert}
+\end{figure}
+
+\subsection{Use case «View Reports» realization}
+The reports interface allows the user to browse and consult generated reports, as shown in Figure~\ref{fig:ui-view-reports}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{View Reports} use case.}}
+	\caption{Reports interface (placeholder)}
+	\label{fig:ui-view-reports}
+\end{figure}
+
+\subsection{Use case «Export Report» realization}
+The export interface enables downloading a report in a suitable format for sharing or archiving, as shown in Figure~\ref{fig:ui-export-report}.
+
+\begin{figure}[htbp]
+	\centering
+	\fbox{\parbox{0.9\linewidth}{\centering Placeholder screenshot for the \textbf{Export Report} use case.}}
+	\caption{Export report interface (placeholder)}
+	\label{fig:ui-export-report}
+\end{figure}
+
+
 
 \section{Integration}
 

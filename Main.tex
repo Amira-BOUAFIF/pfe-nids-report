@@ -31,6 +31,7 @@
 \usepackage{caption}
 \usepackage{tabularx}
 \usepackage{tabulary}
+\usepackage[most]{tcolorbox}
 \usepackage{enumitem}
 \usepackage{courier}
 \usepackage{multicol}
@@ -75,7 +76,6 @@
 \include{garde/garde_fin_English}
 \include{garde/garde_sign_fin_English}
 
-
 \newpage
 \pagenumbering{roman}
 \include{chapters/dedication_amira}
@@ -96,19 +96,11 @@
 \include{chapters/Conclusion}
 
 
-\printbibliography[title={Webography}, keyword=web, resetnumbers=true]
+\printbibliography[title={Webography}, keyword=web]
+\addcontentsline{toc}{chapter}{Webography}% ajouter son entr?e dans la table
+
 \printbibliography[title={Bibliography}, notkeyword=web, resetnumbers=true]
-
-%
-
-%\bibliographystyle{alpha}
-%\bibliography{Biblio}
-%\addcontentsline{toc}{chapter}{Bibliography}% ajouter son entr?e dans la table
-%\pagestyle{empty}
-\include{Annexe1}
-
-
-
+\addcontentsline{toc}{chapter}{Bibliography}% ajouter son entr?e dans la table
 
 % Fin du document
 \end{document}

@@ -33,8 +33,9 @@ rectangle "NIDS Web Application" {
     usecase "Export Report" as UC_EXPORT_REPORT
     usecase "Generate Report" as UC_GEN_REPORT
     usecase "View Report" as UC_VIEW_REPORT
-
-    hide UC_VIEW_REPORT
+    usecase "View \nDetail" as UC_VIEW_REPORT_DETAIL
+    usecase "view" as v
+    usecase "view" as v2
 
 }
 
@@ -46,46 +47,52 @@ UC_VIEW_DASH  -[hidden]left- UC_VIEW_STATS
 UC_VIEW_STATS -[hidden]left- UC_NET
 
 
-UC_ALERT_LIST -[hidden]left- UC_VIEW_REPORTS
+UC_ALERT_LIST -[hidden]left- UC_VIEW_REPORT_DETAIL
+UC_ALERT_LIST -[hidden]right- v
 
 ' ─── Admin + IT Manager associations ───────────────────────────────
-User -- UC_AUTH
-User -- UC_VIEW_DASH
-User -- UC_VIEW_STATS
+User -[hidden]- UC_AUTH
+User -[hidden]- UC_VIEW_DASH
+User -[hidden]- UC_VIEW_STATS
 
 ' ─── Admin associations ───────────────────────────────
-Admin -- UC_NET
-Admin -- UC_ALERT_LIST
+Admin -[hidden]- UC_NET
+Admin -[hidden]- UC_ALERT_LIST
 
 
 
 ' ─── IT Manager associations ──────────────────────────
-ITMgr -- UC_VIEW_REPORTS
+ITMgr -[hidden]- UC_VIEW_REPORTS
 
 
 
 
 ' ─── Email Service associations ───────────────────
-'UC_EXPORT_REPORT -[hidden]- DE
+UC_ALERT -down- DE 
 
 
 UC_NET .down.> UC_NET_FLOW : <<include>>
 UC_ALERT .left.> UC_NET_FLOW : <<extend>>
 
-UC_ALERT -down- DE 
+
 
 UC_ALERT_SEARCH .up.> UC_ALERT_LIST : <<extend>>
 UC_ALERT_DETAIL .up.> UC_ALERT_LIST : <<extend>>
 
 UC_NET -[hidden]down- UC_ALERT
 
-UC_ALERT_STATUS .down.> UC_ALERT_DETAIL : <<extend>>
+UC_ALERT_STATUS .right.> UC_ALERT_DETAIL : <<extend>>
 
 UC_EXPORT_REPORT .up.> UC_VIEW_REPORTS : <<extend>>
 UC_GEN_REPORT .up.> UC_VIEW_REPORTS : <<extend>>
 
 UC_EXPORT_REPORT .[hidden]left.> UC_GEN_REPORT 
 
+UC_VIEW_REPORTS -[hidden]right- UC_VIEW_REPORT_DETAIL
+
+
+
+@enduml
 
 ' ─── Relationships ────────────────────────────────────
 'UC_EXPORT_REPORT .right.> UC_VIEW_DASH : <<extend>>
@@ -95,4 +102,3 @@ UC_EXPORT_REPORT .[hidden]left.> UC_GEN_REPORT
 'UC_EXPORT_REPORT .right.> UC_VIEW_DASH : <<extend>>
 
 'UC_ALERT_STATUS .up.> UC_ALERT_LIST : <<extend>>
-@enduml

@@ -21,32 +21,50 @@ BENIGN traffic constitutes roughly 80\% of the dataset, reflecting the reality o
 Within the attack classes themselves, representation varies significantly, some classes contain hundreds of thousands of samples while others hold fewer than a dozen.
 This makes metric selection a non-trivial decision that directly affects how honestly model performance is reported.
 
-Accuracy is an intuitive metric but an unreliable one here. It counts correct predictions across all samples divided by the total:
-\[
+Accuracy is an intuitive metric but an unreliable one here.
+It counts correct predictions across all samples divided by the total:
+\begin{equation}
+    \label{eq:accuracy}
     \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
-\]
+\end{equation}
+\begin{tabular}{ll}
+    TP (True Positives)  & : correctly detected positive samples                 \\
+    TN (True Negatives)  & : correctly detected negative samples                 \\
+    FP (False Positives) & : negative samples incorrectly classified as positive \\
+    FN (False Negatives) & : positive samples incorrectly classified as negative \\
+\end{tabular}
 
-The sheer volume of BENIGN instances inflates the score regardless of attack detection quality. A model that predicts BENIGN for every single sample would still achieve over 99\% accuracy while detecting zero attacks. T
-his makes accuracy effectively blind to what actually matters.
+The sheer volume of BENIGN instances inflates the score regardless of attack detection quality. A model that predicts BENIGN for every single sample would still achieve over 99\% accuracy while detecting zero attacks.
+This makes accuracy effectively blind to what actually matters.
 
-Precision and recall offer more granular insight into model behavior. Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected:
-\[
-    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \qquad\qquad \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
-\]
+Precision and Recall offer more granular insight into model behavior.
+Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected:
+
+\begin{equation}
+    \label{eq:precision_recall}
+    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \qquad\qquad
+    \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\end{equation}
 
 Both metrics are informative individually but insufficient alone; a model biased toward conservative predictions will report high precision at the cost of missing many attacks, while an overly permissive model will recover most attacks but introduce a high rate of false positives.
 
 The F1-score addresses this by taking the harmonic mean of precision and recall, penalizing models that sacrifice one for the other:
-\[
+
+\begin{equation}
+    \label{eq:f1}
     \text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-\]
+\end{equation}
+
 
 However, standard F1-score or its weighted variant still allows dominant classes to overshadow rare ones in the aggregate score, since each class's contribution to the final score is proportional to its sample count.
 
-We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores giving every class the same contribution regardless of how many samples it contains. It is defined as:
-\[
+We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores giving every class the same contribution regardless of how many samples it contains, it is defined as:
+
+\begin{equation}
+    \label{eq:macro_f1}
     \text{Macro F1} = \frac{1}{C} \sum_{i=1}^{C} \text{F1}_i
-\]
+\end{equation}
+
 
 where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
 

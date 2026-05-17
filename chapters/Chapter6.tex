@@ -53,12 +53,13 @@ To manage and coordinate the execution of the different containers, Docker Compo
 Docker Compose defines the services, networks, and dependencies between containers, ensuring proper initialization order and communication between components.
 This orchestration layer simplifies deployment by eliminating the need to manually start each service individually and ensures that all parts of the system operate together coherently.
 
-In practice, the complete stack can be launched using the command \texttt{docker-compose up -d}, which starts all containers in detached mode. Figure~\ref{fig:launch-containers} shows an example of successfully launching the system containers using Docker Compose.
+In practice, the complete stack can be launched using the command \texttt{docker-compose up -d}, which starts all containers in detached mode. 
+Figure~\ref{fig:launch-containers} shows an example of successfully launching the system containers using Docker Compose.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.95\columnwidth]{screenshots/launching_containers.png}
-	\caption{Launching the system containers using \texttt{docker-compose up -d}}
+	\caption{Launching the system containers}
 	\label{fig:launch-containers}
 \end{figure}
 

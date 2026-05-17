@@ -612,12 +612,11 @@ The true anomaly in both cases is \feature{Flow~Duration~=~0}.
 Every affected row contains exactly two packets total, either two forward or one forward and one backward, which is consistent with this explanation: with only two packets, a single resolution failure collapses the entire duration to zero.
 This collapse propagates to every other feature that depends on the timestamp value, like \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, and all rate-based features reduce to zero as well.
 
-These rows impact is as follows. Globally, 353 unique row carry at least one NaN value making it 0.01\% of the dataset, and 1,564 unique row carry at least one Inf value making it 0.05\% of the dataset.
-At class level, Inf impact BENIGN with 1,427 unique row making it 0.06\% of the class samples and only four attack classes are affected.
-NaN infects only BENIGN with 350 making it less then 0.01\% of the class samples along with Dos Hulk.
-Rare classes such as Heartbleed, Infiltration, and Web Attack – SQL Injection are not affected.
-The attack class-level distribution is shown in the \ref{fig:/inf_and_nan_class_distribution} Figure.
+The impact of these rows is relatively limited. Globally, 353 unique rows contain at least one NaN value, representing approximately 0.0001\% of the dataset, while 1,564 unique rows contain at least one Inf value, accounting for 0.0005\% of the dataset.
 
+At the class level, Inf values mainly affect the BENIGN class, with 1,427 impacted rows corresponding to 0.0006\% of its samples, while only four attack classes are affected. NaN values are observed almost exclusively in BENIGN, with 350 affected rows representing less than 	0.0001\% of the class samples, along with a small presence in DoS Hulk. 
+Rare attack classes such as Heartbleed, Infiltration, and Web Attack – SQL Injection remain unaffected. 
+The class-level distribution of affected rows is presented in Figure
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\columnwidth, fbox]{../figures/inf_and_nan_class_distribution.png}

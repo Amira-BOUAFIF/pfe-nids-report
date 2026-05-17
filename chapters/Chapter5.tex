@@ -7,7 +7,66 @@
 
 \section{State of the Art}
 
+In the network intrusion detection domain, various approaches have been proposed and studied. In this section, we review the most prominent methods, comparing their principles, strengths, and limitations, before selecting the one best suited to our project's requirements and dataset characteristics.
+
+Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern for in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split.
+
+Among classical machine learning algorithms, the most prominent ones are K-Nearest Neighbors (KNN), Decision Tree, Random Forest, and gradient boosting.
+
+\begin{itemize}
+    \item \textbf{K-Nearest Neighbors (KNN):} KNN is a lazy learning algorithm that requires no training phase, as it simply memorizes the training dataset rather than building an explicit model. It classifies new samples, at inference time, by computing its distance to all existing data points and assigning the majority class among its $k$ closest neighbors in the feature space\cite{KNN-INT}.
+    \item \textbf{Decision Tree:} A Decision tree learns by recursively splitting data, picking at each node the feature and threshold that best separates the classes, producing leaf nodes that represent class labels\cite{DT-INT}.
+    \item \textbf{Random Forest:} A Random Forest is an ensemble of parallel decision trees, where each tree is trained on a random subset of data using a random subset of features\cite{RF-INT}.
+    \item \textbf{Gradient Boosting:} Gradient Boosting is an ensemble of sequential decision trees, where each new tree is trained to correct the remaining errors of the previous one\cite{GB-INT}.
+\end{itemize}
+
+Table \ref{tab:ml_comparison} provides a comparative overview of those 4 methods.
+
+\begin{table}[H]
+    \centering
+    \caption{Comparison of Machine Learning Methods}
+    \label{tab:ml_comparison}
+    \small
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|p{2.8cm}|c|c|c|c|}
+        \hline
+        \rowcolor[gray]{0.8}\textbf{Criteria} & \textbf{KNN}    & \textbf{Decision Tree} & \textbf{Random Forest} & \textbf{Gradient Boosting} \\
+        \hline
+        Data                                  & Low-dimensional & Tabular, mixed         & Tabular, high-dim      & Tabular, structured        \\
+        \hline
+        Interpretability                      & Low             & High                   & Medium                 & Low--Medium                \\
+        \hline
+        Overfitting Risk                      & Medium          & High                   & Low                    & Low (with tuning)          \\
+        \hline
+        Performance                           & Moderate        & Moderate               & Good                   & Best                       \\
+        \hline
+        Training Speed                        & None (lazy)     & Fast                   & Medium                 & Slow                       \\
+        \hline
+        Inference Time                        & Slow            & Very fast              & Fast                   & Fast                       \\
+        \hline
+        Class Imbalance                       & Poor            & Moderate               & Good                   & Good                       \\
+        \hline
+        Feature Importance                    & No              & Yes                    & Yes                    & Yes                        \\
+        \hline
+        Hyperparameter Sensitivity            & Low (only $k$)  & Low                    & Low--Medium            & High                       \\
+        \hline
+    \end{tabular}
+\end{table}
+
+KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured.
+
 \section{Adopted Approach}
+
+Given the critical nature of the network intrusion detection domain, we select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency and its several advantages over vanilla gradient boosting.
+
+XGBoost builds trees sequentially, where each boosting round corrects the errors of the previous one using both the gradient and the hessian of the loss function.
+
+\begin{itemize}
+    \item \textbf{Gradient:} Indicates how wrong the previous prediction was and in which direction to correct it.
+    \item \textbf{Hessian:} measures the curvature of the error, making the corrections more precise and confident.
+\end{itemize}
+
+In our case, multiclass classification, a separate tree is built for each class at every boosting round, allowing the model to refine each class prediction independently. A node is only split when the gain is significant enough, preventing unnecessary complexity. All trees then work together, each contributing a weighted correction, to minimize the overall error. Additionally, XGBoost incorporates L1 and L2 regularization to further control overfitting, and exploits parallelism during tree construction, making it significantly faster than traditional gradient boosting despite its sequential nature.
 
 \section{Training and Hyperparameter Optimization}
 This section details the full training and optimization process of the XGBoost classifier on the CIC-IDS2017 dataset.
@@ -57,14 +116,32 @@ Per-class F1-score scores are also tracked alongside it throughout all experimen
 Given the challenges associated with the CIC-IDS2017 dataset, particularly the class imbalance issue and the limited number of samples in certain attack classes, we decide to adopt an experimental approach during the training phase and rely on evaluation metrics to guide our decisions for the final model configuration. This led us to use cross validation.
 
 Cross-validation is an evaluation technique that gives a more stable and reliable estimate of model performance, instead of relying on a single train-test split, the dataset is divided into several folds, and the model is trained and evaluated multiple times, each time using a different fold as the validation set while the remaining folds are used for training. The final performance is then obtained by averaging the results across all runs.  Several variants exist:
+
 \begin{itemize}
     \item Standard k-fold divides the data into k equal folds and rotates the validation fold across all k iterations. It is more practical, but it assigns samples to folds randomly, with no guarantee that rare classes appear in every fold. With classes as scarce as Heartbleed, a random split could place all its samples in the training folds and leave none for validation, or the reverse, making the evaluation meaningless for that class.
-    \item Stratified k-fold addresses this directly. It applies the same k-fold rotation but enforces that each fold mirrors the class distribution of the full training set. If Heartbleed represents 0.0005\% of the data, each fold will contain approximately that proportion. This guarantees that every class is present in both the training and validation portions of every fold, producing evaluation scores that are consistent and comparable across all k runs.
-          We set k = 5. This choice is driven primarily by the scarcity of our rarest class: with only 9 Heartbleed samples in the training set, each fold sees approximately 2 instances. Increasing k would reduce this further, making per-fold evaluation for rare classes even less stable. Decreasing it would produce fewer evaluation rounds and increase variance in the aggregated score. Five folds represent a practical balance between evaluation stability and computational cost given this constraint.
+    \item Stratified k-fold addresses this directly. It applies the same k-fold rotation but enforces that each fold mirrors the class distribution of the full training set. If Heartbleed represents 0.0005\% of the data, each fold will contain approximately that proportion. This guarantees that every class is present in both the training and validation portions of every fold, producing evaluation scores that are consistent and comparable across all k runs. We set k = 5. This choice is driven primarily by the scarcity of our rarest class: with only 9 Heartbleed samples in the training set, each fold sees approximately 2 instances. Increasing k would reduce this further, making per-fold evaluation for rare classes even less stable. Decreasing it would produce fewer evaluation rounds and increase variance in the aggregated score. Five folds represent a practical balance between evaluation stability and computational cost given this constraint.
 \end{itemize}
 Across all experiments, the reported performance corresponds to the mean Macro F1-score over the five folds, with per-class F1-score scores tracked individually to monitor class-level behavior throughout.
 
-\paragraph{Initial XGBoost parameters}
+\paragraph{Initial XGBoost parameters :}
+
+The initial XGBoost model is trained with the following parameters:
+
+\begin{itemize}
+    \item \textbf{objective :} \texttt{'multi:softprob'}; multiclass classification that provides probabilities for each class.
+    \item \textbf{num\_class :} \texttt{15}; the number of the target classes.
+    \item \textbf{eval\_metric :} \texttt{'mlogloss'}; the multiclass logarithmic loss used to evaluate the model during training.
+    \item \textbf{tree\_method :} \texttt{'hist'}; a histogram based tree building  algorithm and is very efficient for large datasets.
+    \item \textbf{n\_estimators :} \texttt{1000}; the maximum number of boosting rounds, set high to allow the model to fully converge.
+    \item \textbf{max\_depth :} \texttt{6}; the maximum depth of each tree, balancing between model complexity and generalization.
+    \item \textbf{learning\_rate :} \texttt{0.1}; the step size controlling how much each new tree contributes to the final model, allowing for steady learning without overshooting optimal solutions.
+    \item \textbf{subsample :} \texttt{0.8}; the fraction of training samples used per tree, introducing randomness that helps prevent overfitting.
+    \item \textbf{colsample\_bytree :} \texttt{0.8}; the fraction of features used per tree, reducing overfitting by exposing each tree to a diverse feature subset.
+    \item \textbf{min\_child\_weight :} \texttt{3}; the minimum sample weight required in a child node for a split to happen, preventing the model from creating overly specific on very few samples.
+    \item \textbf{random\_state :} \texttt{42}; ensures the reproducibility across runs.
+    \item \textbf{device :} \texttt{'cuda'}; enables GPU training for faster computation compared to CPU.
+    \item \textbf{early\_stopping\_rounds :} \texttt{50}; training is stopped if the loss does not improve for 50 consecutive rounds, preventing overfitting and avoiding unnecessary computation.
+\end{itemize}
 
 \subsection{Baseline training}
 A baseline model should be the first model built before moving toward more complex approaches, as it acts as a reference point for evaluating the performance of future configurations.

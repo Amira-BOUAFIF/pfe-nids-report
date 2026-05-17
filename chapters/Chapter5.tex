@@ -200,7 +200,7 @@ When combining sampling with class weighting, Bot performance drops further, whe
 
 The consistent finding across all four configurations is that Web Attack performance does not respond to any rebalancing approach. This confirms that this is not a class imbalance problem, it is a feature representation problem.
 
-Relative to the baseline, Bot performance consistently drops under these configurations,  which confirms that this is a dataset limitation. 
+Relative to the baseline, Bot performance consistently drops under these configurations,  which confirms that this is a dataset limitation.
 
 \paragraph{Web Attack Class Merging}
 As established, no combination of weighting or sampling improves Web Attack performance. The confusion matrix shows persistent mutual misclassification between XSS and Brute Force across every experiment. Their flow-level signatures are too similar to separate with the available features.
@@ -221,7 +221,7 @@ Across all four configurations, Web Attack consistently sits at approximately 0.
 
 \paragraph{Heartbleed}
 
-Heartbleed warrants a closer look. 
+Heartbleed warrants a closer look.
 With only 9 training samples and 2 retained in the test set, cross-validation folds see approximately 2 Heartbleed samples per validation split. At that scale, the F1-score can take only a handful of discrete values, 0 when both are wrong, 0.67 in case only one is wrong, and a perfect 1.0 score means the model simply predicts both samples correctly.
 
 More importantly, all resampling and rebalancing techniques are applied exclusively to the training folds and therefore do not affect the test distribution. As a result, regardless of whether weights or sampling are used, the final evaluation is always based on the same two test samples. This makes it hard to meaningfully assess the impact of these strategies on Heartbleed’s generalization performance.
@@ -230,7 +230,7 @@ This initially motivates an ablation experiment in which Heartbleed is temporari
 
 \paragraph{Heartbleed ablation results}
 
-Following this change, the complete set of experiments is rerun. However, the results are unexpected: Infiltration, which previously showed significant improvement under the merged Web Attack configuration with class weighting and Heartbleed included, reaching its best F1-score of 0.87, drops once Heartbleed is removed while keeping the same merge and weighting setup. 
+Following this change, the complete set of experiments is rerun. However, the results are unexpected: Infiltration, which previously showed significant improvement under the merged Web Attack configuration with class weighting and Heartbleed included, reaching its best F1-score of 0.87, drops once Heartbleed is removed while keeping the same merge and weighting setup.
 
 As shown in Figure~\ref{fig:/infiltration_comparison}, removing Heartbleed under class weighting leads to a substantial decrease in Infiltration F1-score.
 
@@ -261,7 +261,10 @@ More importantly, despite the severe data scarcity, both Heartbleed and Infiltra
 In light of the ablation findings, we decide to retain Heartbleed.
 
 \subsection{Final Model Configuration}
-The final model configuration carried forward into hyperparameter tuning consists of Web Attack subclasses merged into one class, Heartbleed retained, and the use of balanced class weights. Thus achieves a Macro F1-score at 0.98, with Infiltration F1-score = 0.8236, and Web Attack F1-score = 0.9896.
+The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining Heartbleed, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.96.
+
+At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. Heartbleed reaches an F1-score of 0.96, Infiltration achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
+
 \subsection{Hyper parameter tuning}
 \subsection{Adding thresholds}
 \subsection{Final model training results}

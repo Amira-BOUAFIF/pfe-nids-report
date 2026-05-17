@@ -9,7 +9,7 @@ skinparam sequenceParticipant underline
 actor ":Network_Admin" as Admin
 participant ":UI-Dashboard" as UI
 participant ":C-Simulation" as Sim
-participant ":Prediction_API" as API
+participant ":AI-Engine" as AI
 participant ":Configuration" as Config
 participant ":NetworkFlow" as NF
 participant ":Attack" as AttackE
@@ -59,19 +59,43 @@ alt CSV not found
     deactivate Sim
     deactivate UI
 
+    autonumber stop
+    UI -[#white]> AlertE
+    autonumber resume
+    
+
 else else
 
+autonumber stop
+UI -[#white]> AlertE
+autonumber resume
+autonumber stop
+UI -[#white]> AlertE
+autonumber resume
+autonumber stop
+UI -[#white]> AlertE
+        autonumber resume
     loop 
 
-        Sim -> API :: predict(feature_vector)
+        Sim -> AI :: predict(feature_vector)
         activate Sim
-        activate API
+        activate AI
         deactivate Sim
-        deactivate API
+        deactivate AI
 
-        alt FastAPI unavailable
+        autonumber stop
+        UI -[#white]> AlertE
+        autonumber resume
+        autonumber stop
+        UI -[#white]> AlertE
+        autonumber resume
+        autonumber stop
+        UI -[#white]> AlertE
+        autonumber resume
 
-            Sim -> UI :: error(FASTAPI_ERROR)
+        alt AI engine unavailable
+
+            Sim -> UI :: error(AI_ENGINE_ERROR)
             activate Sim
             activate UI
             deactivate Sim
@@ -79,11 +103,21 @@ else else
 
         else else
 
-            API --> Sim :: return_prediction()
-            activate API
+            AI --> Sim :: return_prediction()
+            activate AI
             activate Sim
-            deactivate API
+            deactivate AI
             deactivate Sim
+
+            autonumber stop
+            UI -[#white]> AlertE
+            autonumber resume
+            autonumber stop
+            UI -[#white]> AlertE
+            autonumber resume
+            autonumber stop
+            UI -[#white]> AlertE
+            autonumber resume
 
             alt predictedLabel = BENIGN
 
@@ -92,6 +126,15 @@ else else
                 activate NF
                 deactivate Sim
                 deactivate NF
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
 
             else predictedLabel = UNKNOWN
 
@@ -100,6 +143,15 @@ else else
                 activate NF
                 deactivate Sim
                 deactivate NF
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
 
             else predictedLabel != BENIGN
 
@@ -126,6 +178,15 @@ else else
                 activate UI
                 deactivate Sim
                 deactivate UI
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
+                autonumber stop
+                UI -[#white]> AlertE
+                autonumber resume
 
                 alt Severity = CRITICAL
 
@@ -136,8 +197,34 @@ else else
                     deactivate Email
 
                 else Severity = HIGH
+                    autonumber stop
+                    UI -[#white]> AlertE
+                    autonumber resume
+                    autonumber stop
+                    UI -[#white]> AlertE
+                    autonumber resume
+                    autonumber stop
+                    UI -[#white]> AlertE
+                    autonumber resume
 
-                    Sim -> Email :: send_unacknowledged_alert(5minute)
+                  
+                    autonumber stop
+                    Sim -[#white]> NF
+                    autonumber resume
+                    activate Sim
+                    Sim -> Sim :: start_unacknowledged_timer(5minute)
+                    autonumber stop
+                    Sim -[#white]> NF
+                    autonumber resume
+                    deactivate Sim
+
+                    Sim -> AlertE :: select_unacknowledged_alert()
+                    activate Sim
+                    activate AlertE
+                    deactivate Sim
+                    deactivate AlertE
+
+                    Sim -> Email :: send_unacknowledged_alert()
                     activate Sim
                     activate Email
                     deactivate Sim
@@ -145,6 +232,13 @@ else else
 
                     autonumber stop
                     UI -[#white]> NF
+                    autonumber resume
+                    autonumber stop
+                    Sim -[#white]> AttackE
+
+                   autonumber resume
+                   autonumber stop
+                   Sim -[#white]> AttackE
 
                 end
 
@@ -152,12 +246,24 @@ else else
                 autonumber stop
                 Admin -[#white]> AttackE
 
+                autonumber resume
+                autonumber stop
+                Admin -[#white]> AttackE
+
             end
+            
 
             autonumber stop
             Admin -[#white]> AttackE
+        
+           autonumber stop
+           UI -[#white]> AlertE
+           autonumber resume
+           autonumber stop
+        
 
         end
+       
 
         autonumber stop
         Sim -[#white]> AlertE
@@ -174,6 +280,15 @@ else else
 
     end
 
+    autonumber resume
+    autonumber stop
+    UI -[#white]> AlertE
+    autonumber resume
+    autonumber stop
+    UI -[#white]> AlertE
+    autonumber resume
+    autonumber stop
+    UI -[#white]> AlertE
     autonumber resume
 
     Sim -> UI :: simulation_complete()

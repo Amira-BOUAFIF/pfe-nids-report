@@ -1,4 +1,4 @@
-\chapter{Modeling}
+\chapter{Modeling and Evaluation}
 
 % Redefine \paragraph{} to break lines for this chapter only
 \renewcommand{\paragraph}[1]{\medskip\noindent\textbf{#1}\par}
@@ -68,7 +68,9 @@ XGBoost builds trees sequentially, where each boosting round corrects the errors
 
 In our case, multiclass classification, a separate tree is built for each class at every boosting round, allowing the model to refine each class prediction independently. A node is only split when the gain is significant enough, preventing unnecessary complexity. All trees then work together, each contributing a weighted correction, to minimize the overall error. Additionally, XGBoost incorporates L1 and L2 regularization to further control overfitting, and exploits parallelism during tree construction, making it significantly faster than traditional gradient boosting despite its sequential nature.
 
-\section{Training and Hyperparameter Optimization}
+
+\section{Training and Optimization}
+
 This section details the full training and optimization process of the XGBoost classifier on the CIC-IDS2017 dataset.
 
 \subsection{Initial Setup}
@@ -80,32 +82,50 @@ BENIGN traffic constitutes roughly 80\% of the dataset, reflecting the reality o
 Within the attack classes themselves, representation varies significantly, some classes contain hundreds of thousands of samples while others hold fewer than a dozen.
 This makes metric selection a non-trivial decision that directly affects how honestly model performance is reported.
 
-Accuracy is an intuitive metric but an unreliable one here. It counts correct predictions across all samples divided by the total:
-\[
+Accuracy is an intuitive metric but an unreliable one here.
+It counts correct predictions across all samples divided by the total:
+\begin{equation}
+    \label{eq:accuracy}
     \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
-\]
+\end{equation}
+\begin{tabular}{ll}
+    TP (True Positives)  & : correctly detected positive samples                 \\
+    TN (True Negatives)  & : correctly detected negative samples                 \\
+    FP (False Positives) & : negative samples incorrectly classified as positive \\
+    FN (False Negatives) & : positive samples incorrectly classified as negative \\
+\end{tabular}
 
-The sheer volume of BENIGN instances inflates the score regardless of attack detection quality. A model that predicts BENIGN for every single sample would still achieve over 99\% accuracy while detecting zero attacks. T
-his makes accuracy effectively blind to what actually matters.
+The sheer volume of BENIGN instances inflates the score regardless of attack detection quality. A model that predicts BENIGN for every single sample would still achieve over 99\% accuracy while detecting zero attacks.
+This makes accuracy effectively blind to what actually matters.
 
-Precision and recall offer more granular insight into model behavior. Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected:
-\[
-    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \qquad\qquad \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
-\]
+Precision and Recall offer more granular insight into model behavior.
+Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected:
+
+\begin{equation}
+    \label{eq:precision_recall}
+    \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \qquad\qquad
+    \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
+\end{equation}
 
 Both metrics are informative individually but insufficient alone; a model biased toward conservative predictions will report high precision at the cost of missing many attacks, while an overly permissive model will recover most attacks but introduce a high rate of false positives.
 
 The F1-score addresses this by taking the harmonic mean of precision and recall, penalizing models that sacrifice one for the other:
-\[
+
+\begin{equation}
+    \label{eq:f1}
     \text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-\]
+\end{equation}
+
 
 However, standard F1-score or its weighted variant still allows dominant classes to overshadow rare ones in the aggregate score, since each class's contribution to the final score is proportional to its sample count.
 
-We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores giving every class the same contribution regardless of how many samples it contains. It is defined as:
-\[
+We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores giving every class the same contribution regardless of how many samples it contains, it is defined as:
+
+\begin{equation}
+    \label{eq:macro_f1}
     \text{Macro F1} = \frac{1}{C} \sum_{i=1}^{C} \text{F1}_i
-\]
+\end{equation}
+
 
 where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
 
@@ -164,13 +184,14 @@ The baseline training results divide into expected and unexpected outcomes, as s
 \paragraph{Expected outcomes :}
 Classes with large sample counts perform exactly as anticipated. Attack types such as DoS Hulk, PortScan, and DDoS, each with over 100,000 training samples, along with moderately represented classes like DoS GoldenEye, FTP-Patator, SSH-Patator, DoS Slowloris, and DoS Slowhttptest, each above 5,000 samples, achieve a high F1-score at 0.99. The model has enough examples to learn stable, discriminative boundaries for these classes.
 
-At the other end of the spectrum, Heartbleed and Infiltration show lower performance, with F1-score at 0.93 and 0.75 respectively. With only 29 and 9 training samples remaining after preprocessing, this outcome is fully expected, there is simply not enough signal for the model to generalize reliably.
-
+At the other end of the spectrum, Heartbleed and Infiltration achieve comparatively lower performance, with F1-scores of 0.93 and 0.75 respectively.
+This behavior is expected, as only 9 Heartbleed samples and 29 Infiltration samples remained after preprocessing, which makes learning more challenging for the model.
+Nevertheless, the results remain promising given the extremely limited training data, and further improvement could likely be achieved.
 
 \paragraph{Unexpected outcomes :}
 \begin{itemize}
     \item \textbf{Web Attacks:}
-          The more revealing result comes from the Web attack subclasses. We anticipated that Web Attack – SQL Injection would struggle, given only 19 training samples. What was unexpected is that all three Web Attack subclasses perform poorly, Brute Force achieves F1-score = 0.78, SQL Injection F1-score = 0.74, and XSS a striking F1-score = 0.37, despite having 522 training samples, supposedly sufficient for a tree-based model to learn from.
+          The most notable results come from the Web attack subclasses. We anticipated that Web Attack – SQL Injection would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
 
           The confusion matrix is computed to identify the specific misclassification patterns. As shown in figure \ref{fig:/baseline_webattack_confusion}, there is a consistent mutual confusion between XSS and Brute Force, XSS is misclassified 345 times as Web Attack – Brute Force, and Web Attack – Brute Force is misclassified as XSS 167 times. Both are also occasionally classified as BENIGN. This indicates that the model fails to establish meaningful separability between these categories in the feature space.
 
@@ -187,7 +208,7 @@ At the other end of the spectrum, Heartbleed and Infiltration show lower perform
           Web attacks are payload-based attacks, an XSS carries a malicious script in a HTTP request body, an SQL injection craftes SQL commands by tempering with input fields interfering with database queries. Flow-based datasets like CIC-IDS2017 record features derived from packet timing, length distributions, and header-level metadata; there is no payload field. These features are evidently insufficient to capture the semantic structure of such attacks.
 
     \item \textbf{Bot attack:}
-          Bot is still relatively underrepresented compared to dominant classes, however, with approximately 1,500 training samples, it was initially expected to provide sufficient information for the model to learn meaningful patterns. Despite this its performance remains poor with only an F1-score at 0.82.
+          Bot is still relatively underrepresented compared to dominant classes, however, with approximately 1,500 training samples, it was initially expected to provide sufficient information for the model to learn meaningful patterns. Despite this its performance remains average with only an F1-score at 0.83.
 
           Considering the attack’s nature, might explain why the model is failing it.
 
@@ -244,11 +265,19 @@ We define a fixed set of experiments. If a new configuration involves altering t
 
 Following baseline training, we attempt to improve the performance of weaker-performing classes, namely the Web Attack subclasses, Heartbleed, Infiltration, and Bot, through these series of experiments while monitoring the evaluation metrics.
 
-Under class weighting (balanced), Infiltration improves to an F1-score of 0.8685 and Heartbleed reaches a perfect score of 1.0. However, Bot performance deteriorates, while Web Attack classes show no measurable improvement.
 
-Alternative Weight Formulas: A second weighting strategy is explored using two custom formulations. The first assigns weights inversely proportional to the square of the baseline F1-score, amplifying attention on the worst-performing classes disproportionately more. The second is a hybrid formula that combines a frequency-based term, the square root of the inverse class frequency, with an F1-based penalty, the inverse of the baseline F1-score, so classes that are both rare and poorly predicted receive the highest combined weight. Both formulas are normalized by their mean to keep training numerically stable. However, neither outperforms the standard balanced weighting; no improvement is observed for the target classes, and this configuration is dropped from all subsequent experiment sets.
+\paragraph{Class weights:}
+Under class weighting (balanced), Infiltration improves to an F1-score of 0.84 and Heartbleed reaches 0.96. However, Bot performance deteriorates from 0.83 to 0.79, while Web Attack classes show no measurable improvement.
 
-Sampling (SMOTE + Random Oversampling):
+\paragraph{Alternative Weight Formulas:}
+A second weighting strategy is explored using two custom formulations.
+The first assigns weights inversely proportional to the square of the baseline F1-score, amplifying attention on the worst-performing classes disproportionately more.
+The second is a hybrid formula that combines a frequency-based term, the square root of the inverse class frequency, with an F1-based penalty, the inverse of the baseline F1-score, so classes that are both rare and poorly predicted receive the highest combined weight.
+Both formulas are normalized by their mean to keep training numerically stable.
+
+However, neither outperforms the standard balanced weighting; no improvement is observed for the target classes, and this configuration is dropped from all subsequent experiment sets.
+
+\paragraph{Sampling (SMOTE + Random Oversampling):}
 
 Sampling is applied only within the training folds during cross-validation. The resampling is fit exclusively on each training fold, never on the validation fold, to prevent any form of data leakage from the synthetic samples into the evaluation.
 
@@ -260,9 +289,11 @@ The resampling targets are set as follows:
 SMOTE is used to increase Bot samples from 390 to 3,000, Web Attack – Brute Force from 294 to 3,000, and Web Attack – XSS from 522 to 2,000.
 Random oversampling is applied to Web Attack – SQL Injection from 17 to 300, Heartbleed from 9 to 300, and Infiltration from 29 to 300.
 
-Under this configuration, Web Attack classes show no improvement. While Infiltration drops slightly compared to the weights configuration with F1-score = 0.8218, and Heartbleed remains at 1.0.
+Under this configuration, Web Attack classes show no improvement. While Infiltration drops slightly compared to the weights configuration with F1-score = 0.82, and Heartbleed reaches a perfect 1.0. score.
 
-When combining sampling with class weighting, Bot performance drops further, whereas Infiltration recovers to F1-score = 0.9055. Web Attack classes remain unchanged.
+\paragraph{Sampling and weights}
+When combining sampling with class weighting, Bot performance drops further, whereas Infiltration recovers to an F1-score of 0.87. Web Attack classes remain unchanged, while Heartbleed maintains a perfect F1-score of 1.0.
+
 
 The consistent finding across all four configurations is that Web Attack performance does not respond to any rebalancing approach. This confirms that this is not a class imbalance problem, it is a feature representation problem.
 
@@ -275,20 +306,19 @@ We therefore decide to merge the three Web Attack subclasses Brute Force, SQL In
 
 Because this modifies the training set, all four experimental configurations are re-run from scratch.
 
-The merged Web Attack class immediately achieves F1-score = 0.987. However, Infiltration drops from 0.7867 to 0.7267 and Heartbleed drops from 0.9333 to 0.7333 relative to the original baseline, while Bot remains stable at 0.83.
+The merged Web Attack class immediately achieves F1-score = 0.98. However, Heartbleed drops from 0.93 to 0.86 relative to the original baseline, while Bot remains stable at 0.83.
 
-When class weights are introduced, Heartbleed returns to F1-score = 1.0. Infiltration recovers to 0.8685, matching its pre-merge weighted performance. Web Attack holds at 0.98.
+When class weights are introduced, Heartbleed reaches an F1-score = 0.96. Infiltration recovers to 0.87, matching its performance before merging under the sampling and class-weighting strategy. Web Attack holds at 0.98.
 
-Under sampling alone, Infiltration reaches only 0.74, Heartbleed remains at 1.0. Web Attack stays at 0.98.
+Under sampling alone, Infiltration reaches only 0.80., Heartbleed drops to 0.93. Web Attack stays at 0.98.
 
-Finally, combining sampling with class weights yields similar behavior, heartbleed and Web Attack stays at 1.0 and 0.98 respectively. However, infiltration returns to 0.83.
+Finally, combining sampling with class weights, Web Attack remains at 0.98. However, infiltration drops to 0.79. Heartbleed reaches 1.0 F1-score again.
 
 Across all four configurations, Web Attack consistently sits at approximately 0.98 regardless of whether weights or sampling are added. This confirms that merging alone is the decisive intervention; no additional rebalancing is necessary.
 
 \paragraph{Heartbleed}
 
-Heartbleed warrants a closer look. At baseline, Heartbleed achieves an F1-score of 0.93, yet under every subsequent configuration, weights, sampling and a mix of both, it reliably reaches 1.0.
-
+Heartbleed warrants a closer look.
 With only 9 training samples and 2 retained in the test set, cross-validation folds see approximately 2 Heartbleed samples per validation split. At that scale, the F1-score can take only a handful of discrete values, 0 when both are wrong, 0.67 in case only one is wrong, and a perfect 1.0 score means the model simply predicts both samples correctly.
 
 More importantly, all resampling and rebalancing techniques are applied exclusively to the training folds and therefore do not affect the test distribution. As a result, regardless of whether weights or sampling are used, the final evaluation is always based on the same two test samples. This makes it hard to meaningfully assess the impact of these strategies on Heartbleed’s generalization performance.
@@ -297,9 +327,10 @@ This initially motivates an ablation experiment in which Heartbleed is temporari
 
 \paragraph{Heartbleed ablation results}
 
-Following this change, the complete set of experiments is rerun. However, the results are unexpected: Infiltration, which previously showed significant improvement under the merged Web Attack configuration with class weighting and Heartbleed included, drops when Heartbleed is removed while keeping the same merge and weighting setup.
+Following this change, the complete set of experiments is rerun. However, the results are unexpected: Infiltration, which previously showed significant improvement under the merged Web Attack configuration with class weighting and Heartbleed included, reaching its best F1-score of 0.87, drops once Heartbleed is removed while keeping the same merge and weighting setup.
 
-To verify whether this dependency is real or an artifact, we run a systematic comparison across three settings: pre-merge, merge with Heartbleed, and merge without Heartbleed.
+As shown in Figure~\ref{fig:/infiltration_comparison}, removing Heartbleed under class weighting leads to a substantial decrease in Infiltration F1-score.
+
 
 \begin{figure}[H]
     \hfil\includegraphics[width=0.9\columnwidth, fbox]{figures/infiltration_heartbleed_comparison.png}\hfil
@@ -307,25 +338,6 @@ To verify whether this dependency is real or an artifact, we run a systematic co
     \label{fig:/infiltration_comparison}
 \end{figure}
 
-As shown in Figure~\ref{fig:/infiltration_comparison}, the Infiltration F1-score varies across the three configurations.
-
-Merging Web Attacks consistently reduces Infiltration F1-score by 0.04 to 0.08 across all four strategies. This is likely because consolidating three Web Attack subtypes into one class reshapes the global decision boundary landscape in a way that slightly disadvantages Infiltration's region.
-
-Dropping Heartbleed at baseline has zero effect on Infiltration, with identical scores (0.7267 = 0.7267).
-
-Dropping Heartbleed under weighting reduces Infiltration F1-score by up to 0.089.
-
-To further investigate this behavior, we construct a simplified 2D representation of the problem by training a separate XGBoost model using only two selected features. In reality, the original model operates in a high-dimensional feature space composed of 46 features, making direct visualization of its decision boundaries impossible. Reducing the problem to two dimensions allows the learned feature space partitioning to be visualized and interpreted more clearly.
-
-To select these features, we first apply SHAP (SHapley Additive exPlanations) analysis independently on both Heartbleed and Infiltration. As shown in the SHAP value distribution figures, the two features contributing most significantly to the model’s decisions for both classes are Total Length of Bwd Packets and Fwd Packet Length Max.
-
-In the unweighted configuration with Heartbleed, as shown in Figure, the feature space is entirely dominated by the BENIGN class. Heartbleed samples cluster in the bottom-left corner but receive no dedicated boundary region. The boundary structure is flat and undifferentiated.
-
-A similar behavior is observed in the unweighted configuration without Heartbleed, presented in Figure, the boundary is visually identical to the previous configuration. Without weighting, Heartbleed's presence or absence has no effect on the optimization landscape.
-
-In contrast, the weighted configuration with Heartbleed, illustrated in Figure, the boundary structure changes substantially. A dedicated region is carved out around the Heartbleed samples along the Fwd Packet Length Max axis, and a series of sharp horizontal cuts appear across the feature space. These cuts reshape the decision surface in a way that incidentally improves the separation of Infiltration samples.
-
-When Heartbleed is removed under weighting, as shown in Figure, the horizontal structure disappears entirely and the boundary reverts to the flat BENIGN-dominated surface observed in the unweighted cases.
 
 This behavior can be explained by the optimization mechanism of XGBoost. Under class weighting, Heartbleed receives a gradient scaling factor of approximately 19,000× relative to the BENIGN class. Each of its 9 training samples exerts as much optimization pressure on the model as a substantial fraction of the majority class flows. The model, responding to this extreme gradient signal, prioritizes correctly resolving the Heartbleed decision boundary.
 
@@ -339,16 +351,21 @@ The ablation results demonstrate that removing or amplifying Heartbleed affects 
 
 This observation led to a reassessment of the initial interpretation of metric limitation.
 
-As established, while the model achieves a perfect F1-score of 1.0, this is simply because it is evaluated on only two samples, which limits the metric to a small set of discrete outcomes, rendering evaluation unreliable. As a result, performance on this class cannot be reliably assessed from the evaluation set alone.
+While the extremely small number of test samples prevents statistically robust metric estimation, it does not imply that the model fails to learn the class during training. The training process still incorporates Heartbleed samples, allowing the model to adjust its internal decision boundaries accordingly
 
-However, this limitation does not imply that the model fails to learn the class during training. The training process still incorporates Heartbleed samples, allowing the model to adjust its internal decision boundaries accordingly, even if this cannot be properly reflected in the test evaluation.
+More importantly, despite the severe data scarcity, both Heartbleed and Infiltration still achieve strong performance, reaching F1-scores of 0.93 and 0.87 respectively under the selected configuration. In the context of network intrusion detection, retaining additional attack coverage presents no practical downside when the model maintains acceptable predictive performance.
 
 In light of the ablation findings, we decide to retain Heartbleed.
 
 \subsection{Final Model Configuration}
-The final model configuration carried forward into hyperparameter tuning consists of Web Attack subclasses merged into one class, Heartbleed retained, and the use of balanced class weights. Thus achieves a Macro F1-score at 0.98, with Infiltration F1-score = 0.8236, and Web Attack F1-score = 0.9896.
-\subsection{Hyper parameter tuning}
+The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining Heartbleed, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.96.
+
+At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. Heartbleed reaches an F1-score of 0.96, Infiltration achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
+
+\subsection{Hyperparameter tuning}
+
 \subsection{Adding thresholds}
+
 \subsection{Final model training results}
 
 \section{Conclusion}

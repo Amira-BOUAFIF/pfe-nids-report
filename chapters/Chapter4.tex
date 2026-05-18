@@ -57,28 +57,27 @@ We narrow it down to these three datasets. Below is a comparative table ~\ref{ta
 
 The comparative analysis of the three datasets reveal that each has its own limitations. NSL-KDD, although still relevant, exhibits limitations in size and temporal relevance, as it is relatively old and does not reflect recent network behavior and modern attacks types. UNSW-NB15 is larger and offers a more recent alternative, but it remains limited in terms of attack type coverage, and its traffic  is fully synthetically generated. This makes CIC-IDS2017 the most suitable dataset, as it provides a more realistic experimental setting, a wider range of the most common attack types, and it is also widely adopted in recent research studies.
 
-\vspace{-0.15cm}
 \subsection{Dataset overview}
-\vspace{-0.15cm}
+
 CIC-IDS2017 was created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB), within a controlled environment, where the network traffic was captured in packet capture (PCAP) format.
 
 The transformation of raw PCAP files was done using a feature extraction tool, CICFlowMeter. Therefore a row in this dataset doesn't represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
 
-\vspace{-0.15cm}
 \section{Data Understanding}
-\vspace{-0.15cm}
+
 The Data Understanding phase of the CRISP-DM methodology focuses on loading, describing, and analyzing the dataset to build a solid foundation for the rest of the project. This section dives into the four tasks of this phase: \texttt{Initial Exploration}, \texttt{Data Description}, \texttt{Data Exploration}, and \texttt{Data Quality}, with each task targeting an aspect of the data, from its structure and content to its quality.
-\vspace{-0.15cm}
+
 \subsection{Initial Exploration}
 
 The CIC-IDS2017 dataset is captured over five days, it is distributed across 8 files split by day and session: \texttt{Monday}, \texttt{Tuesday}, and \texttt{Wednesday} each corresponding to a single file, while \texttt{Thursday} and \texttt{Friday} are split into AM and PM sessions. The \texttt{Friday PM} session is further divided into two files to isolate the two attacks, \texttt{DDoS} and \texttt{PortScan}.
-\vspace{-0.15cm}
+
 \subsection{Data Description}
+\label{Sec:Desc}
+
 We examine the data on a surface level by identifying its structure, features, target label, and general characteristics.
 
-\label{Sec:Desc}
 As mentioned in the previous subsection, the dataset is split into 8 files as shown in Table \ref{tab:dataset}.
-\vspace{-0.15cm}
+
 \begin{table}[H]
     \centering
     \caption{Dataset Files}
@@ -121,7 +120,6 @@ The dataset contains a total of 2,830,743 rows across the 8 files. All files hav
               \label{fig:labelCorrupt}
           \end{figure}
 \end{itemize}
-\vspace{-0.3cm}
 
 \paragraph{Feature Description :}
 
@@ -186,7 +184,6 @@ We found out that this discrepancy arises because \texttt{Packet Length Mean} us
 
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
 
-\vspace{0.5cm}
 Table \ref{tab:feature_stat} presents the statistics of some of the features.
 \begin{table}[H]
     \centering
@@ -346,7 +343,6 @@ Table \ref{tab:attack_classes} provides a description of the 14 attack classes o
     \\
     \hline
 \end{longtable}
-\vspace{-1cm}
 
 \subsection{Data Exploration}
 
@@ -359,8 +355,8 @@ The class distribution analysis is organized into three aspects: an overall view
 \begin{itemize}
 
     \item \textbf{Overall class distribution:} Table \ref{tab:class_distribution} provides a comprehensive overview of the classes' distribution across the dataset.
-    \vspace{-0.3cm}
-
+    
+    \newpage
     \begin{longtable}{|l|l|r|r|}
         \caption{Class Distribution}
         \label{tab:class_distribution} \vspace{-0.3cm}                                                         \\
@@ -418,38 +414,32 @@ The class distribution analysis is organized into three aspects: an overall view
         \hline
     \end{longtable}
 
-    \vspace{-0.4cm}
 
     The BENIGN class dominates the dataset, accounting for 80.3\% of all samples, while the remaining 15 attack classes collectively represent only 19.7\%.
     The Figure \ref{fig:BENIGN_vs_Attack_ratio} visualizes the BENIGN vs Attack ratio. 
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.4\columnwidth, fbox]{figures/benign_attack_ratio.png}
+        \includegraphics[width=0.35\columnwidth, fbox]{figures/benign_attack_ratio.png}
         \caption{BENIGN vs Attack Ratio}
         \label{fig:BENIGN_vs_Attack_ratio}
     \end{figure}
 
-    \vspace{-0.5cm}
 
-    \item \textbf{Class distribution per file:} Figure \ref{fig:benign_vs_attack_per_file} shows the BENIGN vs Attack ratio per file. 
-    The BENIGN class dominates across all files. However, the only exceptions are the two Friday PM files, where attack traffic exceeds BENIGN, with attack ratios of 56.7\% and 55.5\% in the Friday PM DDoS and Friday PM PortScan respectively.
+    \item \textbf{Class distribution per file:}
+    The BENIGN class dominates across all files, with the only exceptions being the two Friday PM files, where attack traffic exceeds BENIGN, with attack ratios of 56.7\% and 55.5\% in the Friday PM DDoS and Friday PM PortScan respectively.
 
-    Moreover, the BENIGN ratio ranges from 100\% in the Monday file down to 43.3\% in the Friday PM DDoS file. Several files show very low attack ratios, such as Thursday AM at 1.3\% and Friday AM at 1\%, while the Thursday PM file has an attack ratio so low at 0.012\% that it is invisible in the figure.
+    Moreover, the BENIGN ratio ranges from 100\% in the Monday file down to 43.3\% in the Friday PM DDoS file. Several files show very low attack ratios, such as Thursday AM at 1.3\% and Friday AM at 1\%, while the Thursday PM file has an attack ratio so low at 0.012\% that it is invisible in Figure \ref{fig:benign_vs_attack_per_file} that shows the BENIGN vs Attack ratio per file.
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=1\columnwidth, fbox]{figures/benign_vs_attack_per_file.png}
+        \includegraphics[width=0.8\columnwidth, fbox]{figures/benign_vs_attack_per_file.png}
         \caption{Benign vs Attack Ratio per file}
         \label{fig:benign_vs_attack_per_file}
     \end{figure}
 
-    \vspace{-0.2cm}
 
-    Figure \ref{fig:class_dist_file} visualizes the class distribution per file. As mentioned previously, each attack class is present in only one file.
-
-    Furthermore, each file contains between 0 and 5 attack classes, with most files containing only one. The two brute force attacks, FTP-Patator and SSH-Patator are both present in the Tuesday file. In the same way, the DoS attacks and Heartbleed are grouped in the Wednesday file, and the web attacks are present in the Thursday AM file. The remaining classes each appear exclusively in one of the other files.
-
+    Each attack class is present in only one file and each file contains between 0 and 5 attack classes, with most files containing only one. The two brute force attacks, FTP-Patator and SSH-Patator are both present in the Tuesday file. In the same way, the DoS attacks and Heartbleed are grouped in the Wednesday file, and the web attacks are present in the Thursday AM file. The remaining classes each appear exclusively in one of the other files. Figure \ref{fig:class_dist_file} visualizes the class distribution per file.
 
     \begin{figure}[h!]
         \centering
@@ -461,20 +451,20 @@ The class distribution analysis is organized into three aspects: an overall view
    
     \vspace{-0.4cm}
 
-    \item \textbf{Attack classes distribution:} Figure \ref{fig:attack_distribution} visualizes the global attack distribution. It varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.0024\%.
+    \item \textbf{Attack classes distribution:} The global attack distribution varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.0024\%. Figure \ref{fig:attack_distribution} visualizes this distribution
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\columnwidth, fbox]{figures/Attack_only_Distribution_log.png}
+        \includegraphics[width=1\columnwidth, fbox]{figures/Attack_only_Distribution_log.png}
         \caption{Attack distribution}
         \label{fig:attack_distribution}
     \end{figure}
 
     This distribution is intentional, as the dataset was generated to imitate real-world network traffic, where the vast majority of traffic is normal and only a small fraction are attacks. However, this introduces a severe class imbalance that can bias the model towards the majority class, leading it to treat BENIGN as the default outcome. As a result, the model may perform poorly on the attack classes and potentially fail to learn their distinguishing patterns altogether.
 
-    In addition, the class imbalance extends beyond the BENIGN class and is also present among the attack classes themselves. DoS Hulk, PortScan, DDoS and DoS GoldenEye each exceed 10,000 samples, providing the model with sufficient examples to reliably learn their patterns. FTP-Patator, SSH-Patator, DoS slowloris, DoS Slowhttptest, Bot and Web Attack - Brute Force fall in a moderate range, each with over 1,000 samples, which while on the lower end, should still allow the model to capture their general patterns.
+    In addition, the class imbalance extends beyond the BENIGN class to among the attack classes themselves. DoS Hulk, PortScan, DDoS and DoS GoldenEye each exceed 10,000 samples, providing the model with sufficient examples to reliably learn their patterns. FTP-Patator, SSH-Patator, DoS slowloris, DoS Slowhttptest, Bot and Web Attack - Brute Force fall in a moderate range, each with over 1,000 samples, which while on the lower end, should still allow the model to capture their general patterns.
 
-    However, the Web Attack - XSS class, with only 652 samples sits in a more concerning range where learning becomes unreliable.
+    However, the Web Attack - XSS class, with only 652 samples sits in a more concerning range where learning may become unreliable.
 
     Finally, the three remaining classes represent the most critical imbalance: Infiltration with 36 samples, Web Attack - Sql Injection with 21 samples, and Heartbleed with only 11 samples. 
 

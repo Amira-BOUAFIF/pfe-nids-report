@@ -13,7 +13,7 @@ We begin with the state of the art reviewing most of the prominent approaches in
 
 In the network intrusion detection domain, various approaches have been proposed and studied. In this section, we review the most prominent methods, comparing their principles, strengths, and limitations, before selecting the one best suited to our project's requirements and dataset characteristics.
 
-Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split.
+Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split. Furthermore, studies on CIC-IDS2017 have shown that tree-based models generally outperform deep learning approaches on flow-based tabular data~\cite{DL-NID}.
 
 Among classical machine learning algorithms, the most prominent ones are K-Nearest Neighbors (KNN), Decision Tree, Random Forest, and gradient boosting.
 
@@ -61,7 +61,7 @@ KNN, while simple and capable of capturing complex patterns, suffers from slow i
 
 \section{Adopted Approach}
 
-We select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency and its several advantages over vanilla gradient boosting.
+We select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency.
 
 XGBoost builds trees sequentially, where each boosting round corrects the errors of the previous one using both the gradient and the hessian of the loss function.
 
@@ -132,7 +132,7 @@ We therefore adopt the Macro F1-score as the primary evaluation metric, which co
 \end{equation}
 
 
-where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
+Where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
 
 This guarantees that every class, regardless of size, contributes equally to the final score.
 Per-class F1-score scores are also tracked alongside it throughout all experiments to monitor individual class behavior.
@@ -210,7 +210,7 @@ Nevertheless, the results remain promising given the extremely limited training 
 
           Although the Web Attack subclasses remain relatively underrepresented compared to dominant classes in the dataset their consistently poor performance suggests something potentially more fundamental than class imbalance or sample scarcity alone.
 
-          Web attacks are payload-based attacks, an XSS carries a malicious script in a HTTP request body, an SQL injection crafts SQL commands by tempering with input fields interfering with database queries. Flow-based datasets like CIC-IDS2017 record features derived from packet timing, length distributions, and header-level metadata; there is no payload field. These features are evidently insufficient to capture the semantic structure of such attacks.
+          Web attacks are payload-based attacks, an XSS carries a malicious script in an HTTP request body, an SQL injection crafts SQL commands by tempering with input fields interfering with database queries. Flow-based datasets like CIC-IDS2017 record features derived from packet timing, length distributions, and header-level metadata; there is no payload field. These features are evidently insufficient to capture the semantic structure of such attacks.
 
     \item \textbf{Bot attack:}
           Bot is still relatively underrepresented compared to dominant classes, however, with approximately 1,500 training samples, it was initially expected to provide sufficient information for the model to learn meaningful patterns. Despite this its performance remains average with only an F1-score at 0.83.

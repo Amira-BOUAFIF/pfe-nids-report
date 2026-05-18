@@ -28,7 +28,7 @@ Cybersecurity is a highly sensitive domain where the ability to react quickly ca
 
 For this reason, Network Intrusion Detection Systems (NIDS) play a central role in monitoring and analyzing network traffic. The most widely used approach relies on:
 \begin{itemize}
-    \item \textbf{Signature-based:} These systems analyze network traffic, often through deep packet inspection and comparesion against a signature database. When a match is found an alert is triggered. Well-known tools such as Snort \cite{Snort} and Suricata \cite{Suricata} are representative of this approach.
+    \item \textbf{Signature-based:} These systems analyze network traffic, often through deep packet inspection and comparison against a signature database. When a match is found an alert is triggered. Well-known tools such as Snort \cite{Snort} and Suricata \cite{Suricata} are representative of this approach.
     \item \textbf{Anomaly-based:} Anomaly detection is learning the normal behavior of the network through statistical analysis of traffic parameters. When exceeding the predefined thresholds, it might be an indicator of an attack \cite{Jackson2010}.
 \end{itemize}
 \vspace{-0.5cm}
@@ -55,7 +55,7 @@ Figure~\ref{fig:pipeline} illustrates the project pipeline for our network intru
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\columnwidth]{figures/pipeline.png}
+    \includegraphics[width=0.95\columnwidth]{figures/pipeline.png}
     \caption{Project Pipeline}
     \label{fig:pipeline}
 \end{figure}
@@ -75,28 +75,29 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a 
     \item \textbf{Evaluation:} Evaluating the model's performance and determining if it meets the defined objectives.
     \item \textbf{Deployment:} Deploying the model into production, monitoring and maintaining the model's performance.
 \end{itemize}
-\vspace{-0.5cm}
+
 Figure~\ref{fig:crisp-dm} illustrates these phases and their relationships.
-\vspace{-0.3cm}
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\columnwidth]{logos/CRISP-DM.png}
+    \includegraphics[width=0.5\columnwidth]{logos/CRISP.png}
+    \vspace{-0.7cm}
     \caption{CRISP-DM Methodology}
     \label{fig:crisp-dm}
 \end{figure}
-\vspace{-0.7cm}
+
 \subsection{UML}
-\vspace{-0.2cm}
+
 For the system modeling, we use UML (Unified Modeling Language), a standardized modeling language used to specify, visualize, construct, and document the artifacts of software systems through diagrams such as use case, class, and sequence diagrams. There are two types of UML diagrams:
-\vspace{-0.2cm}
+
 \begin{itemize}
     \item \textbf{Behavioral Diagrams:} State, activity, use case, sequence, communication and interaction overview diagrams.
     \item \textbf{Structural Diagrams:} Class, object, component, deployment and package diagrams.
 \end{itemize}
-\vspace{-0.2cm}
+
 UML makes complex systems easier to design and communicate, it provides a common language for developers, architects, and stakeholders.
-\vspace{-0.4cm}
+
 \section{Conclusion}
-\vspace{-0.3cm}
+
 In this chapter, we introduce the host company ITXTREE, conduct a study of existing network intrusion detection systems, discuss their shortcomings and finally present our proposed solution. In the next chapter we specify the system requirements.
 

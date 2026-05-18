@@ -583,7 +583,7 @@ The class-level distribution of affected rows is presented in Figure
 
           These two features carry negative values at scale: 1,001,189 rows (35.4\%) and 1,441,552 rows (50.9\%) respectively hold the value -1. This is not a measurement error. CICFlowMeter uses -1 as a sentinel to signal that the TCP initial window size could not be captured, either because the SYN packet was absent from the capture, or because the flow is UDP-based and has no TCP handshake. It is a deliberate encoding choice by the tool, not a data corruption.
 
-    \item \textbf{Packet ordering artifacts:} \feature{Flow Duration}, \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, \feature{Fwd IAT Min}, \feature{Flow Bytes/s}, and \feature{Flow Packets/s}.
+    \item \textbf{Packet ordering artifact:} \feature{Flow Duration}, \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, \feature{Fwd IAT Min}, \feature{Flow Bytes/s}, and \feature{Flow Packets/s}.
 
 
           A total of 115 rows carry negative values in \feature{Flow Duration} ranging from -13 to -1, with the same negative values propagating identically into \feature{Flow IAT Mean}, \feature{Flow IAT Max}, and \feature{Flow IAT Min}.
@@ -694,20 +694,10 @@ Negative values across the dataset fall into four distinct categories, each hand
 
           These are retained without modification. As noted, -1 is a deliberate sentinel used by CICFlowMeter to encode the absence of a TCP handshake, it is semantically valid and carries information about the flow type. Replacing it would discard a meaningful signal.
 
-    \item \textbf{Packet ordering artifacts:} This anomaly originates during packet processing, since these sessions consist of a single packet exchange, the flow has no other packets to establish a valid duration or inter-arrival times. \feature{Flow Duration} was rendered negative, and all rate-based features, \feature{Flow IAT Mean}, \feature{Flow IAT Max}, and \feature{Flow IAT Min} collapsed to that same negative value, leaving no part of the flow intact.
+    \item \textbf{Packet ordering artifact:}  For the corrupted single-packet flow rows, in order to preserve data integrity and given the negligible rows count, only 115 belonging to BENIGN traffic, we decide to drop them.
 
-          Beyond the specific features where the corruption is visible, there is a deeper concern.
-          This is a bug introduced during dataset construction, and its effects are not fully observable from the CSV alone.
-
-          Negative values in \feature{Flow Duration} make the anomaly detectable, but there is no guarantee that the ordering artifact confined its damage only to features that produce obviously invalid numbers.
-
-          The same error may have silently distorted other features into values that appear plausible but are incorrect, damage that is invisible precisely because it does not manifest as negatives or zeros, but as ordinary-looking numbers that simply do not reflect the true flow.
-
-          In order to preserve data integrity and given the rows effect is negligible, only 115 rows belonging to BENIGN traffic, we decide to drop these rows.
-
-          \feature{Flow IAT Min} and \feature{Fwd IAT Min} share the same root cause, a packet ordering artifact, but the outcome is fundamentally different.
-          Here the affected flows span multiple packets, so the ordering error disturbed only a single packet pair within an otherwise well-measured session.
-
+          We clip invalid inter-arrival measurements in multi-packet flow rows to zero.
+          
           The negative value appears only in the minimum IAT statistic, while \feature{Flow Duration} remains positive and all other features are valid.
 
           Inter-arrival time cannot be negative by definition, so clipping both features to zero restores the value to the physical boundary it should never have crossed, without fabricating anything.

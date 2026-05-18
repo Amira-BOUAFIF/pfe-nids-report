@@ -57,28 +57,27 @@ We narrow it down to these three datasets. Below is a comparative table ~\ref{ta
 
 The comparative analysis of the three datasets reveal that each has its own limitations. NSL-KDD, although still relevant, exhibits limitations in size and temporal relevance, as it is relatively old and does not reflect recent network behavior and modern attacks types. UNSW-NB15 is larger and offers a more recent alternative, but it remains limited in terms of attack type coverage, and its traffic  is fully synthetically generated. This makes CIC-IDS2017 the most suitable dataset, as it provides a more realistic experimental setting, a wider range of the most common attack types, and it is also widely adopted in recent research studies.
 
-\vspace{-0.15cm}
 \subsection{Dataset overview}
-\vspace{-0.15cm}
+
 CIC-IDS2017 was created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB), within a controlled environment, where the network traffic was captured in packet capture (PCAP) format.
 
 The transformation of raw PCAP files was done using a feature extraction tool, CICFlowMeter. Therefore a row in this dataset doesn't represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
 
-\vspace{-0.15cm}
 \section{Data Understanding}
-\vspace{-0.15cm}
+
 The Data Understanding phase of the CRISP-DM methodology focuses on loading, describing, and analyzing the dataset to build a solid foundation for the rest of the project. This section dives into the four tasks of this phase: \texttt{Initial Exploration}, \texttt{Data Description}, \texttt{Data Exploration}, and \texttt{Data Quality}, with each task targeting an aspect of the data, from its structure and content to its quality.
-\vspace{-0.15cm}
+
 \subsection{Initial Exploration}
 
 The CIC-IDS2017 dataset is captured over five days, it is distributed across 8 files split by day and session: \texttt{Monday}, \texttt{Tuesday}, and \texttt{Wednesday} each corresponding to a single file, while \texttt{Thursday} and \texttt{Friday} are split into AM and PM sessions. The \texttt{Friday PM} session is further divided into two files to isolate the two attacks, \texttt{DDoS} and \texttt{PortScan}.
-\vspace{-0.15cm}
+
 \subsection{Data Description}
+\label{Sec:Desc}
+
 We examine the data on a surface level by identifying its structure, features, target label, and general characteristics.
 
-\label{Sec:Desc}
 As mentioned in the previous subsection, the dataset is split into 8 files as shown in Table \ref{tab:dataset}.
-\vspace{-0.15cm}
+
 \begin{table}[H]
     \centering
     \caption{Dataset Files}
@@ -121,7 +120,6 @@ The dataset contains a total of 2,830,743 rows across the 8 files. All files hav
               \label{fig:labelCorrupt}
           \end{figure}
 \end{itemize}
-\vspace{-0.3cm}
 
 \paragraph{Feature Description :}
 
@@ -186,7 +184,6 @@ We found out that this discrepancy arises because \texttt{Packet Length Mean} us
 
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
 
-\vspace{0.5cm}
 Table \ref{tab:feature_stat} presents the statistics of some of the features.
 \begin{table}[H]
     \centering
@@ -346,7 +343,6 @@ Table \ref{tab:attack_classes} provides a description of the 14 attack classes o
     \\
     \hline
 \end{longtable}
-\vspace{-1cm}
 
 \subsection{Data Exploration}
 
@@ -359,8 +355,8 @@ The class distribution analysis is organized into three aspects: an overall view
 \begin{itemize}
 
     \item \textbf{Overall class distribution:} Table \ref{tab:class_distribution} provides a comprehensive overview of the classes' distribution across the dataset.
-    \vspace{-0.3cm}
-
+    
+    \newpage
     \begin{longtable}{|l|l|r|r|}
         \caption{Class Distribution}
         \label{tab:class_distribution} \vspace{-0.3cm}                                                         \\
@@ -418,37 +414,32 @@ The class distribution analysis is organized into three aspects: an overall view
         \hline
     \end{longtable}
 
-    \vspace{-0.4cm}
 
     The BENIGN class dominates the dataset, accounting for 80.3\% of all samples, while the remaining 15 attack classes collectively represent only 19.7\%.
     The Figure \ref{fig:BENIGN_vs_Attack_ratio} visualizes the BENIGN vs Attack ratio. 
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.4\columnwidth, fbox]{figures/benign_attack_ratio.png}
+        \includegraphics[width=0.35\columnwidth, fbox]{figures/benign_attack_ratio.png}
         \caption{BENIGN vs Attack Ratio}
         \label{fig:BENIGN_vs_Attack_ratio}
     \end{figure}
 
-    \vspace{-0.5cm}
 
-    \item \textbf{Class distribution per file:} Figure \ref{fig:benign_vs_attack_per_file} shows the BENIGN vs Attack ratio per file. 
-    The BENIGN class dominates across all files. However, the only exceptions are the two Friday PM files, where attack traffic exceeds BENIGN, with attack ratios of 56.7\% and 55.5\% in the Friday PM DDoS and Friday PM PortScan respectively.
+    \item \textbf{Class distribution per file:}
+    The BENIGN class dominates across all files, with the only exceptions being the two Friday PM files, where attack traffic exceeds BENIGN, with attack ratios of 56.7\% and 55.5\% in the Friday PM DDoS and Friday PM PortScan respectively.
 
-    Moreover, the BENIGN ratio ranges from 100\% in the Monday file down to 43.3\% in the Friday PM DDoS file. Several files show very low attack ratios, such as Thursday AM at 1.3\% and Friday AM at 1\%, while the Thursday PM file has an attack ratio so low at 0.012\% that it is invisible in the figure.
+    Moreover, the BENIGN ratio ranges from 100\% in the Monday file down to 43.3\% in the Friday PM DDoS file. Several files show very low attack ratios, such as Thursday AM at 1.3\% and Friday AM at 1\%, while the Thursday PM file has an attack ratio so low at 0.012\% that it is invisible in Figure \ref{fig:benign_vs_attack_per_file} that shows the BENIGN vs Attack ratio per file.
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=1\columnwidth, fbox]{figures/benign_vs_attack_per_file.png}
+        \includegraphics[width=0.8\columnwidth, fbox]{figures/benign_vs_attack_per_file.png}
         \caption{Benign vs Attack Ratio per file}
         \label{fig:benign_vs_attack_per_file}
     \end{figure}
 
-    \vspace{-0.2cm}
 
-    Figure \ref{fig:class_dist_file} visualizes the class distribution per file. As mentioned previously, each attack class is present in only one file.
-
-    Furthermore, each file contains between 0 and 5 attack classes, with most files containing only one. The two brute force attacks, FTP-Patator and SSH-Patator are both present in the Tuesday file. In the same way, the DoS attacks and Heartbleed are grouped in the Wednesday file, and the web attacks are present in the Thursday AM file. The remaining classes each appear exclusively in one of the other files.
+    Each attack class is present in only one file and each file contains between 0 and 5 attack classes, with most files containing only one. The two brute force attacks, FTP-Patator and SSH-Patator are both present in the Tuesday file. In the same way, the DoS attacks and Heartbleed are grouped in the Wednesday file, and the web attacks are present in the Thursday AM file. The remaining classes each appear exclusively in one of the other files. Figure \ref{fig:class_dist_file} visualizes the class distribution per file.
 
     \begin{figure}[h!]
         \centering
@@ -457,22 +448,21 @@ The class distribution analysis is organized into three aspects: an overall view
         \label{fig:class_dist_file}
     \end{figure}
 
-    \vspace{-0.4cm}
 
-    \item \textbf{Attack classes distribution:} Figure \ref{fig:attack_distribution} visualizes the global attack distribution. It varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.0024\%.
+    \item \textbf{Attack classes distribution:} The global attack distribution varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.0024\%. Figure \ref{fig:attack_distribution} visualizes this distribution
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\columnwidth, fbox]{figures/Attack_only_Distribution_log.png}
+        \includegraphics[width=1\columnwidth, fbox]{figures/Attack_only_Distribution_log.png}
         \caption{Attack distribution}
         \label{fig:attack_distribution}
     \end{figure}
 
     This distribution is intentional, as the dataset was generated to imitate real-world network traffic, where the vast majority of traffic is normal and only a small fraction are attacks. However, this introduces a severe class imbalance that can bias the model towards the majority class, leading it to treat BENIGN as the default outcome. As a result, the model may perform poorly on the attack classes and potentially fail to learn their distinguishing patterns altogether.
 
-    In addition, the class imbalance extends beyond the BENIGN class and is also present among the attack classes themselves. DoS Hulk, PortScan, DDoS and DoS GoldenEye each exceed 10,000 samples, providing the model with sufficient examples to reliably learn their patterns. FTP-Patator, SSH-Patator, DoS slowloris, DoS Slowhttptest, Bot and Web Attack - Brute Force fall in a moderate range, each with over 1,000 samples, which while on the lower end, should still allow the model to capture their general patterns.
+    In addition, the class imbalance extends beyond the BENIGN class to among the attack classes themselves. DoS Hulk, PortScan, DDoS and DoS GoldenEye each exceed 10,000 samples, providing the model with sufficient examples to reliably learn their patterns. FTP-Patator, SSH-Patator, DoS slowloris, DoS Slowhttptest, Bot and Web Attack - Brute Force fall in a moderate range, each with over 1,000 samples, which while on the lower end, should still allow the model to capture their general patterns.
 
-    However, the Web Attack - XSS class, with only 652 samples sits in a more concerning range where learning becomes unreliable.
+    However, the Web Attack - XSS class, with only 652 samples sits in a more concerning range where learning may become unreliable.
 
     Finally, the three remaining classes represent the most critical imbalance: Infiltration with 36 samples, Web Attack - Sql Injection with 21 samples, and Heartbleed with only 11 samples. 
 
@@ -492,23 +482,11 @@ The correlation matrix is computed using the Pearson Correlation Coefficient (PC
             (x_i - \bar{x})^2} \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}
 \end{equation}
 
-where $x$ and $y$ are the two features being compared, $\bar{x}$ and $\bar{y}$ are their respective means, and $n$ is the number of samples.
+Where $x$ and $y$ are the two features being compared, $\bar{x}$ and $\bar{y}$ are their respective means, and $n$ is the number of samples.
 
 The absolute value of the correlation matrix was taken to focus on the strength of the correlation regardless of its direction. A threshold of 0.95 was used to identify highly correlated feature pairs, where any pair with a correlation coefficient of 0.95 or higher is considered redundant, meaning both features essentially carry the same information, providing no additional information to the model.
 
-39 highly correlated pairs are identified Figure \ref{fig:correlation_heatmap} visualizes their correlation matrix.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.97\columnwidth, fbox]{figures/correlation_heatmap.png}
-    \caption{Correlation Heatmap}
-    \label{fig:correlation_heatmap}
-\end{figure}
-
-
-
-
-8 pairs have a perfect correlation of 1, meaning they are perfectly linearly correlated. Table \ref{tab:correlated_features} lists these perfectly correlated pairs.
+Among the 78 numerical features in the dataset, 39 highly correlated pairs are identified, 8 pairs having a perfect correlation of 1 listed in Table \ref{tab:correlated_features}.
 
 \begin{table}[H]
     \centering
@@ -538,37 +516,27 @@ The absolute value of the correlation matrix was taken to focus on the strength 
 \end{table}
 
 \begin{itemize}
-    \item \textbf{First and second pairs:} \texttt{Bwd Packet Length Mean} and \texttt{Avg Bwd Segment Size}, \texttt{Fwd Packet Length Mean} and \texttt{Avg Fwd Segment Size} going by name the two calculates the average size of two different layers of the OSI model, the former belonging to the network layer it is composed of Network Header (IP header) + Segment, while the latter belongs to the transport layer and is composed of Transport Header (TCP/UDP Header) + Payload,  but in the CICFlowMeter they are both calculated as the average size (bytes) of the payload in the backward/forward direction, which means there is no difference between a segment and a packet making the two features a duplicate of each other.
-    \item \textbf{Third, fourth and fifth pairs (with an additional pair):} \texttt{Total Fwd Packets} and \texttt{Subflow Fwd Packets}, \texttt{Total Backward Packets} and \texttt{Subflow Bwd Packets}, \texttt{Total Length of Fwd Packets} and \texttt{Subflow Fwd Bytes}, and \texttt{Total Length of Bwd Packets} and \texttt{Subflow Bwd Bytes} (near perfect correlation of 0.99999) nominally represent two different levels of aggregation, with the first being for the entire flow and the second being for a subflow. A subflow is detected when the inter-arrival time (IAT) between two consecutive packets exceeds 1 second, with the subflow features computed by dividing the flow totals by the number of detected subflows (\texttt{sfCount}). The assumption that all subflows contain the same number of packets or bytes is already a conceptual limitation, but the way \texttt{sfCount} is calculated is a bug in itself.
+    \item \texttt{Bwd Packet Length Mean} and \texttt{Avg Bwd Segment Size}, \texttt{Fwd Packet Length Mean} and \texttt{Avg Fwd Segment Size} going by name the two calculates the average size of two different layers of the network, but in the CICFlowMeter they both measures the average size (bytes) of the payload in the backward/forward direction, which means there is no difference between a segment and a packet making the two features a duplicate of each other.
+    
+    \item \texttt{Total Fwd Packets} and \texttt{Subflow Fwd Packets}, \texttt{Total Backward Packets} and \texttt{Subflow Bwd Packets}, \texttt{Total Length of Fwd Packets} and \texttt{Subflow Fwd Bytes}, and \texttt{Total Length of Bwd Packets} and \texttt{Subflow Bwd Bytes} (near perfect correlation of 0.99999) Subflow features are intended to represent a finer level of aggregation within a flow, computed by dividing flow totals by the number of detected subflows. However, due to a bug in the CICFlowMeter source code, a misplaced parenthesis causes the subflow count to always equal 1, making subflow features identical to their flow-level counterparts. There is a minor discrepancy in the bytes pairs is a type mismatch between \texttt{double} and \texttt{long}, affecting only flows with large byte totals.
 
-          Due to a misplaced parenthesis in the source code, the condition that is supposed to check whether the gap between two packets exceeds 1 second fires on the first inter-packet gap that does so and never again, making \texttt{sfCount} equal to 1 for virtually every flow in the dataset. As a result, all four subflow features reduce to dividing the flow total by 1, making them equal to their corresponding totals.
-
-          The packet-count pairs hold this equality perfectly throughout the entire dataset since integer division by 1 is exact. The byte pairs behave the same way for the vast majority of flows, with rare divergence explained not by \texttt{sfCount} but by a type mismatch: \texttt{Total Length of Fwd/Bwd Packets} is output as a \texttt{double}, while \texttt{Subflow Fwd/Bwd Bytes} is output as a \texttt{long}. For flows with very large byte totals, floating-point precision loss in the \texttt{double} path produces a value that differs slightly from the exact \texttt{long}, which is the only source of divergence observed.
-
-          All four pairs are therefore redundant, carrying no additional information beyond their corresponding flow-level totals, a consequence of a single bug.
-    \item \textbf{Sixth pair:} \texttt{Fwd PSH Flags} and \texttt{SYN Flag Count} are nominally
-          designed to capture different aspects of TCP behavior, with the first counting forward packets
-          with the PSH flag set and the second counting all packets with the SYN flag set across the flow.
-          However, they are perfectly correlated throughout the dataset, with exactly 2,699,265 flows
-          where both equal 0 and 131,478 flows where both equal 1, a result of two compounding causes.
-
-          The first is a bug in the generation-time version of CICFlowMeter where flags are only updated
-          on the first packet, reducing both features to binary indicators of whether that single packet
-          had the respective flag set. This means the SYN-ACK from the server is never counted,
-          contradicting what the feature name implies.
-
-          The second is a traffic capture artifact. Flows where both equal 1 belong exclusively to attacks
-          that establish real TCP connections (\texttt{FTP-Patator}, \texttt{SSH-Patator}, \texttt{DoS
-              slowloris}, \texttt{DoS Slowhttptest}, \texttt{Infiltration}) and benign traffic, while flows
-          where both equal 0 include attacks that bypass the handshake (\texttt{DDoS}, \texttt{DoS Hulk},
-          \texttt{DoS GoldenEye}, \texttt{PortScan}, \texttt{Bot}, Web Attacks) and mid-stream captures.
-          In this dataset, any flow starting with a SYN packet consistently has PSH set on that same
-          first packet, making both features identical binary indicators of whether the flow was captured
-          from the beginning of a TCP connection, and therefore entirely redundant.
-    \item \textbf{Seventh pair:} \texttt{Fwd URG Flags} and \texttt{CWR Flag Count} are perfectly correlated throughout the dataset, with 2,830,428 flows where both equal 0 and only 315 flows where both equal 1, all belonging exclusively to benign traffic. As with the previous pair, the flag-counting bug reduces both features to binary indicators of the first packet only. The co-occurrence of URG and CWR on the same first packet is consistent with legitimate TCP congestion control behavior, which explains their absence in attack traffic, making both features redundant with each other.
-    \item \textbf{Eighth pair:} \texttt{Fwd Header Length} and \texttt{Fwd Header Length.1} these two features are duplicates of each other as mentioned previously in the Data Description subsection \ref{Sec:Desc}, which makes sense for them to be perfectly correlated.
+    \item \texttt{Fwd PSH Flags} and \texttt{SYN Flag Count} are perfectly correlated throughout the dataset, taking only the values 0 and 1. Both are only updated on the first packet by CICFlowMeter, reducing them to binary indicators rather than true counters. The correlation is further reinforced by a traffic capture artifact: flows where both equal 1 belong exclusively to attacks that establish real TCP connections (\texttt{FTP-Patator}, \texttt{SSH-Patator}, \texttt{DoS slowloris}, \texttt{DoS Slowhttptest}, \texttt{Infiltration}) and benign traffic, while flows where both equal 0 correspond to attacks that bypass the handshake (\texttt{DDoS}, \texttt{DoS Hulk}, \texttt{DoS GoldenEye}, \texttt{PortScan}, \texttt{Bot}, Web Attacks) and mid-stream captures.
+    
+    \item \texttt{Fwd URG Flags} and \texttt{CWR Flag Count} are perfectly correlated throughout the dataset, with 2,830,428 flows where both equal 0 and only 315 flows where both equal 1, all belonging exclusively to benign traffic. As with the previous pair, the flag-counting bug reduces both features to binary indicators of the first packet only. The co-occurrence of URG and CWR on the same first packet is consistent with legitimate TCP congestion control behavior, which explains their absence in attack traffic, making both features redundant with each other.
+    
+    \item \texttt{Fwd Header Length} and \texttt{Fwd Header Length.1} these two features are duplicates of each other as mentioned previously in the Data Description subsection \ref{Sec:Desc}, which makes sense for them to be perfectly correlated.
 \end{itemize}
 
+Figure \ref{fig:correlation_heatmap} visualizes their correlation matrix.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.97\columnwidth, fbox]{figures/correlation_heatmap.png}
+    \caption{Correlation Heatmap}
+    \label{fig:correlation_heatmap}
+\end{figure}
+
+\newpage
 \subsection{Data quality}
 The quality of a model's output is directly tied to its input. In this section we evaluate the dataset for any quality issues that could disrupt model training such as missing values (NaN - Not a number), infinite values (inf), negative values, duplicates rows, constant and near-constant features. For each issue, the analysis investigates the root cause, assesses its global impact on the dataset, across classes and whether it endangers any minority classes.
 \vspace{-0.5cm}
@@ -802,20 +770,21 @@ In conclusion, of the 33 features involved in the highly correlated pairs, 19 ar
         \item Subflow Bwd Packets
         \item Subflow Fwd Bytes
         \item Subflow Fwd Packets
+        \item Packet Length Mean
         \item Avg Fwd Segment Size
         \item Bwd Header Length
+        \item Fwd Header Length
         \item Bwd Packet Length Max
         \item Bwd Packet Length Std
+        \item Fwd Packet Length Std
+        \item Max Packet Length
         \item Flow IAT Max
-        \item Fwd Header Length
         \item Fwd IAT Total
         \item Fwd PSH Flags
-        \item Fwd Packet Length Std
         \item Fwd Packets/s
         \item Idle Max
         \item Idle Min
-        \item Max Packet Length
-        \item Packet Length Mean
+        
     \end{itemize}
 \end{multicols}
 

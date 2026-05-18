@@ -13,7 +13,7 @@ We begin with the state of the art reviewing most of the prominent approaches in
 
 In the network intrusion detection domain, various approaches have been proposed and studied. In this section, we review the most prominent methods, comparing their principles, strengths, and limitations, before selecting the one best suited to our project's requirements and dataset characteristics.
 
-Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split.
+Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split. Not to mention that studies on CIC-IDS2017 have shown that tree-based models generally outperform deep learning approaches on flow-based tabular data~\cite{DL-NID}.
 
 Among classical machine learning algorithms, the most prominent ones are K-Nearest Neighbors (KNN), Decision Tree, Random Forest, and gradient boosting.
 
@@ -61,7 +61,7 @@ KNN, while simple and capable of capturing complex patterns, suffers from slow i
 
 \section{Adopted Approach}
 
-We select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency and its several advantages over vanilla gradient boosting.
+We select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency.
 
 XGBoost builds trees sequentially, where each boosting round corrects the errors of the previous one using both the gradient and the hessian of the loss function.
 

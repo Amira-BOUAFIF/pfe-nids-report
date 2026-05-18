@@ -62,7 +62,7 @@ Admin -[hidden]- UC_ALERT_LIST
 
 
 ' ─── IT Manager associations ──────────────────────────
-ITMgr -[hidden]- UC_VIEW_REPORTS
+ITMgr -- UC_VIEW_REPORTS
 
 
 

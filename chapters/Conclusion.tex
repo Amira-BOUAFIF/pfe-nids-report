@@ -1,6 +1,13 @@
 \chapter*{General Conclusion}
 \markboth{General Conclusion}{}
 \addcontentsline{toc}{chapter}{General Conclusion}
+This project focused on building an AI-based intrusion detection system
+The work was structured around several main stages. We first defined the project context and justified the choice of an AI-driven approach by highlighting the weaknesses of traditional signature-based systems. We then specified the requirements, identified the actors and modeled the system, before moving to data collection and preparation, which proved to be one of the most demanding phases of the project. Finally, we carried out the modeling, evaluation, and realization steps in order to transform the research work into an operational solution.
 
+Among the most important findings of this project was the fact that performance in intrusion detection depends as much on data quality as on algorithmic choice. The CIC-IDS2017 dataset offered a rich and realistic basis for experimentation, but it also required extensive inspection and preprocessing due to corrupted values, duplicated records, contradictory samples, and features affected by extraction issues. This stage confirmed that in any data science projrct, the reliability of the input data is often a decisive factor in the quality of the final model.
 
+Some objectives, however, could not be completed within the available time. In particular, we were unable to implement the transformation pipeline that would convert raw PCAP files captured in real time into a ready for prdiction dataset row. This step was intentionally postponed due to its complexity and because of the feature extraction process itself. Especially that CICFlowMeter, showed instability and bugs during the data understanding phase. With more time, we would have designed and integrated this pipeline to obtain a more complete end-to-end system.
 
+As a future extension, the most promising direction would be to add a deep learning layer trained on a suitable dataset. Such an addition could enrich the current solution by capturing more complex patterns and improving the system’s ability to detect sophisticated or evolving attacks. It would also open the way to a more advanced hybrid architecture, combining the strengths of classical machine learning with deeper representation learning.
+
+Overall, this project provided a practical experience in designing and implementing an AI-based intrusion detection system, highlighting both the potential and limitations of this approach.

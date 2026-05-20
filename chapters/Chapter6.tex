@@ -3,7 +3,231 @@
 \section{Introduction}
 This chapter presents the realization phase of the system. Prior to this stage, the project went through several phases, starting with requirements specification and conceptual design, followed by the CRISP-DM phases of data understanding, data preparation, modeling, and evaluation. The final stage corresponds to the deployment phase of the CRISP-DM methodology.
 
-We begin with the model integration, which constitutes the core of the system, as it enables the intrusion detection functionality within the web application. We then proceed to the deployment process, which defines the runtime environment in which the system operates. This is followed by the presentation of the system results through the main user interfaces. Finally, we outline the development tools and technologies used in the implementation of the different components.
+We begin by presenting the development tools and technologies used in the implementation of the different system components.
+We then detail the model integration, which constitutes the core of the system by enabling the intrusion detection functionality within the web application.
+This is followed by an explanation of the deployment process, which defines the runtime environment in which the system operates.
+Finally, we present the system’s results through the main user interfaces.
+
+
+
+\section{Development Tools and Technologies}
+This section presents the development tools and technologies used throughout the project. Table \ref{tab:dev_tools_tech} summarizes the main technologies adopted, along with their respective roles within the system.
+
+
+\begin{center}
+  \captionof{table}{Development tools and technologies}
+  \label{tab:dev_tools_tech}
+\end{center}
+\vspace{-0.5cm}
+\begingroup
+\footnotesize
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Language}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/python-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Python}\cite{Python}\\[1mm]
+    Python is a high-level, interpreted programming language, widely used for scientific computing and rapid prototyping. In this project, it supports the data understanding, preparation, modeling and evaluation scripts. It is also used to implement the inference service.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Machine Learning}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/scikit_learn_logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Scikit-learn}\cite{ScikitLearn}\\[1mm]
+    Scikit-learn is an open-source machine learning library that provides standardized APIs for preprocessing, model evaluation, and classical learning algorithms. It is used to support preprocessing operations, splitting strategies, and metric computation.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Backend}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/spring Boot_logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Spring Boot}\cite{SpringBoot}\\[1mm]
+    Spring Boot is an opinionated Java framework that accelerates the development of RESTful services through auto-configuration and production-ready defaults. It is used to implement the backend layer, manage persistence, and orchestrate communication between the web application and the inference API.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Frontend}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/react-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{React}\cite{React}\\[1mm]
+    React is a JavaScript library for building interactive user interfaces using a component-based architecture and declarative state management. It is used to implement the frontend layer.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{UI Styling}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/tailwind_css_logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Tailwind CSS}\cite{TailwindCSS}\\[1mm]
+    Tailwind CSS is a utility-first CSS framework that provides low-level classes to rapidly build consistent, responsive user interfaces. It is used to style and ensure a consistent design across the web application.  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Database}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/mySQL-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{MySQL}\cite{MySQL}\\[1mm]
+    MySQL is an open-source relational database management system (RDBMS) that implements the SQL data model. It is used to store persistent application data (e.g., network flows, alerts, and analysis results) in order to support querying and reporting.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Local Server}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \IfFileExists{logos/xampp-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/xampp-logo.png}}{\textbf{XAMPP}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{XAMPP}\cite{XAMPP}\\[1mm]
+    XAMPP is a cross-platform local server distribution bundling common web stack components (e.g., Apache and database services) to simplify setup. It is used during prototyping to run the local stack quickly and validate database connectivity.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API Testing}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/postman-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Postman}\cite{Postman}\\[1mm]
+    Postman is an API platform for constructing and executing HTTP requests, organizing test collections, and validating responses. It is used to test REST endpoints during development and to verify payload structures, responses, and error handling.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/fastapi-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{FastAPI}\cite{FastAPI}\\[1mm]
+    FastAPI is a Python framework for building REST APIs. It is used to expose the detection model through a lightweight inference service.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Containerization}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Docker}\cite{Docker}\\[1mm]
+    Docker is a containerization platform. It is used to isolate system components and ensure consistent execution across environments.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Orchestration}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-compose-logo.png}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Docker Compose}\cite{DockerCompose}\\[1mm]
+    Docker Compose is a tool for defining and running multi-container applications through a declarative configuration file. It is used to orchestrate the local multiservice stack and reproduce the platform setup using a single configuration.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Version Control}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \IfFileExists{logos/git-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/git-logo.png}}{\textbf{Git}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Git}\cite{Git}\\[1mm]
+    Git is a distributed version control system designed to track code changes and support branching and merging workflows. It is used to maintain project history and ensure traceability across development iterations.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Code hosting and collaboration}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \IfFileExists{logos/github-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/github-logo.png}}{\textbf{GitHub}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{GitHub}\cite{GitHub}\\[1mm]
+    GitHub is a web platform for hosting Git repositories and supporting collaborative software development. It is used to host the project repository and manage collaboration through issues and pull requests.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \IfFileExists{logos/vscode-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/vscode-logo.png}}{\textbf{VS Code}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{Visual Studio Code}\cite{VSCode}\\[1mm]
+    Visual Studio Code is an extensible source-code editor providing language support, debugging capabilities, and integrated tooling through extensions. It is used as the main environment for Python scripts and frontend development.
+  \end{minipage}
+\end{tcolorbox}
+
+\vspace{0.2cm}
+
+\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
+  \begin{minipage}[c]{0.18\textwidth}
+    \centering
+    \IfFileExists{logos/intellijIDE.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/intellijIDE.png}}{\textbf{IntelliJ IDEA}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.78\textwidth}
+    \textbf{IntelliJ IDEA}\cite{IntelliJ}\\[1mm]
+    IntelliJ IDEA is an integrated development environment for the Java ecosystem, with dedicated support for Spring-based projects and automated refactoring features. It is used for backend development, including dependency management and code refactoring.
+  \end{minipage}
+\end{tcolorbox}
+\endgroup
 
 \section{Model Integration}
 
@@ -13,9 +237,11 @@ FastAPI\cite{FastAPI} was adopted as the communication layer between the model a
 
 The implemented API exposes two main endpoints. The first endpoint, \texttt{/health}, is used to verify that the service is operational and the prediction model has been successfully loaded into memory, as illustrated in Figure~\ref{fig:api-health}. The second endpoint, \texttt{/predict}, receives a feature vector as input and returns the predicted attack class along with the associated confidence score and inference time, as shown in Figure~\ref{fig:api-predict}.
 
+\vskip 0.3cm
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.67\columnwidth]{screenshots/inference_health_endpoint.png}
+	\includegraphics[width=0.8\columnwidth]{screenshots/inference_health_endpoint.png}
 	\caption{FastAPI \texttt{/health} endpoint}
 	\label{fig:api-health}
 \end{figure}
@@ -24,7 +250,7 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.67\columnwidth]{screenshots/inference_predict_endpoint.png}
+	\includegraphics[width=0.8\columnwidth]{screenshots/inference_predict_endpoint.png}
 	\caption{FastAPI \texttt{/predict} endpoint}
 	\label{fig:api-predict}
 \end{figure}
@@ -81,7 +307,7 @@ The system architecture is illustrated through the deployment diagram as shown i
 \section{User Interfaces}
 
 This section presents the main user interfaces of the NIDS Web Application.
-
+\vspace{-0.5cm}
 \subsubsection{Use case «Authenticate» realization}
 The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
 
@@ -131,26 +357,29 @@ The analysis trigger interface allows an administrator to start a network analys
 \end{figure}
 
 
-\paragraph{Use case «Send Alert» realization}
+\subsubsection{Use case «Send Alert» realization}
+
 The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged for more than 5 minutes, as illustrated in Figure~\ref{fig:email-notifications}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/send_Alert_interface.png}
+	\includegraphics[width=0.95\columnwidth]{interfaces/send_Alert_interface.png}
 	\caption{In-dashboard alert notification}
 	\label{fig:ui-send-alert}
 \end{figure}
 
+\vspace{-0.5cm}
+
 \begin{figure}[H]
 	\centering
-	\begin{minipage}[t]{0.49\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[height=0.4\textheight]{interfaces/critical_email_interface.png}
+		\includegraphics[height=0.35\textheight]{interfaces/critical_email_interface.png}
 	\end{minipage}
 	\hfill
-	\begin{minipage}[t]{0.49\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[height=0.4\textheight]{interfaces/High_email_interface.png}
+		\includegraphics[height=0.35\textheight]{interfaces/High_email_interface.png}
 	\end{minipage}
 	\caption{Email notifications}
 	\label{fig:email-notifications}
@@ -232,243 +461,38 @@ The export interface enables downloading a report in PDF format for sharing or a
 
 % Weekly report previews: 2 images on first row, 3 on second
 \begin{figure}[H]
-	\centering
-	\begin{minipage}[t]{0.49\columnwidth}
-		\centering
-		\includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page1}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.49\columnwidth}
-		\centering
-		\includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page2}
-	\end{minipage}
-	\vspace{0.3cm}
+  \centering
+  \begin{minipage}[t]{0.49\columnwidth}
+    \centering
+    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.49\columnwidth}
+    \centering
+    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page2}
+  \end{minipage}
+  \vspace{0.3cm}
 
-	\begin{minipage}[t]{0.32\columnwidth}
-		\centering
-		\includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page3}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.32\columnwidth}
-		\centering
-		\includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page4}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.32\columnwidth}
-		\centering
-		\includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page5}
-	\end{minipage}
-	\caption{Weekly report}
-	\label{fig:weekly-report-previews}
+  \begin{minipage}[t]{0.32\columnwidth}
+    \centering
+    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page3}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.32\columnwidth}
+    \centering
+    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page4}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.32\columnwidth}
+    \centering
+    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page5}
+  \end{minipage}
+  \caption{Weekly report}
+  \label{fig:weekly-report-previews}
 \end{figure}
 
 
-\section{Development Tools and Technologies}
 
-The development of this project relies on different tools and technologies for each component, as presented in Table~\ref{tab:dev_tools_tech}.
-
-\begin{center}
-	\captionof{table}{Development tools and technologies}
-	\label{tab:dev_tools_tech}
-\end{center}
-\vspace{-0.7cm}
-\begingroup
-\footnotesize
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Language}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/python-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Python}\cite{Python}\\[1mm]
-		Python is a high-level, interpreted programming language, widely used for scientific computing and rapid prototyping. In this project, it supports the data understanding, preparation, modeling and evaluation scripts. It is also used to implement the inference service.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Machine Learning}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/scikit_learn_logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Scikit-learn}\cite{ScikitLearn}\\[1mm]
-		Scikit-learn is an open-source machine learning library that provides standardized APIs for preprocessing, model evaluation, and classical learning algorithms. It is used to support preprocessing operations, splitting strategies, and metric computation within a reproducible experimentation workflow.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Backend}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/spring Boot_logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Spring Boot}\cite{SpringBoot}\\[1mm]
-		Spring Boot is an opinionated Java framework that accelerates the development of RESTful services through auto-configuration and production-ready defaults. It is used to implement the backend layer, manage persistence, and orchestrate communication between the web application and the inference API.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Frontend}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/react-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{React}\cite{React}\\[1mm]
-		React is a JavaScript library for building interactive user interfaces using a component-based architecture and declarative state management. It is used to implement the frontend layer.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Database}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/mySQL-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{MySQL}\cite{MySQL}\\[1mm]
-		MySQL is an open-source relational database management system (RDBMS) that implements the SQL data model. It is used to store persistent application data (e.g., network flows, alerts, and analysis results) in order to support querying and reporting.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Local Server}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\IfFileExists{logos/xampp-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/xampp-logo.png}}{\textbf{XAMPP}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{XAMPP}\cite{XAMPP}\\[1mm]
-		XAMPP is a cross-platform local server distribution bundling common web stack components (e.g., Apache and database services) to simplify setup. It is used during prototyping to run the local stack quickly and validate database connectivity.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API Testing}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/postman-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Postman}\cite{Postman}\\[1mm]
-		Postman is an API platform for constructing and executing HTTP requests, organizing test collections, and validating responses. It is used to test REST endpoints during development and to verify payload structures, responses, and error handling.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{API}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/fastapi-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{FastAPI}\cite{FastAPI}\\[1mm]
-		FastAPI is a Python framework for building REST APIs. It is used to expose the detection model through a lightweight inference service.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Containerization}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Docker}\cite{Docker}\\[1mm]
-		Docker is a containerization platform. It is used to isolate system components and ensure consistent execution across environments.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Orchestration}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/docker-compose-logo.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Docker Compose}\cite{DockerCompose}\\[1mm]
-		Docker Compose is a tool for defining and running multi-container applications through a declarative configuration file. It is used to orchestrate the local multiservice stack and reproduce the platform setup using a single configuration.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Version Control}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\IfFileExists{logos/git-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/git-logo.png}}{\textbf{Git}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Git}\cite{Git}\\[1mm]
-		Git is a distributed version control system designed to track code changes and support branching and merging workflows. It is used to maintain project history and ensure traceability across development iterations.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Code hosting and collaboration}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\IfFileExists{logos/github-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/github-logo.png}}{\textbf{GitHub}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{GitHub}\cite{GitHub}\\[1mm]
-		GitHub is a web platform for hosting Git repositories and supporting collaborative software development. It is used to host the project repository and manage collaboration through issues and pull requests.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\IfFileExists{logos/vscode-logo.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/vscode-logo.png}}{\textbf{VS Code}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{Visual Studio Code}\cite{VSCode}\\[1mm]
-		Visual Studio Code is an extensible source-code editor providing language support, debugging capabilities, and integrated tooling through extensions. It is used as the main environment for Python scripts and frontend development.
-	\end{minipage}
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-\begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{IDE}]
-	\begin{minipage}[c]{0.18\textwidth}
-		\centering
-		\IfFileExists{logos/intellijIDE.png}{\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/intellijIDE.png}}{\textbf{IntelliJ IDEA}}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[c]{0.78\textwidth}
-		\textbf{IntelliJ IDEA}\cite{IntelliJ}\\[1mm]
-		IntelliJ IDEA is an integrated development environment for the Java ecosystem, with dedicated support for Spring-based projects and automated refactoring features. It is used for backend development, including dependency management and code refactoring.
-	\end{minipage}
-\end{tcolorbox}
-\endgroup
 
 \section{Conclusion}
 With this final chapter, we conclude the design and implementation of the AI-based Network Intrusion Detection System. We presented the model integration through a FastAPI inference service, the containerized deployment using Docker and Docker Compose, and the main user interfaces covering the core functionalities of the platform. Finally, we outlined the development tools and technologies used across the different components of the system.

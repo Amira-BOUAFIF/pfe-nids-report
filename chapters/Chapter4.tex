@@ -1,8 +1,7 @@
 \chapter{Data Collection and Preparation}
 
 \section{Introduction}
-
-Data constitutes the foundation of any AI system; the quality of all subsequent stages, including model training and performance, is directly dependent on it. For this reason, the data understanding and data preparation phases of the CRISP-DM methodology are considered among the most critical stages of the process.
+Data constitutes the foundation of any AI system; the quality of all subsequent stages, including model training and performance, is directly dependent on it. For this reason, the data understanding and preparation phases of the CRISP-DM methodology are considered among the most critical stages of the process.
 
 This chapter presents the complete data workflow adopted in this project. It begins with data collection, followed by an in-depth exploration phase aimed at understanding the structure, characteristics, and underlying patterns of the dataset. Based on the insights obtained during this stage, we then proceed to data preprocessing, where appropriate transformations and refinements are applied to ensure the dataset is properly structured and suitable for model training.
 
@@ -31,7 +30,7 @@ We narrow it down to these three datasets. Below is a comparative table ~\ref{ta
         \hline
 
         NSL-KDD \cite{tavallaee2009kdd}                                                                                     &
-        Canadian Institute for Cybersecurity at the University of New Brunswick (UNB)                                        &
+        Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB)                                        &
         Small ($\approx$148k records)                                                                     &
         Derived from the KDD '99 dataset, its traffic was generated in a military-style network environment with predefined automated attack scripts. &
         Low; 4 attack families: DoS, Probe, R2L, U2R with several specific attacks in each family.                                          &
@@ -61,9 +60,10 @@ The comparative analysis of the three datasets reveal that each has its own limi
 
 \subsection{Dataset overview}
 
-CIC-IDS2017 was created by the Canadian Institute for Cybersecurity (CIC) at the University of New Brunswick (UNB), within a controlled environment, where the network traffic was captured in packet capture (PCAP) format.
-
-The transformation of raw PCAP files was done using a feature extraction tool, CICFlowMeter. Therefore a row in this dataset doesn't represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
+CIC-IDS2017 was created by the Canadian Institute for Cybersecurity at the University of New Brunswick, in two phases. 
+The first phase involved simulating network traffic within a controlled environment, where the generated traffic was captured in packet capture (PCAP) format. 
+The second phase focused on transforming the raw PCAP files into a format suitable for machine learning. This transformation involved processing the captured network packets and aggregating them into network flows, from which statistical features describing each communication session were extracted using the CICFlowMeter\cite{CICFlowMeter} feature extraction tool. 
+As a result, a row in this dataset do not represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary. 
 
 \section{Data Understanding}
 
@@ -182,9 +182,9 @@ The dataset contains 79 columns, of them 78 are numeric level-flow features and 
               \texttt{Packet Length Mean} =\texttt{Average Packet Size}= \frac{\sum \text{Packet Length}}{\text{Packet Count}}
           \]
 
-          We inspect the CICFlowMeter\cite{CICFlowMeter} code source in order to trace back the computation logic of these two features.
-          We found out that this discrepancy arises because \texttt{Packet Length Mean} uses a buggy version of the packet count variable, while \texttt{Average Packet Size} uses the correct one.
-\end{itemize}
+We inspect the CICFlowMeter code source in order to trace back the computation logic of these two features.
+We found out that this discrepancy arises because \texttt{Packet Length Mean} uses a buggy version of the packet count variable, while \texttt{Average Packet Size} uses the correct one. 
+          \end{itemize}
 
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
 

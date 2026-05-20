@@ -1,8 +1,5 @@
 \chapter{Modeling and Evaluation}
 
-% Redefine \paragraph{} to break lines for this chapter only
-\renewcommand{\paragraph}[1]{\medskip\noindent\textbf{#1}\par}
-
 \section{Introduction}
 
 This chapter covers the modeling and evaluation phase of the CRISP-DM methodology. 
@@ -57,7 +54,7 @@ Table \ref{tab:ml_comparison} provides a comparative overview of those 4 methods
     \end{tabular}
 \end{table}
 
-KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
+KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset\cite{KNN}, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting\cite{DT}, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance\cite{RT}, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well\cite{GB}, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
 
 \section{Adopted Approach}
 
@@ -79,7 +76,7 @@ This section details the full training and optimization process of the XGBoost c
 
 \subsection{Initial Setup}
 
-\paragraph{Metric selection}
+\subsubsection{Metric selection}
 
 The CIC-IDS2017 dataset is inherently imbalanced.
 BENIGN traffic constitutes roughly 80\% of the dataset, reflecting the reality of real network traffic where attacks are rare events.
@@ -137,7 +134,7 @@ Where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for c
 This guarantees that every class, regardless of size, contributes equally to the final score.
 Per-class F1-score scores are also tracked alongside it throughout all experiments to monitor individual class behavior.
 
-\paragraph{Cross-Validation}
+\subsubsection{Cross-Validation}
 Given the challenges associated with the CIC-IDS2017 dataset, particularly the class imbalance issue and the limited number of samples in certain attack classes, we decide to adopt an experimental approach during the training phase and rely on evaluation metrics to guide our decisions for the final model configuration. This led us to use cross validation.
 
 Cross-validation is an evaluation technique that gives a more stable and reliable estimate of model performance, instead of relying on a single train-test split, the dataset is divided into several folds, and the model is trained and evaluated multiple times, each time using a different fold as the validation set while the remaining folds are used for training. The final performance is then obtained by averaging the results across all runs.  Several variants exist:
@@ -148,7 +145,7 @@ Cross-validation is an evaluation technique that gives a more stable and reliabl
 \end{itemize}
 Across all experiments, the reported performance corresponds to the mean Macro F1-score over the five folds, with per-class F1-score scores tracked individually to monitor class-level behavior throughout.
 
-\paragraph{Initial XGBoost parameters}
+\subsubsection{Initial XGBoost parameters}
 
 The initial XGBoost model is trained with the following parameters:
 
@@ -186,14 +183,14 @@ The baseline training results divide into expected and unexpected outcomes, as s
 \end{figure}
 
 
-\paragraph{Expected outcomes :}
+\subsubsection{Expected outcomes}
 Classes with large sample counts perform exactly as anticipated. Attack types such as DoS Hulk, PortScan, and DDoS, each with over 100,000 training samples, along with moderately represented classes like DoS GoldenEye, FTP-Patator, SSH-Patator, DoS Slowloris, and DoS Slowhttptest, each above 5,000 samples, achieve a high F1-score at 0.99. The model has enough examples to learn stable, discriminative boundaries for these classes.
 
 At the other end of the spectrum, Heartbleed and Infiltration achieve comparatively lower performance, with F1-scores of 0.93 and 0.75 respectively.
 This behavior is expected, as only 9 Heartbleed samples and 29 Infiltration samples remained after preprocessing, which makes learning more challenging for the model.
 Nevertheless, the results remain promising given the extremely limited training data, and further improvement could likely be achieved.
 
-\paragraph{Unexpected outcomes :}
+\subsubsection{Unexpected outcomes}
 \begin{itemize}
     \item \textbf{Web Attacks:}
           The most notable results come from the Web attack subclasses. We anticipated that Web Attack - SQL Injection would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
@@ -272,7 +269,8 @@ We define a fixed set of experiments. If a new configuration involves altering t
 Following baseline training, we attempt to improve the performance of weaker-performing classes, namely the Web Attack subclasses, Heartbleed, Infiltration, and Bot, through these series of experiments while monitoring the evaluation metrics.
 
 
-\paragraph{Class weights}
+\subsubsection{Class weights}
+
 Under class weighting (balanced), Infiltration improves to an F1-score of 0.84 and Heartbleed reaches 0.96. However, Bot performance deteriorates from 0.83 to 0.79, while Web Attack classes show no measurable improvement.
 
 A second weighting strategy is explored using two custom formulations.
@@ -282,7 +280,7 @@ Both formulas are normalized by their mean to keep training numerically stable.
 
 However, neither outperforms the standard balanced weighting; no improvement is observed for the target classes, and this configuration is dropped from all subsequent experiment sets.
 
-\paragraph{Sampling (SMOTE + ROS)}
+\subsubsection{Sampling (SMOTE + ROS)}
 
 Sampling is applied only within the training folds during cross-validation. The resampling is fit exclusively on each training fold, never on the validation fold, to prevent any form of data leakage from the synthetic samples into the evaluation.
 
@@ -305,6 +303,7 @@ The consistent finding across all four configurations is that Web Attack perform
 Relative to the baseline, Bot performance consistently drops under these configurations,  which confirms that this is a dataset limitation.
 
 \subsubsection{Web Attack Class Merging}
+
 As established, no combination of weighting or sampling improves Web Attack performance. The confusion matrix shows persistent mutual misclassification between XSS and Brute Force across every experiment. Their flow-level signatures are too similar to separate with the available features.
 
 We therefore decide to merge the three Web Attack subclasses Brute Force, SQL Injection and XSS into a single unified Web Attack class.
@@ -369,7 +368,7 @@ At the class level, nine classes achieve near-perfect performance with F1-scores
 
 Following the final model configuration, we proceed to hyperparameter tuning, defining a search space over the most impactful parameters and applying a search strategy to find the combination that maximizes model performance.
 
-\paragraph{Search Space}
+\subsubsection{Search Space}
 
 The parameters selected for tuning are as follows:
 
@@ -408,7 +407,7 @@ Each parameter is assigned a range of values to explore, as shown in Table~\ref{
 \end{table}
 
 
-\paragraph{Search Method}
+\subsubsection{Search Method}
 
 Having defined the search space, we proceed to decide the search method. Three search strategies are considered:
 
@@ -420,7 +419,7 @@ Having defined the search space, we proceed to decide the search method. Three s
 
 Bayesian optimization with Optuna is selected, as it is a smart method yielding better results with much cheaper computational cost. It uses a Tree-structured Parzen Estimator (TPE) that splits the trial history into two groups: one with the best-performing trials and another with the rest, it then proposes the candidate hyperparameters that maximize the ratio between the two distributions, focusing sampling on promising regions while avoiding areas already known to perform poorly. It can also capture parameter dependencies as it models each parameter's distribution conditionally.
 
-\paragraph{Tuning Results}
+\subsubsection{Tuning Results}
 
 After 100 trials, the best configuration is found at trial 91, achieving a macro F1 score of 0.976 with an improvement of 0.006 over the untuned model. The infiltration F1-score is improved from 0.87 to 0.91, heartbleed also has a significant improvement from 0.96 to 1.0, while the merged Web Attack class remains stable at 0.98.
 
@@ -452,10 +451,11 @@ Throughout the study, the F1-score is improving steadily beyond 50 trials before
 
 Beyond class weighting and hyperparameter tuning, two additional threshold mechanisms are applied to further refine the model's decision-making.
 
-\paragraph{Decision Threshold}
-XGBoost assigns each sample to the class with the highest predicted probability. In an imbalanced dataset, this is problematic as the model naturally assigns higher probabilities to majority classes, making it harder for minority classes to win the competition even when the model has a reasonable signal for them. To address this, a decision threshold is optimized independently for each class on the out-of-fold predictions from cross-validation. By acting as a per-class scale that normalizes each class's probability, minority classes are given a fairer chance at being predicted without modifying the model itself.
+\subsubsection{Decision Threshold}
+XGBoost assigns each sample to the class with the highest predicted probability. In an imbalanced dataset, this is problematic as the  model learns a bias toward majority classes during training, which is expressed at prediction time through higher predicted probabilities for those classes, making it harder for minority classes to be predicted even when the model has a reasonable signal for them. To address this at the decision level, a threshold is optimized independently for each class on the out-of-fold predictions from cross-validation. By acting as a per-class scale that normalizes each class's probability, minority classes are given a fairer chance at being predicted without modifying the model itself.
 
-\paragraph{Confidence Threshold}
+\subsubsection{Confidence Threshold}
+
 A second limitation arises from the closed-world assumption of the model. The model is trained on a fixed set of known attack classes and will always assign a sample to one of them, even when encountering traffic that does not resemble any of them. In practice, new attack types emerge continuously, and the model has no mechanism to express uncertainty. When faced with an unknown pattern, it will most likely classify it as BENIGN, which is the worst possible outcome in a security context. To address this, a confidence threshold is set on the maximum probability across all classes. When the model's highest confidence for any class falls below this threshold, the flow is flagged as unknown rather than forced into a potentially wrong classification, leaving it for human review.
 
 \subsection{Final model training results}
@@ -471,6 +471,7 @@ At the class level, nine classes achieve near-perfect F1-scores above 0.99. Hear
     \caption{Final F1-score per class}
     \label{fig:final_f1}
 \end{figure}
+
 
 \newpage
 \section{Conclusion}

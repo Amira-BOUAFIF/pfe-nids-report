@@ -1,0 +1,2205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   contentStyleType="text/css"
+   height="3187.5px"
+   preserveAspectRatio="none"
+   style="width:3050px;height:3187px;background:#FFFFFF;"
+   version="1.1"
+   viewBox="0 0 3050 3187"
+   width="3050px"
+   zoomAndPan="magnify"
+   id="svg119"
+   sodipodi:docname="class.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview119"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="0.1212549"
+     inkscape:cx="1364.8933"
+     inkscape:cy="1480.3525"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="link_Report_NetworkFlow" />
+  <defs
+     id="defs1" />
+  <g
+     id="g119">
+    <!--class Role-->
+    <g
+       id="elem_Role"
+       transform="translate(32.087489,252.13305)">
+      <rect
+         codeLine="3"
+         fill="#f1f1f1"
+         height="315.08789"
+         id="Role"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="312.5"
+         x="1695.0997"
+         y="906.53088" />
+      <circle
+         cx="1796.8185"
+         cy="956.53088"
+         fill="#eb937f"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse1"
+         r="34.375" />
+      <path
+         d="m 1793.2541,959.02111 v 7.8125 h 13.5254 v -2.8808 q 0,-1.9043 0.7324,-2.7344 0.7813,-0.8301 1.9531,-0.8301 1.1719,0 1.9043,0.8301 0.7325,0.8301 0.7325,2.7344 v 8.2031 h -25 q -1.9532,0 -2.7832,-0.7324 -0.7813,-0.7324 -0.7813,-1.9531 0,-1.1719 0.8301,-1.9043 0.8301,-0.7325 2.7344,-0.7325 h 0.83 v -20.8007 h -0.83 q -1.9532,0 -2.7832,-0.7325 -0.7813,-0.7324 -0.7813,-1.9531 0,-1.1719 0.7813,-1.9043 0.83,-0.7324 2.7832,-0.7324 h 23.8281 v 8.1055 q 0,1.9043 -0.7324,2.7343 -0.6836,0.7813 -1.9043,0.7813 -1.1719,0 -1.9043,-0.7813 -0.7325,-0.83 -0.7325,-2.7343 v -2.7832 h -12.4023 v 7.666 h 4.6387 q 0,-2.0508 0.3906,-2.6367 0.8301,-1.2696 2.2949,-1.2696 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 6.1524 q 0,1.709 -0.3906,2.2949 -0.8301,1.2207 -2.2461,1.2207 -1.4648,0 -2.2949,-1.2695 -0.3906,-0.586 -0.3906,-2.6856 z"
+         fill="#000000"
+         id="path1" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="90.625"
+         x="2873.2812"
+         y="1586.6516"
+         id="text1"
+         transform="translate(-1020.5252,-612.21909)">Role</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="1698.2247"
+         x2="2004.4747"
+         y1="1006.5309"
+         y2="1006.5309"
+         id="line1" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="131.25"
+         x="2734.375"
+         y="1676.6663"
+         id="text2"
+         transform="translate(-1020.5252,-612.21909)">ADMIN</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="275"
+         x="2734.375"
+         y="1731.6956"
+         id="text3"
+         transform="translate(-1020.5252,-612.21909)">IT_MANAGER</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="1698.2247"
+         x2="2004.4747"
+         y1="1141.5895"
+         y2="1141.5895"
+         id="line3" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="2734.375"
+         y="1811.7249"
+         id="text4"
+         transform="translate(-1020.5252,-612.21909)"> </text>
+    </g>
+    <!--class Severity-->
+    <g
+       id="elem_Severity"
+       transform="translate(209.96861,-389.40125)">
+      <rect
+         codeLine="10"
+         fill="#f1f1f1"
+         height="425.14651"
+         id="Severity"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="259.375"
+         x="1670.3125"
+         y="2740.625" />
+      <circle
+         cx="1717.1875"
+         cy="2790.625"
+         fill="#eb937f"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse4"
+         r="34.375" />
+      <path
+         d="m 1713.623,2793.1152 v 7.8125 h 13.5254 v -2.8808 q 0,-1.9043 0.7325,-2.7344 0.7812,-0.8301 1.9531,-0.8301 1.1719,0 1.9043,0.8301 0.7324,0.8301 0.7324,2.7344 v 8.2031 h -25 q -1.9531,0 -2.7832,-0.7324 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.83,-1.9043 0.8301,-0.7325 2.7344,-0.7325 h 0.8301 v -20.8007 h -0.8301 q -1.9531,0 -2.7832,-0.7325 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.7812,-1.9043 0.8301,-0.7324 2.7832,-0.7324 h 23.8281 v 8.1055 q 0,1.9043 -0.7324,2.7343 -0.6836,0.7813 -1.9043,0.7813 -1.1719,0 -1.9043,-0.7813 -0.7324,-0.83 -0.7324,-2.7343 v -2.7832 h -12.4024 v 7.666 h 4.6387 q 0,-2.0508 0.3906,-2.6367 0.8301,-1.2696 2.295,-1.2696 1.1718,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 6.1524 q 0,1.709 -0.3906,2.2949 -0.8301,1.2207 -2.2461,1.2207 -1.4649,0 -2.295,-1.2695 -0.3906,-0.586 -0.3906,-2.6856 z"
+         fill="#000000"
+         id="path4" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="1760.9375"
+         y="2808.5266"
+         id="text5">Severity</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="1673.4375"
+         x2="1926.5625"
+         y1="2840.625"
+         y2="2840.625"
+         id="line5" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="100"
+         x="1689.0625"
+         y="2898.5413"
+         id="text6">LOW</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1689.0625"
+         y="2953.5706"
+         id="text7">MEDIUM</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="100"
+         x="1689.0625"
+         y="3008.5999"
+         id="text8">HIGH</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="193.75"
+         x="1689.0625"
+         y="3063.6292"
+         id="text9">CRITICAL</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="1673.4375"
+         x2="1926.5625"
+         y1="3085.7422"
+         y2="3085.7422"
+         id="line9" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="1689.0625"
+         y="3143.6584"
+         id="text10"> </text>
+    </g>
+    <!--class AlertStatus-->
+    <g
+       id="elem_AlertStatus"
+       transform="translate(210.4308,-389.40125)">
+      <rect
+         codeLine="19"
+         fill="#f1f1f1"
+         height="425.14651"
+         id="AlertStatus"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="406.25"
+         x="887.5"
+         y="2740.625" />
+      <circle
+         cx="975.15631"
+         cy="2790.625"
+         fill="#eb937f"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse10"
+         r="34.375" />
+      <path
+         d="m 971.5918,2793.1152 v 7.8125 h 13.5254 v -2.8808 q 0,-1.9043 0.7324,-2.7344 0.7813,-0.8301 1.9531,-0.8301 1.1719,0 1.9043,0.8301 0.7325,0.8301 0.7325,2.7344 v 8.2031 h -25 q -1.9532,0 -2.7832,-0.7324 -0.7813,-0.7324 -0.7813,-1.9531 0,-1.1719 0.8301,-1.9043 0.8301,-0.7325 2.7344,-0.7325 h 0.83 v -20.8007 h -0.83 q -1.9532,0 -2.7832,-0.7325 -0.7813,-0.7324 -0.7813,-1.9531 0,-1.1719 0.7813,-1.9043 0.83,-0.7324 2.7832,-0.7324 h 23.8281 v 8.1055 q 0,1.9043 -0.7324,2.7343 -0.6836,0.7813 -1.9043,0.7813 -1.1719,0 -1.9043,-0.7813 -0.7325,-0.83 -0.7325,-2.7343 v -2.7832 h -12.4023 v 7.666 h 4.6387 q 0,-2.0508 0.3906,-2.6367 0.8301,-1.2696 2.2949,-1.2696 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 6.1524 q 0,1.709 -0.3906,2.2949 -0.8301,1.2207 -2.2461,1.2207 -1.4648,0 -2.2949,-1.2695 -0.3906,-0.586 -0.3906,-2.6856 z"
+         fill="#000000"
+         id="path10" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="215.625"
+         x="1027.9688"
+         y="2808.5266"
+         id="text11">AlertStatus</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="890.625"
+         x2="1290.625"
+         y1="2840.625"
+         y2="2840.625"
+         id="line11" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="96.875"
+         x="906.25"
+         y="2898.5413"
+         id="text12">NEW</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="368.75"
+         x="906.25"
+         y="2953.5706"
+         id="text13">ACKNOWLEDGED</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="234.375"
+         x="906.25"
+         y="3008.5999"
+         id="text14">RESOLVED</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="228.125"
+         x="906.25"
+         y="3063.6292"
+         id="text15">DISMISSED</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="890.625"
+         x2="1290.625"
+         y1="3085.7422"
+         y2="3085.7422"
+         id="line15" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="906.25"
+         y="3143.6584"
+         id="text16"> </text>
+    </g>
+    <!--class Format-->
+    <g
+       id="elem_Format"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="28"
+         fill="#f1f1f1"
+         height="260.05859"
+         id="Format"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="240.625"
+         x="192.1875"
+         y="187.5" />
+      <circle
+         cx="239.0625"
+         cy="237.5"
+         fill="#eb937f"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse16"
+         r="34.375" />
+      <path
+         d="m 235.498,239.9902 v 7.8125 h 13.5254 v -2.8808 q 0,-1.9043 0.7325,-2.7344 0.7812,-0.8301 1.9531,-0.8301 1.1719,0 1.9043,0.8301 0.7324,0.8301 0.7324,2.7344 v 8.2031 h -25 q -1.9531,0 -2.7832,-0.7324 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.83,-1.9043 0.8301,-0.7325 2.7344,-0.7325 h 0.8301 V 227.002 h -0.8301 q -1.9531,0 -2.7832,-0.7325 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.7812,-1.9043 0.8301,-0.7324 2.7832,-0.7324 h 23.8281 v 8.1055 q 0,1.9043 -0.7324,2.7343 -0.6836,0.7813 -1.9043,0.7813 -1.1719,0 -1.9043,-0.7813 -0.7324,-0.83 -0.7324,-2.7343 V 227.002 H 235.498 v 7.666 h 4.6387 q 0,-2.0508 0.3906,-2.6367 0.8301,-1.2696 2.295,-1.2696 1.1718,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 6.1524 q 0,1.709 -0.3906,2.2949 -0.8301,1.2207 -2.2461,1.2207 -1.4649,0 -2.295,-1.2695 -0.3906,-0.586 -0.3906,-2.6856 z"
+         fill="#000000"
+         id="path16" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="140.625"
+         x="282.8125"
+         y="255.4016"
+         id="text17">Format</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="195.3125"
+         x2="429.6875"
+         y1="287.5"
+         y2="287.5"
+         id="line17" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="87.5"
+         x="210.9375"
+         y="345.41629"
+         id="text18">PDF</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="195.3125"
+         x2="429.6875"
+         y1="367.5293"
+         y2="367.5293"
+         id="line18" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="210.9375"
+         y="425.44559"
+         id="text19"> </text>
+    </g>
+    <!--class AttackCategory-->
+    <g
+       id="elem_AttackCategory"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="34"
+         fill="#f1f1f1"
+         height="865.38092"
+         id="AttackCategory"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="403.125"
+         x="2201.5625"
+         y="1243.75" />
+      <circle
+         cx="2248.4375"
+         cy="1293.75"
+         fill="#eb937f"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse19"
+         r="34.375" />
+      <path
+         d="m 2244.873,1296.2402 v 7.8125 h 13.5254 v -2.8808 q 0,-1.9043 0.7325,-2.7344 0.7812,-0.8301 1.9531,-0.8301 1.1719,0 1.9043,0.8301 0.7324,0.8301 0.7324,2.7344 v 8.2031 h -25 q -1.9531,0 -2.7832,-0.7324 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.83,-1.9043 0.8301,-0.7325 2.7344,-0.7325 h 0.8301 v -20.8007 h -0.8301 q -1.9531,0 -2.7832,-0.7325 -0.7812,-0.7324 -0.7812,-1.9531 0,-1.1719 0.7812,-1.9043 0.8301,-0.7324 2.7832,-0.7324 h 23.8281 v 8.1055 q 0,1.9043 -0.7324,2.7343 -0.6836,0.7813 -1.9043,0.7813 -1.1719,0 -1.9043,-0.7813 -0.7324,-0.83 -0.7324,-2.7343 v -2.7832 h -12.4024 v 7.666 h 4.6387 q 0,-2.0508 0.3906,-2.6367 0.8301,-1.2696 2.295,-1.2696 1.1718,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 6.1524 q 0,1.709 -0.3906,2.2949 -0.8301,1.2207 -2.2461,1.2207 -1.4649,0 -2.295,-1.2695 -0.3906,-0.586 -0.3906,-2.6856 z"
+         fill="#000000"
+         id="path19" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="303.125"
+         x="2292.1875"
+         y="1311.6516"
+         id="text20">AttackCategory</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="2204.6875"
+         x2="2601.5625"
+         y1="1343.75"
+         y2="1343.75"
+         id="line20" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="65.625"
+         x="2220.3125"
+         y="1401.6663"
+         id="text21">Bot</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="115.625"
+         x="2220.3125"
+         y="1456.6956"
+         id="text22">DDoS</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="328.125"
+         x="2220.3125"
+         y="1511.7249"
+         id="text23">DoS_GoldenEye</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="193.75"
+         x="2220.3125"
+         y="1566.7542"
+         id="text24">DoS_Hulk</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="346.875"
+         x="2220.3125"
+         y="1621.7834"
+         id="text25">DoS_Slowhttptest</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="275"
+         x="2220.3125"
+         y="1676.8127"
+         id="text26">DoS_slowloris</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="243.75"
+         x="2220.3125"
+         y="1731.842"
+         id="text27">FTP-Patator</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="215.625"
+         x="2220.3125"
+         y="1786.8713"
+         id="text28">Heartbleed</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="190.625"
+         x="2220.3125"
+         y="1841.9006"
+         id="text29">Infiltration</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="181.25"
+         x="2220.3125"
+         y="1896.9299"
+         id="text30">PortScan</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="243.75"
+         x="2220.3125"
+         y="1951.9592"
+         id="text31">SSH-Patator</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="237.5"
+         x="2220.3125"
+         y="2006.9885"
+         id="text32">Web_Attack</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="2204.6875"
+         x2="2601.5625"
+         y1="2029.1016"
+         y2="2029.1016"
+         id="line32" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="2220.3125"
+         y="2087.0178"
+         id="text33"> </text>
+    </g>
+    <!--class User-->
+    <g
+       id="elem_User"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="54"
+         fill="#f1f1f1"
+         height="535.20508"
+         id="User"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="509.375"
+         x="1192.1875"
+         y="50" />
+      <circle
+         cx="1388.2812"
+         cy="100"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse33"
+         r="34.375" />
+      <path
+         d="m 1396.9238,87.1094 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path33" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="90.625"
+         x="1452.3438"
+         y="117.9016"
+         id="text34">User</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="1195.3125"
+         x2="1698.4375"
+         y1="150"
+         y2="150"
+         id="line34" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="185.3271"
+         id="rect34" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="1254.6875"
+         y="207.91631"
+         id="text35">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="240.3564"
+         id="rect35" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="337.5"
+         x="1254.6875"
+         y="262.94559"
+         id="text36">username: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="295.38571"
+         id="rect36" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="243.75"
+         x="1254.6875"
+         y="317.97491"
+         id="text37">email: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="350.41501"
+         id="rect37" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="428.125"
+         x="1254.6875"
+         y="373.00421"
+         id="text38">passwordHash: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="405.44431"
+         id="rect38" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="190.625"
+         x="1254.6875"
+         y="428.03339"
+         id="text39">role: Role</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1217.1875"
+         y="460.4736"
+         id="rect39" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="406.25"
+         x="1254.6875"
+         y="483.06271"
+         id="text40">createdAt: DateTime</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="1195.3125"
+         x2="1698.4375"
+         y1="505.17581"
+         y2="505.17581"
+         id="line40" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="1210.9375"
+         y="563.09198"
+         id="text41"> </text>
+    </g>
+    <!--class Alert-->
+    <g
+       id="elem_Alert"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="65"
+         fill="#f1f1f1"
+         height="535.20508"
+         id="Alert"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="618.75"
+         x="781.25"
+         y="1409.375" />
+      <circle
+         cx="1032.0312"
+         cy="1459.375"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse41"
+         r="34.375" />
+      <path
+         d="m 1040.6738,1446.4844 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path41" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="90.625"
+         x="1096.0938"
+         y="1477.2766"
+         id="text42">Alert</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="784.375"
+         x2="1396.875"
+         y1="1509.375"
+         y2="1509.375"
+         id="line42" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1544.7021"
+         id="rect42" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="843.75"
+         y="1567.2913"
+         id="text43">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1599.7314"
+         id="rect43" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="378.125"
+         x="843.75"
+         y="1622.3206"
+         id="text44">raisedAt: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1654.7607"
+         id="rect44" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="537.5"
+         x="843.75"
+         y="1677.3499"
+         id="text45">acknowledgedAt: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1709.79"
+         id="rect45" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="425"
+         x="843.75"
+         y="1732.3792"
+         id="text46">resolvedAt: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1764.8193"
+         id="rect46" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="393.75"
+         x="843.75"
+         y="1787.4084"
+         id="text47">analystNotes: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="806.25"
+         y="1819.8486"
+         id="rect47" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="359.375"
+         x="843.75"
+         y="1842.4377"
+         id="text48">status: AlertStatus</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="784.375"
+         x2="1396.875"
+         y1="1864.5508"
+         y2="1864.5508"
+         id="line48" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="800"
+         y="1922.467"
+         id="text49"> </text>
+    </g>
+    <!--class Attack-->
+    <g
+       id="elem_Attack"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="76"
+         fill="#f1f1f1"
+         height="425.14651"
+         id="Attack"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="581.25"
+         x="1509.375"
+         y="1464.0625" />
+      <circle
+         cx="1725.7812"
+         cy="1514.0625"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse49"
+         r="34.375" />
+      <path
+         d="m 1734.4238,1501.1719 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path49" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="121.875"
+         x="1789.8438"
+         y="1531.9641"
+         id="text50">Attack</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="1512.5"
+         x2="2087.5"
+         y1="1564.0625"
+         y2="1564.0625"
+         id="line50" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1534.375"
+         y="1599.3896"
+         id="rect50" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="1571.875"
+         y="1621.9788"
+         id="text51">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1534.375"
+         y="1654.4189"
+         id="rect51" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="500"
+         x="1571.875"
+         y="1677.0081"
+         id="text52">category: AttackCategory</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1534.375"
+         y="1709.4482"
+         id="rect52" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="343.75"
+         x="1571.875"
+         y="1732.0374"
+         id="text53">Severity: Severity</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1534.375"
+         y="1764.4775"
+         id="rect53" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="356.25"
+         x="1571.875"
+         y="1787.0667"
+         id="text54">description: String</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="1512.5"
+         x2="2087.5"
+         y1="1809.1797"
+         y2="1809.1797"
+         id="line54" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="1528.125"
+         y="1867.0959"
+         id="text55"> </text>
+    </g>
+    <!--class NetworkFlow-->
+    <g
+       id="elem_NetworkFlow"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="85"
+         fill="#f1f1f1"
+         height="1745.8496"
+         id="NetworkFlow"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="650"
+         x="21.875"
+         y="803.125" />
+      <circle
+         cx="210.1563"
+         cy="853.125"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse55"
+         r="34.375" />
+      <path
+         d="m 218.7988,840.2344 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path55" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="246.875"
+         x="274.21881"
+         y="871.02661"
+         id="text56">NetworkFlow</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="25"
+         x2="668.75"
+         y1="903.125"
+         y2="903.125"
+         id="line56" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="938.45209"
+         id="rect56" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="171.875"
+         x="84.375"
+         y="961.04132"
+         id="text57">id : Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="993.48138"
+         id="rect57" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="415.625"
+         x="84.375"
+         y="1016.0706"
+         id="text58">timestamp: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1048.5107"
+         id="rect58" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="312.5"
+         x="84.375"
+         y="1071.0999"
+         id="text59">sourceIP: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1103.54"
+         id="rect59" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="393.75"
+         x="84.375"
+         y="1126.1292"
+         id="text60">destinationIP: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1158.5693"
+         id="rect60" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="287.5"
+         x="84.375"
+         y="1181.1584"
+         id="text61">sourcePort: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1213.5986"
+         id="rect61" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="368.75"
+         x="84.375"
+         y="1236.1877"
+         id="text62">destinationPort: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1268.6279"
+         id="rect62" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="300"
+         x="84.375"
+         y="1291.217"
+         id="text63">protocol: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1323.6572"
+         id="rect63" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="293.75"
+         x="84.375"
+         y="1346.2463"
+         id="text64">fwdPackets: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1378.6865"
+         id="rect64" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="306.25"
+         x="84.375"
+         y="1401.2756"
+         id="text65">bwdPackets: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1433.7158"
+         id="rect65" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="300"
+         x="84.375"
+         y="1456.3049"
+         id="text66">fwdBytes: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1488.7451"
+         id="rect66" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="312.5"
+         x="84.375"
+         y="1511.3342"
+         id="text67">bwdBytes: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1543.7744"
+         id="rect67" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="353.125"
+         x="84.375"
+         y="1566.3635"
+         id="text68">flowDuration: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1598.8037"
+         id="rect68" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="437.5"
+         x="84.375"
+         y="1621.3928"
+         id="text69">flowBytesPerSec: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1653.833"
+         id="rect69" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="484.375"
+         x="84.375"
+         y="1676.4221"
+         id="text70">flowPacketsPerSec: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1708.8623"
+         id="rect70" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="396.875"
+         x="84.375"
+         y="1731.4514"
+         id="text71">avgPacketSize: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1763.8916"
+         id="rect71" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="556.25"
+         x="84.375"
+         y="1786.4807"
+         id="text72">fwdPacketLengthMean: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1818.9209"
+         id="rect72" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="568.75"
+         x="84.375"
+         y="1841.51"
+         id="text73">bwdPacketLengthMean: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1873.9502"
+         id="rect73" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="412.5"
+         x="84.375"
+         y="1896.5393"
+         id="text74">minPacketLength: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1928.9795"
+         id="rect74" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="259.375"
+         x="84.375"
+         y="1951.5686"
+         id="text75">synCount: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="1984.0088"
+         id="rect75" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="259.375"
+         x="84.375"
+         y="2006.5979"
+         id="text76">ackCount: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2039.0381"
+         id="rect76" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="237.5"
+         x="84.375"
+         y="2061.6272"
+         id="text77">finCount: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2094.0674"
+         id="rect77" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="262.5"
+         x="84.375"
+         y="2116.6565"
+         id="text78">pshCount: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2149.0967"
+         id="rect78" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="256.25"
+         x="84.375"
+         y="2171.6858"
+         id="text79">urgCount: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2204.126"
+         id="rect79" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="368.75"
+         x="84.375"
+         y="2226.7151"
+         id="text80">downUpRatio: float</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2259.1553"
+         id="rect80" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="475"
+         x="84.375"
+         y="2281.7444"
+         id="text81">initWinBytesForward: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2314.1846"
+         id="rect81" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="503.125"
+         x="84.375"
+         y="2336.7737"
+         id="text82">initWinBytesBackward: int</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2369.2139"
+         id="rect82" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="443.75"
+         x="84.375"
+         y="2391.803"
+         id="text83">predictionLabel: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="46.875"
+         y="2424.2432"
+         id="rect83" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="325"
+         x="84.375"
+         y="2446.8323"
+         id="text84">confidence: float</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="25"
+         x2="668.75"
+         y1="2468.9453"
+         y2="2468.9453"
+         id="line84" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="40.625"
+         y="2526.8616"
+         id="text85"> </text>
+    </g>
+    <!--class AuditLog-->
+    <g
+       id="elem_AuditLog"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="118"
+         fill="#f1f1f1"
+         height="425.14651"
+         id="AuditLog"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="496.875"
+         x="1879.6875"
+         y="104.6875" />
+      <circle
+         cx="2027.3438"
+         cy="154.6875"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse85"
+         r="34.375" />
+      <path
+         d="m 2035.9863,141.7969 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path85" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="175"
+         x="2091.4062"
+         y="172.5891"
+         id="text86">AuditLog</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="1882.8125"
+         x2="2373.4375"
+         y1="204.6875"
+         y2="204.6875"
+         id="line86" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1904.6875"
+         y="240.0146"
+         id="rect86" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="1942.1875"
+         y="262.60379"
+         id="text87">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1904.6875"
+         y="295.04391"
+         id="rect87" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="415.625"
+         x="1942.1875"
+         y="317.63309"
+         id="text88">timestamp: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1904.6875"
+         y="350.07321"
+         id="rect88" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="259.375"
+         x="1942.1875"
+         y="372.66241"
+         id="text89">action: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="1904.6875"
+         y="405.10251"
+         id="rect89" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="268.75"
+         x="1942.1875"
+         y="427.69171"
+         id="text90">details: String</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="1882.8125"
+         x2="2373.4375"
+         y1="449.80469"
+         y2="449.80469"
+         id="line90" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="1898.4375"
+         y="507.72089"
+         id="text91"> </text>
+    </g>
+    <!--class Report-->
+    <g
+       id="elem_Report"
+       transform="translate(209.93662,227.39566)">
+      <rect
+         codeLine="127"
+         fill="#f1f1f1"
+         height="590.23438"
+         id="Report"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="540.625"
+         x="542.1875"
+         y="21.875" />
+      <circle
+         cx="732.03131"
+         cy="71.875"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse91"
+         r="34.375" />
+      <path
+         d="m 740.6738,58.9844 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path91" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="134.375"
+         x="796.09381"
+         y="89.776604"
+         id="text92">Report</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="545.3125"
+         x2="1079.6875"
+         y1="121.875"
+         y2="121.875"
+         id="line92" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="157.2021"
+         id="rect92" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="604.6875"
+         y="179.79131"
+         id="text93">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="212.2314"
+         id="rect93" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="209.375"
+         x="604.6875"
+         y="234.8206"
+         id="text94">title: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="267.26071"
+         id="rect94" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="459.375"
+         x="604.6875"
+         y="289.84991"
+         id="text95">generatedAt: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="322.29001"
+         id="rect95" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="434.375"
+         x="604.6875"
+         y="344.87921"
+         id="text96">periodStart: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="377.31931"
+         id="rect96" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="418.75"
+         x="604.6875"
+         y="399.90839"
+         id="text97">periodEnd: DateTime</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="432.3486"
+         id="rect97" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="290.625"
+         x="604.6875"
+         y="454.93771"
+         id="text98">format: Format</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="567.1875"
+         y="487.3779"
+         id="rect98" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="287.5"
+         x="604.6875"
+         y="509.96701"
+         id="text99">filePath: String</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="545.3125"
+         x2="1079.6875"
+         y1="532.08008"
+         y2="532.08008"
+         id="line99" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="560.9375"
+         y="589.99628"
+         id="text100"> </text>
+    </g>
+    <!--class Configuration-->
+    <g
+       id="elem_Configuration"
+       transform="translate(239.09448,-1807.5039)">
+      <rect
+         codeLine="139"
+         fill="#f1f1f1"
+         height="425.14651"
+         id="Configuration"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#181818;stroke-width:1.5625"
+         width="500"
+         x="2040.625"
+         y="2740.625" />
+      <circle
+         cx="2147.9688"
+         cy="2790.625"
+         fill="#add1b2"
+         style="stroke:#181818;stroke-width:3.125"
+         id="ellipse100"
+         r="34.375" />
+      <path
+         d="m 2156.6113,2777.7344 q 0.4883,-0.6836 1.0742,-1.0254 0.586,-0.3418 1.2696,-0.3418 1.1719,0 1.9043,0.8301 0.7324,0.7812 0.7324,2.6855 v 4.541 q 0,1.9043 -0.7324,2.7344 -0.7324,0.8301 -1.9043,0.8301 -1.0742,0 -1.709,-0.6348 -0.6348,-0.5859 -0.9766,-2.1972 -0.1465,-1.1231 -0.7324,-1.709 -1.0254,-1.1719 -2.9297,-1.8555 -1.9043,-0.6836 -3.8574,-0.6836 -2.3926,0 -4.3945,1.0254 -1.9532,1.0254 -3.5157,3.3691 -1.5136,2.3438 -1.5136,5.5664 v 3.418 q 0,3.8574 2.7832,6.4453 2.7832,2.5391 7.7636,2.5391 2.9297,0 4.9805,-0.7813 1.2207,-0.4882 2.5391,-1.8554 0.8301,-0.8301 1.2695,-1.0743 0.4883,-0.2441 1.1231,-0.2441 1.0253,0 1.8066,0.8301 0.8301,0.7812 0.8301,1.8555 0,1.0742 -1.0742,2.3437 -1.5625,1.8066 -4.0528,2.832 -3.3691,1.4161 -7.4219,1.4161 -4.7363,0 -8.496,-1.9532 -3.0762,-1.5625 -5.2247,-4.8828 -2.1484,-3.3691 -2.1484,-7.373 v -3.6133 q 0,-4.1504 1.9043,-7.7149 1.9531,-3.6132 5.3711,-5.5175 3.418,-1.9532 7.2754,-1.9532 2.2949,0 4.2969,0.5371 2.0507,0.4883 3.7597,1.6114 z"
+         fill="#000000"
+         id="path100" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="265.625"
+         x="2205.1562"
+         y="2808.5266"
+         id="text101">Configuration</text>
+      <line
+         style="stroke:#181818;stroke-width:1.5625"
+         x1="2043.75"
+         x2="2537.5"
+         y1="2840.625"
+         y2="2840.625"
+         id="line101" />
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="2065.625"
+         y="2875.9521"
+         id="rect101" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="159.375"
+         x="2103.125"
+         y="2898.5413"
+         id="text102">id: Long</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="2065.625"
+         y="2930.9814"
+         id="rect102" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="209.375"
+         x="2103.125"
+         y="2953.5706"
+         id="text103">key: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="2065.625"
+         y="2986.0107"
+         id="rect103" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="246.875"
+         x="2103.125"
+         y="3008.5999"
+         id="text104">value: String</text>
+      <rect
+         fill="none"
+         height="18.75"
+         style="stroke:#c82930;stroke-width:3.125"
+         width="18.75"
+         x="2065.625"
+         y="3041.04"
+         id="rect104" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="418.75"
+         x="2103.125"
+         y="3063.6292"
+         id="text105">updatedAt: DateTime</text>
+      <line
+         style="stroke:#181818;stroke-width:3.125"
+         x1="2043.75"
+         x2="2537.5"
+         y1="3085.7422"
+         y2="3085.7422"
+         id="line105" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="2059.375"
+         y="3143.6584"
+         id="text106"> </text>
+    </g>
+    <!--link NetworkFlow to Alert-->
+    <g
+       id="link_NetworkFlow_Alert"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="151"
+         d="m 672.25,1676.5625 c 36.25,0 72.4688,0 108.6875,0"
+         fill="none"
+         id="NetworkFlow-Alert"
+         style="stroke:#181818;stroke-width:3.125" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="21.875"
+         x="696.94788"
+         y="1666.9768"
+         id="text107"
+         transform="translate(-25.877604,1.8444805)">1</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="68.75"
+         x="696.79633"
+         y="1666.3843"
+         id="text108"
+         transform="translate(17.130245,1.8220806)">0..1</text>
+    </g>
+    <!--link Alert to Attack-->
+    <g
+       id="link_Alert_Attack"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="154"
+         d="m 1400.9688,1676.5625 c 35.8437,0 71.7187,0 107.5625,0"
+         fill="none"
+         id="Alert-Attack"
+         style="stroke:#181818;stroke-width:3.125" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="1422.3014"
+         y="1666.7811"
+         id="text109"
+         transform="translate(-18.42709,1.4790089)">0..*</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="21.875"
+         x="1462.5583"
+         y="1666.7805"
+         id="text110"
+         transform="translate(20.875445,2.3808929)">1</text>
+    </g>
+    <!--link User to Alert-->
+    <g
+       id="link_User_Alert"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="158"
+         d="M 1377.3438,584.4063 C 1314.6563,822.4688 1223,1170.6563 1160.2813,1408.8438"
+         fill="none"
+         id="User-Alert"
+         style="stroke:#181818;stroke-width:3.125" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="21.875"
+         x="1348.302"
+         y="652.61621"
+         id="text111"
+         transform="translate(-14,-1.9996863)">1</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="1101.0818"
+         y="1375.8719"
+         id="text112">0..*</text>
+    </g>
+    <!--link User to AuditLog-->
+    <g
+       id="link_User_AuditLog"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="161"
+         d="m 1702.5,317.1875 c 57.75,0 119,0 176.5,0"
+         fill="none"
+         id="User-AuditLog"
+         style="stroke:#181818;stroke-width:3.125" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="21.875"
+         x="1726.2407"
+         y="307.14511"
+         id="text114">1</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="1792.4053"
+         y="361.5491"
+         id="text115"
+         transform="translate(24.784184,-54.298002)">0..*</text>
+    </g>
+    <!--link Report to Alert-->
+    <g
+       id="link_Report_Alert"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="165"
+         d="m 872.6875,613.0938 c 48.625,236.6249 116.5,566.8437 163.5313,795.625"
+         fill="none"
+         id="Report-Alert"
+         style="stroke:#181818;stroke-width:3.125" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="812.31262"
+         y="678.88721"
+         id="text116">0..*</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="966.35773"
+         y="1375.7363"
+         id="text117">0..*</text>
+    </g>
+    <!--link Report to NetworkFlow-->
+    <g
+       id="link_Report_NetworkFlow"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="167"
+         d="M 581.83925,612.51236 C 538.92515,671.11518 491.84648,735.44368 442.7176,802.5301"
+         fill="none"
+         id="Report-NetworkFlow"
+         style="stroke:#181818;stroke-width:3.69552"
+         inkscape:transform-center-x="1.204872"
+         inkscape:transform-center-y="0.25618029" />
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="639.55627"
+         y="678.88721"
+         id="text118"
+         transform="translate(-151.54026,-27.829561)">0..*</text>
+      <text
+         fill="#000000"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="62.5"
+         x="591.35327"
+         y="770.37"
+         id="text119"
+         transform="translate(-203.08458,15.460867)">0..*</text>
+    </g>
+    <!--link Report to User-->
+    <!--link Attack to AttackCategory-->
+    <g
+       id="link_Attack_AttackCategory"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="170"
+         d="m 2090.9688,1676.5625 c 36.5625,0 73.1562,0 109.75,0"
+         fill="none"
+         id="Attack-AttackCategory"
+         style="stroke:#181818;stroke-width:3.125" />
+    </g>
+    <!--link Format to Report-->
+    <g
+       id="link_Format_Report"
+       transform="translate(209.93662,227.39566)">
+      <path
+         codeLine="171"
+         d="m 433.5938,317.1875 c 36.0312,0 72.0312,0 108.0625,0"
+         fill="none"
+         id="Format-Report"
+         style="stroke:#181818;stroke-width:3.125" />
+    </g>
+    <!--link Alert to AlertStatus-->
+    <g
+       id="link_Alert_AlertStatus"
+       transform="matrix(1,0,0,0.22602903,209.93662,1732.3338)">
+      <path
+         codeLine="172"
+         d="m 1090.625,1944.4375 c 0,236.3125 0,577.7813 0,795.7188"
+         fill="none"
+         id="Alert-AlertStatus"
+         style="stroke:#181818;stroke-width:3.125" />
+    </g>
+    <!--link User to Role-->
+    <!--link Attack to Severity-->
+    <g
+       id="link_Attack_Severity"
+       transform="matrix(1,0,0,0.27573994,209.93662,1595.8624)">
+      <path
+         codeLine="174"
+         d="m 1800,1889.4688 c 0,235.3437 0,614.9687 0,850.4687"
+         fill="none"
+         id="Attack-Severity"
+         style="stroke:#181818;stroke-width:3.125" />
+    </g>
+    <!--link Severity to Configuration-->
+    <!--SRC=[hLRBZl8s5DxdAQpPZ5GflwRgBZi6c04L64HcEekg6fda42mIEx8T4AqgzI7wX7sI7by29Y5_DqL8sEVwdUDpGHqOhwca5SbhHdvwUegYAMygiX4ba3yYWf_HP3bVsTFy_MivMerUfnjxZUCe-jFBft04oVJPwopUFktlSZgPVopjSJP_dTd3U3D_duz7YvwDKGbIfvhgHdapgwapCnh_l7hxN4mdhzE99MocwTlY5t-PpDFbF4tzBRJu8cH5jJUsdhpqNMfDiyEOQYY4RC4_2-tiJaJg3YBzUXLb3dnwXWjbrfI7ooKjnMclTQr1wGjH8R4KaYbBUNbVnskAuGdf4W9Kwcq9aBlayXqhjQIQ2Uxm2in6HjqbJMStof-m_NBWmvYYHp8M4iYuf4g18b6KcHFvK21zS35XUK8MWXV-sY2FqmeIach9BcIeA2ixj1fjdOJCPrJjEoo9zPBOgl64J09cDH_fX4pmyCug294wNFR5Xu19ojGz0mI3vfXOo8kxR0bAbCVxcfoMPwLN0f-f4u2oTPU4HNW7hytu4E3Cbr7IAIlFRbiakPmy8mULILQRXxy55RfUWSRK7rwmf0B_v0Q0naWnZghk1Qv48pEOhpj1esVDk2sv7i-fc29C2EEwhz5brL9eaObkqUnE-HgJ0Lg5mjkxL9HzFjkt2QBQtYFkC0-JndLBOcvK1nmhlmQPGjPdUh_tsFHOE6xAVeUEPWju0RpG-oNGZj_jVmbKZ8S2OTpgpCUYuJVfD0NKfUrONwvM-nwjaKMFbeiJ_wWt9cEtk1Xd-fDncpCSc2Sgyr0lP3yZg2w_bf2ppBp3WcwX-_gPmB66WpDhqqd8dRPgSgONeXXghE6wfbc_Qx16DSukDTnB6wZ5yDpHJ9VTQLW01tb_df4QUrdaE3Ba46_Ayok7j6zfTrFYTzJbWKl0CRyVnZus2IryvG-5S81p9u0ZBPjkK4sTVsz4Fv9__lxBVTr2mRoLrgtQirfTkV_xr_WUsLubYBSeG2g2bLC9fOdWGAYPqL4u4Hz-V330KNYlOq8UdhvzCnItNx3aZ47kz0XJnAQIxHZaX2fdqarsVQuXQhNynnZxuTQyzKRQTM3txYZ7_YOLRfW25w_pv7PAPBTlOCzXZQ-M0uV6b9LtbQrmcsMuSH4eMgUcJqWfYW6JOVZMRjjNk2OUZToZCU-hdnQ5X0BVtQF5F1oDNr-pfX8YBngae8yw-hvK-4fNsVZNFSjnBFpc8Pju8f_EDepE4cqrIzWXqtUDmn2RsHRVh6wRe8kNsFqpQHrSTt4KNVwuTY7TD5eK_Gi0]-->
+    <g
+       id="link_Alert_AlertStatus-2"
+       transform="matrix(0.89898969,-0.55531394,0.16342163,0.43405903,457.85425,575.05145)">
+      <path
+         codeLine="172"
+         d="m 1090.625,1944.4375 c 0,236.3125 0,577.7813 0,795.7188"
+         fill="none"
+         id="Alert-AlertStatus-4"
+         style="stroke:#181818;stroke-width:3.125" />
+    </g>
+  </g>
+</svg>

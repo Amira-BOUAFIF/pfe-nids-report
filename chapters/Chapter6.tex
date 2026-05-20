@@ -15,14 +15,16 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{screenshots/inference_health_endpoint.jpeg}
+	\includegraphics[width=0.67\columnwidth]{screenshots/inference_health_endpoint.png}
 	\caption{FastAPI \texttt{/health} endpoint}
 	\label{fig:api-health}
 \end{figure}
 
+\vspace{-0.7cm}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{screenshots/inference_predict_endpoint.jpeg}
+	\includegraphics[width=0.67\columnwidth]{screenshots/inference_predict_endpoint.png}
 	\caption{FastAPI \texttt{/predict} endpoint}
 	\label{fig:api-predict}
 \end{figure}
@@ -58,7 +60,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{screenshots/launching_containers.png}
+	\includegraphics[width=1\columnwidth]{screenshots/launching_containers.png}
 	\caption{Launching the system containers}
 	\label{fig:launch-containers}
 \end{figure}
@@ -70,7 +72,7 @@ The backend also handles data persistence by communicating with the MySQL databa
 The system architecture is illustrated through the deployment diagram as shown in Figure~\ref{fig:dep-diagram}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\columnwidth]{diagrams/DepD.png}
+	\includegraphics[width=1\columnwidth]{diagrams/DepD.png}
 	\caption{Deployment Diagram}
 	\label{fig:dep-diagram}
 \end{figure}
@@ -80,50 +82,50 @@ The system architecture is illustrated through the deployment diagram as shown i
 
 This section presents the main user interfaces of the NIDS Web Application.
 
-\paragraph{Use case «Authenticate» realization}
+\subsubsection{Use case «Authenticate» realization}
 The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/authentication_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/authentication_interface.png}
 	\caption{Authentication interface}
 	\label{fig:ui-authenticate}
 \end{figure}
 
 
-\paragraph{Use case «View Dashboard» realization}
+\subsubsection{Use case «View Dashboard» realization}
 The dashboard interface provides a global overview of the system state and recent activity, as shown in Figure~\ref{fig:ui-dashboard}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{interfaces/dashboard_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/dashboard_interface.png}
 	\caption{Dashboard interface}
 	\label{fig:ui-dashboard}
 \end{figure}
 
-\paragraph{Use case «View Statistics Summary» realization}
+\subsubsection{Use case «View Statistics Summary» realization}
 The statistics summary interface provides aggregated metrics and trends for monitoring purposes, as shown in Figures~\ref{fig:ui-stats-summary} and \ref{fig:ui-stats-summary-2}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{interfaces/view_statistics_summary_1_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_1_interface.png}
 	\caption{Statistics summary interface 1}
 	\label{fig:ui-stats-summary}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{interfaces/view_statistics_summary_2_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_2_interface.png}
 	\caption{Statistics summary interface 2}
 	\label{fig:ui-stats-summary-2}
 \end{figure}
 
-\paragraph{Use case «Trigger Network Analysis» realization}
+\subsubsection{Use case «Trigger Network Analysis» realization}
 The analysis trigger interface allows an administrator to start a network analysis process, as shown in Figure~\ref{fig:ui-trigger-analysis}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{interfaces/trigger_network_analysis_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/trigger_network_analysis_interface.png}
 	\caption{Trigger network analysis interface}
 	\label{fig:ui-trigger-analysis}
 \end{figure}
@@ -134,7 +136,7 @@ The alert notification mechanism operates on two channels. First, when a new ale
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\columnwidth]{interfaces/send_Alert_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/send_Alert_interface.png}
 	\caption{In-dashboard alert notification}
 	\label{fig:ui-send-alert}
 \end{figure}
@@ -143,87 +145,87 @@ The alert notification mechanism operates on two channels. First, when a new ale
 	\centering
 	\begin{minipage}[t]{0.49\columnwidth}
 		\centering
-		\includegraphics[height=0.5\textheight]{interfaces/critical_email_interface.png}
+		\includegraphics[height=0.4\textheight]{interfaces/critical_email_interface.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[t]{0.49\columnwidth}
 		\centering
-		\includegraphics[height=0.5\textheight]{interfaces/High_email_interface.png}
+		\includegraphics[height=0.4\textheight]{interfaces/High_email_interface.png}
 	\end{minipage}
 	\caption{Email notifications}
 	\label{fig:email-notifications}
 \end{figure}
 
 
-\paragraph{Use case «View Alerts List» realization}
+\subsubsection{Use case «View Alerts List» realization}
 The alerts list interface displays all detected alerts with key information for quick review, as shown in Figure~\ref{fig:ui-alerts-list}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/alert_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/alert_interface.png}
 	\caption{Alerts list interface}
 	\label{fig:ui-alerts-list}
 \end{figure}
 
-\paragraph{Use case «Search Alerts» realization}
+\subsubsection{Use case «Search Alerts» realization}
 The search interface enables filtering and searching through alerts by different criteria, as shown in Figure~\ref{fig:ui-search-alerts}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/search_alert_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/search_alert_interface.png}
 	\caption{Search alerts interface}
 	\label{fig:ui-search-alerts}
 \end{figure}
 
-\paragraph{Use case «View Alert Detail» realization}
+\subsubsection{Use case «View Alert Detail» realization}
 The alert detail interface presents the full information of a selected alert, enabling deeper investigation, as shown in Figure~\ref{fig:ui-alert-detail}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/alert_detail_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/alert_detail_interface.png}
 	\caption{Alert detail interface}
 	\label{fig:ui-alert-detail}
 \end{figure}
 
 
 
-\paragraph{Use case «Manage Alert Status» realization}
+\subsubsection{Use case «Manage Alert Status» realization}
 The alert status management interface allows updating the status of an alert (e.g., new, acknowledged, resolved, dismissed), as shown in Figure~\ref{fig:ui-manage-alert-status}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/manage_alert_status_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/manage_alert_status_interface.png}
 	\caption{Manage alert status interface}
 	\label{fig:ui-manage-alert-status}
 \end{figure}
 
 
-\paragraph{Use case «View Reports» realization}
+\subsubsection{Use case «View Reports» realization}
 The reports interface allows the IT manager to browse and consult generated reports, as shown in Figure~\ref{fig:ui-view-reports}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/view_reports_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/view_reports_interface.png}
 	\caption{Reports interface}
 	\label{fig:ui-view-reports}
 \end{figure}
 
-\paragraph{Use case «Generate Report» realization}
+\subsubsection{Use case «Generate Report» realization}
 The report generation interface allows producing a new report by selecting a period and saving it for later consultation, as shown in Figure~\ref{fig:ui-generate-report}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/generate_report_interface.png}
+	\includegraphics[width=1\columnwidth]{interfaces/generate_report_interface.png}
 	\caption{Generate report interface}
 	\label{fig:ui-generate-report}
 \end{figure}
 
-\paragraph{Use case «Export Report» realization}
+\subsubsection{Use case «Export Report» realization}
 The export interface enables downloading a report in PDF format for sharing or archiving, as shown in Figure~\ref{fig:ui-export-report}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/export_report_interface.jpeg}
+	\includegraphics[width=1\columnwidth]{interfaces/export_report_interface.jpeg}
 	\caption{Export report interface}
 	\label{fig:ui-export-report}
 \end{figure}
@@ -261,21 +263,22 @@ The export interface enables downloading a report in PDF format for sharing or a
 \end{figure}
 
 
-
 \section{Development Tools and Technologies}
+
+The development of this project relies on different tools and technologies for each component, as presented in Table~\ref{tab:dev_tools_tech}.
 
 \begin{center}
 	\captionof{table}{Development tools and technologies}
 	\label{tab:dev_tools_tech}
 \end{center}
-
+\vspace{-0.7cm}
 \begingroup
 \footnotesize
 
 \begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Language}]
 	\begin{minipage}[c]{0.18\textwidth}
 		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/pyhton-logo.png}
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/python-logo.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.78\textwidth}
@@ -467,7 +470,5 @@ The export interface enables downloading a report in PDF format for sharing or a
 \end{tcolorbox}
 \endgroup
 
-
 \section{Conclusion}
-With this final chapter, we conclude the design and implementation of the AI-based Network Intrusion Detection System.
-
+With this final chapter, we conclude the design and implementation of the AI-based Network Intrusion Detection System. We presented the model integration through a FastAPI inference service, the containerized deployment using Docker and Docker Compose, and the main user interfaces covering the core functionalities of the platform. Finally, we outlined the development tools and technologies used across the different components of the system.

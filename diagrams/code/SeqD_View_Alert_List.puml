@@ -1,4 +1,6 @@
-@startuml
+@startuml SeqD_View_Alert_Li
+skinparam dpi 300
+
 autonumber
 hide circle
 
@@ -92,7 +94,7 @@ Admin -[#white]> AttackE
 autonumber resume
 end group
 
-group OPT [View Aler Details]
+group OPT [View Alert Details]
 Admin -> UI :: click_view_details()
                 activate Admin
                 activate UI

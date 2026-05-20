@@ -1,9 +1,10 @@
-@startuml Actors
+@startuml actors
 skinparam dpi 300
 left to right direction
 
+
 ' Human actors
-actor "Network/Security\n  Administrator" as Admin
+actor "Network Administrator" as Admin
 actor "IT Manager" as ITM
 
 ' Force same horizontal alignment

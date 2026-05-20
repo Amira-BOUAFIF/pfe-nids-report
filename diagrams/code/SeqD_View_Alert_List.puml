@@ -1,4 +1,6 @@
-@startuml
+@startuml SeqD_View_Alert_Li
+skinparam dpi 300
+
 autonumber
 hide circle
 

@@ -1,4 +1,4 @@
-@startuml use-Case
+@startuml use-case
 skinparam dpi 300
 left to right direction
 skinparam packageStyle rectangle
@@ -6,7 +6,7 @@ skinparam packageStyle rectangle
 
 ' ─── Left Actors ──────────────────────────────────────
 actor "User" as User
-actor "Network/Security\nAdministrator" as Admin
+actor "Network Administrator" as Admin
 actor "IT Manager"                       as ITMgr
 
 
@@ -90,7 +90,9 @@ UC_EXPORT_REPORT .[hidden]left.> UC_GEN_REPORT
 
 UC_VIEW_REPORTS -[hidden]right- UC_VIEW_REPORT_DETAIL
 
+ITMgr -left-|> Admin
 
+Admin -left-|> User
 
 @enduml
 

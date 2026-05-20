@@ -1,4 +1,4 @@
-@startuml class1
+@startuml class
 skinparam dpi 300
 
 Enum Role {
@@ -159,7 +159,7 @@ Alert          "0..*"   -right-  "1"     Attack
 User           "1"   --  "0..*"  Alert      
 
 ' User actions recorded in audit log
-User           "1"   -up-  "0..*"  AuditLog 
+User           "1"   -right-  "0..*"  AuditLog  : '    '
 
 ' Report aggregates alerts over a period
    
@@ -168,13 +168,13 @@ Report  "0..*"   --  "0..*"  Alert
 Report  "0..*"   --  "0..*"  NetworkFlow  
 
 Report -[hidden]right- User
-Attack -up- AttackCategory
+Attack -right- AttackCategory
 Report -left- Format
 Alert -down- AlertStatus
-User -right- Role
+User -[hidden]- Role
 Attack -- Severity
 
-AuditLog -[hidden]left- Configuration
+Severity -[hidden]right- Configuration
 
 
 @enduml

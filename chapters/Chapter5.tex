@@ -2,9 +2,7 @@
 
 \section{Introduction}
 
-This chapter covers the modeling and evaluation phase of the CRISP-DM methodology. 
-
-We begin with the state of the art reviewing most of the prominent approaches in network intrusion detection, before presenting the adopted approach and justifying our model choice. We then detail the training and optimization process, starting from the initial baseline, through a series of iterative experiments addressing class imbalance, to the selection of the final model configuration, followed by hyperparameter tuning, and threshold optimization and the final model evaluation.
+This chapter covers the modeling and evaluation phase of the CRISP-DM methodology. Considering the critical nature of the domain and the complexity of the dataset, the training process is conducted as a series of controlled experiments, where results are carefully interpreted at each step to guide subsequent decisions. We begin with a state of the art review before presenting and justifying our model choice, then detail the experimental process from the initial baseline through iterative experiments, hyperparameter tuning, threshold optimization, and final model evaluation.
 
 \section{State of the Art}
 
@@ -54,7 +52,7 @@ Table \ref{tab:ml_comparison} provides a comparative overview of those 4 methods
     \end{tabular}
 \end{table}
 
-KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset\cite{KNN}, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting\cite{DT}, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance\cite{RT}, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well\cite{GB}, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
+KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset\cite{KNN}, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting\cite{DT}, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance\cite{RF}, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well\cite{GB}, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
 
 \section{Adopted Approach}
 
@@ -465,7 +463,7 @@ The final model is trained on the full training set using the tuned hyperparamet
 
 The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a macro F1 of 0.98, exceeding the cross-validation mean of 0.96, indicating that the model generalizes well and did not overfit to the training data.
 
-At the class level, nine classes achieve near-perfect F1-scores above 0.99. Heartbleed and Infiltration both reach a perfect F1-score of 1.0 on the test set, a strong result given their extreme scarcity during training. The merged Web Attack class achieves an F1-score of 0.98, while Bot reaches 0.84. Figure \ref{fig:final_f1} shows the final F1-scores for each class.
+At the class level, nine classes achieve near-perfect F1-scores above 0.99. Heartbleed and Infiltration both reach a perfect F1-score of 1.0 on the test set. This result is attributed to two factors: training on the full dataset exposes the model to all available patterns for these classes, and the test samples are similar enough to the training data for the learned decision boundaries to classify them correctly. It should be noted however that with only 2 Heartbleed and 7 Infiltration test samples, this result is not statistically robust and should be interpreted with caution. A more reliable evaluation of these classes would require testing on additional data from independent sources, which is considered as a future direction. The merged Web Attack class achieves an F1-score of 0.98, while Bot reaches 0.84. Figure \ref{fig:final_f1} shows the final F1-scores for each class.
 
 \begin{figure}[h!]
     \hfil\includegraphics[width=1\columnwidth, fbox]{figures/final_model_f1_bar_linear}\hfil\\
@@ -477,4 +475,4 @@ At the class level, nine classes achieve near-perfect F1-scores above 0.99. Hear
 \newpage
 \section{Conclusion}
 
-This chapter covered the modeling and evaluation phase of the project. We reviewed prominent machine learning approaches in network intrusion detection and justified the selection of XGBoost as the modeling approach. We then conducted a series of iterative experiments, addressing class imbalance, leading to the final model configuration followed by hyperparameter tuning using Bayesian optimization and threshold optimization, and final model evaluation. The next chapter presents the realization of the system.
+This chapter presented the full modeling and evaluation pipeline of the project. Through a series of controlled experiments, class imbalance was systematically addressed, leading to a final model configuration that achieves a macro F1-score of 0.9852 on the held-out test set. The next chapter presents the realization of the system.

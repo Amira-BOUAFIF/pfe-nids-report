@@ -362,7 +362,8 @@ In light of the ablation findings, we decide to retain Heartbleed.
 \subsection{Final Model Configuration}
 The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining Heartbleed, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.97.
 
-At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. Heartbleed reaches an F1-score of 0.97, Infiltration achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
+At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99, Heartbleed reaches an F1-score of 0.96
+, Infiltration achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
 
 \subsection{Hyperparameter tuning}
 
@@ -413,7 +414,7 @@ Having defined the search space, we proceed to decide the search method. Three s
 
 \begin{itemize}
     \item \textbf{Grid Search:} Tries every possible combination of the search space making it expensive; with 7 parameters and continuous ranges, even a coarse discretization yields thousands of combinations, it costs too much time and computational resources.
-    \item \textbf{Random Search:} Tries a random fixed number of combinations which is much cheaper than grid search and often yields good results faster but is not guaranteed to cover everything. It treats each parameter independently and has no memory wasting trials in regions of the search space already known to be poor.
+    \item \textbf{Random Search:} Tries a random fixed number of combinations which is much cheaper than grid search and often yields good results faster but is not guaranteed to cover everything. It treats each parameter independently and has no memory, which may lead to wasting trials in regions of the search space already known to be poor.
     \item \textbf{Bayesian Optimization:} A smart search method where the results of previous trials are used to choose better next trials. It builds a probabilistic model of the objective function and uses it to select the most promising hyperparameters to evaluate in the true objective function.
 \end{itemize}
 
@@ -462,7 +463,7 @@ A second limitation arises from the closed-world assumption of the model. The mo
 
 The final model is trained on the full training set using the tuned hyperparameters with balanced class weights. Since training on the full dataset leaves no validation set, early stopping cannot be applied. Instead, the number of estimators is fixed by averaging the best iteration across the five cross-validation folds, which gives a mean of 1086 trees. A 20\% buffer is added on top to account for the fact that more training data generally requires more trees to converge, bringing the final number of estimators to 1300.
 
-The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a macro F1 of 0.9852, exceeding the cross-validation mean of 0.9697, indicating that the model generalizes well and did not overfit to the training data.
+The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a macro F1 of 0.98, exceeding the cross-validation mean of 0.96, indicating that the model generalizes well and did not overfit to the training data.
 
 At the class level, nine classes achieve near-perfect F1-scores above 0.99. Heartbleed and Infiltration both reach a perfect F1-score of 1.0 on the test set, a strong result given their extreme scarcity during training. The merged Web Attack class achieves an F1-score of 0.98, while Bot reaches 0.84. Figure \ref{fig:final_f1} shows the final F1-scores for each class.
 

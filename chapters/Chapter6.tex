@@ -42,7 +42,7 @@ This approach ensures portability and consistency by allowing the application to
 
 Containerization was adopted to provide a controlled and reproducible execution environment for the different modules of the intrusion detection system.
 
-The proposed system is decomposed into several independent services, each encapsulated within its own Docker container. The frontend is deployed as a React application, the backend is implemented using Spring Boot, the machine learning inference service is exposed through a FastAPI container, and the database is managed using a MySQL container.
+The proposed system is decomposed into several independent services, each encapsulated within its own Docker container. The frontend is deployed as a React application, the backend is implemented using Spring Boot, the prediction model is exposed through a FastAPI container, and the database is managed using a MySQL container.
 
 Each container is defined using a dedicated Dockerfile that specifies the environment configuration and dependencies required for execution. This modular structure improves system maintainability and ensures clear separation of concerns between the different components.
 
@@ -132,7 +132,7 @@ The analysis trigger interface allows an administrator to start a network analys
 
 
 \paragraph{Use case «Send Alert» realization}
-The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged, as illustrated in Figure~\ref{fig:email-notifications}.
+The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged for more than 5 minutes, as illustrated in Figure~\ref{fig:email-notifications}.
 
 \begin{figure}[H]
 	\centering
@@ -292,7 +292,7 @@ The development of this project relies on different tools and technologies for e
 \begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Machine Learning}]
 	\begin{minipage}[c]{0.18\textwidth}
 		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/Scikit_learn_logo.png}
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/scikit_learn_logo.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.78\textwidth}
@@ -306,7 +306,7 @@ The development of this project relies on different tools and technologies for e
 \begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Backend}]
 	\begin{minipage}[c]{0.18\textwidth}
 		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/Spring Boot_logo.png}
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/spring Boot_logo.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.78\textwidth}
@@ -320,7 +320,7 @@ The development of this project relies on different tools and technologies for e
 \begin{tcolorbox}[width=0.95\textwidth, colback=gray!3, colframe=black!30, arc=2mm, boxrule=0.4pt, title=\textbf{Frontend}]
 	\begin{minipage}[c]{0.18\textwidth}
 		\centering
-		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/React-logo.png}
+		\includegraphics[width=1.4cm,height=1.4cm,keepaspectratio]{logos/react-logo.png}
 	\end{minipage}
 	\hfill
 	\begin{minipage}[c]{0.78\textwidth}

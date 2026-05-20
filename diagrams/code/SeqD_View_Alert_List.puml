@@ -3,7 +3,7 @@ autonumber
 hide circle
 
 skinparam sequenceParticipant underline
-
+skinparam SequenceGroupBorderThickness 1.1
 
 
 actor ":Network_Admin" as Admin
@@ -45,6 +45,11 @@ Admin -> UI :: click_page(n)
                 deactivate Admin
                 deactivate UI
 
+UI -> AlertC :: load_alert_page(n)
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
 
 AlertC -> AlertE :: select()
                 activate AlertC
@@ -74,6 +79,11 @@ Admin -> UI :: apply_filter()
                 deactivate Admin
                 deactivate UI
 
+UI -> AlertC :: filter_alerts()
+                activate AlertC
+                activate UI
+                deactivate AlertC
+                deactivate UI
 
 AlertC -> AlertE :: select()
                 activate AlertC
@@ -92,11 +102,17 @@ Admin -[#white]> AttackE
 autonumber resume
 end group
 
-group OPT [View Aler Details]
+group OPT [View Alert Details]
 Admin -> UI :: click_view_details()
                 activate Admin
                 activate UI
                 deactivate Admin
+                deactivate UI
+
+UI -> AlertC :: view_alert_details()
+                activate AlertC
+                activate UI
+                deactivate AlertC
                 deactivate UI
 
 

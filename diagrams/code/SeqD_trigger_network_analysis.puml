@@ -3,7 +3,7 @@ autonumber
 hide circle
 
 skinparam sequenceParticipant underline
-
+skinparam SequenceGroupBorderThickness 1.1
 
 
 actor ":Network_Admin" as Admin

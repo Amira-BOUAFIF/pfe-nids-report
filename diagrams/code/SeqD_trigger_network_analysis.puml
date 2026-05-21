@@ -19,7 +19,7 @@ skinparam sequenceMessageAlign left
 scale 4
 
 
-actor ":Network_Admin" as Admin
+actor ":Network_Administrator" as Admin
 participant ":UI-Dashboard" as UI
 participant ":C-Simulation" as Sim
 participant ":AI-Engine" as AI

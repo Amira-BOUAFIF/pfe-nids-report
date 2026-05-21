@@ -8,7 +8,7 @@ skinparam sequenceParticipant underline
 skinparam SequenceGroupBorderThickness 1.1
 
 
-actor ":Network_Admin" as Admin
+actor ":Network_Administrator" as Admin
 participant ":UI-Alert" as UI
 participant ":C-AlertC" as AlertC
 participant ":Alert" as AlertE
@@ -153,6 +153,12 @@ Admin -> UI :: input_analysis_notes()
                 activate UI
                 deactivate Admin
                 deactivate UI
+
+UI -> AlertC :: update_alert()
+                activate UI
+                activate AlertC
+                deactivate UI
+                deactivate AlertC
 
 AlertC -> AlertE :: update()
                 activate AlertC

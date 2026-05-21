@@ -2,7 +2,7 @@
 
 \section{Introduction}
 
-This chapter serves as an introduction to the project. We begin with a presentation of the company hosting the internship, a study of existing network intrusion detection systems. Then, we present the problem and the proposed solution. Finally, we end the chapter with a conclusion.
+This chapter serves as an introduction to the project. We begin with a presentation of the company hosting the internship, followed by a study of existing network intrusion detection systems. Then, we present the problem and the proposed solution. Finally, we end the chapter with a conclusion.
 
 \section{Presentation of the company}
 Founded on January 28, 2025, ITXTree is a technology company operating in the Information and Communication Technologies (ICT) sector. The company positions itself as an innovation-driven player focused on designing scalable, forward-looking digital solutions. With a strong human-centered mindset, ITXTree aims to make artificial intelligence and advanced technologies more accessible to businesses across all industries.
@@ -28,7 +28,7 @@ Cybersecurity is a highly sensitive domain where the ability to react quickly ca
 
 For this reason, Network Intrusion Detection Systems (NIDS) play a central role in monitoring and analyzing network traffic. The most widely used approaches are:
 \begin{itemize}
-    \item \textbf{Signature-based:} These systems analyze network traffic, often through deep packet inspection and comparison against a signature database. When a match is found an alert is triggered. Well-known tools such as Snort \cite{Snort} and Suricata \cite{Suricata} are representative of this approach.
+    \item \textbf{Signature-based:} These systems analyze network traffic, often through deep packet inspection and comparison against a signature database. When a match is found, an alert is triggered. Well-known tools such as Snort \cite{Snort} and Suricata \cite{Suricata} are representative of this approach.
     \item \textbf{Anomaly-based:} Anomaly detection is learning the normal behavior of the network through statistical analysis of traffic parameters. When exceeding the predefined thresholds, it might be an indicator of an attack \cite{Jackson2010}.
 \end{itemize}
 \vspace{-0.5cm}
@@ -40,7 +40,7 @@ Despite the widespread use of these systems, they have their own constraints. In
     \item \textbf{Performance:} As the number of rules increases, the system must process a larger set of comparisons for each packet, which can lead to slower detection. In a context where reaction time is critical, this degradation directly affects the system’s ability to respond effectively.
     \item \textbf{Rigidity and Evasion Vulnerability:} Attackers can exploit the rigidity of signature-based detection systems by introducing slight variations in attack patterns, allowing them to evade existing signatures while preserving the same malicious intent. Since many signature rules are publicly available or widely shared with the security community, attackers may analyze them to identify gaps and design variants that bypass detection mechanisms.
 \end{itemize}
-Overall, these systems rely on exact matching and predefined logics which limits their adaptability in the face of evolving and increasingly sophisticated threats.
+Overall, these systems rely on exact matching and predefined logic, which limits their adaptability in the face of evolving and increasingly sophisticated threats.
 
 \vspace{-0.9cm}
 \section{Proposed solution}
@@ -48,7 +48,7 @@ Overall, these systems rely on exact matching and predefined logics which limits
 With the growing integration of Artificial Intelligence in security systems, new approaches aim to overcome the limitations of traditional methods. We propose an AI-driven NIDS capable of learning patterns from network traffic and identifying different types of network activity instead of relying solely on predefined rules. 
 The NIDS consists of training a multiclass classifier on a labeled network traffic dataset, and later integrating it into a web platform to enable continuous monitoring, as well as traffic analysis through dashboards, statistical summaries, and reporting.
 \vspace{-0.9cm}
-\section{Project Pipeline}
+\section{Project pipeline}
 \vspace{-0.2cm}
 A project pipeline is a structured sequence of stages that outlines the workflow and processes involved in the development and deployment of a project. It serves as a roadmap, guiding the team through various phases, from initial planning to final delivery.
 
@@ -61,7 +61,7 @@ Figure~\ref{fig:pipeline} illustrates the project pipeline for our network intru
     \label{fig:pipeline}
 \end{figure}
 
-\section{Methodology and Modeling Language}
+\section{Methodology and modeling language}
 
 In this section, we present the \textbf{CRISP-DM}\cite{CRISP} methodology adapted in our project. We also define the system modeling approach, \textbf{UML}\cite{UML}.
 
@@ -70,9 +70,9 @@ The CRISP-DM (Cross-Industry Standard Process for Data Mining) methodology is a 
 
 \begin{itemize}
     \item \textbf{Business Understanding:} Defining project objectives and requirements and gaining a clear understanding of the business problem.
-    \item \textbf{Data Understanding:} Collecting and exploring the data to gain insights and assess its quality by identifying data related issues.
+    \item \textbf{Data Understanding:} Collecting and exploring the data to gain insights and assess its quality by identifying data-related issues.
     \item \textbf{Data Preparation:} Cleaning and preparing the data for modeling.
-    \item \textbf{Modeling:} Selecting and applying appropriate modeling techniques, building, testing and tuning models to optimize their performance.
+    \item \textbf{Modeling:} Selecting and applying appropriate modeling techniques, building, testing, and tuning models to optimize their performance.
     \item \textbf{Evaluation:} Evaluating the model's performance and determining if it meets the defined objectives.
     \item \textbf{Deployment:} Deploying the model into production, monitoring and maintaining the model's performance.
 \end{itemize}
@@ -100,5 +100,5 @@ UML makes complex systems easier to design and communicate, it provides a common
 
 \section{Conclusion}
 
-In this chapter, we introduce the host company ITXTREE, conduct a study of existing network intrusion detection systems, discuss their shortcomings and finally present our proposed solution. In the next chapter we specify the system requirements.
+In this chapter, we introduce the host company ITXTREE, conduct a study of existing network intrusion detection systems, discuss their shortcomings and finally present our proposed solution. In the next chapter, we specify the system requirements.
 

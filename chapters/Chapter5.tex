@@ -1,22 +1,22 @@
-\chapter{Modeling and Evaluation}
+\chapter{Modeling and evaluation}
 
 \section{Introduction}
 
 This chapter covers the modeling and evaluation phase of the CRISP-DM methodology. Considering the critical nature of the domain and the complexity of the dataset, the training process is conducted as a series of controlled experiments, where results are carefully interpreted at each step to guide subsequent decisions. We begin with a state of the art review before presenting and justifying our model choice, then detail the experimental process from the initial baseline through iterative experiments, hyperparameter tuning, threshold optimization, and final model evaluation.
 
-\section{State of the Art}
+\section{State of the art}
 
 In the network intrusion detection domain, various approaches have been proposed and studied. In this section, we review the most prominent methods, comparing their principles, strengths, and limitations, before selecting the one best suited to our project's requirements and dataset characteristics.
 
-Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split. Furthermore, studies on CIC-IDS2017 have shown that tree-based models generally outperform deep learning approaches on flow-based tabular data~\cite{DL-NID}.
+Given the nature of our dataset, CIC-IDS2017, we narrowed our research focus to classical machine learning approaches. While deep learning is proven to be powerful in domains such as image and text processing, it is generally ill-suited for tabular data. Furthermore, its black-box nature makes interpretability and explainability difficult, a critical concern in a security context where understanding model decisions is essential. Deep learning also requires large amounts of data to generalize well, which makes it all the more unsuitable as our dataset contains minority classes with as few as 11 samples, reduced to only 9 in the training set after the train-test split. Furthermore, studies on CIC-IDS2017 have shown that tree-based models generally outperform deep learning approaches on flow-based tabular data~\cite{DL-NID}.
 
 Among classical machine learning algorithms, the most prominent ones are K-Nearest Neighbors (KNN), Decision Tree, Random Forest, and gradient boosting.
-
+\vspace{2cm}
 \begin{itemize}
-    \item \textbf{K-Nearest Neighbors (KNN):} KNN is a lazy learning algorithm that requires no training phase, as it simply memorizes the training dataset rather than building an explicit model. It classifies new samples, at inference time, by computing its distance to all existing data points and assigning the majority class among its $k$ closest neighbors in the feature space\cite{KNN-INT}.
-    \item \textbf{Decision Tree:} A Decision tree learns by recursively splitting data, picking at each node the feature and threshold that best separates the classes, producing leaf nodes that represent class labels\cite{DT-INT}.
-    \item \textbf{Random Forest:} A Random Forest is an ensemble of parallel decision trees, where each tree is trained on a random subset of data using a random subset of features\cite{RF-INT}.
-    \item \textbf{Gradient Boosting:} Gradient Boosting is an ensemble of sequential decision trees, where each new tree is trained to correct the remaining errors of the previous one\cite{GB-INT}.
+    \item \textbf{K-Nearest Neighbors (KNN):} It is a lazy learning algorithm that requires no training phase, as it simply memorizes the training dataset rather than building an explicit model. It classifies new samples, at inference time, by computing its distance to all existing data points and assigning the majority class among its $k$ closest neighbors in the feature space~\cite{KNN-INT}.
+    \item \textbf{Decision Tree:} It learns by recursively splitting data, picking at each node the feature and threshold that best separates the classes, producing leaf nodes that represent class labels~\cite{DT-INT}.
+    \item \textbf{Random Forest:} An ensemble of parallel decision trees, where each tree is trained on a random subset of data using a random subset of features~\cite{RF-INT}.
+    \item \textbf{Gradient Boosting:} An ensemble of sequential decision trees, where each new tree is trained to correct the remaining errors of the previous one~\cite{GB-INT}.
 \end{itemize}
 
 Table \ref{tab:ml_comparison} provides a comparative overview of those 4 methods.
@@ -52,41 +52,42 @@ Table \ref{tab:ml_comparison} provides a comparative overview of those 4 methods
     \end{tabular}
 \end{table}
 
-KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset\cite{KNN}, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting\cite{DT}, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance\cite{RF}, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well\cite{GB}, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
+KNN, while simple and capable of capturing complex patterns, suffers from slow inference time as it scans the entire dataset~\cite{KNN}, making it impractical in network intrusion detection when time is of the essence. Decision Tree is fast and interpretable but prone to overfitting~\cite{DT}, a critical concern for this domain. Random Forest handles overfitting better, with medium training speed, fast inference time, and good performance~\cite{RF}, making it a strong candidate. Gradient Boosting, on the other hand, offers the best performance and handles class imbalance well~\cite{GB}, both critical for our dataset. Its inference time is fast despite its slow training speed, and while it requires careful hyperparameter tuning, its overfitting risk remains low when properly configured, and its sequential error correction is helpful for minority classes.
 
-\section{Adopted Approach}
+\section{Adopted approach}
 
 We select Gradient Boosting as the modeling approach for this project, prioritizing performance, inference speed, robustness to overfitting, and suitability for tabular and imbalanced data. We choose XGBoost (extreme Gradient Boosting) for its efficiency.
 
-XGBoost builds trees sequentially, where each boosting round corrects the errors of the previous one using both the gradient and the hessian of the loss function.
+XGBoost builds trees sequentially, where each boosting round corrects the errors of the previous one using both the Gradient and the Hessian of the loss function.
 
 \begin{itemize}
     \item \textbf{Gradient:} Indicates how wrong the previous prediction was and in which direction to correct it.
-    \item \textbf{Hessian:} measures the curvature of the error, making the corrections more precise and confident.
+    \item \textbf{Hessian:} Measures the curvature of the error, making the corrections more precise and confident.
 \end{itemize}
 
 In our case, multiclass classification, a separate tree is built for each class at every boosting round, allowing the model to refine each class prediction independently. A node is only split when the gain is significant enough, preventing unnecessary complexity. All trees then work together, each contributing a weighted correction, to minimize the overall error. Additionally, XGBoost incorporates L1 and L2 regularization to further control overfitting, and exploits parallelism during tree construction, making it significantly faster than traditional gradient boosting despite its sequential nature.
 
 
-\section{Training and Optimization}
+\section{Training and optimization}
 
 This section details the full training and optimization process of the XGBoost classifier on the CIC-IDS2017 dataset.
 
-\subsection{Initial Setup}
+\subsection{Initial setup}
 
 \subsubsection{Metric selection}
 
 The CIC-IDS2017 dataset is inherently imbalanced.
-BENIGN traffic constitutes roughly 80\% of the dataset, reflecting the reality of real network traffic where attacks are rare events.
-Within the attack classes themselves, representation varies significantly, some classes contain hundreds of thousands of samples while others hold fewer than a dozen.
+\classlabel{BENIGN} traffic constitutes roughly 80\% of the dataset, reflecting the reality of network traffic where attacks are rare events.
+Within the attack classes themselves, representation varies significantly; some classes contain hundreds of thousands of samples while others hold fewer than a dozen.
 This makes metric selection a non-trivial decision that directly affects how honestly model performance is reported.
 
 Accuracy is an intuitive metric but an unreliable one here.
-It counts correct predictions across all samples divided by the total:
-\begin{equation}
+It counts correct predictions across all samples divided by the total. It is defined as~\cite{powers2011evaluation}:
+\vspace{0.4cm}
+\begin{equation*}
     \label{eq:accuracy}
     \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
-\end{equation}
+\end{equation*}
 
 \begin{tabular}{ll}
     TP (True Positives)  & : correctly detected positive samples                 \\
@@ -94,54 +95,55 @@ It counts correct predictions across all samples divided by the total:
     FP (False Positives) & : negative samples incorrectly classified as positive \\
     FN (False Negatives) & : positive samples incorrectly classified as negative \\
 \end{tabular}
+\vspace{0.3cm}
 
-The sheer volume of BENIGN instances inflates the score regardless of attack detection quality. A model that predicts BENIGN for every single sample would still achieve over 99\% accuracy while detecting zero attacks.
+The sheer volume of \classlabel{BENIGN} instances inflates the score regardless of attack detection quality. A model that predicts \classlabel{BENIGN} for every single sample would still achieve over 99\% accuracy while detecting zero attacks.
 This makes accuracy effectively blind to what actually matters.
 
 Precision and Recall offer more granular insight into model behavior.
-Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected:
+Precision measures how many of the model's predictions for a given class are actually correct, and Recall measures how many of the true instances of that class the model successfully detected. They are defined as~\cite{powers2011evaluation, manning2008introduction}:
 
-\begin{equation}
+\begin{equation*}
     \label{eq:precision_recall}
     \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \qquad\qquad
     \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}
-\end{equation}
+\end{equation*}
 
 Both metrics are informative individually but insufficient alone; a model biased toward conservative predictions will report high precision at the cost of missing many attacks, while an overly permissive model will recover most attacks but introduce a high rate of false positives.
 
-The F1-score addresses this by taking the harmonic mean of precision and recall, penalizing models that sacrifice one for the other:
+The F1-score addresses this by taking the harmonic mean of precision and recall, penalizing models that sacrifice one for the other. It is defined as~\cite{powers2011evaluation}:
 
-\begin{equation}
+\begin{equation*}
     \label{eq:f1}
     \text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-\end{equation}
+\end{equation*}
 
 
 However, standard F1-score or its weighted variant still allows dominant classes to overshadow rare ones in the aggregate score, since each class's contribution to the final score is proportional to its sample count.
 
-We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores giving every class the same contribution regardless of how many samples it contains, it is defined as:
+We therefore adopt the Macro F1-score as the primary evaluation metric, which computes F1-score separately for each class, then averages those scores, giving every class the same contribution regardless of how many samples it contains. It is defined as~\cite{sokolova2009systematic}:
 
-\begin{equation}
+\begin{equation*}
     \label{eq:macro_f1}
     \text{Macro F1} = \frac{1}{C} \sum_{i=1}^{C} \text{F1}_i
-\end{equation}
+\end{equation*}
 
 
-Where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
+where $C$ is the total number of classes and $\text{F1}_i$ is the F1-score for class $i$.
 
 This guarantees that every class, regardless of size, contributes equally to the final score.
-Per-class F1-score scores are also tracked alongside it throughout all experiments to monitor individual class behavior.
+Per-class F1-scores are also tracked alongside it throughout all experiments to monitor individual class behavior.
+\vspace{1cm}
+\subsubsection{Cross-validation}
+Given the challenges associated with the CIC-IDS2017 dataset, particularly the class imbalance issue and the limited number of samples in certain attack classes, we decide to adopt an experimental approach during the training phase and rely on evaluation metrics to guide our decisions for the final model configuration. This led us to use cross-validation.
 
-\subsubsection{Cross-Validation}
-Given the challenges associated with the CIC-IDS2017 dataset, particularly the class imbalance issue and the limited number of samples in certain attack classes, we decide to adopt an experimental approach during the training phase and rely on evaluation metrics to guide our decisions for the final model configuration. This led us to use cross validation.
-
-Cross-validation is an evaluation technique that gives a more stable and reliable estimate of model performance, instead of relying on a single train-test split, the dataset is divided into several folds, and the model is trained and evaluated multiple times, each time using a different fold as the validation set while the remaining folds are used for training. The final performance is then obtained by averaging the results across all runs.  Several variants exist:
+Cross-validation is an evaluation technique that gives a more stable and reliable estimate of model performance. Instead of relying on a single train-test split, the dataset is divided into several folds, and the model is trained and evaluated multiple times, each time using a different fold as the validation set while the remaining folds are used for training. The final performance is then obtained by averaging the results across all runs. Several variants exist:
 
 \begin{itemize}
-    \item Standard k-fold divides the data into k equal folds and rotates the validation fold across all k iterations. It is more practical, but it assigns samples to folds randomly, with no guarantee that rare classes appear in every fold. With classes as scarce as Heartbleed, a random split could place all its samples in the training folds and leave none for validation, or the reverse, making the evaluation meaningless for that class.
-    \item Stratified k-fold addresses this directly. It applies the same k-fold rotation but enforces that each fold mirrors the class distribution of the full training set. If Heartbleed represents 0.0005\% of the data, each fold will contain approximately that proportion. This guarantees that every class is present in both the training and validation portions of every fold, producing evaluation scores that are consistent and comparable across all k runs. We set k = 5. This choice is driven primarily by the scarcity of our rarest class: with only 9 Heartbleed samples in the training set, each fold sees approximately 2 instances. Increasing k would reduce this further, making per-fold evaluation for rare classes even less stable. Decreasing it would produce fewer evaluation rounds and increase variance in the aggregated score. Five folds represent a practical balance between evaluation stability and computational cost given this constraint.
+    \item Standard k-fold divides the data into k equal folds and rotates the validation fold across all k iterations. It is more practical, but it assigns samples to folds randomly, with no guarantee that rare classes appear in every fold. With classes as scarce as \classlabel{Heartbleed}, a random split could place all its samples in the training folds and leave none for validation, or the reverse, making the evaluation meaningless for that class.
+    \item Stratified k-fold addresses this directly. It applies the same k-fold rotation but enforces that each fold mirrors the class distribution of the full training set. If \classlabel{Heartbleed} represents 0.0004\% of the data, each fold will contain approximately that proportion. This guarantees that every class is present in both the training and validation portions of every fold, producing evaluation scores that are consistent and comparable across all k runs. We set k = 5. This choice is driven primarily by the scarcity of our rarest class: with only 9 \classlabel{Heartbleed} samples in the training set, each fold sees approximately 2 instances. Increasing k would reduce this further, making per-fold evaluation for rare classes even less stable. Decreasing it would produce fewer evaluation rounds and increase variance in the aggregated score. Five folds represent a practical balance between evaluation stability and computational cost given this constraint.
 \end{itemize}
-Across all experiments, the reported performance corresponds to the mean Macro F1-score over the five folds, with per-class F1-score scores tracked individually to monitor class-level behavior throughout.
+Across all experiments, the reported performance corresponds to the mean Macro F1-score over the five folds, with per-class F1-scores tracked individually to monitor class-level behavior throughout.
 
 \subsubsection{Initial XGBoost parameters}
 
@@ -150,8 +152,9 @@ The initial XGBoost model is trained with the following parameters:
 \begin{itemize}
     \item \textbf{objective:} \texttt{'multi:softprob'}; multiclass classification that provides probabilities for each class.
     \item \textbf{num\_class:} \texttt{15}; the number of the target classes.
+          \vspace{0.5cm}
     \item \textbf{eval\_metric:} \texttt{'mlogloss'}; the multiclass logarithmic loss used to evaluate the model during training.
-    \item \textbf{tree\_method:} \texttt{'hist'}; a histogram based tree building  algorithm and is very efficient for large datasets.
+    \item \textbf{tree\_method:} \texttt{'hist'}; a histogram-based tree building algorithm that is very efficient for large datasets.
     \item \textbf{n\_estimators:} \texttt{1000}; the maximum number of boosting rounds, set high to allow the model to fully converge.
     \item \textbf{max\_depth:} \texttt{6}; the maximum depth of each tree, balancing between model complexity and generalization.
     \item \textbf{learning\_rate:} \texttt{0.1}; the step size controlling how much each new tree contributes to the final model, allowing for steady learning without overshooting optimal solutions.
@@ -171,29 +174,31 @@ If a more advanced configuration fails to outperform the baseline or produces ev
 Furthermore, baseline results provide guidance for future steps. For example, if a classification model fails to predict certain classes, efforts should be placed on addressing this flaw.
 
 
-For these reasons, we establish a baseline model by training XGBoost.
+For these reasons, we establish a baseline model by training XGBoost without applying any additional optimization techniques.
+
 The baseline training results divide into expected and unexpected outcomes, as shown in Figure~\ref{fig:/baseline_f1_bar_linear}:
 
 \begin{figure}[H]
     \hfil\includegraphics[width=1\columnwidth, fbox]{figures/baseline_f1_bar_linear.png}\hfil\\
-    \caption{Baseline F1-score per class}
+    \caption{Baseline F1-scores per class}
     \label{fig:/baseline_f1_bar_linear}
 \end{figure}
 
 
 \subsubsection{Expected outcomes}
-Classes with large sample counts perform exactly as anticipated. Attack types such as DoS Hulk, PortScan, and DDoS, each with over 100,000 training samples, along with moderately represented classes like DoS GoldenEye, FTP-Patator, SSH-Patator, DoS Slowloris, and DoS Slowhttptest, each above 5,000 samples, achieve a high F1-score at 0.99. The model has enough examples to learn stable, discriminative boundaries for these classes.
+Classes with large sample counts perform exactly as anticipated. Attack types such as \classlabel{DoS Hulk}, \classlabel{PortScan}, and \classlabel{DDoS}, each with over 100,000 training samples, along with moderately represented classes like \classlabel{DoS GoldenEye}, \classlabel{FTP-Patator}, \classlabel{SSH-Patator}, \classlabel{DoS Slowloris}, and \classlabel{DoS Slowhttptest}, each above 5,000 samples, achieve a high F1-score of 0.99 The model has enough examples to learn stable, discriminative boundaries for these classes.
 
-At the other end of the spectrum, Heartbleed and Infiltration achieve comparatively lower performance, with F1-scores of 0.93 and 0.75 respectively.
-This behavior is expected, as only 9 Heartbleed samples and 29 Infiltration samples remained after preprocessing, which makes learning more challenging for the model.
+At the other end of the spectrum, \classlabel{Heartbleed} and \classlabel{Infiltration} achieve comparatively lower performance, with F1-scores of 0.93 and 0.75 respectively.
+This behavior is expected, as only 9 \classlabel{Heartbleed} samples and 29 \classlabel{Infiltration} samples remained after preprocessing, which makes learning more challenging for the model.
 Nevertheless, the results remain promising given the extremely limited training data, and further improvement could likely be achieved.
-
+\vspace{0.3cm}
 \subsubsection{Unexpected outcomes}
 \begin{itemize}
     \item \textbf{Web Attacks:}
-          The most notable results come from the Web attack subclasses. We anticipated that Web Attack - SQL Injection would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
+          The most notable results come from the Web attack subclasses. We anticipated that \classlabel{Web Attack - SQL Injection} would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
+          \vspace{1.5cm}
 
-          The confusion matrix is computed to identify the specific misclassification patterns. As shown in figure \ref{fig:/baseline_webattack_confusion}, there is a consistent mutual confusion between XSS and Brute Force, XSS is misclassified 345 times as Web Attack - Brute Force, and Web Attack - Brute Force is misclassified as XSS 167 times. Both are also occasionally classified as BENIGN. This indicates that the model fails to establish meaningful separability between these categories in the feature space.
+          The confusion matrix is computed to identify the specific misclassification patterns. As shown in Figure~\ref{fig:/baseline_webattack_confusion}, there is a consistent mutual confusion between XSS and Brute Force. XSS is misclassified 345 times as \classlabel{Web Attack - Brute Force}, and \classlabel{Web Attack - Brute Force} is misclassified as XSS 167 times. Both are also occasionally classified as \classlabel{BENIGN}. This indicates that the model fails to establish meaningful separability between these categories in the feature space.
 
           \begin{figure}[H]
               \hfil\includegraphics[width=0.75\columnwidth, fbox]{figures/baseline_webattack_confusion.png}\hfil\\
@@ -203,18 +208,20 @@ Nevertheless, the results remain promising given the extremely limited training 
 
 
 
-          Although the Web Attack subclasses remain relatively underrepresented compared to dominant classes in the dataset their consistently poor performance suggests something potentially more fundamental than class imbalance or sample scarcity alone.
+          Although the Web Attack subclasses remain relatively underrepresented compared to dominant classes in the dataset, their consistently poor performance suggests something potentially more fundamental than class imbalance or sample scarcity alone.
 
-          Web attacks are payload-based attacks, an XSS carries a malicious script in an HTTP request body, an SQL injection crafts SQL commands by tempering with input fields interfering with database queries. Flow-based datasets like CIC-IDS2017 record features derived from packet timing, length distributions, and header-level metadata; there is no payload field. These features are evidently insufficient to capture the semantic structure of such attacks.
+          Web attacks are payload-based attacks. An XSS carries a malicious script in an HTTP request body, and an SQL injection crafts SQL commands by tampering with input fields, interfering with database queries. Flow-based datasets like CIC-IDS2017 record features derived from packet timing, length distributions, and header-level metadata; there is no payload field. These features are evidently insufficient to capture the semantic structure of such attacks.
 
-    \item \textbf{Bot attack:}
-          Bot is still relatively underrepresented compared to dominant classes, however, with approximately 1,500 training samples, it was initially expected to provide sufficient information for the model to learn meaningful patterns. Despite this its performance remains average with only an F1-score at 0.83.
+    \item \textbf{\classlabel{Bot} attack:}
+          \classlabel{Bot} is still relatively underrepresented compared to dominant classes; however, with approximately 1,500 training samples, it was initially expected to provide sufficient information for the model to learn meaningful patterns. Despite this, its performance remains average, with an F1-score of 0.83.
 
           Considering the attack's nature might explain why the model is failing it.
+          A \classlabel{Bot} attack typically operates in multiple phases. The first is the infection phase, often done through phishing or malicious download. It occurs without any visible indications, and the user remains unaware that their machine is under the control of an attacker, effectively turning it into a “zombie” machine.
+          \vspace{0.7cm}
 
-          A Bot attack typically operates in multiple phases. The first is the infection phase, often done through phishing, or malicious download. It occurs without any visible indications, and the user remains unaware that their machine is under the control of an attacker, effectively turning it into a “zombie” machine. The second is Command-and-Control (C2) communication where the infected machine establishes contact with an external server controlled by the attacker to receive instructions and periodically report its status. And finally using the botnet to launch an attack such as DDoS attacks, spam distribution, or data exfiltration. CIC-IDS2017 represents the second phase.
+          The second is Command-and-Control (C2) communication where the infected machine establishes contact with an external server controlled by the attacker to receive instructions and periodically report its status. Finally, the botnet is used to launch attacks such as \classlabel{DDoS} attacks, spam distribution, or data exfiltration. CIC-IDS2017 represents the second phase.
 
-          The confusion matrix in Figure \ref{fig:/baseline_bot_confusion} shows that bot attack is being misclassified 351 times as benign. This is due to the fact that, in this phase, the attacker intentionally mimics benign traffic patterns in order to remain undetected, making it difficult for the model to distinguish between malicious and normal behavior. Moreover, since the dataset represents each flow independently, it fails to capture the temporal nature of bot behavior, particularly periodic communication patterns across sessions.
+          The confusion matrix in Figure~\ref{fig:/baseline_bot_confusion} shows that the bot attack is misclassified 351 times as \classlabel{BENIGN}. This is due to the fact that, in this phase, the attacker intentionally mimics benign traffic patterns in order to remain undetected, making it difficult for the model to distinguish between malicious and normal behavior. Moreover, since the dataset represents each flow independently, it fails to capture the temporal nature of bot behavior, particularly periodic communication patterns across sessions.
 
           \begin{figure}[H]
               \hfil\includegraphics[width=0.75\columnwidth, fbox]{figures/baseline_bot_confusion.png}\hfil\\
@@ -224,18 +231,18 @@ Nevertheless, the results remain promising given the extremely limited training 
 \end{itemize}
 
 
-The baseline results show that underperforming classes do not fail for a single unified reason. Instead, two different patterns emerge. On one hand, classes such as Heartbleed and Infiltration appear to be primarily affected by extreme sample scarcity. On the other hand, Bot and Web Attack subclasses exhibit behavior that suggests additional limitations related to the nature of the data representation itself.
+The baseline results show that underperforming classes do not fail for a single unified reason. Instead, two different patterns emerge. On one hand, classes such as \classlabel{Heartbleed} and \classlabel{Infiltration} appear to be primarily affected by extreme sample scarcity. On the other hand, \classlabel{Bot} and Web Attack subclasses exhibit behavior that suggests additional limitations related to the nature of the data representation itself.
 
 Despite this distinction, all these classes are still, to varying degrees, underrepresented compared to dominant classes. For this reason, it remains reasonable to investigate whether standard imbalance mitigation techniques can improve their performance before drawing definitive conclusions about the nature of these limitations.
-\subsection{Iterative Experiments}
+\subsection{Iterative experiments}
 
-The class imbalance problem can be addressed at two levels with either an algorithm-level approach or a data-level approach :
+The class imbalance problem can be addressed at two levels with either an algorithm-level approach or a data-level approach:
 \begin{itemize}
     \item \textbf{Algorithm-level: Class Weights}
 
-          XGBoost is a gradient boosting model that learns by minimizing a loss function, for every wrongly predicted sample, it multiplies the loss associated with it by its assigned weight which is one by default, meaning the sample count is what primarily drives the loss function.
+          XGBoost is a gradient boosting model that learns by minimizing a loss function. For every wrongly predicted sample, it multiplies the loss associated with it by its assigned weight, which is one by default, meaning the sample count is what primarily drives the loss function.
 
-          In highly imbalanced datasets such as CIC-IDS2017, the model naturally optimizes for the majority class because of their higher sample count.
+          In highly imbalanced datasets such as CIC-IDS2017, the model naturally optimizes for the majority class because of its higher sample count.
 
           In XGBoost, sample weights are used to adjust the importance of each individual training instance in the loss function, effectively penalizing the model more heavily for misclassifying samples. By assigning higher weights to the minority class, this forces the algorithm to focus on correctly predicting those rare instances in subsequent boosting rounds.
 
@@ -243,19 +250,18 @@ The class imbalance problem can be addressed at two levels with either an algori
 
     \item \textbf{Data-level: Data augmentation}
 
-          SMOTE (Synthetic Minority Oversampling Technique) generates new synthetic samples rather than duplicating existing ones. SMOTE works by identifying the k-nearest neighbors of an instance then selects one at random.
-
-          It then generates a new synthetic point using linear interpolation; it computes the distance between the two points, multiples the difference by a random number between 0 and 1 and adds this value to the original sample creating the artificial new sample.
+          SMOTE (Synthetic Minority Oversampling Technique) generates new synthetic samples rather than duplicating existing ones. SMOTE works by identifying the k-nearest neighbors of an instance, then selects one at random.
+          It then generates a new synthetic point using linear interpolation; it computes the distance between the two points, multiplies the difference by a random number between 0 and 1, and adds this value to the original sample, creating the artificial new sample.
 
           Although SMOTE becomes risky when applied to classes with very low sample counts, as the synthetic samples are created from a very limited neighborhood, which reduces diversity and can lead to unrealistic decision boundaries. This may result in generating synthetic points that do not accurately represent the real characteristics of that class, and can introduce noise.
 
-          In this case Random over sampling (ROS) becomes a better resort. It works by duplicating existing samples. It introduces no new information but ensures the class appears more frequently during training.
+          In this case, random oversampling (ROS) becomes a better resort. It works by duplicating existing samples. It introduces no new information but ensures the class appears more frequently during training.
 \end{itemize}
 
 That said, we approach SMOTE with deliberate caution. Network intrusion data is sensitive. A synthetic sample generated by interpolating between two real flow records is not guaranteed to faithfully capture the attack pattern, which presents a real risk. It may introduce noise that disrupts the model’s learned decision boundaries rather than reinforcing them.
 Given the critical nature of network intrusion detection, we favor XGBoost’s class weighting over data augmentation, as it offers a simpler and safer mechanism that achieves a similar effect without modifying the training data. Nonetheless, we still run sampling experiments to evaluate whether the data-level approach provides any measurable gain.
 
-\subsubsection{Rebalancing Experiments}
+\subsubsection{Rebalancing experiments}
 We define a fixed set of experiments. If a new configuration involves altering the training set, the same experiments are rerun to ensure consistent evaluation:
 \begin{enumerate}
     \item Class weights
@@ -264,12 +270,12 @@ We define a fixed set of experiments. If a new configuration involves altering t
 \end{enumerate}
 
 
-Following baseline training, we attempt to improve the performance of weaker-performing classes, namely the Web Attack subclasses, Heartbleed, Infiltration, and Bot, through these series of experiments while monitoring the evaluation metrics.
+Following baseline training, we attempt to improve the performance of weaker-performing classes, namely the Web Attack subclasses, \classlabel{Heartbleed}, \classlabel{Infiltration}, and \classlabel{Bot}, through these series of experiments while monitoring the evaluation metrics.
 
 
 \subsubsection{Class weights}
 
-Under class weighting (balanced), Infiltration improves to an F1-score of 0.84 and Heartbleed reaches 0.96. However, Bot performance deteriorates from 0.83 to 0.79, while Web Attack classes show no measurable improvement.
+Under class weighting (balanced), \classlabel{Infiltration} improves to an F1-score of 0.84 and \classlabel{Heartbleed} reaches 0.96. However, \classlabel{Bot} performance deteriorates from 0.83 to 0.79, while Web Attack classes show no measurable improvement.
 
 A second weighting strategy is explored using two custom formulations.
 The first assigns weights inversely proportional to the square of the baseline F1-score, amplifying attention on the worst-performing classes disproportionately more.
@@ -284,96 +290,98 @@ Sampling is applied only within the training folds during cross-validation. The 
 
 In SMOTE, the parameter k defines the number of nearest neighbors used to generate synthetic samples. We set k = 5, the default value, as it ensures a stable neighborhood structure for synthetic sample generation. This choice directly influences the minimum viable class size required for SMOTE to operate correctly.
 
-Based on this constraint, we apply SMOTE only to classes with more than 50 training samples and ROS on the ones below. This threshold is not arbitrary, SMOTE requires at least $k + 1$ samples in the minority class to identify valid neighbors. Below that count, the neighborhood becomes degenerate; the algorithm would interpolate between the same few points repeatedly, producing synthetic data that is essentially noise rather than new information.
+Based on this constraint, we apply SMOTE only to classes with more than 50 training samples and ROS on the ones below. This threshold is not arbitrary; SMOTE requires at least $k + 1$ samples in the minority class to identify valid neighbors. Below that count, the neighborhood becomes degenerate; the algorithm would interpolate between the same few points repeatedly, producing synthetic data that is essentially noise rather than new information.
 
 The resampling targets are set as follows:
-SMOTE is used to increase Bot samples from 390 to 3,000, Web Attack - Brute Force from 294 to 3,000, and Web Attack - XSS from 522 to 2,000.
-Random oversampling is applied to Web Attack - SQL Injection from 17 to 300, Heartbleed from 9 to 300, and Infiltration from 29 to 300.
+SMOTE is used to increase \classlabel{Bot} samples from 390 to 3,000, \classlabel{Web Attack - Brute Force} from 294 to 3,000, and \classlabel{Web Attack - XSS} from 522 to 2,000.
+Random oversampling is applied to \classlabel{Web Attack - SQL Injection} from 17 to 300, \classlabel{Heartbleed} from 9 to 300, and \classlabel{Infiltration} from 29 to 300.
 
-Under this configuration, Web Attack classes show no improvement. While Infiltration drops slightly compared to the weights configuration with F1-score = 0.82, and Heartbleed reaches a perfect 1.0. score.
+Under this configuration, Web Attack classes show no improvement. While \classlabel{Infiltration} drops slightly compared to the weights configuration with F1-score = 0.82, \classlabel{Heartbleed} reaches a perfect 1.0 score.
 
 \paragraph{Sampling and weights}
-When combining sampling with class weighting, Bot performance drops further, whereas Infiltration recovers to an F1-score of 0.87. Web Attack classes remain unchanged, while Heartbleed maintains a perfect F1-score of 1.0.
+When combining sampling with class weighting, \classlabel{Bot} performance drops further, whereas \classlabel{Infiltration} recovers to an F1-score of 0.87. Web Attack classes remain unchanged, while \classlabel{Heartbleed} maintains a perfect F1-score of 1.0.
 
 
-The consistent finding across all four configurations is that Web Attack performance does not respond to any rebalancing approach. This confirms that this is not a class imbalance problem, it is a feature representation problem.
+The consistent finding across all four configurations is that Web Attack performance does not respond to any rebalancing approach. This confirms that this is not a class imbalance problem; it is a feature representation problem.
 
-Relative to the baseline, Bot performance consistently drops under these configurations,  which confirms that this is a dataset limitation.
+Relative to the baseline, \classlabel{Bot} performance consistently drops under these configurations, which confirms that this is a dataset limitation.
 
-\subsubsection{Web Attack Class Merging}
+\subsubsection{Web attack class merging}
 
 As established, no combination of weighting or sampling improves Web Attack performance. The confusion matrix shows persistent mutual misclassification between XSS and Brute Force across every experiment. Their flow-level signatures are too similar to separate with the available features.
 
-We therefore decide to merge the three Web Attack subclasses Brute Force, SQL Injection and XSS into a single unified Web Attack class.
+We therefore decide to merge the three Web Attack subclasses, Brute Force, SQL Injection, and XSS, into a single unified Web Attack class.
 
 Because this modifies the training set, all four experimental configurations are re-run from scratch.
 
-The merged Web Attack class immediately achieves F1-score = 0.98. However, Heartbleed drops from 0.93 to 0.86 relative to the original baseline, while Bot remains stable at 0.83.
+The merged Web Attack class immediately achieves F1-score = 0.98. However, \classlabel{Heartbleed} drops from 0.93 to 0.86 relative to the original baseline, while \classlabel{Bot} remains stable at 0.83.
 
-When class weights are introduced, Heartbleed reaches an F1-score = 0.96. Infiltration recovers to 0.87, matching its performance before merging under the sampling and class-weighting strategy. Web Attack holds at 0.98.
+When class weights are introduced, \classlabel{Heartbleed} reaches an F1-score = 0.96. \classlabel{Infiltration} recovers to 0.87, matching its performance before merging under the sampling and class-weighting strategy. Web Attack holds at 0.98.
 
-Under sampling alone, Infiltration reaches only 0.80, Heartbleed drops to 0.93. Web Attack stays at 0.98.
+Under sampling alone, \classlabel{Infiltration} reaches only 0.80, \classlabel{Heartbleed} drops to 0.93. Web Attack stays at 0.98.
 
-Finally, combining sampling with class weights, Web Attack remains at 0.98. However, infiltration drops to 0.79. Heartbleed reaches 1.0 F1-score again.
+Finally, combining sampling with class weights, Web Attack remains at 0.98. However, \classlabel{Infiltration} drops to 0.79. \classlabel{Heartbleed} reaches 1.0 F1-score again.
 
 Across all four configurations, Web Attack consistently sits at approximately 0.98 regardless of whether weights or sampling are added. This confirms that merging alone is the decisive intervention; no additional rebalancing is necessary.
 
 \subsubsection{Heartbleed ablation}
 
-Heartbleed warrants a closer look.
-With only 9 training samples and 2 retained in the test set, cross-validation folds see approximately 2 Heartbleed samples per validation split. At that scale, the F1-score can take only a handful of discrete values, 0 when both are wrong, 0.67 in case only one is wrong, and a perfect 1.0 score means the model simply predicts both samples correctly.
+\classlabel{Heartbleed} warrants a closer look.
+With only 9 training samples and 2 retained in the test set, cross-validation folds see approximately 2 \classlabel{Heartbleed} samples per validation split. At that scale, the F1-score can take only a handful of discrete values, 0 when both are wrong, 0.67 in case only one is wrong, and a perfect 1.0 score means the model simply predicts both samples correctly.
+\vspace{1.5cm}
 
-More importantly, all resampling and rebalancing techniques are applied exclusively to the training folds and therefore do not affect the test distribution. As a result, regardless of whether weights or sampling are used, the final evaluation is always based on the same two test samples. This makes it hard to meaningfully assess the impact of these strategies on Heartbleed’s generalization performance.
+More importantly, all resampling and rebalancing techniques are applied exclusively to the training folds and therefore do not affect the test distribution. As a result, regardless of whether weights or sampling are used, the final evaluation is always based on the same two test samples. This makes it hard to meaningfully assess the impact of these strategies on \classlabel{Heartbleed}’s generalization performance.
 
-This initially motivates an ablation experiment in which Heartbleed is temporarily removed to assess its impact on the model’s behavior.
+This initially motivates an ablation experiment in which \classlabel{Heartbleed} is temporarily removed to assess its impact on the model’s behavior.
 
-Following this change, the complete set of experiments is rerun. However, the results are unexpected: Infiltration, which previously showed significant improvement under the merged Web Attack configuration with class weighting and Heartbleed included, reaching its best F1-score of 0.87, drops once Heartbleed is removed while keeping the same merge and weighting setup.
+Following this change, the complete set of experiments is rerun. However, the results are unexpected: \classlabel{Infiltration}, which previously showed significant improvement under the merged Web Attack configuration with class weighting and \classlabel{Heartbleed} included, reaching its best F1-score of 0.87, drops once \classlabel{Heartbleed} is removed while keeping the same merge and weighting setup.
 
-As shown in Figure~\ref{fig:/infiltration_comparison}, removing Heartbleed under class weighting leads to a substantial decrease in Infiltration F1-score.
+As shown in Figure~\ref{fig:/infiltration_comparison}, removing \classlabel{Heartbleed} under class weighting leads to a substantial decrease in \classlabel{Infiltration} F1-score.
 
-
+\vspace{0.3cm}
 \begin{figure}[H]
     \hfil\includegraphics[width=0.9\columnwidth, fbox]{figures/infiltration_heartbleed_comparison.png}\hfil
     \caption{Infiltration F1-score comparison across configurations}
     \label{fig:/infiltration_comparison}
 \end{figure}
+\vspace{0.3cm}
 
+This behavior can be explained by the optimization mechanism of XGBoost. Under class weighting, \classlabel{Heartbleed} receives a gradient scaling factor of approximately 19,000× relative to the \classlabel{BENIGN} class. Each of its 9 training samples exerts as much optimization pressure on the model as a substantial fraction of the majority class flows. The model, responding to this extreme gradient signal, prioritizes correctly resolving the \classlabel{Heartbleed} decision boundary.
 
-This behavior can be explained by the optimization mechanism of XGBoost. Under class weighting, Heartbleed receives a gradient scaling factor of approximately 19,000× relative to the BENIGN class. Each of its 9 training samples exerts as much optimization pressure on the model as a substantial fraction of the majority class flows. The model, responding to this extreme gradient signal, prioritizes correctly resolving the Heartbleed decision boundary.
+This extreme weighting has an indirect structural effect on \classlabel{Infiltration}. In XGBoost, each tree is built by recursively partitioning the feature space, and each split is chosen to minimize the weighted gradient loss across all classes simultaneously. When \classlabel{Heartbleed} receives 19,000× weight, its samples impose disproportionate pressure on how certain boundaries are drawn in the shared feature subspace.
 
-This extreme weighting has an indirect structural effect on Infiltration. In XGBoost, each tree is built by recursively partitioning the feature space, and each split is chosen to minimize the weighted gradient loss across all classes simultaneously. When Heartbleed receives 19,000× weight, its samples impose disproportionate pressure on how certain boundaries are drawn in the shared feature subspace.
+\vspace{1.5cm}
 
-Some of these boundaries, though oriented toward separating Heartbleed from BENIGN, incidentally create a favorable partition for Infiltration samples as well, because the two classes occupy adjacent regions of feature space, the cut drawn to isolate Heartbleed simultaneously pulls Infiltration away from BENIGN. Removing Heartbleed under weighting relaxes that boundary, and Infiltration loses the incidental separation from BENIGN.
+Some of these boundaries, though oriented toward separating \classlabel{Heartbleed} from \classlabel{BENIGN}, incidentally create a favorable partition for \classlabel{Infiltration} samples as well, because the two classes occupy adjacent regions of feature space, the cut drawn to isolate \classlabel{Heartbleed} simultaneously pulls \classlabel{Infiltration} away from \classlabel{BENIGN}. Removing \classlabel{Heartbleed} under weighting relaxes that boundary, and \classlabel{Infiltration} loses the incidental separation from \classlabel{BENIGN}.
 
-To conclude, Heartbleed and Infiltration have no structural relationship in the data. The dependency is induced entirely by the extreme weight assigned to Heartbleed.
+To conclude, \classlabel{Heartbleed} and \classlabel{Infiltration} have no structural relationship in the data. The dependency is induced entirely by the extreme weight assigned to \classlabel{Heartbleed}.
 
-The ablation results demonstrate that removing or amplifying Heartbleed affects specific aspects of the model’s behavior; under class weighting, its strong gradient signal contributes to sharpening nearby decision boundaries in the feature space, which indirectly benefits Infiltration performance.
+The ablation results demonstrate that removing or amplifying \classlabel{Heartbleed} affects specific aspects of the model’s behavior; under class weighting, its strong gradient signal contributes to sharpening nearby decision boundaries in the feature space, which indirectly benefits \classlabel{Infiltration} performance.
 
-This observation led to a reassessment of the initial interpretation of metric limitation.
+This observation led to a reassessment of the initial interpretation of the metric limitation.
 
-While the extremely small number of test samples prevents statistically robust metric estimation, it does not imply that the model fails to learn the class during training. The training process still incorporates Heartbleed samples, allowing the model to adjust its internal decision boundaries accordingly
+While the extremely small number of test samples prevents statistically robust metric estimation, it does not imply that the model fails to learn the class during training. The training process still incorporates \classlabel{Heartbleed} samples, allowing the model to adjust its internal decision boundaries accordingly.
 
-More importantly, despite the severe data scarcity, both Heartbleed and Infiltration still achieve strong performance, reaching F1-scores of 0.93 and 0.87 respectively under the selected configuration. In the context of network intrusion detection, retaining additional attack coverage presents no practical downside when the model maintains acceptable predictive performance.
+More importantly, despite the severe data scarcity, both \classlabel{Heartbleed} and \classlabel{Infiltration} still achieve strong performance, reaching F1-scores of 0.93 and 0.87 respectively under the selected configuration. In the context of network intrusion detection, retaining additional attack coverage presents no practical downside when the model maintains acceptable predictive performance.
 
-In light of the ablation findings, we decide to retain Heartbleed.
+In light of the ablation findings, we decide to retain \classlabel{Heartbleed}.
 
-\subsection{Final Model Configuration}
-The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining Heartbleed, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.97.
+\subsection{Final model configuration}
+The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining \classlabel{Heartbleed}, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.97.
 
-At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99, Heartbleed reaches an F1-score of 0.96
-, Infiltration achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
+At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. \classlabel{Heartbleed} reaches an F1-score of 0.96, \classlabel{Infiltration} achieves 0.87, and the merged Web Attack class obtains an F1-score of 0.98.
 
 \subsection{Hyperparameter tuning}
 
 Following the final model configuration, we proceed to hyperparameter tuning, defining a search space over the most impactful parameters and applying a search strategy to find the combination that maximizes model performance.
 
-\subsubsection{Search Space}
+\subsubsection{Search space}
 
 The parameters selected for tuning are as follows:
 
 \begin{itemize}
-    \item \textbf{max\_depth:} Controls the complexity of each tree. High value risks overfitting and a low value risks underfitting making it critical for generalization.
-    \item \textbf{min\_child\_weight:} Controls the node splits. High values lead to fewer splits, potentially making it harder for the model to learn minority classes patterns, low values allows more splits at the risk of overfitting.
+    \item \textbf{max\_depth:} Controls the complexity of each tree. A high value risks overfitting, and a low value risks underfitting, making it critical for generalization.
+    \item \textbf{min\_child\_weight:} Controls the node splits. High values lead to fewer splits, potentially making it harder for the model to learn minority-class patterns; low values allow more splits at the risk of overfitting.
     \item \textbf{subsample and colsample\_bytree:} They respectively control the subset of samples and features each tree is trained on. Finding the right values introduces just the right randomness to improve generalization without losing too much training signal.
     \item \textbf{reg\_alpha and reg\_lambda:} L1 and L2 regularization with L1 pushing less useful weights toward zero while L2 shrinks all weights to stabilize predictions. High regularization makes the model too simple to detect subtle attack patterns and a lower one risks overfitting to majority class noise.
     \item \textbf{learning\_rate:} Controls the learning rate of each boosting round. High value leads to faster convergence but can overshoot the optimal solution, low value leads to slower convergence but more stable learning.
@@ -406,24 +414,21 @@ Each parameter is assigned a range of values to explore, as shown in Table~\ref{
 \end{table}
 
 
-\subsubsection{Search Method}
+\subsubsection{Search method}
 
 Having defined the search space, we proceed to decide the search method. Three search strategies are considered:
 
 \begin{itemize}
-    \item \textbf{Grid Search:} Tries every possible combination of the search space making it expensive; with 7 parameters and continuous ranges, even a coarse discretization yields thousands of combinations, it costs too much time and computational resources.
-    \item \textbf{Random Search:} Tries a random fixed number of combinations which is much cheaper than grid search and often yields good results faster but is not guaranteed to cover everything. It treats each parameter independently and has no memory, which may lead to wasting trials in regions of the search space already known to be poor.
+    \item \textbf{Grid Search:} Tries every possible combination of the search space, making it expensive; with 7 parameters and continuous ranges, even a coarse discretization yields thousands of combinations, which costs too much time and computational resources.
+    \item \textbf{Random Search:} Tries a random fixed number of combinations, which is much cheaper than grid search and often yields good results faster; however, it is not guaranteed to cover everything. It treats each parameter independently and has no memory, which may lead to wasting trials in regions of the search space already known to be poor.
     \item \textbf{Bayesian Optimization:} A smart search method where the results of previous trials are used to choose better next trials. It builds a probabilistic model of the objective function and uses it to select the most promising hyperparameters to evaluate in the true objective function.
 \end{itemize}
 
-Bayesian optimization with Optuna is selected, as it is a smart method yielding better results with much cheaper computational cost. It uses a Tree-structured Parzen Estimator (TPE) that splits the trial history into two groups: one with the best-performing trials and another with the rest, it then proposes the candidate hyperparameters that maximize the ratio between the two distributions, focusing sampling on promising regions while avoiding areas already known to perform poorly. It can also capture parameter dependencies as it models each parameter's distribution conditionally.
+Bayesian optimization with Optuna is selected, as it is a smart method yielding better results at a much lower computational cost. It uses a Tree-structured Parzen Estimator (TPE) that splits the trial history into two groups: one with the best-performing trials and another with the rest. It then proposes the candidate hyperparameters that maximize the ratio between the two distributions, focusing sampling on promising regions while avoiding areas already known to perform poorly. It can also capture parameter dependencies as it models each parameter's distribution conditionally.
 
-\subsubsection{Tuning Results}
-
-After 100 trials, the best configuration is found at trial 91, achieving a macro F1 score of 0.976 with an improvement of 0.006 over the untuned model. The infiltration F1-score is improved from 0.87 to 0.91, heartbleed also has a significant improvement from 0.96 to 1.0, while the merged Web Attack class remains stable at 0.98.
-
+\subsubsection{Tuning results}
+After 100 trials, the best configuration is found at trial 91, achieving a Macro F1-score of 0.976 with an improvement of 0.006 over the untuned model. The \classlabel{Infiltration} F1-score is improved from 0.87 to 0.91, and \classlabel{Heartbleed} also has a significant improvement from 0.96 to 1.0, while the merged Web Attack class remains stable at 0.98.
 The best hyperparameters are as follows:
-
 \begin{multicols}{2}
 
     \begin{itemize}
@@ -435,12 +440,11 @@ The best hyperparameters are as follows:
         \item \textbf{reg\_lambda:} 1.02
         \item \textbf{learning\_rate:} 0.1
     \end{itemize}
+\end{multicols}
 
-\end{multicols} 
+Throughout the study, the F1-score is improving steadily beyond 50 trials before converging around trial 80, as shown in Figure~\ref{fig:opt-hist}. The blue dots scattered across the search space indicate that the search is still exploring promising regions.
 
-Throughout the study, the F1-score is improving steadily beyond 50 trials before converging around trial 80 as shown in Figure~\ref{fig:opt-hist}. The blue dots scattered across the search space indicate that the search is still exploring promising regions.
-
-\begin{figure}[h!]
+\begin{figure}[H]
     \includegraphics[width=1\columnwidth, fbox]{figures/F1-score_across_trials.png}
     \caption{Optimization history}
     \label{fig:opt-hist}
@@ -450,20 +454,20 @@ Throughout the study, the F1-score is improving steadily beyond 50 trials before
 
 Beyond class weighting and hyperparameter tuning, two additional threshold mechanisms are applied to further refine the model's decision-making.
 
-\subsubsection{Decision Threshold}
-XGBoost assigns each sample to the class with the highest predicted probability. In an imbalanced dataset, this is problematic as the  model learns a bias toward majority classes during training, which is expressed at prediction time through higher predicted probabilities for those classes, making it harder for minority classes to be predicted even when the model has a reasonable signal for them. To address this at the decision level, a threshold is optimized independently for each class on the out-of-fold predictions from cross-validation. By acting as a per-class scale that normalizes each class's probability, minority classes are given a fairer chance at being predicted without modifying the model itself.
+\subsubsection{Decision threshold}
+XGBoost assigns each sample to the class with the highest predicted probability. In an imbalanced dataset, this is problematic because the model learns a bias toward majority classes during training, which is expressed at prediction time through higher predicted probabilities for those classes, making it harder for minority classes to be predicted even when the model has a reasonable signal for them. To address this at the decision level, a threshold is optimized independently for each class on the out-of-fold predictions from cross-validation. By acting as a per-class scale that normalizes each class's probability, minority classes are given a fairer chance at being predicted without modifying the model itself.
 
-\subsubsection{Confidence Threshold}
+\subsubsection{Confidence threshold}
 
-A second limitation arises from the closed-world assumption of the model. The model is trained on a fixed set of known attack classes and will always assign a sample to one of them, even when encountering traffic that does not resemble any of them. In practice, new attack types emerge continuously, and the model has no mechanism to express uncertainty. When faced with an unknown pattern, it will most likely classify it as BENIGN, which is the worst possible outcome in a security context. To address this, a confidence threshold is set on the maximum probability across all classes. When the model's highest confidence for any class falls below this threshold, the flow is flagged as unknown rather than forced into a potentially wrong classification, leaving it for human review.
+A second limitation arises from the closed-world assumption of the model. The model is trained on a fixed set of known attack classes and will always assign a sample to one of them, even when encountering traffic that does not resemble any of them. In practice, new attack types emerge continuously, and the model has no mechanism to express uncertainty. When faced with an unknown pattern, it will most likely classify it as \classlabel{BENIGN}, which is the worst possible outcome in a security context. To address this, a confidence threshold is set on the maximum probability across all classes. When the model's highest confidence for any class falls below this threshold, the flow is flagged as unknown rather than forced into a potentially wrong classification, leaving it for human review.
 
 \subsection{Final model training results}
 
 The final model is trained on the full training set using the tuned hyperparameters with balanced class weights. Since training on the full dataset leaves no validation set, early stopping cannot be applied. Instead, the number of estimators is fixed by averaging the best iteration across the five cross-validation folds, which gives a mean of 1086 trees. A 20\% buffer is added on top to account for the fact that more training data generally requires more trees to converge, bringing the final number of estimators to 1300.
 
-The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a macro F1 of 0.98, exceeding the cross-validation mean of 0.96, indicating that the model generalizes well and did not overfit to the training data.
+The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a Macro F1 of 0.98, exceeding the cross-validation mean of 0.96, indicating that the model generalizes well and did not overfit to the training data.
 
-At the class level, nine classes achieve near-perfect F1-scores above 0.99. Heartbleed and Infiltration both reach a perfect F1-score of 1.0 on the test set. This result is attributed to two factors: training on the full dataset exposes the model to all available patterns for these classes, and the test samples are similar enough to the training data for the learned decision boundaries to classify them correctly. It should be noted however that with only 2 Heartbleed and 7 Infiltration test samples, this result is not statistically robust and should be interpreted with caution. A more reliable evaluation of these classes would require testing on additional data from independent sources, which is considered as a future direction. The merged Web Attack class achieves an F1-score of 0.98, while Bot reaches 0.84. Figure \ref{fig:final_f1} shows the final F1-scores for each class.
+At the class level, nine classes achieve near-perfect F1-scores above 0.99. \classlabel{Heartbleed} and \classlabel{Infiltration} both reach a perfect F1-score of 1.0 on the test set. This result is attributed to two factors: training on the full dataset exposes the model to all available patterns for these classes, and the test samples are similar enough to the training data for the learned decision boundaries to classify them correctly. It should be noted, however, that with only 2 \classlabel{Heartbleed} and 7 \classlabel{Infiltration} test samples, this result is not statistically robust and should be interpreted with caution. A more reliable evaluation of these classes would require testing on additional data from independent sources, which is considered a future direction. The merged Web Attack class achieves an F1-score of 0.98, while \classlabel{Bot} reaches 0.84. Figure~\ref{fig:final_f1} shows the final F1-scores for each class.
 
 \begin{figure}[h!]
     \hfil\includegraphics[width=1\columnwidth, fbox]{figures/final_model_f1_bar_linear}\hfil\\
@@ -471,8 +475,6 @@ At the class level, nine classes achieve near-perfect F1-scores above 0.99. Hear
     \label{fig:final_f1}
 \end{figure}
 
-
-\newpage
 \section{Conclusion}
 
-This chapter presented the full modeling and evaluation pipeline of the project. Through a series of controlled experiments, class imbalance was systematically addressed, leading to a final model configuration that achieves a macro F1-score of 0.9852 on the held-out test set. The next chapter presents the realization of the system.
+This chapter presented the full modeling and evaluation pipeline of the project. Through a series of controlled experiments, class imbalance was systematically addressed, leading to a final model configuration that achieves a Macro F1-score of 0.9852 on the held-out test set. The next chapter presents the realization of the system.

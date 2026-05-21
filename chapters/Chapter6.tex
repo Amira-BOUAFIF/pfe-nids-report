@@ -10,7 +10,7 @@ Finally, we present the system’s results through the main user interfaces.
 
 
 
-\section{Development Tools and Technologies}
+\section{Development tools and technologies}
 This section presents the development tools and technologies used throughout the project. Table \ref{tab:dev_tools_tech} summarizes the main technologies adopted, along with their respective roles within the system.
 
 
@@ -30,7 +30,7 @@ This section presents the development tools and technologies used throughout the
   \hfill
   \begin{minipage}[c]{0.78\textwidth}
     \textbf{Python}\cite{Python}\\[1mm]
-    Python is a high-level, interpreted programming language, widely used for scientific computing and rapid prototyping. In this project, it supports the data understanding, preparation, modeling and evaluation scripts. It is also used to implement the inference service.
+    Python is a high-level, interpreted programming language, widely used for scientific computing and rapid prototyping. In this project, it supports the data understanding, preparation, modeling, and evaluation scripts. It is also used to implement the inference service.
   \end{minipage}
 \end{tcolorbox}
 
@@ -168,7 +168,7 @@ This section presents the development tools and technologies used throughout the
   \hfill
   \begin{minipage}[c]{0.78\textwidth}
     \textbf{Docker Compose}\cite{DockerCompose}\\[1mm]
-    Docker Compose is a tool for defining and running multi-container applications through a declarative configuration file. It is used to orchestrate the local multiservice stack and reproduce the platform setup using a single configuration.
+    Docker Compose is a tool for defining and running multi-container applications through a declarative configuration file. It is used to orchestrate the local multi-service stack and reproduce the platform setup using a single configuration.
   \end{minipage}
 \end{tcolorbox}
 
@@ -229,11 +229,11 @@ This section presents the development tools and technologies used throughout the
 \end{tcolorbox}
 \endgroup
 
-\section{Model Integration}
+\section{Model integration}
 
 After training and validating the intrusion detection model, the next step consisted of integrating it into the application environment in order to enable prediction through the web platform.
 
-FastAPI\cite{FastAPI} was adopted as the communication layer between the model and the rest of the system. This approach ensures that the model is only loaded once during application startup, thereby reducing latency and improving prediction efficiency. In addition, FastAPI offers high performance, lightweight architecture, asynchronous request handling, and automatic API documentation, making it well suited for AI-based applications.
+FastAPI\cite{FastAPI} was adopted as the communication layer between the model and the rest of the system. This approach ensures that the model is only loaded once during application startup, thereby reducing latency and improving prediction efficiency. In addition, FastAPI offers high-performance, lightweight architecture, asynchronous request handling, and automatic API documentation, making it well-suited for AI-based applications.
 
 The implemented API exposes two main endpoints. The first endpoint, \texttt{/health}, is used to verify that the service is operational and the prediction model has been successfully loaded into memory, as illustrated in Figure~\ref{fig:api-health}. The second endpoint, \texttt{/predict}, receives a feature vector as input and returns the predicted attack class along with the associated confidence score and inference time, as shown in Figure~\ref{fig:api-predict}.
 
@@ -295,7 +295,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
 Communication between system components is based on HTTP requests within the Docker network. The frontend communicates with the backend through REST APIs, while the backend interacts with the FastAPI service to obtain prediction results from the trained model.
 The backend also handles data persistence by communicating with the MySQL database, and external notifications are sent through an SMTP service.
 
-The system architecture is illustrated through the deployment diagram as shown in Figure~\ref{fig:dep-diagram}.
+The system architecture is illustrated in the deployment diagram shown in Figure~\ref{fig:dep-diagram}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\columnwidth]{diagrams/DepD.png}
@@ -304,7 +304,7 @@ The system architecture is illustrated through the deployment diagram as shown i
 \end{figure}
 
 
-\section{User Interfaces}
+\section{User interfaces}
 
 This section presents the main user interfaces of the NIDS Web Application.
 \vspace{-0.5cm}

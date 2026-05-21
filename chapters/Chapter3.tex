@@ -3,14 +3,14 @@
 \section{Introduction}
 This chapter focuses on the conceptual design of the application providing a clear and formal representation of both the dynamic behavior and the structural organization of the system, using the sequence diagrams, and the class diagram.
 
-\section{Sequence Diagrams}
+\section{Sequence diagrams}
 
 A sequence diagram models the chronological interactions between system components for the most representative use cases.
 
-In this section, two sequence diagrams are presented to model the most representative interactions in the system. The first covers the << Trigger Network Analysis >> use case, which represents the core functionality of the platform. It models the full analysis pipeline: from the administrator triggering the simulation, through flow-by-flow prediction by the AI engine, to the conditional storage and alert generation based on the predicted label, including email notification handling for critical and high severity alerts. The second covers the << View Alerts List >> use case, modeling the interactions involved in loading, paginating, filtering, and managing alerts, as well as navigating to alert details and updating alert status.
+In this section, two sequence diagrams are presented. The first covers the << Trigger Network Analysis >> use case, which represents the core functionality of the platform. It models the full analysis pipeline: from the administrator triggering the simulation, through flow-by-flow prediction by the AI engine, to the conditional storage and alert generation based on the predicted label, including email notification handling for critical and high severity alerts. The second covers the << View Alerts List >> use case, modeling the interactions involved in loading, paginating, filtering, and managing alerts, as well as navigating to alert details and updating alert status.
 
-\subsection{<< Trigger Network Analysis >> Sequence Diagram}
-Figure~\ref{fig:seqd-trigger-network-analysis} illustrates the sequence of the << Trigger Network Analysis >> use case.
+\subsection{<< Trigger Network Analysis >> sequence diagram}
+Figure~\ref{fig:seqd-trigger-network-analysis} illustrates the sequence diageam of the << Trigger Network Analysis >> use case.
 
 \begin{figure}[H]
     \centering
@@ -20,7 +20,7 @@ Figure~\ref{fig:seqd-trigger-network-analysis} illustrates the sequence of the <
 \end{figure}
 
 \newpage
-\subsection{<< View Alerts List >> Sequence Diagram}
+\subsection{<< View Alerts List >> sequence diagram}
 \vspace{-0.2cm}
 Figure~\ref{fig:seqd-view-alert-list} illustrates the sequence diagram of the << View Alerts List >> use case.
 
@@ -32,7 +32,7 @@ Figure~\ref{fig:seqd-view-alert-list} illustrates the sequence diagram of the <<
     \label{fig:seqd-view-alert-list}
 \end{figure}
 \newpage
-\section{Class Diagram}
+\section{Class diagram}
 A class diagram describes the static structure of the system through its classes, attributes, and relationships.
 Figure \ref{fig:class-diagram} illustrates the class diagram of our project.
 

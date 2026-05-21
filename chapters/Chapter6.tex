@@ -13,11 +13,12 @@ Finally, we present the system’s results through the main user interfaces.
 \section{Development Tools and Technologies}
 This section presents the development tools and technologies used throughout the project. Table \ref{tab:dev_tools_tech} summarizes the main technologies adopted, along with their respective roles within the system.
 
+
 \begin{center}
   \captionof{table}{Development tools and technologies}
   \label{tab:dev_tools_tech}
 \end{center}
-
+\vspace{-0.5cm}
 \begingroup
 \footnotesize
 
@@ -236,9 +237,11 @@ FastAPI\cite{FastAPI} was adopted as the communication layer between the model a
 
 The implemented API exposes two main endpoints. The first endpoint, \texttt{/health}, is used to verify that the service is operational and the prediction model has been successfully loaded into memory, as illustrated in Figure~\ref{fig:api-health}. The second endpoint, \texttt{/predict}, receives a feature vector as input and returns the predicted attack class along with the associated confidence score and inference time, as shown in Figure~\ref{fig:api-predict}.
 
+\vskip 0.3cm
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.67\columnwidth]{screenshots/inference_health_endpoint.png}
+	\includegraphics[width=0.8\columnwidth]{screenshots/inference_health_endpoint.png}
 	\caption{FastAPI \texttt{/health} endpoint}
 	\label{fig:api-health}
 \end{figure}
@@ -247,7 +250,7 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.67\columnwidth]{screenshots/inference_predict_endpoint.png}
+	\includegraphics[width=0.8\columnwidth]{screenshots/inference_predict_endpoint.png}
 	\caption{FastAPI \texttt{/predict} endpoint}
 	\label{fig:api-predict}
 \end{figure}
@@ -304,7 +307,7 @@ The system architecture is illustrated through the deployment diagram as shown i
 \section{User Interfaces}
 
 This section presents the main user interfaces of the NIDS Web Application.
-
+\vspace{-0.5cm}
 \subsubsection{Use case «Authenticate» realization}
 The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
 
@@ -354,26 +357,29 @@ The analysis trigger interface allows an administrator to start a network analys
 \end{figure}
 
 
-\paragraph{Use case «Send Alert» realization}
+\subsubsection{Use case «Send Alert» realization}
+
 The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged for more than 5 minutes, as illustrated in Figure~\ref{fig:email-notifications}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/send_Alert_interface.png}
+	\includegraphics[width=0.95\columnwidth]{interfaces/send_Alert_interface.png}
 	\caption{In-dashboard alert notification}
 	\label{fig:ui-send-alert}
 \end{figure}
 
+\vspace{-0.5cm}
+
 \begin{figure}[H]
 	\centering
-	\begin{minipage}[t]{0.49\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[height=0.4\textheight]{interfaces/critical_email_interface.png}
+		\includegraphics[height=0.35\textheight]{interfaces/critical_email_interface.png}
 	\end{minipage}
 	\hfill
-	\begin{minipage}[t]{0.49\columnwidth}
+	\begin{minipage}[t]{0.45\columnwidth}
 		\centering
-		\includegraphics[height=0.4\textheight]{interfaces/High_email_interface.png}
+		\includegraphics[height=0.35\textheight]{interfaces/High_email_interface.png}
 	\end{minipage}
 	\caption{Email notifications}
 	\label{fig:email-notifications}

@@ -4,6 +4,19 @@ hide circle
 
 skinparam sequenceParticipant underline
 skinparam SequenceGroupBorderThickness 1.1
+skinparam sequenceMessageAlign left
+skinparam defaultFontSize 18
+skinparam sequenceParticipantFontSize 18
+skinparam sequenceActorFontSize 18
+skinparam sequenceGroupFontSize 16
+skinparam sequenceArrowFontSize 16
+skinparam sequenceParticipantPadding 20
+skinparam sequenceBoxPadding 20
+skinparam sequenceArrowThickness 2
+skinparam ParticipantPadding 40
+skinparam sequenceMessageAlign left
+
+scale 4
 
 
 actor ":Network_Admin" as Admin

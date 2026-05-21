@@ -255,6 +255,7 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
 	\label{fig:api-predict}
 \end{figure}
 
+\vspace{-1cm}
 
 \section{Deployment}
 
@@ -295,6 +296,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
 Communication between system components is based on HTTP requests within the Docker network. The frontend communicates with the backend through REST APIs, while the backend interacts with the FastAPI service to obtain prediction results from the trained model.
 The backend also handles data persistence by communicating with the MySQL database, and external notifications are sent through an SMTP service.
 
+\vspace{0.5cm}
 The system architecture is illustrated in the deployment diagram shown in Figure~\ref{fig:dep-diagram}.
 \begin{figure}[H]
 	\centering

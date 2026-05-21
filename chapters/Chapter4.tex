@@ -38,7 +38,7 @@ We narrow it down to these three datasets. Below is a comparative table ~\ref{ta
         \hline
 
         UNSW-NB15 \cite{moustafa2015unsw}                                                                                        &
-        Australian Centre for Cyber Security (ACCS), UNSW Canberra                                        &
+        Australian Centre for Cybersecurity (ACCS), UNSW Canberra                                        &
         Medium ($\approx$2.5M records)                                                                    &
         Synthetic traffic generated with IXIA PerfectStorm tool.                                                    &
         Medium; 9 attack types: Fuzzers, Analysis, Backdoor, DoS, Exploits, Generic, Reconnaissance, Shellcode, Worms.
@@ -60,10 +60,10 @@ The comparative analysis of the three datasets reveal that each has its own limi
 
 \subsection{Dataset overview}
 
-CIC-IDS2017 was created by the Canadian Institute for Cybersecurity at the University of New Brunswick, in two phases. 
-The first phase involved simulating network traffic within a controlled environment, where the generated traffic was captured in packet capture (PCAP) format. 
-The second phase focused on transforming the raw PCAP files into a format suitable for machine learning. This transformation involved processing the captured network packets and aggregating them into network flows, from which statistical features describing each communication session were extracted using the CICFlowMeter\cite{CICFlowMeter} feature extraction tool. 
-As a result, a row in this dataset do not represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary. 
+CIC-IDS2017 was created by the Canadian Institute for Cybersecurity at the University of New Brunswick, in two phases.
+The first phase involved simulating network traffic within a controlled environment, where the generated traffic was captured in packet capture (PCAP) format.
+The second phase focused on transforming the raw PCAP files into a format suitable for machine learning. This transformation involved processing the captured network packets and aggregating them into network flows, from which statistical features describing each communication session were extracted using the CICFlowMeter\cite{CICFlowMeter} feature extraction tool.
+As a result, a row in this dataset do not represent a packet, it represents an overview of the session behaviour between two endpoints through statistical summary.
 
 \section{Data Understanding}
 
@@ -182,9 +182,9 @@ The dataset contains 79 columns, of them 78 are numeric level-flow features and 
               \texttt{Packet Length Mean} =\texttt{Average Packet Size}= \frac{\sum \text{Packet Length}}{\text{Packet Count}}
           \]
 
-We inspect the CICFlowMeter code source in order to trace back the computation logic of these two features.
-We found out that this discrepancy arises because \texttt{Packet Length Mean} uses a buggy version of the packet count variable, while \texttt{Average Packet Size} uses the correct one. 
-          \end{itemize}
+          We inspect the CICFlowMeter code source in order to trace back the computation logic of these two features.
+          We found out that this discrepancy arises because \texttt{Packet Length Mean} uses a buggy version of the packet count variable, while \texttt{Average Packet Size} uses the correct one.
+\end{itemize}
 
 All 54 features are of type \texttt{int64}, 24 features are of type \texttt{float64}, with the last feature, the target \emph{Label}, being of type \texttt{object}.
 
@@ -453,7 +453,7 @@ The class distribution analysis is organized into three aspects: an overall view
           \end{figure}
 
 
-    \item \textbf{Attack classes distribution:} The global attack distribution varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.0024\% as shown in Figure \ref{fig:attack_distribution}.
+    \item \textbf{Attack classes distribution:} The global attack distribution varies significantly, ranging from DoS Hulk at 8.16\% down to Heartbleed at 0.0004\%, with the three rarest classes, Infiltration, Web Attack - Sql Injection, and Heartbleed, collectively accounting for only 0.002\% as shown in Figure \ref{fig:attack_distribution}.
 
           \begin{figure}[h!]
               \centering
@@ -571,9 +571,9 @@ The true anomaly in both cases is \feature{Flow~Duration~=~0}.
 Every affected row contains exactly two packets total, either two forward or one forward and one backward, which is consistent with this explanation: with only two packets, a single resolution failure collapses the entire duration to zero.
 This collapse propagates to every other feature that depends on the timestamp value, like \feature{Flow IAT Mean}, \feature{Flow IAT Max}, \feature{Flow IAT Min}, and all rate-based features reduce to zero as well.
 
-The impact of these rows is relatively limited. Globally, 353 unique rows contain at least one NaN value, representing approximately 0.0001\% of the dataset, while 1,564 unique rows contain at least one Inf value, accounting for 0.0005\% of the dataset.
+The impact of these rows is relatively limited. Globally, 353 unique rows contain at least one NaN value, representing approximately 0.01\% of the dataset, while 1,564 unique rows contain at least one Inf value, accounting for 0.05\% of the dataset.
 
-At the class level, Inf values mainly affect the BENIGN class, with 1,427 impacted rows corresponding to 0.0006\% of its samples, while only four attack classes are affected. NaN values are observed almost exclusively in BENIGN, with 350 affected rows representing less than 	0.0001\% of the class samples, along with a small presence in DoS Hulk.
+At the class level, Inf values mainly affect the BENIGN class, with 1,427 impacted rows corresponding to 0.06\% of its samples, while only four attack classes are affected. NaN values are observed almost exclusively in BENIGN, with 350 affected rows representing less than 0.01\% of the class samples, along with a small presence in DoS Hulk.
 Rare attack classes such as Heartbleed, Infiltration, and Web Attack - SQL Injection remain unaffected.
 The class-level distribution of affected rows is presented in Figure \ref{fig:/inf_and_nan_class_distribution}.
 
@@ -624,7 +624,7 @@ Given the nature of the dataset feature, their logical value should never be neg
 
           The bug is confirmed by the data: all 35 affected rows are UDP flows, as indicated by \feature{Init\_Win\_bytes\_forward} = \feature{Init\_Win\_bytes\_backward} = -1.
 
-          The impact is narrow, 35 rows in \feature{Fwd Header Length}, \feature{Fwd Header Length.1}, and \feature{min\_seg\_size\_forward}, and 22 rows in \feature{Bwd Header Length}, all exclusively BENIGN traffic, collectively under 0.0001\% of the dataset.
+          The impact is narrow, 35 rows in \feature{Fwd Header Length}, \feature{Fwd Header Length.1}, and \feature{min\_seg\_size\_forward}, and 22 rows in \feature{Bwd Header Length}, all exclusively BENIGN traffic, collectively under 0.002\% of the dataset.
 \end{itemize}
 
 \subsubsection{Exact duplicates}
@@ -684,7 +684,7 @@ Constant features are those with a single unique value across the entire dataset
 
 \feature{Fwd URG Flags}, \feature{CWE Flag Count}, \feature{RST Flag Count}, and \feature{ECE Flag Count}.
 
-Each feature hold exactly two unique values across the entire dataset. These are rare-event TCP control flags that are virtually absent in normal traffic. Combined, their non-zero occurrences account for only 315 rows (0.0139\%), all within BENIGN traffic. Therfore, they carry no discriminative signal for any attack class.
+Each feature hold exactly two unique values across the entire dataset. These are rare-event TCP control flags that are virtually absent in normal traffic. Combined, their non-zero occurrences account for only 315 rows (0.0001\%), all within BENIGN traffic. Therfore, they carry no discriminative signal for any attack class.
 \vspace{-0.5cm}
 \section{Data preparatation}
 \vspace{-0.3cm}
@@ -699,7 +699,7 @@ The integrity of data is a prerequisite for any reliable model. Thus, we leverag
 
 Rows carrying NaN or Inf values in \feature{Flow Bytes/s} and \feature{Flow Packets/s} are removed. As established, these arise from division by a zero \feature{Flow Duration}, due to the lack of time granularity. Beyond the invalid rate features, these rows are also dominated by zeros which do not reflect the true nature of the flow, but are simply an artifact of insufficient measurement precision. Such a row cannot serve as a valid representation of a network session, as its defining characteristics were lost in the granularity gap.
 
-The scale reinforces the decision. Globally, fewer than 0.11\% of rows are affected. Additionally, the unique affected rows per attack class amount to 5 for Bot, 125 for PortScan, 2 for DDoS, and 3 for DoS Hulk, representing less than 0.00\% of any single class, all of which carry sufficient clean samples to generalise from. No minority class is affected.
+The scale reinforces the decision. Globally, fewer than 0.05\% of rows are affected. Additionally, the unique affected rows per attack class amount to 5 for Bot, 125 for PortScan, 2 for DDoS, and 3 for DoS Hulk, representing less than 0.3\% of any single class, all of which carry sufficient clean samples to generalise from. No minority class is affected.
 
 \subsubsection{Negative Values:}
 
@@ -745,7 +745,7 @@ All eight constant features are dropped. The bulk transfer group carries no info
 
 \subsubsection{Near-constant features}
 
-\texttt{Fwd URG Flags}, \texttt{CWE Flag Count}, \texttt{RST Flag Count}, and \texttt{ECE Flag Count} are also dropped. These are not bugs, they are legitimate TCP control flags that appear in a small fraction of the dataset. However, with non-zero values appearing in under 0.014\% of rows, exclusively in BENIGN traffic only, they carry no discriminative signal for attack detection.
+\texttt{Fwd URG Flags}, \texttt{CWE Flag Count}, \texttt{RST Flag Count}, and \texttt{ECE Flag Count} are also dropped. These are not bugs, they are legitimate TCP control flags that appear in a small fraction of the dataset. However, with non-zero values appearing in under 0.03\% of rows, exclusively in BENIGN traffic only, they carry no discriminative signal for attack detection.
 
 Retaining features that offer no class-separating information adds unnecessary dimensionality without benefit, so they are removed in to reduce dimensionality for a more focused feature space.
 
@@ -757,7 +757,7 @@ The absence of the 3 pairs is explained by the cleaning process: \texttt{Fwd URG
 
 For the 13 new pairs, each pair contains at least one of the following features: \texttt{Fwd Header Length} and \texttt{Bwd Header Length}. These two features have their UDP parsing-corrupted rows dropped during cleaning. As a result, the true underlying correlation between these features and others becomes visible, previously masked by the corrupted values.
 
-One feature from each pair is dropped. The choice is made based on Mutual Information (MI) score, which measures the feature-target association to determine which feature is more informative to distinguish between classes. For pairs with similar MI scores, the decision is made based on the domain knowledge.
+One feature from each pair is dropped. The choice is made based on Mutual Information score, which measures the feature-target association to determine which feature is more informative to distinguish between classes. For pairs with similar MI scores, the decision is made based on the domain knowledge.
 
 Mutual Information measures how much knowing the value of a feature reduces uncertainty about the target class.  Unlike the Pearson correlation, it captures both linear and non-linear relationships and works with categorical and continuous features. An MI score of 0 means it provides no useful information for target prediction, while a higher score indicates a stronger association with the target class. The MI score measures the association between a single feature and the target independently of other features\cite{MI}:
 
@@ -773,9 +773,9 @@ For the remaining 12 pairs the decision is made by examining what each feature r
 
 \begin{itemize}
     \item \textbf{Packet and Segment length mean pairs:} \texttt{Fwd Packet Length Mean} and \texttt{Avg Fwd Segment Size}, \texttt{Bwd Packet Length Mean} and \texttt{Avg Bwd Segment Size}, the packets features are kept over the segments one, as they use standard network traffic analysis terminology, are immediately interpretable, and are consistent with the other packet length features already present in the dataset.
-    
+
     \item \textbf{Totals and Subflows pairs:} \texttt{Total Fwd Packets} and \texttt{Subflow Fwd Packets}, \texttt{Total Backward Packets} and \texttt{Subflow Bwd Packets}, \texttt{Total Length of Fwd Packets} and \texttt{Subflow Fwd Bytes}, \texttt{Total Length of Bwd Packets} and \texttt{Subflow Bwd Bytes}, as established before, the subflows are equal to the totals throughout the dataset due to a bug in their computation. The totals are kept as they are correctly computed and more fundamental, representing the actual flow-level counts and byte totals directly. The subflow features are dropped as they provide no additional information beyond what the totals already capture.
-    
+
     \item \textbf{Flags pair:} \texttt{Fwd PSH Flags} and \texttt{SYN Flag Count}, although both are only counted on the first packet due to the flag-counting bug, they still provide information about whether the flow was captured from the beginning of a TCP connection. Since both features carry identical information, the choice is based on domain relevance: \texttt{Fwd PSH Flags} only indicates whether the first packet had the PSH flag set, signaling the sender to push buffered data immediately, which carries limited interpretable meaning in the context of attack detection. \texttt{SYN Flag Count} is kept as it has a clearer semantic meaning, directly reflecting whether a connection-initiating SYN packet was observed, making it more interpretable for distinguishing attack types.
 
     \item \textbf{Duration and IAT pair:} \texttt{Flow Duration} and \texttt{Fwd IAT Total}, are highly correlated as both grow with the length of the connection, but they measure different quantities. \texttt{Flow Duration} captures the total elapsed time of the entire flow across both directions and is retained as it is a direct, universally understood measure of connection length. \texttt{Fwd IAT Total} measures the cumulative inter-arrival time between consecutive forward packets only, making it a direction-specific partial measure whose information is already partially represented by \texttt{Flow Duration} in combination with the other IAT features, and is therefore dropped.
@@ -817,7 +817,7 @@ Several factors make us approach this step with caution, when assessing the trai
 
 A per-file split is not an option, as the files are divided per attack type, each attack class appears in exactly one file, so splitting by file would result in classes entirely absent from either the training or test set.
 
-A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is 80/20 Additionally, rare classes present less than 0.001\% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is particularly concerning given their scarcity.
+A standard random 80/20 split presents its own issues. The CIC-IDS2017 dataset is heavily imbalanced, the BENIGN to attack ratio is approximately 80/20 Additionally, rare classes present less than 0.002\% of the full dataset, so this strategy offers no guarantee of a fair class distribution and gives no assurance that rare classes will be adequately represented in both sets, which is particularly concerning given their scarcity.
 
 For these reasons, a stratified train/test split is selected. It ensures all classes are present in both the training and test sets, each maintaining their original proportions, so the class distribution in each split mirrors that of the full dataset.
 

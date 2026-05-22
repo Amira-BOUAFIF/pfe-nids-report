@@ -10,7 +10,7 @@ Finally, we present the system’s results through the main user interfaces.
 
 
 
-\section{Development Tools and Technologies}
+\section{Development tools and technologies}
 This section presents the development tools and technologies used throughout the project. Table \ref{tab:dev_tools_tech} summarizes the main technologies adopted, along with their respective roles within the system.
 
 
@@ -229,7 +229,7 @@ This section presents the development tools and technologies used throughout the
 \end{tcolorbox}
 \endgroup
 
-\section{Model Integration}
+\section{Model integration}
 
 After training and validating the intrusion detection model, the next step consisted of integrating it into the application environment in order to enable prediction through the web platform.
 
@@ -255,6 +255,7 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
   \label{fig:api-predict}
 \end{figure}
 
+\vspace{-1cm}
 
 \section{Deployment}
 
@@ -295,6 +296,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
 Communication between system components is based on HTTP requests within the Docker network. The frontend communicates with the backend through REST APIs, while the backend interacts with the FastAPI service to obtain prediction results from the trained model.
 The backend also handles data persistence by communicating with the MySQL database, and external notifications are sent through an SMTP service.
 
+\vspace{0.5cm}
 The system architecture is illustrated in the deployment diagram shown in Figure~\ref{fig:dep-diagram}.
 \begin{figure}[H]
   \centering
@@ -304,7 +306,7 @@ The system architecture is illustrated in the deployment diagram shown in Figure
 \end{figure}
 
 
-\section{User Interfaces}
+\section{User interfaces}
 
 This section presents the main user interfaces of the NIDS Web Application.
 \vspace{-0.5cm}

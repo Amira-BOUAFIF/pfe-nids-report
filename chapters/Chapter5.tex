@@ -199,7 +199,7 @@ Nevertheless, the results remain promising given the extremely limited training 
 \vspace{0.3cm}
 \subsubsection{Unexpected outcomes}
 \begin{itemize}
-    \item \textbf{ .s:}
+    \item \textbf{ Web attacks:}
           The most notable results come from the Web attack subclasses. We anticipated that \classlabel{Web Attack - SQL Injection} would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
           \vspace{1.5cm}
 
@@ -317,19 +317,19 @@ Relative to the baseline, \classlabel{Bot} performance consistently drops under 
 
 As established, no combination of weighting or sampling improves Web Attack performance. The confusion matrix shows persistent mutual misclassification between XSS and Brute Force across every experiment. Their flow-level signatures are too similar to separate with the available features.
 
-We therefore decide to merge the three Web Attack subclasses, Brute Force, SQL Injection, and XSS, into a single unified Web Attack class.
+We therefore decide to merge the three Web Attack subclasses, Brute Force, SQL Injection, and XSS, into a single unified \classlabel{Web Attack} class.
 
 Because this modifies the training set, all four experimental configurations are re-run from scratch.
 
 The merged \classlabel{Web Attack} class immediately achieves F1-score = 0.98. However, \classlabel{Heartbleed} drops from 0.93 to 0.86 relative to the original baseline, while \classlabel{Bot} remains stable at 0.83.
 
-When class weights are introduced, \classlabel{Heartbleed} reaches an F1-score = 0.96 \classlabel{Infiltration} recovers to 0.87, matching its performance before merging under the sampling and class-weighting strategy. \classlabel{Web Attack } holds at 0.98.
+When class weights are introduced, \classlabel{Heartbleed} reaches an F1-score = 0.96 \classlabel{Infiltration} recovers to 0.87, matching its performance before merging under the sampling and class-weighting strategy. \classlabel{Web Attack} holds at 0.98.
 
-Under sampling alone, \classlabel{Infiltration} reaches only 0.80, \classlabel{Heartbleed} drops to 0.93 \classlabel{Web Attack } stays at 0.98.
+Under sampling alone, \classlabel{Infiltration} reaches only 0.80, \classlabel{Heartbleed} drops to 0.93 \classlabel{Web Attack} stays at 0.98.
 
-Finally, combining sampling with class weights, \classlabel{Web Attack } remains at 0.98 However, \classlabel{Infiltration} drops to 0.79. \classlabel{Heartbleed} reaches 1.0 F1-score again.
+Finally, combining sampling with class weights, \classlabel{Web Attack} remains at 0.98 However, \classlabel{Infiltration} drops to 0.79. \classlabel{Heartbleed} reaches 1.0 F1-score again.
 
-Across all four configurations, \classlabel{Web Attack } consistently sits at approximately 0.98 regardless of whether weights or sampling are added. This confirms that merging alone is the decisive intervention; no additional rebalancing is necessary.
+Across all four configurations, \classlabel{Web Attack} consistently sits at approximately 0.98 regardless of whether weights or sampling are added. This confirms that merging alone is the decisive intervention; no additional rebalancing is necessary.
 
 \subsubsection{Heartbleed ablation}
 
@@ -341,7 +341,7 @@ More importantly, all resampling and rebalancing techniques are applied exclusiv
 
 This initially motivates an ablation experiment in which \classlabel{Heartbleed} is temporarily removed to assess its impact on the model’s behavior.
 
-Following this change, the complete set of experiments is rerun. However, the results are unexpected: \classlabel{Infiltration}, which previously showed significant improvement under the merged \classlabel{Web Attack } configuration with class weighting and \classlabel{Heartbleed} included, reaching its best F1-score of 0.87, drops once \classlabel{Heartbleed} is removed while keeping the same merge and weighting setup.
+Following this change, the complete set of experiments is rerun. However, the results are unexpected: \classlabel{Infiltration}, which previously showed significant improvement under the merged \classlabel{Web Attack} configuration with class weighting and \classlabel{Heartbleed} included, reaching its best F1-score of 0.87, drops once \classlabel{Heartbleed} is removed while keeping the same merge and weighting setup.
 
 As shown in Figure~\ref{fig:/infiltration_comparison}, removing \classlabel{Heartbleed} under class weighting leads to a substantial decrease in \classlabel{Infiltration} F1-score.
 
@@ -376,7 +376,7 @@ In light of the ablation findings, we decide to retain \classlabel{Heartbleed}.
 \subsection{Final model configuration}
 The final model configuration carried forward into hyperparameter tuning consists of merging the Web Attack subclasses into a single class, retaining \classlabel{Heartbleed}, and applying balanced class weights. This configuration achieves a Macro F1-score of 0.97.
 
-At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. \classlabel{Heartbleed} reaches an F1-score of 0.96, \classlabel{Infiltration} achieves 0.87, and the merged \classlabel{Web Attack } class obtains an F1-score of 0.98.
+At the class level, nine classes achieve near-perfect performance with F1-scores of approximately 0.99. \classlabel{Heartbleed} reaches an F1-score of 0.96, \classlabel{Infiltration} achieves 0.87, and the merged \classlabel{Web Attack} class obtains an F1-score of 0.98.
 
 \subsection{Hyperparameter tuning}
 
@@ -439,7 +439,7 @@ Bayesian optimization with Optuna is selected, as it is a smart method yielding 
 \subsubsection{Tuning results}
 \vspace{-0.2cm}
 
-After 100 trials, the best configuration is found at trial 91, achieving a Macro F1-score of 0.976 with an improvement of 0.006 over the untuned model. The \classlabel{Infiltration} F1-score is improved from 0.87 to 0.91, and \classlabel{Heartbleed} also has a significant improvement from 0.96 to 1.0, while the merged \classlabel{Web Attack } class remains stable at 0.98.
+After 100 trials, the best configuration is found at trial 91, achieving a Macro F1-score of 0.976 with an improvement of 0.006 over the untuned model. The \classlabel{Infiltration} F1-score is improved from 0.87 to 0.91, and \classlabel{Heartbleed} also has a significant improvement from 0.96 to 1.0, while the merged \classlabel{Web Attack} class remains stable at 0.98.
 The best hyperparameters are as follows:
 \begin{multicols}{2}
 
@@ -482,7 +482,7 @@ The final model is trained on the full training set using the tuned hyperparamet
 
 The model is evaluated on the held-out test set using the decision thresholds. The final model achieves a Macro F1 of 0.98, exceeding the cross-validation mean of 0.96, indicating that the model generalizes well and did not overfit to the training data.
 
-At the class level, nine classes achieve near-perfect F1-scores above 0.99. \classlabel{Heartbleed} and \classlabel{Infiltration} both reach a perfect F1-score of 1.0 on the test set. This result is attributed to two factors: training on the full dataset exposes the model to all available patterns for these classes, and the test samples are similar enough to the training data for the learned decision boundaries to classify them correctly. It should be noted, however, that with only 2 \classlabel{Heartbleed} and 7 \classlabel{Infiltration} test samples, this result is not statistically robust and should be interpreted with caution. A more reliable evaluation of these classes would require testing on additional data from independent sources, which is considered a future direction. The merged \classlabel{Web Attack } class achieves an F1-score of 0.98, while \classlabel{Bot} reaches 0.84. 
+At the class level, nine classes achieve near-perfect F1-scores above 0.99. \classlabel{Heartbleed} and \classlabel{Infiltration} both reach a perfect F1-score of 1.0 on the test set. This result is attributed to two factors: training on the full dataset exposes the model to all available patterns for these classes, and the test samples are similar enough to the training data for the learned decision boundaries to classify them correctly. It should be noted, however, that with only 2 \classlabel{Heartbleed} and 7 \classlabel{Infiltration} test samples, this result is not statistically robust and should be interpreted with caution. A more reliable evaluation of these classes would require testing on additional data from independent sources, which is considered a future direction. The merged \classlabel{Web Attack} class achieves an F1-score of 0.98, while \classlabel{Bot} reaches 0.84. 
 
 Figure~\ref{fig:final_f1} shows the final F1-scores for each class.
 

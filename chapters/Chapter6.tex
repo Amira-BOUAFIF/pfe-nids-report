@@ -287,7 +287,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\columnwidth]{screenshots/launching_containers.png}
+  \includegraphics[width=0.9\columnwidth]{screenshots/launching_containers.png}
   \caption{Launching the system containers}
   \label{fig:launch-containers}
 \end{figure}
@@ -307,12 +307,11 @@ The system architecture is illustrated in the deployment diagram shown in Figure
 
 
 \section{User interfaces}
-
+\vspace{-0.2cm}
 This section presents the main user interfaces of the NIDS Web Application.
-\vspace{-0.5cm}
+\vspace{-0.3cm}
 \subsubsection{Use case «Authenticate» realization}
 The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/authentication_interface.png}
@@ -326,11 +325,11 @@ The dashboard interface provides a global overview of the system state and recen
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\columnwidth]{interfaces/dashboard_interface.png}
+  \includegraphics[width=0.95\columnwidth]{interfaces/dashboard_interface.png}
   \caption{Dashboard interface}
   \label{fig:ui-dashboard}
 \end{figure}
-
+\vspace{-1cm}
 \subsubsection{Use case «View Statistics Summary» realization}
 The statistics summary interface provides aggregated metrics and trends for monitoring purposes, as shown in Figures~\ref{fig:ui-stats-summary} and \ref{fig:ui-stats-summary-2}.
 
@@ -365,7 +364,7 @@ The alert notification mechanism operates on two channels. First, when a new ale
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.95\columnwidth]{interfaces/send_alert_interface.png}
+  \includegraphics[width=1\columnwidth]{interfaces/send_alert_interface.png}
   \caption{In-dashboard alert notification}
   \label{fig:ui-send-alert}
 \end{figure}
@@ -390,17 +389,17 @@ The alert notification mechanism operates on two channels. First, when a new ale
 
 \subsubsection{Use case «View Alerts List» realization}
 The alerts list interface displays all detected alerts with key information for quick review, as shown in Figure~\ref{fig:ui-alerts-list}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/alert_interface.png}
   \caption{Alerts list interface}
   \label{fig:ui-alerts-list}
 \end{figure}
-
+\vspace{-1cm}
 \subsubsection{Use case «Search Alerts» realization}
 The search interface enables filtering and searching through alerts by different criteria, as shown in Figure~\ref{fig:ui-search-alerts}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/search_alert_interface.png}
@@ -408,21 +407,21 @@ The search interface enables filtering and searching through alerts by different
   \label{fig:ui-search-alerts}
 \end{figure}
 
-\subsubsection{Use case «View Alert Detail» realization}
+\subsubsection{Use case «View Alert Details» realization}
 The alert detail interface presents the full information of a selected alert, enabling deeper investigation, as shown in Figure~\ref{fig:ui-alert-detail}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\columnwidth]{interfaces/alert_detail_interface.png}
-  \caption{Alert detail interface}
+  \includegraphics[width=1\columnwidth]{interfaces/alert_details_interface.png}
+  \caption{Alert details interface}
   \label{fig:ui-alert-detail}
 \end{figure}
 
 
-
+\vspace{-1cm}
 \subsubsection{Use case «Manage Alert Status» realization}
 The alert status management interface allows updating the status of an alert (e.g., new, acknowledged, resolved, dismissed), as shown in Figure~\ref{fig:ui-manage-alert-status}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/manage_alert_status_interface.png}
@@ -433,17 +432,17 @@ The alert status management interface allows updating the status of an alert (e.
 
 \subsubsection{Use case «View Reports» realization}
 The reports interface allows the IT manager to browse and consult generated reports, as shown in Figure~\ref{fig:ui-view-reports}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/view_reports_interface.png}
   \caption{Reports interface}
   \label{fig:ui-view-reports}
 \end{figure}
-
+\vspace{-1cm}
 \subsubsection{Use case «Generate Report» realization}
 The report generation interface allows producing a new report by selecting a period and saving it for later consultation, as shown in Figure~\ref{fig:ui-generate-report}.
-
+\vspace{-0.2cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/generate_report_interface.png}
@@ -461,40 +460,44 @@ The export interface enables downloading a report in PDF format for sharing or a
   \label{fig:ui-export-report}
 \end{figure}
 
-% Weekly report previews: 2 images on first row, 3 on second
+% Weekly report previews (enlarged for readability)
 \begin{figure}[H]
   \centering
-  \begin{minipage}[t]{0.49\columnwidth}
+  \begin{minipage}[t]{0.475\columnwidth}
     \centering
-    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page1}
+    \includegraphics[width=\linewidth,height=0.46\textheight,keepaspectratio]{interfaces/Weekly_Report_page1}
   \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.49\columnwidth}
+  \hspace{0.03\columnwidth}
+  \begin{minipage}[t]{0.475\columnwidth}
     \centering
-    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page2}
+    \includegraphics[width=\linewidth,height=0.46\textheight,keepaspectratio]{interfaces/Weekly_Report_page2}
   \end{minipage}
-  \vspace{0.3cm}
-
-  \begin{minipage}[t]{0.32\columnwidth}
-    \centering
-    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page3}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.32\columnwidth}
-    \centering
-    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page4}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t]{0.32\columnwidth}
-    \centering
-    \includegraphics[height=0.22\textheight]{interfaces/Weekly_Report_page5}
-  \end{minipage}
-  \caption{Weekly report}
-  \label{fig:weekly-report-previews}
+  \caption{Weekly report (pages 1--2)}
+  \label{fig:weekly-report-pages1-2}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.70\columnwidth}
+    \centering
+    \includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{interfaces/Weekly_Report_page3}
+  \end{minipage}
 
+  \vspace{-0.2cm}
 
+  \begin{minipage}[t]{0.49\columnwidth}
+    \centering
+    \includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{interfaces/Weekly_Report_page4}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.49\columnwidth}
+    \centering
+    \includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{interfaces/Weekly_Report_page5}
+  \end{minipage}
+  \caption{Weekly report (pages 3--5)}
+  \label{fig:weekly-report-pages3-5}
+\end{figure}
+\vspace{-0.7cm}
 
 \section{Conclusion}
 With this final chapter, we conclude the design and implementation of the AI-based Network Intrusion Detection System. We presented the model integration through a FastAPI inference service, the containerized deployment using Docker and Docker Compose, and the main user interfaces covering the core functionalities of the platform. Finally, we outlined the development tools and technologies used across the different components of the system.

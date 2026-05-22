@@ -240,19 +240,19 @@ The implemented API exposes two main endpoints. The first endpoint, \texttt{/hea
 \vskip 0.3cm
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\columnwidth]{screenshots/inference_health_endpoint.png}
-	\caption{FastAPI \texttt{/health} endpoint}
-	\label{fig:api-health}
+  \centering
+  \includegraphics[width=0.8\columnwidth]{screenshots/inference_health_endpoint.png}
+  \caption{FastAPI \texttt{/health} endpoint}
+  \label{fig:api-health}
 \end{figure}
 
 \vspace{-0.7cm}
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\columnwidth]{screenshots/inference_predict_endpoint.png}
-	\caption{FastAPI \texttt{/predict} endpoint}
-	\label{fig:api-predict}
+  \centering
+  \includegraphics[width=0.8\columnwidth]{screenshots/inference_predict_endpoint.png}
+  \caption{FastAPI \texttt{/predict} endpoint}
+  \label{fig:api-predict}
 \end{figure}
 
 
@@ -285,10 +285,10 @@ In practice, the complete stack can be launched using the command \texttt{docker
 Figure~\ref{fig:launch-containers} shows an example of successfully launching the system containers using Docker Compose.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{screenshots/launching_containers.png}
-	\caption{Launching the system containers}
-	\label{fig:launch-containers}
+  \centering
+  \includegraphics[width=1\columnwidth]{screenshots/launching_containers.png}
+  \caption{Launching the system containers}
+  \label{fig:launch-containers}
 \end{figure}
 
 \subsection{Inter-Service Communication}
@@ -297,10 +297,10 @@ The backend also handles data persistence by communicating with the MySQL databa
 
 The system architecture is illustrated in the deployment diagram shown in Figure~\ref{fig:dep-diagram}.
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{diagrams/DepD.png}
-	\caption{Deployment Diagram}
-	\label{fig:dep-diagram}
+  \centering
+  \includegraphics[width=1\columnwidth]{diagrams/DepD.png}
+  \caption{Deployment Diagram}
+  \label{fig:dep-diagram}
 \end{figure}
 
 
@@ -312,10 +312,10 @@ This section presents the main user interfaces of the NIDS Web Application.
 The authentication interface allows the user to log in and access the platform features, as shown in Figure~\ref{fig:ui-authenticate}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/authentication_interface.png}
-	\caption{Authentication interface}
-	\label{fig:ui-authenticate}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/authentication_interface.png}
+  \caption{Authentication interface}
+  \label{fig:ui-authenticate}
 \end{figure}
 
 
@@ -323,37 +323,37 @@ The authentication interface allows the user to log in and access the platform f
 The dashboard interface provides a global overview of the system state and recent activity, as shown in Figure~\ref{fig:ui-dashboard}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/dashboard_interface.png}
-	\caption{Dashboard interface}
-	\label{fig:ui-dashboard}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/dashboard_interface.png}
+  \caption{Dashboard interface}
+  \label{fig:ui-dashboard}
 \end{figure}
 
 \subsubsection{Use case «View Statistics Summary» realization}
 The statistics summary interface provides aggregated metrics and trends for monitoring purposes, as shown in Figures~\ref{fig:ui-stats-summary} and \ref{fig:ui-stats-summary-2}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_1_interface.png}
-	\caption{Statistics summary interface 1}
-	\label{fig:ui-stats-summary}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_1_interface.png}
+  \caption{Statistics summary interface 1}
+  \label{fig:ui-stats-summary}
 \end{figure}
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_2_interface.png}
-	\caption{Statistics summary interface 2}
-	\label{fig:ui-stats-summary-2}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_2_interface.png}
+  \caption{Statistics summary interface 2}
+  \label{fig:ui-stats-summary-2}
 \end{figure}
 
 \subsubsection{Use case «Trigger Network Analysis» realization}
 The analysis trigger interface allows an administrator to start a network analysis process, as shown in Figure~\ref{fig:ui-trigger-analysis}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/trigger_network_analysis_interface.png}
-	\caption{Trigger network analysis interface}
-	\label{fig:ui-trigger-analysis}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/trigger_network_analysis_interface.png}
+  \caption{Trigger network analysis interface}
+  \label{fig:ui-trigger-analysis}
 \end{figure}
 
 
@@ -362,27 +362,27 @@ The analysis trigger interface allows an administrator to start a network analys
 The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged for more than 5 minutes, as illustrated in Figure~\ref{fig:email-notifications}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.95\columnwidth]{interfaces/send_Alert_interface.png}
-	\caption{In-dashboard alert notification}
-	\label{fig:ui-send-alert}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{interfaces/send_alert_interface.png}
+  \caption{In-dashboard alert notification}
+  \label{fig:ui-send-alert}
 \end{figure}
 
 \vspace{-0.5cm}
 
 \begin{figure}[H]
-	\centering
-	\begin{minipage}[t]{0.45\columnwidth}
-		\centering
-		\includegraphics[height=0.35\textheight]{interfaces/critical_email_interface.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.45\columnwidth}
-		\centering
-		\includegraphics[height=0.35\textheight]{interfaces/High_email_interface.png}
-	\end{minipage}
-	\caption{Email notifications}
-	\label{fig:email-notifications}
+  \centering
+  \begin{minipage}[t]{0.45\columnwidth}
+    \centering
+    \includegraphics[height=0.35\textheight]{interfaces/critical_email_interface.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.45\columnwidth}
+    \centering
+    \includegraphics[height=0.35\textheight]{interfaces/High_email_interface.jpg}
+  \end{minipage}
+  \caption{Email notifications}
+  \label{fig:email-notifications}
 \end{figure}
 
 
@@ -390,30 +390,30 @@ The alert notification mechanism operates on two channels. First, when a new ale
 The alerts list interface displays all detected alerts with key information for quick review, as shown in Figure~\ref{fig:ui-alerts-list}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/alert_interface.png}
-	\caption{Alerts list interface}
-	\label{fig:ui-alerts-list}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/alert_interface.png}
+  \caption{Alerts list interface}
+  \label{fig:ui-alerts-list}
 \end{figure}
 
 \subsubsection{Use case «Search Alerts» realization}
 The search interface enables filtering and searching through alerts by different criteria, as shown in Figure~\ref{fig:ui-search-alerts}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/search_alert_interface.png}
-	\caption{Search alerts interface}
-	\label{fig:ui-search-alerts}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/search_alert_interface.png}
+  \caption{Search alerts interface}
+  \label{fig:ui-search-alerts}
 \end{figure}
 
 \subsubsection{Use case «View Alert Detail» realization}
 The alert detail interface presents the full information of a selected alert, enabling deeper investigation, as shown in Figure~\ref{fig:ui-alert-detail}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/alert_detail_interface.png}
-	\caption{Alert detail interface}
-	\label{fig:ui-alert-detail}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/alert_detail_interface.png}
+  \caption{Alert detail interface}
+  \label{fig:ui-alert-detail}
 \end{figure}
 
 
@@ -422,10 +422,10 @@ The alert detail interface presents the full information of a selected alert, en
 The alert status management interface allows updating the status of an alert (e.g., new, acknowledged, resolved, dismissed), as shown in Figure~\ref{fig:ui-manage-alert-status}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/manage_alert_status_interface.png}
-	\caption{Manage alert status interface}
-	\label{fig:ui-manage-alert-status}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/manage_alert_status_interface.png}
+  \caption{Manage alert status interface}
+  \label{fig:ui-manage-alert-status}
 \end{figure}
 
 
@@ -433,30 +433,30 @@ The alert status management interface allows updating the status of an alert (e.
 The reports interface allows the IT manager to browse and consult generated reports, as shown in Figure~\ref{fig:ui-view-reports}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/view_reports_interface.png}
-	\caption{Reports interface}
-	\label{fig:ui-view-reports}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/view_reports_interface.png}
+  \caption{Reports interface}
+  \label{fig:ui-view-reports}
 \end{figure}
 
 \subsubsection{Use case «Generate Report» realization}
 The report generation interface allows producing a new report by selecting a period and saving it for later consultation, as shown in Figure~\ref{fig:ui-generate-report}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/generate_report_interface.png}
-	\caption{Generate report interface}
-	\label{fig:ui-generate-report}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/generate_report_interface.png}
+  \caption{Generate report interface}
+  \label{fig:ui-generate-report}
 \end{figure}
 
 \subsubsection{Use case «Export Report» realization}
 The export interface enables downloading a report in PDF format for sharing or archiving, as shown in Figure~\ref{fig:ui-export-report}.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=1\columnwidth]{interfaces/export_report_interface.jpeg}
-	\caption{Export report interface}
-	\label{fig:ui-export-report}
+  \centering
+  \includegraphics[width=1\columnwidth]{interfaces/export_report_interface.png}
+  \caption{Export report interface}
+  \label{fig:ui-export-report}
 \end{figure}
 
 % Weekly report previews: 2 images on first row, 3 on second

@@ -292,7 +292,7 @@ Figure~\ref{fig:launch-containers} shows an example of successfully launching th
   \label{fig:launch-containers}
 \end{figure}
 
-\subsection{Inter-Service Communication}
+\subsection{Inter-Service communication}
 Communication between system components is based on HTTP requests within the Docker network. The frontend communicates with the backend through REST APIs, while the backend interacts with the FastAPI service to obtain prediction results from the trained model.
 The backend also handles data persistence by communicating with the MySQL database, and external notifications are sent through an SMTP service.
 
@@ -301,7 +301,7 @@ The system architecture is illustrated in the deployment diagram shown in Figure
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{diagrams/DepD.png}
-  \caption{Deployment Diagram}
+  \caption{Deployment diagram}
   \label{fig:dep-diagram}
 \end{figure}
 
@@ -323,16 +323,20 @@ The authentication interface allows the user to log in and access the platform f
 \subsubsection{Use case «View Dashboard» realization}
 The dashboard interface provides a global overview of the system state and recent activity, as shown in Figure~\ref{fig:ui-dashboard}.
 
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.95\columnwidth]{interfaces/dashboard_interface.png}
+  \includegraphics[width=1\columnwidth]{interfaces/dashboard_interface.png}
   \caption{Dashboard interface}
   \label{fig:ui-dashboard}
 \end{figure}
-\vspace{-1cm}
+
+\vskip0.5cm
 \subsubsection{Use case «View Statistics Summary» realization}
 The statistics summary interface provides aggregated metrics and trends for monitoring purposes, as shown in Figures~\ref{fig:ui-stats-summary} and \ref{fig:ui-stats-summary-2}.
 
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/view_statistics_summary_1_interface.png}
@@ -347,9 +351,11 @@ The statistics summary interface provides aggregated metrics and trends for moni
   \label{fig:ui-stats-summary-2}
 \end{figure}
 
+\vskip0.5cm
 \subsubsection{Use case «Trigger Network Analysis» realization}
 The analysis trigger interface allows an administrator to start a network analysis process, as shown in Figure~\ref{fig:ui-trigger-analysis}.
 
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/trigger_network_analysis_interface.png}
@@ -357,7 +363,7 @@ The analysis trigger interface allows an administrator to start a network analys
   \label{fig:ui-trigger-analysis}
 \end{figure}
 
-
+\newpage
 \subsubsection{Use case «Send Alert» realization}
 
 The alert notification mechanism operates on two channels. First, when a new alert is generated, it is immediately pushed to the web application as an in-dashboard notification to highlight the event and indicate that new alerts are available, as shown in Figure~\ref{fig:ui-send-alert}. Second, email notifications are issued according to severity: a \textit{critical} alert triggers an immediate email notification, while a \textit{high} alert triggers an escalation email when it remains unacknowledged for more than 5 minutes, as illustrated in Figure~\ref{fig:email-notifications}.
@@ -369,18 +375,17 @@ The alert notification mechanism operates on two channels. First, when a new ale
   \label{fig:ui-send-alert}
 \end{figure}
 
-\vspace{-0.5cm}
 
 \begin{figure}[H]
   \centering
   \begin{minipage}[t]{0.45\columnwidth}
     \centering
-    \includegraphics[height=0.35\textheight]{interfaces/critical_email_interface.jpg}
+    \includegraphics[height=0.4\textheight]{interfaces/critical_email_interface.jpg}
   \end{minipage}
   \hfill
   \begin{minipage}[t]{0.45\columnwidth}
     \centering
-    \includegraphics[height=0.35\textheight]{interfaces/High_email_interface.jpg}
+    \includegraphics[height=0.4\textheight]{interfaces/High_email_interface.jpg}
   \end{minipage}
   \caption{Email notifications}
   \label{fig:email-notifications}
@@ -389,17 +394,23 @@ The alert notification mechanism operates on two channels. First, when a new ale
 
 \subsubsection{Use case «View Alerts List» realization}
 The alerts list interface displays all detected alerts with key information for quick review, as shown in Figure~\ref{fig:ui-alerts-list}.
-\vspace{-0.2cm}
+
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/alert_interface.png}
   \caption{Alerts list interface}
   \label{fig:ui-alerts-list}
 \end{figure}
-\vspace{-1cm}
+
+
+\vspace{0.5cm}
 \subsubsection{Use case «Search Alerts» realization}
 The search interface enables filtering and searching through alerts by different criteria, as shown in Figure~\ref{fig:ui-search-alerts}.
-\vspace{-0.2cm}
+
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/search_alert_interface.png}
@@ -407,9 +418,11 @@ The search interface enables filtering and searching through alerts by different
   \label{fig:ui-search-alerts}
 \end{figure}
 
+\newpage
 \subsubsection{Use case «View Alert Details» realization}
 The alert detail interface presents the full information of a selected alert, enabling deeper investigation, as shown in Figure~\ref{fig:ui-alert-detail}.
-\vspace{-0.2cm}
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/alert_details_interface.png}
@@ -418,10 +431,11 @@ The alert detail interface presents the full information of a selected alert, en
 \end{figure}
 
 
-\vspace{-1cm}
+\vspace{0.5cm}
 \subsubsection{Use case «Manage Alert Status» realization}
 The alert status management interface allows updating the status of an alert (e.g., new, acknowledged, resolved, dismissed), as shown in Figure~\ref{fig:ui-manage-alert-status}.
-\vspace{-0.2cm}
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/manage_alert_status_interface.png}
@@ -432,17 +446,20 @@ The alert status management interface allows updating the status of an alert (e.
 
 \subsubsection{Use case «View Reports» realization}
 The reports interface allows the IT manager to browse and consult generated reports, as shown in Figure~\ref{fig:ui-view-reports}.
-\vspace{-0.2cm}
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/view_reports_interface.png}
   \caption{Reports interface}
   \label{fig:ui-view-reports}
 \end{figure}
-\vspace{-1cm}
+
+\vspace{0.5cm}
 \subsubsection{Use case «Generate Report» realization}
 The report generation interface allows producing a new report by selecting a period and saving it for later consultation, as shown in Figure~\ref{fig:ui-generate-report}.
-\vspace{-0.2cm}
+
+\vspace{0.7cm}
 \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{interfaces/generate_report_interface.png}
@@ -460,6 +477,7 @@ The export interface enables downloading a report in PDF format for sharing or a
   \label{fig:ui-export-report}
 \end{figure}
 
+\vskip0.5cm
 % Weekly report previews (enlarged for readability)
 \begin{figure}[H]
   \centering
@@ -482,9 +500,6 @@ The export interface enables downloading a report in PDF format for sharing or a
     \centering
     \includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{interfaces/Weekly_Report_page3}
   \end{minipage}
-
-  \vspace{-0.2cm}
-
   \begin{minipage}[t]{0.49\columnwidth}
     \centering
     \includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{interfaces/Weekly_Report_page4}
@@ -497,7 +512,8 @@ The export interface enables downloading a report in PDF format for sharing or a
   \caption{Weekly report (pages 3--5)}
   \label{fig:weekly-report-pages3-5}
 \end{figure}
-\vspace{-0.7cm}
 
+\vspace{-0.6cm}
 \section{Conclusion}
+\vspace{-0.3cm}
 With this final chapter, we conclude the design and implementation of the AI-based Network Intrusion Detection System. We presented the model integration through a FastAPI inference service, the containerized deployment using Docker and Docker Compose, and the main user interfaces covering the core functionalities of the platform. Finally, we outlined the development tools and technologies used across the different components of the system.

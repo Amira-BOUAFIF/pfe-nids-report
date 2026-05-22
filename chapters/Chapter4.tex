@@ -82,7 +82,7 @@ As mentioned in the previous subsection, the dataset is split into 8 files as sh
 
 \begin{table}[H]
     \centering
-    \caption{Dataset Files}
+    \caption{Dataset files}
     \label{tab:dataset}
     \begin{tabular}{|l|r|r|}
         \hline
@@ -119,7 +119,7 @@ The dataset contains a total of 2,830,743 rows across the 8 files. All files hav
           \begin{figure}[h!]
               \centering
               \includegraphics[width=0.5\columnwidth]{figures/label-corr.png}
-              \caption{Label Corruption}
+              \caption{Label corruption}
               \label{fig:labelCorrupt}
           \end{figure}
 \end{itemize}
@@ -130,7 +130,7 @@ The dataset contains a total of 2,830,743 rows across the 8 files. All files hav
 The dataset contains 79 columns, of them 78 are numeric level-flow features and the last one is the target Label. These features can be grouped into 12 categories as shown in Table \ref{tab:features}.
 
 \begin{longtable}{|p{4cm}|p{6cm}|p{6cm}|}
-    \caption{Feature Groups} \label{tab:features}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\
+    \caption{Feature groups} \label{tab:features}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \\
     \hline
     \rowcolor[gray]{0.8} \textbf{Group}                                                                                                                                                                                                                                                                    & \textbf{Features}                                                                                                                                                                              & \textbf{Description}                                                            \\
     \hline
@@ -196,7 +196,7 @@ Table \ref{tab:feature_stat} presents the statistics of some of the features.
 \vskip0.2cm
 \begin{table}[H]
     \centering
-    \caption{Feature Statistics}
+    \caption{Feature statistics}
     \label{tab:feature_stat}
     \begin{tabular}{|l|r|r|r|r|}
         \hline
@@ -235,7 +235,7 @@ Getting to understand the target label is just as important as any other step in
 Table \ref{tab:attack_classes} provides a description of the 14 attack classes of the dataset.
 
 \begin{longtable}{|p{3.5cm}|p{11.5cm}|}
-    \caption{Attack Classes}\label{tab:attack_classes}                                        \\
+    \caption{Attack classes}\label{tab:attack_classes}                                        \\
     \hline
     \rowcolor[gray]{0.8}\textbf{Class}                                 & \textbf{Description} \\
     \hline
@@ -365,7 +365,7 @@ The class distribution analysis is organized into three aspects: an overall view
 
     \item \textbf{Overall class distribution:} Table \ref{tab:class_distribution} provides a comprehensive overview of the classes' distribution across the dataset.
           \begin{longtable}{|l|l|r|r|}
-              \caption{Class Distribution}
+              \caption{Class distribution}
               \label{tab:class_distribution} \vspace{-0.3cm}                                                                         \\
               \hline
               \rowcolor[gray]{0.8}\textbf{Class}      & \textbf{file}                     & \textbf{Count}     & \textbf{Percentage} \\
@@ -427,7 +427,7 @@ The class distribution analysis is organized into three aspects: an overall view
           \begin{figure}[h!]
               \centering
               \includegraphics[width=0.5\columnwidth, fbox]{figures/benign_attack_ratio.png}
-              \caption{BENIGN vs Attack Ratio}
+              \caption{BENIGN vs attack ratio}
               \label{fig:BENIGN_vs_Attack_ratio}
           \end{figure}
 
@@ -440,7 +440,7 @@ The class distribution analysis is organized into three aspects: an overall view
           \begin{figure}[h!]
               \centering
               \includegraphics[width=1\columnwidth, fbox]{figures/benign_vs_attack_per_file.png}
-              \caption{BENIGN vs Attack Ratio per file}
+              \caption{BENIGN vs attack ratio per file}
               \label{fig:benign_vs_attack_per_file}
           \end{figure}
 
@@ -494,14 +494,14 @@ Among the 78 numerical features in the dataset, 39 highly correlated pairs are i
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.86\columnwidth, fbox]{figures/correlation_heatmap.png}
-    \caption{Correlation Heatmap}
+    \caption{Correlation heatmap}
     \label{fig:correlation_heatmap}
 \end{figure}
 \newpage
 A perfect correlation coefficient of 1 is observed in eight pairs, as listed in Table \ref{tab:correlated_features}.
 \begin{table}[H]
     \centering
-    \caption{Perfectly Correlated Feature pairs}
+    \caption{Perfectly correlated feature pairs}
     \label{tab:correlated_features}
     \begin{tabular}{|l|l|l|}
         \hline
@@ -616,7 +616,7 @@ Given the nature of the dataset features, their logical values should never be n
     \centering
     \hspace*{0.5cm}
     \fbox{\includegraphics[width=\dimexpr1\linewidth-2\fboxsep-2\fboxrule\relax, clip]{figures/ordering_artifact_class_distribution.png}}
-    \caption{Ordering Artifact Class Distribution}
+    \caption{Ordering artifact class distribution}
     \label{fig:/ordering_artifact_class_distribution}
 \end{figure}
 

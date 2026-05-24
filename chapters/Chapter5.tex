@@ -199,7 +199,7 @@ Nevertheless, the results remain promising given the extremely limited training 
 \vspace{0.3cm}
 \subsubsection{Unexpected outcomes}
 \begin{itemize}
-    \item \textbf{ Web attacks:}
+    \item \textbf{Web attacks:}
           The most notable results come from the Web attack subclasses. We anticipated that \classlabel{Web Attack - SQL Injection} would struggle, given only 19 training samples. Unexpectedly, all three Web Attack subclasses perform poorly: Brute Force achieves an F1-score of 0.79, SQL Injection 0.74, and XSS, the lowest-performing class, an F1-score of 0.37, despite having 522 training samples, which is typically sufficient for a tree-based model to learn from.
           \vspace{1.5cm}
 
@@ -495,4 +495,4 @@ Figure~\ref{fig:final_f1} shows the final F1-scores for each class.
 \vspace{-0.5cm}
 \section{Conclusion}
 
-This chapter presented the full modeling and evaluation pipeline of the project. Through a series of controlled experiments, class imbalance was systematically addressed, leading to a final model configuration that achieves a Macro F1-score of 0.9852 on the held-out test set. The next chapter presents the realization of the system.
+This chapter presented the full modeling and evaluation pipeline of the project. Through a series of controlled experiments, class imbalance was systematically addressed, leading to a final model configuration that achieves a Macro F1-score of 0.98 on the held-out test set. The next chapter presents the realization of the system.

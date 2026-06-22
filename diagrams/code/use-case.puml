@@ -3,6 +3,34 @@ skinparam dpi 300
 left to right direction
 skinparam packageStyle rectangle
 
+' General colors
+skinparam BackgroundColor white
+skinparam ArrowFontColor #154360
+
+' Use case styling
+skinparam UseCase {
+    BackgroundColor #eff5fa
+    BorderColor #2E86C1
+    FontColor #154360
+}
+
+' Actor styling
+skinparam Actor {
+    BackgroundColor #ffffff
+    BorderColor #2E86C1
+    FontColor #154360
+}
+
+' System boundary styling
+skinparam Rectangle {
+    BackgroundColor #ffffff
+    BorderColor #2E86C1
+    FontColor #154360
+}
+
+' Relationship color
+skinparam ArrowColor #2E86C1
+
 
 ' ─── Left Actors ──────────────────────────────────────
 actor "User" as User

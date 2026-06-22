@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   contentStyleType="text/css"
+   height="2100"
+   preserveAspectRatio="none"
+   version="1.1"
+   viewBox="0 0 2969.0452 2099.8884"
+   width="2970"
+   zoomAndPan="magnify"
+   id="svg34"
+   sodipodi:docname="use-case.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview34"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="0.32849934"
+     inkscape:cx="1351.6009"
+     inkscape:cy="942.16324"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g34" />
+  <defs
+     id="defs1" />
+  <g
+     id="g34"
+     transform="matrix(1.3543386,0,0,1.3543386,-508.41816,-337.2199)">
+    <!--cluster NIDS Web Application-->
+    <g
+       id="cluster_NIDS Web Application"
+       transform="matrix(0.71376923,0,0,0.65056761,437.6031,258.6105)">
+      <rect
+         fill="#ffffff"
+         height="2312.5"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#2e86c1;stroke-width:3.125"
+         width="1634.375"
+         x="593.75"
+         y="21.875"
+         id="rect1" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         font-weight="bold"
+         lengthAdjust="spacing"
+         textLength="468.75"
+         x="1176.5625"
+         y="73.541298"
+         id="text1">NIDS Web Application</text>
+    </g>
+    <g
+       id="elem_UC_NET"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="949.49072"
+         cy="881.14807"
+         fill="#eff5fa"
+         rx="305.74069"
+         ry="68.648102"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse1" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="487.5"
+         x="705.74072"
+         y="892.7998"
+         id="text2">Trigger Network Analysis</text>
+    </g>
+    <g
+       id="elem_UC_NET_FLOW"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.328"
+         cy="885.06561"
+         fill="#eff5fa"
+         rx="278.453"
+         ry="63.190601"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse2" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="425"
+         x="1687.828"
+         y="896.71722"
+         id="text3">Analyze Network Flow</text>
+    </g>
+    <g
+       id="elem_UC_ALERT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.6661"
+         cy="609.56659"
+         fill="#eff5fa"
+         rx="178.79111"
+         ry="48.629101"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse3" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="200"
+         x="1791.2911"
+         y="623.68103"
+         id="text4">send Alert</text>
+    </g>
+    <g
+       id="elem_UC_AUTH"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,102.04877)">
+      <ellipse
+         cx="950.26312"
+         cy="405.67761"
+         fill="#eff5fa"
+         rx="209.63811"
+         ry="49.427601"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse4" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="246.875"
+         x="817.45062"
+         y="419.79199"
+         id="text5">Authenticate</text>
+    </g>
+    <g
+       id="elem_UC_VIEW_DASH"
+       transform="matrix(0.71370754,0,0,0.71370754,456.88153,404.08205)">
+      <ellipse
+         cx="950.31299"
+         cy="190.68761"
+         fill="#eff5fa"
+         rx="236.2505"
+         ry="54.750099"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse5" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="321.875"
+         x="780.00049"
+         y="204.802"
+         id="text6">View Dashboard</text>
+    </g>
+    <g
+       id="elem_UC_VIEW_STATS"
+       transform="matrix(0.71370754,0,0,0.71370754,502.64559,251.19143)">
+      <ellipse
+         cx="950.21942"
+         cy="634.73138"
+         fill="#eff5fa"
+         rx="300.21939"
+         ry="67.5439"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse6" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="475"
+         x="712.71942"
+         y="646.383"
+         id="text7">View Statistics Summary</text>
+    </g>
+    <g
+       id="elem_UC_ALERT_LIST"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="950.46112"
+         cy="1321.6547"
+         fill="#eff5fa"
+         rx="227.02361"
+         ry="52.904701"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse7" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="296.875"
+         x="792.64862"
+         y="1335.769"
+         id="text8">View Alerts List</text>
+    </g>
+    <g
+       id="elem_UC_ALERT_DETAIL"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.705"
+         cy="1321.7035"
+         fill="#eff5fa"
+         rx="235.0799"
+         ry="54.515999"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse8" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="318.75"
+         x="1731.955"
+         y="1335.8179"
+         id="text9"
+         transform="matrix(1.0851015,0,0,1,-147.4392,0)">View Alert Details</text>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:58.9584px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';writing-mode:lr-tb;direction:ltr;fill:#633806;stroke:#639922;stroke-width:1.91874"
+         x="2055.4275"
+         y="1324.1123"
+         id="text15"
+         transform="scale(0.99986582,1.0001342)"><tspan
+           sodipodi:role="line"
+           id="tspan1"
+           style="stroke-width:1.91874"
+           x="2055.4275"
+           y="1324.1123" /></text>
+    </g>
+    <g
+       id="elem_UC_ALERT_SEARCH"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.3497"
+         cy="1106.9449"
+         fill="#eff5fa"
+         rx="215.9747"
+         ry="50.694901"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse9" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="265.625"
+         x="1758.1622"
+         y="1121.0593"
+         id="text10">Search Alerts</text>
+    </g>
+    <g
+       id="elem_UC_ALERT_STATUS"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.6018"
+         cy="1603.2454"
+         fill="#eff5fa"
+         rx="267.78931"
+         ry="61.057899"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse10" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="400"
+         x="1700.6018"
+         y="1614.897"
+         id="text11">Manage Alert Status</text>
+    </g>
+    <g
+       id="elem_UC_VIEW_REPORTS"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="949.77399"
+         cy="1819.0173"
+         fill="#eff5fa"
+         rx="213.8365"
+         ry="50.2673"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse11" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="259.375"
+         x="810.71149"
+         y="1833.1317"
+         id="text12">View Reports</text>
+    </g>
+    <g
+       id="elem_UC_EXPORT_REPORT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1899.3877"
+         cy="1824.5649"
+         fill="#eff5fa"
+         rx="218.1377"
+         ry="51.127499"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse12" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="271.875"
+         x="1754.0752"
+         y="1838.6794"
+         id="text13">Export Report</text>
+    </g>
+    <g
+       id="elem_UC_GEN_REPORT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <ellipse
+         cx="1900.3759"
+         cy="2043.2002"
+         fill="#eff5fa"
+         rx="241.0009"
+         ry="55.700199"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse13" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="334.375"
+         x="1725.8698"
+         y="2056.8301"
+         id="text14">Generate Report</text>
+    </g>
+    <!--entity User-->
+    <g
+       id="elem_User"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,185.19506)">
+      <circle
+         cx="232.8125"
+         cy="423.4375"
+         fill="#ffffff"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse19"
+         r="25" />
+      <path
+         d="m 232.8125,448.4375 v 84.375 m -40.625,-59.375 h 81.25 m -40.625,59.375 -40.625,46.875 m 40.625,-46.875 40.625,46.875"
+         fill="none"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="path19" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="90.625"
+         x="187.5"
+         y="629.79132"
+         id="text20">User</text>
+    </g>
+    <!--entity Admin-->
+    <g
+       id="elem_Admin"
+       transform="matrix(0.71370754,0,0,0.71370754,538.82684,255.49627)">
+      <circle
+         cx="232.8125"
+         cy="1010.9375"
+         fill="#ffffff"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse20"
+         r="25" />
+      <path
+         d="m 232.8125,1035.9375 v 84.375 m -40.625,-59.375 h 81.25 m -40.625,59.375 -40.625,46.875 m 40.625,-46.875 40.625,46.875"
+         fill="none"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="path20" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="428.125"
+         x="151.72913"
+         y="1217.2913"
+         id="text21"
+         style="text-align:center;text-anchor:middle"
+         transform="translate(73.868055)"><tspan
+           sodipodi:role="line"
+           id="tspan34"
+           x="151.72913"
+           y="1217.2913">Network</tspan><tspan
+           sodipodi:role="line"
+           id="tspan35"
+           x="151.72913"
+           y="1271.9788">Administrator</tspan></text>
+    </g>
+    <!--entity ITMgr-->
+    <g
+       id="elem_ITMgr"
+       transform="matrix(0.71370754,0,0,0.71370754,414.22921,476.47348)">
+      <circle
+         cx="232.8125"
+         cy="1417.1875"
+         fill="#ffffff"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="ellipse21"
+         r="25" />
+      <path
+         d="m 232.8125,1442.1875 v 84.375 m -40.625,-59.375 h 81.25 m -40.625,59.375 -40.625,46.875 m 40.625,-46.875 40.625,46.875"
+         fill="none"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         id="path21" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="225"
+         x="120.3125"
+         y="1623.5413"
+         id="text22">IT Manager</text>
+    </g>
+    <!--entity DE-->
+    <g
+       id="elem_DE"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <rect
+         fill="#ffffff"
+         height="282.61719"
+         rx="7.8125"
+         ry="7.8125"
+         style="stroke:#2e86c1;stroke-width:1.5625"
+         width="328.125"
+         x="2375"
+         y="468.75"
+         id="rect22" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="150"
+         x="2468.75"
+         y="545.41632"
+         id="text23">«actor»</text>
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="2406.25"
+         y="600.44562"
+         id="text24"> </text>
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="265.625"
+         x="2406.25"
+         y="655.47491"
+         id="text25">Email Service</text>
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="43.75px"
+         lengthAdjust="spacing"
+         textLength="12.5"
+         x="2406.25"
+         y="710.50421"
+         id="text26"> </text>
+    </g>
+    <!--link UC_VIEW_DASH to UC_AUTH-->
+    <!--link UC_VIEW_STATS to UC_VIEW_DASH-->
+    <!--link UC_NET to UC_VIEW_STATS-->
+    <!--link UC_VIEW_REPORT_DETAIL to UC_ALERT_LIST-->
+    <!--link UC_ALERT_LIST to v-->
+    <!--link User to UC_AUTH-->
+    <!--link User to UC_VIEW_DASH-->
+    <!--link User to UC_VIEW_STATS-->
+    <!--link Admin to UC_NET-->
+    <!--link Admin to UC_ALERT_LIST-->
+    <!--link ITMgr to UC_VIEW_REPORTS-->
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS"
+       transform="matrix(1.2366061,0,0,0.71370754,52.771794,251.19143)"
+       style="stroke-width:2.37434;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9"
+         style="stroke:#2e86c1;stroke-width:2.37434;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS-4"
+       transform="matrix(0.56187368,-0.50029501,0.28324024,0.33041107,-31.288862,650.17556)"
+       style="stroke-width:3.89861;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9-8"
+         style="stroke:#2e86c1;stroke-width:3.89861;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS-4-4"
+       transform="matrix(0.75351824,0.55301075,0.37984818,-0.36522624,-291.85932,1451.2141)"
+       style="stroke-width:3.20206;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9-8-5"
+         style="stroke:#2e86c1;stroke-width:3.20206;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <!--link UC_ALERT to DE-->
+    <g
+       id="link_UC_ALERT_DE"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 2078.5625,609.375 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE"
+         style="stroke:#2e86c1;stroke-width:3.125"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <!--link UC_NET to UC_NET_FLOW-->
+    <g
+       id="link_UC_NET_UC_NET_FLOW"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 1256.9375,882.25 c 117.1875,0.4063 231.5626,0.7823 345.9064,1.1573"
+         fill="none"
+         id="UC_NET-to-UC_NET_FLOW"
+         style="stroke:#2e86c1;stroke-width:3.125;stroke-dasharray:7, 7" />
+      <polygon
+         fill="#2e86c1"
+         points="1593.5099,870.8766 1605.9688,883.4175 1593.4279,895.8764 1621.5938,883.4687 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon26" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="171.875"
+         x="1353.125"
+         y="873.42218"
+         id="text27">«include»</text>
+    </g>
+    <!--reverse link UC_NET_FLOW to UC_ALERT-->
+    <g
+       id="link_UC_NET_FLOW_UC_ALERT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 1900,801.8437 c 0,-49.4999 0,-98.3437 0,-143.6249"
+         fill="none"
+         id="UC_NET_FLOW-backto-UC_ALERT"
+         style="stroke:#2e86c1;stroke-width:3.125;stroke-dasharray:7, 7" />
+      <polygon
+         fill="#2e86c1"
+         points="1887.5,792.4687 1900,820.5937 1912.5,792.4687 1900,804.9687 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon27" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1779.6875"
+         y="757.01599"
+         id="text28"
+         transform="translate(39.21914)">«extend»</text>
+    </g>
+    <!--reverse link UC_ALERT_LIST to UC_ALERT_SEARCH-->
+    <path
+       d="m 1270.76,1172.3733 c 106.6285,-37.3354 265.2126,-92.8267 369.7629,-129.4387"
+       fill="none"
+       id="UC_ALERT_LIST-backto-UC_ALERT_SEARCH"
+       style="stroke:#2e86c1;stroke-width:2.23019;stroke-dasharray:4.99562, 4.99562;stroke-dashoffset:0" />
+    <polygon
+       fill="#2e86c1"
+       points="1129.5134,1281.581 1138.914,1266.6101 1114.2813,1285.0625 1144.4844,1290.9816 "
+       style="stroke:#2e86c1;stroke-width:3.0806406;stroke-dasharray:none"
+       id="polygon28"
+       transform="matrix(0.67623259,0,0,0.77500776,504.86616,179.86121)" />
+    <text
+       fill="#154360"
+       font-family="sans-serif"
+       font-size="40.625px"
+       lengthAdjust="spacing"
+       textLength="165.625"
+       x="1356.25"
+       y="1185.9222"
+       id="text29"
+       transform="matrix(0.67623259,0,0,0.77500776,470.98964,179.48027)"
+       style="stroke-width:0.98609052;stroke-dasharray:none">«extend»</text>
+    <!--reverse link UC_ALERT_LIST to UC_ALERT_DETAIL-->
+    <g
+       id="link_UC_ALERT_LIST_UC_ALERT_DETAIL"
+       transform="matrix(0.70841138,0,0,0.71510862,446.50418,249.39403)">
+      <path
+         d="m 1195.5313,1321.875 c 147.1562,0 320.625,0 469.4375,0"
+         fill="none"
+         id="UC_ALERT_LIST-backto-UC_ALERT_DETAIL"
+         style="stroke:#2e86c1;stroke-width:3.13338195;stroke-dasharray:7.01877557,7.01877557;stroke-dashoffset:0" />
+      <polygon
+         fill="#2e86c1"
+         points="1192.4063,1321.875 1204.9063,1309.375 1176.7813,1321.875 1204.9063,1334.375 "
+         style="stroke:#2e86c1;stroke-width:3.13338195;stroke-dasharray:none"
+         id="polygon29" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1356.25"
+         y="1310.9222"
+         id="text30">«extend»</text>
+    </g>
+    <!--link UC_NET to UC_ALERT-->
+    <!--link UC_ALERT_STATUS to UC_ALERT_DETAIL-->
+    <g
+       id="link_UC_ALERT_STATUS_UC_ALERT_DETAIL"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 1900,1542.0938 c 0,-49.125 0,-98.7813 0,-146.2813"
+         fill="none"
+         id="UC_ALERT_STATUS-to-UC_ALERT_DETAIL"
+         style="stroke:#2e86c1;stroke-width:3.125;stroke-dasharray:7, 7" />
+      <polygon
+         fill="#2e86c1"
+         points="1912.5,1405.1875 1900,1377.0625 1887.5,1405.1875 1900,1392.6875 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon30" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1779.6875"
+         y="1476.5472"
+         id="text31"
+         transform="translate(39.21914)">«extend»</text>
+    </g>
+    <!--reverse link UC_VIEW_REPORTS to UC_EXPORT_REPORT-->
+    <g
+       id="link_UC_VIEW_REPORTS_UC_EXPORT_REPORT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 1183.6559,1820.2781 c 153.8125,1 342.4691,2.2532 497.2191,3.2844"
+         fill="none"
+         id="UC_VIEW_REPORTS-backto-UC_EXPORT_REPORT"
+         style="stroke:#2e86c1;stroke-width:3.12479711;stroke-dasharray:6.99954552,6.99954552;stroke-dashoffset:0" />
+      <polygon
+         fill="#2e86c1"
+         points="1192.9494,1832.8388 1180.5309,1820.2578 1193.1119,1807.8394 1164.9063,1820.1563 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon31" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1356.25"
+         y="1810.9222"
+         id="text32">«extend»</text>
+    </g>
+    <!--reverse link UC_VIEW_REPORTS to UC_GEN_REPORT-->
+    <g
+       id="link_UC_VIEW_REPORTS_UC_GEN_REPORT"
+       transform="matrix(0.71370754,0,0,0.71370754,437.69015,251.19143)">
+      <path
+         d="m 1119.8996,1858.8048 c 151.6386,51.1193 383.5663,129.3057 541.9573,182.7041"
+         fill="none"
+         id="UC_VIEW_REPORTS-backto-UC_GEN_REPORT"
+         style="stroke:#2e86c1;stroke-width:3.12479711;stroke-dasharray:6.99954833,6.99954833;stroke-dashoffset:0" />
+      <polygon
+         fill="#2e86c1"
+         points="1126.0844,1872.8379 1116.824,1857.7798 1131.8821,1848.5195 1101.625,1854.1563 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon32" />
+      <text
+         fill="#154360"
+         font-family="sans-serif"
+         font-size="40.625px"
+         lengthAdjust="spacing"
+         textLength="165.625"
+         x="1356.25"
+         y="1904.6722"
+         id="text33"
+         transform="translate(-12.201712,38.939404)">«extend»</text>
+    </g>
+    <!--reverse link UC_GEN_REPORT to UC_EXPORT_REPORT-->
+    <!--link UC_VIEW_REPORTS to UC_VIEW_REPORT_DETAIL-->
+    <!--reverse link Admin to ITMgr-->
+    <g
+       id="link_Admin_ITMgr"
+       transform="matrix(0.71040842,0,0,0.77636571,425.56184,-301.75683)">
+      <path
+         d="m 236.96972,1284.573 c -9.77097,500.5244 -9.36386,479.6693 -19.13484,980.1938"
+         fill="none"
+         id="Admin-backto-ITMgr"
+         style="stroke:#2e86c1;stroke-width:3.12469;stroke-dasharray:none" />
+      <polygon
+         fill="none"
+         points="214.0625,1284.5625 251.5625,1284.5625 232.8125,1228.3125 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon33"
+         transform="matrix(0.99993389,0.01150014,-0.01149398,0.9999339,19.324563,-2.6245317)" />
+      <polygon
+         fill="none"
+         points="251.5625,1284.5625 232.8125,1228.3125 214.0625,1284.5625 "
+         style="stroke:#2e86c1;stroke-width:3.125"
+         id="polygon33-7"
+         transform="matrix(0.97714857,-0.19460677,0.23447193,0.97668889,-239.83133,72.616911)" />
+    </g>
+    <!--reverse link User to Admin-->
+    <g
+       id="link_User_Admin"
+       transform="matrix(0.75678404,0,0,0.92716478,421.88985,42.934337)"
+       style="stroke-width:2.84648;stroke-dasharray:none">
+      <path
+         d="m 276.10583,701.91782 c 34.09479,108.84473 51.37569,164.01251 85.47048,272.85724"
+         fill="none"
+         id="User-backto-Admin"
+         style="stroke:#2e86c1;stroke-width:2.84648;stroke-dasharray:none" />
+    </g>
+    <!--SRC=[nLRhQjim5FxlfpYuF_PZ9FIobZ5Am4tSDf2s8tRRmJg2QYk9g2C7IMcQNM0FiIVSaqmNsv4SXutHTIO4VFHzvw9pCtyWT8uOca4w9t2mk-jbU2n0vC38P2eW9GmdWkJKunLoZf87DC6HM6KOr36YamnxtYiumnGpb46IPpdZ5kL4KYOiNz2qguvWEIK2M-S1O_doDAV27E_i7RuvEDfLAgyvXWJ9FoxD4JgnIFAegqw-U22VkeaTF1uVZf4vorcAMI7V3zyUTVUqVDFYDsKpI8GKRHeqyYtcnlhv6tFHYWiyWtkb3B5LW-5XUSdFRto8CwJoowTaRl9MJukhId5-_lXkVZ1GnQAlXQ-bB_Rpa4w8Bmk1-O2ugWXM2Y-nMERi0O9qHYZXWY4frYWjAM7z62uGbUKipveVoUZ75nDM2xt8sacPjHSAkUet6M6_5y4jleTWFiz8ejFeomhHwLvmhDl6ZsKZo-YWkW-AiXKdt5nOTtGPnYv10pxZYd2QvKiBF3eTNDsw38vf2a66cIXnmI0SnZL7WeMOOYgKexZ2NSVdNWrtG_0IUeXFxtF4Kjz9XAJSzCFRKI-8pXjOaP2NmAK93j5YDfDfyMrM50Tnr6XEEyzX8Ca-s36C1lqetaQ07XQ8P4xGeruO1_s1IuamOicqiEB2ep0OTjrOm3SLMHXHGItgB1d9TTGKoH3FSst43dmOlhyQoj0TUFYaa0MXL1z-KCY2uEBDS1UunZWBBnlXbZV-fYyDs3lgNgU5RhpKHqdIsCTjydtFpBXrqmxrKZDp_3_CAwjvTKKV7-ifrEdSqJiQpcJm467sI19yHtK8lT3pYZOfcg3rSKhI5DDFQa-tt8QmNxOYJHCuRmrGDHMCwQeBjYbqKxI5ehycMZ9LJZhq98RNi1x2CcYU9yIif7-R8azjYxM7hMeUDSYjEzvoMCoMpUXUC21Zq7LE9R99Rastsc9xcMHuUgT2gxKnfEh-E7tnJ2vLPGgjD5_IbcmqCFKkxmlQIjRks0iFtibc9JJ95YdkTDRqjkg51YX-4d8fIgJTHMRMGtinDmohKHnERPVydb0wNgNO1BLUnBN50MtTZxRImjI6McSXh3snCxRX_7eb_0cXmOezQ0pTKkbvTNNrATCycSgAqzFhQwVu32oRevJgJyXV]-->
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS-4-7"
+       transform="matrix(1.1714652,-0.49987957,0.59053502,0.33013669,-970.69954,159.20547)"
+       style="stroke-width:2.70154838;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9-8-1"
+         style="stroke:#2e86c1;stroke-width:2.70154838;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS-4-4-1"
+       transform="matrix(1.1706206,0.54911238,0.59010927,-0.36265164,-969.2084,958.46198)"
+       style="stroke-width:2.57852554;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9-8-5-5"
+         style="stroke:#2e86c1;stroke-width:2.57852554;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <g
+       id="link_ITMgr_UC_VIEW_REPORTS-1"
+       transform="matrix(1.1751832,0,0,0.71370754,101.51592,-758.38617)"
+       style="stroke-width:2.4356;stroke-dasharray:none">
+      <path
+         d="m 440.40546,1819.5571 h 295.7188"
+         fill="none"
+         id="UC_ALERT-DE-9-6"
+         style="stroke:#2e86c1;stroke-width:2.4356;stroke-dasharray:none"
+         sodipodi:nodetypes="cc" />
+    </g>
+  </g>
+</svg>
